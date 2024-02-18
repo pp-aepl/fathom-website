@@ -1,0 +1,743 @@
+{
+    "LOGIN": {
+        "Permissions": {
+            "isLoginRequiredOnHome": false,
+            "isSkipForLaterEnabled": true,
+            "isLoginByPhoneEnabled": true,
+            "isLoginByGoogleEnabled": true,
+            "isLoginByEmailEnabled": true,
+            "isPhoneOTPVerficationEnabled": true,
+            "isEmailPasswordVerficationEnabled": true,
+            "isEmailOTPVerificationEnabled": true,
+            "isLoginByAppleEnabled": true
+        },
+        "Strings": {
+            "OR_TEXT": "OR",
+            "LOGIN_TITLE": "Login / Create Account",
+            "LOGIN_SUB_TITLE": "Enter your phone number",
+            "LOGIN_INPUT_PLACEHOLDER": "XXXX XXXXXX",
+            "LOGIN_BUTTON_TEXT": "Continue",
+            "GOOGLE_LOGIN_TEXT": "Sign In with Google",
+            "SKIP_LATER_TEXT": "Skip for later",
+            "LOGIN_BUTTON_CLICK_EVENT": "SEND_OTP_INITIATED",
+            "LOGIN_SUCCESS_EVENT": "OTP_SENT_SUCCESSFULL",
+            "LOGIN_FAILURE_EVENT": "SEND_OTP_FAILURE",
+            "APPLE_LOGIN_TEXT": "Sign In with Apple",
+            "CANCEL_BUTTON_TEXT": "Cancel",
+            "EMAIL_TEXT": "Email",
+            "PASSWORD_TEXT": "Password",
+            "FORGET_PASSWORD_TEXT": "Forgot Password?",
+            "LOGIN_TEXT": "Login",
+            "ADMIN_GOOGLE_LOGIN_TEXT": "Continue with Google",
+            "ADMIN_APPLE_LOGIN_TEXT": "Continue with Apple",
+            "ADMIN_FACEBOOK_LOGIN_TEXT": "Continue with Facebook",
+            "ADMIN_NO_ACCOUNT_TEXT": "Don’t have an account?",
+            "ADMIN_SIGNUP": "SignUp"
+        },
+        "Images": {
+            "APP_LOGO_IMAGE": "",
+            "GOOGLE_ICON": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698327564296.jpg",
+            "ARROW_DOWN_ICON": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698327589251.jpg",
+            "background_image": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1702985353388.jpg",
+            "login_page_image": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698327650030.jpg",
+            "APPLE_ICON": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698327516799.jpg"
+        }
+    },
+    "SIGN_UP": {
+        "Permissions": {
+            "isEmailPasswordVerficationEnabled": true,
+            "isEmailOTPVerificationEnabled": true
+        },
+        "Strings": {
+            "SIGN_UP_TITLE": "Complete Profile",
+            "SIGN_UP_SUB_TITLE": "Create an account with new phone number and email address",
+            "SIGN_UP_INPUT_MOBILE_PLACEHOLDER": "XXXX XXXXXX",
+            "SIGN_UP_INPUT_EMAIL_PLACEHOLDER": "Email Address",
+            "SIGN_UP_INPUT_NAME_PLACEHOLDER": "Name",
+            "SIGN_UP_INPUT_REFERRAL_PLACEHOLDER": "Referral Code(Optional)",
+            "SIGN_UP_BUTTON_TEXT": "SignUp",
+            "SIGN_UP_BUTTON_CLICK_EVENT": "SIGNUP_INITIATED",
+            "SIGN_UP_SUCCESS_EVENT": "SIGNUP_SUCCESSFULL",
+            "SIGN_UP_FAILURE_EVENT": "SIGNUP_FAILURE"
+        },
+        "Images": {
+            "ARROW_DOWN_ICON": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698327589251.jpg",
+            "EMAIL_ICON": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698327889018.jpg",
+            "NAME_ICON": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698327928283.jpg",
+            "signup_page_image": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698327650030.jpg",
+            "BACKGROUND_IMAGE": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1701771898392.jpg",
+            "REFERAL_ICON": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698327961787.jpg"
+        }
+    },
+    "OTP": {
+        "Permissions": {},
+        "Strings": {
+            "OTP_TITLE": "Enter OTP",
+            "OTP_SUB_TITLE": "Enter OTP sent to your Phone Number",
+            "OTP_TIME_LEFT": "Time Left : ",
+            "OTP_BUTTON_TEXT": "Submit",
+            "OTP_RESEND_BUTTON_TEXT": "Resend OTP",
+            "OTP_BUTTON_CLICK_EVENT": "OTP_INITIATED",
+            "OTP_SUCCESS_EVENT": "LOGIN_SUCCESSFULL",
+            "OTP_FAILURE_EVENT": "LOGIN_FAILURE",
+            "WEBSITE_OTP_TITLE": "Enter the Verification Code",
+            "WEBSITE_OTP_PLACEHOLDER_TEXT": "Verification code",
+            "NOT_RECEIVED_CODE_TEXT": "Didn't receive code?",
+            "OTP_RESEND_CODE_BUTTON_TEXT": "Resend Code",
+            "CANCEL_TEXT": "Cancel"
+        },
+        "Images": {
+            "otp_verification_page_image": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698327650030.jpg",
+            "BACKGROUND_IMAGE": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1701771898392.jpg",
+            "CLOSE_BUTTON_IMAGE": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1700024499565.jpg"
+        }
+    },
+    "HOME": {
+        "Permissions": {
+            "isSocialMediaEnabled": true,
+            "isHomePointsEnabled": true,
+            "isHomeProfileEnabled": true,
+            "isHomeBannerEnabled": true,
+            "isHomeBannerAutoplay": true,
+            "isHomeSection1Enabled": false,
+            "isHomeSection2Enabled": false,
+            "isHomeSection3Enabled": true,
+            "isHomeFeedbackEnabled": false,
+            "isHomePopularEventEnabled": true,
+            "isHomeOtherBrands": true,
+            "isHomePlayEarnsEvent": false,
+            "isHomePromotedtEnabled": true,
+            "isHomeTrendingEventEnabled": true,
+            "isHomeRecommendedEventEnabled": true,
+            "isInfluencerBannerEnabled": false,
+            "isHomeTopProductsEnabled": false,
+            "isHomeMyTeamsEnabled": true,
+            "isSearchSectionEnabled": false
+        },
+        "Strings": {
+            "NO_EVENT_TEXT": "There are no events currently in your city.",
+            "HOME_SECTION_1": "Play Games & Earn",
+            "HOME_SECTION_2": "",
+            "HOME_SECTION_3": "Featured Rewards",
+            "HOME_FOLLOW_US": "Follow Us",
+            "HOME_SOCIAL_MEDIA": "Stay updated via social media",
+            "HOME_POPULAR_EVENT_TEXT": "Music Events",
+            "HOME_TRENDING_EVENT_TEXT": "Youth Sports",
+            "HOME_RECOMMENDED_EVENT_TEXT": "Recommended  Events",
+            "TECHNOLOGY_SIMPLIFIED_TEXT": "Technology Simplified",
+            "EXPERIENCE_AMPLIFIED_TEXT": "Experience Amplified",
+            "DOWNLOAD_APP_NOW_TEXT": "Download App Now",
+            "TICKETING_SIMPLIFIED_TEXT": "Ticketing Simplified",
+            "CONTACT_US_TEXT": "Contact Us",
+            "COOKIE_BANNER_DESC_TEXT": "We use tracking cookies to understand how you use the product and help us improve it. Please accept cookies to help us improve.",
+            "ACCEPT_BUTTON_TEXT": "Accept Cookies",
+            "DECLINE_BUTTON_TEXT": "Decline Cookies",
+            "SELLER_DOWNLOAD_TO_PURCHASED_TEXT": "Best Sellers -- Download the App to Purchase",
+            "TURNKEY_TIX_APP_TEXT": "TurnKeyTix App",
+            "LEAVE_MESSAGE_TEXT": "Leave a message",
+            "LET_US_KNOW_TEXT": "Let us know what you're thinking!!",
+            "SUBMIT_TEXT": "Submit",
+            "MESSAGE_TEXT": "Message",
+            "EMAIL_TEXT": "Email",
+            "NAME_TEXT": "Name",
+            "MY_TEAMS": "My Teams",
+            "HOME_OTHER_EVENT_TEXT": "Other Events",
+            "HOME_PROMOTED_EVENT_TEXT": "Promoted Events"
+        },
+        "Social": [
+            {
+                "name": "Facebook",
+                "enable": true,
+                "link": "https://www.facebook.com/profile.php?id=61553568440021",
+                "uslink": " https://www.facebook.com/turnkeytix",
+                "icon": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698332556610.jpg"
+            },
+            {
+                "name": "Instagram",
+                "enable": true,
+                "link": "https://www.instagram.com/turnkeytix_in/",
+                "uslink": "https://www.instagram.com/turnkeytix/",
+                "icon": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698332656771.jpg"
+            },
+            {
+                "name": "Twitter",
+                "enable": true,
+                "link": "https://twitter.com/TurnkeyTix_IN",
+                "uslink": "https://twitter.com/turnkeytix",
+                "icon": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698332684651.jpg"
+            },
+            {
+                "name": "Threads",
+                "enable": true,
+                "link": "https://www.threads.net/@turnkeytix",
+                "uslink": "https://www.threads.net/@turnkeytix",
+                "icon": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698332707303.jpg"
+            },
+            {
+                "name": "LinkedIn",
+                "enable": true,
+                "link": "https://www.linkedin.com/company/101181877/admin/feed/posts/",
+                "uslink": "https://www.linkedin.com/company/turnkeytix/about/",
+                "icon": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698332736330.jpg"
+            },
+            {
+                "name": "Youtube",
+                "enable": true,
+                "link": "https://www.youtube.com/channel/UCCg-jYYjLQ73lN7MDD54XUw",
+                "uslink": "https://www.youtube.com/@turnkeytix",
+                "icon": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698332758594.jpg"
+            }
+        ],
+        "Images": {
+            "COACH_MARK_ONE_IMAGE": "",
+            "COACH_MARK_TWO_IMAGE": "",
+            "COACH_MARK_THREE_IMAGE": "",
+            "ANUPAM_BG": "",
+            "background_image": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1701771898392.jpg",
+            "home_feedback_image": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1702030361872.jpg",
+            "app_points_logo": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698333201679.jpg",
+            "HOME_IFRAME_TECHNOLOGY_IMAGE": "https://customer-yafp6ovyvsh2zn3m.cloudflarestream.com/6fb64819fb4b4f9ec51e05d74e496dbe/iframe?muted=true&loop=true&autoplay=true&controls=false",
+            "FLOAT_IPHONEHOME_IMAGE": "https://turnkeytix-website-images.s3.amazonaws.com/screen-6.webp",
+            "IOS_DOWNLOAD_APP_IMAGE": "https://turnkeytix-website-images.s3.amazonaws.com/ios-button.webp",
+            "IOS_DOWNLOAD_APP_LINK": "https://apps.apple.com/us/app/turnkey-tix/id6459884004",
+            "ANDROID_DOWNLOAD_APP_LINK": "https://play.google.com/store/apps/details?id=com.mbs.Turnkey.tix",
+            "ANDROID_DOWNLOAD_APP_IMAGE": "https://turnkeytix-website-images.s3.amazonaws.com/play-store-button.webp",
+            "HOME_CAROUSEL_THREE": "https://turnkeytix-website-images.s3.amazonaws.com/screen-4.webp",
+            "HOME_CAROUSEL_TWO": "https://turnkeytix-website-images.s3.amazonaws.com/screen-3.webp",
+            "HOME_VIDEO_ONE_IMAGE": "https://customer-yafp6ovyvsh2zn3m.cloudflarestream.com/5d25225be0fd1a967fef749f409b861e/iframe?muted=true&loop=true&autoplay=true&controls=false",
+            "BOTTOM_IMAGE": "https://turnkeytix-website-images.s3.amazonaws.com/picture.webp",
+            "THEATER_IMAGE": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1700017996197.jpg",
+            "PHONE_SLIDE_ONE": "https://turnkeytix-website-images.s3.amazonaws.com/screen-2.webp",
+            "PHONE_SLIDE_TWO": "https://turnkeytix-website-images.s3.amazonaws.com/screen-4.webp",
+            "PHONE_SLIDE_THREE": "https://turnkeytix-website-images.s3.amazonaws.com/screen-5.webp",
+            "PHONE_SLIDE_FOUR": "https://turnkeytix-website-images.s3.amazonaws.com/screen-1.webp",
+            "PHONE_SLIDE_FIVE": "https://turnkeytix-website-images.s3.amazonaws.com/screen-3.webp",
+            "HEART_SELECTED_IMAGE": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1700018179368.jpg",
+            "HEART_IMAGE": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1700018207923.jpg",
+            "SEARCH_IMAGE": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1701349541469.jpg",
+            "ARROW_DOWN_IMAGE": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1701338565578.jpg"
+        }
+    },
+    "PROFILE": {
+        "Permissions": {
+            "isProfileImageEditable": true,
+            "isPointsSectionEnabled": true,
+            "isMyPurchaseEnabled": true,
+            "isRateUsEnabled": false,
+            "isNotificationEnabled": true,
+            "isReferEarnEanbled": true,
+            "isHowToEarnEnabled": true,
+            "isFaqEnabled": true,
+            "isPrivacyPolicyEnabled": true,
+            "isTermsConditionsEnabled": true,
+            "isBlueBGGradientenabled": true,
+            "isDeleteAccount": true,
+            "isPlayEarnEanbled": false,
+            "isChangeCountryEnabled": true,
+            "isAboutDevice": true,
+            "isJoinTeamEnabled": false,
+            "isTeamsEnabled": false,
+            "isMyCalendarEnabled": true
+        },
+        "Strings": {
+            "LOGIN_TEXT": "Login",
+            "SIGNUP_TEXT": "SignUp",
+            "CLICK_TEXT": "Click",
+            "CHOOSE_TEXT": "Choose",
+            "PROFILE_TITLE": "ProfileSettings",
+            "POINTS_TEXT": "My Earned Tix",
+            "PURCHASE_TEXT": "My Purchases",
+            "RATE_TEXT": "RateUs",
+            "NOTIFICATION_TEXT": "Notifications",
+            "REFER_TEXT": "Refer And Earn",
+            "HOW_TO_EARN_TEXT": "How to Earn TurnTix Points?",
+            "FAQ_TEXT": "FAQ",
+            "PRIVACY_TEXT": "Privacy Policy",
+            "TERMS_TEXT": "Terms & Conditions",
+            "APP_VERSION_TEXT": "App Version",
+            "PURCHASE_SECTION_TEXT_1": "",
+            "PURCHASE_SECTION_TEXT_2": "",
+            "ALLOW_NOTIFICATION": "",
+            "DELETE_TEXT": "Delete Account",
+            "PLAY_EARN_TEXT": "EarnTIX",
+            "CHANGE_COUNTRY_TEXT": "Choose Country",
+            "ABOUT_DEVICE_TEXT": "About Device",
+            "MY_ACCOUNTS": "MY ACCOUNT",
+            "SETTINGS": "SETTINGS",
+            "OTHERS": "OTHERS",
+            "TEAMS": "Teams",
+            "JOIN_TEAMS": "Join Teams",
+            "MY_CALANDER": "My Schedule"
+        },
+        "Images": {
+            "arrow_right_icon": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698350897070.jpg",
+            "user_placeholder_icon": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698350478145.jpg",
+            "profile_camera_icon": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698350926302.jpg",
+            "my_purchase_icon": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1703582502150.jpg",
+            "rate_us_icon": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698350976623.jpg",
+            "notification_icon": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698351004858.jpg",
+            "refer_earn_icon": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698351027376.jpg",
+            "how_to_earn_icon": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698333201679.jpg",
+            "faq_icon": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698351049149.jpg",
+            "privacy_policy_icon": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698351079529.jpg",
+            "terms_icon": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698351100356.jpg",
+            "app_points_logo": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698333201679.jpg",
+            "background_image": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1703595610432.jpg",
+            "delete_icon": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698351124156.jpg",
+            "play_earn_icon": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1701684009881.jpg",
+            "change_country_icon": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1699614660891.jpg",
+            "aboutdevice_icon": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1700758069114.jpg",
+            "team_icon": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1703582571716.jpg",
+            "Join_teams_icon": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1703582664493.jpg",
+            "calendar_icon": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1703582721669.jpg",
+            "earnedtix_icon": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1703582814369.jpg",
+            "howtoearn_icon": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1703582879806.jpg"
+        }
+    },
+    "LOADER": {
+        "Permissions": {
+            "isSpinnerBackEnabled": true,
+            "isTopImageSectionEnabled": true
+        },
+        "Strings": {},
+        "Images": {
+            "SPINNER_ICON": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698333201679.jpg",
+            "TOP_ICON": ""
+        }
+    },
+    "STYLE_SHEET": {
+        "COLORS": {
+            "LIGHT": {
+                "primary_color": "#67E0C8",
+                "secondary_color": "#FFFFFF",
+                "border_color": "#484848",
+                "secondary_border_color": "rgba(255, 255, 255, .3)",
+                "text_color": "#FFFFFF",
+                "secondary_text_color": "rgba(255, 255, 255, .5)",
+                "placeholder_text_color": "#464646",
+                "button_color": "#46A2ED",
+                "button_text_color": "#FFFFFF",
+                "secondary_button_color": "#FFFFFF",
+                "secondary_button_text_color": "#292929",
+                "input_background_color": "#FFFFFF",
+                "GREY": {
+                    "g1": "#282828",
+                    "g2": "#151515",
+                    "g3": "#D9D9D9",
+                    "g4": "#B0B0B0",
+                    "g5": "#4B4B4B",
+                    "g6": "#999999",
+                    "g7": "#BBBBBB",
+                    "g8": "#2D2B2B",
+                    "g9": "#1D1D1D"
+                },
+                "GREEN": {
+                    "g1": "#0B9518"
+                },
+                "RED": {
+                    "r1": "#ff0610",
+                    "r2": "#EE6B6B"
+                },
+                "YELLOW": {
+                    "y1": "#FFCA40",
+                    "y2": "#623905"
+                }
+            },
+            "DARK": {
+                "primary_color": "#67E0C8",
+                "secondary_color": "#FFFFFF",
+                "border_color": "#484848",
+                "secondary_border_color": "rgba(255, 255, 255, .3)",
+                "text_color": "#FFFFFF",
+                "secondary_text_color": "rgba(255, 255, 255, .5)",
+                "placeholder_text_color": "#B0B0B0",
+                "button_color": "#1A3CB7",
+                "button_text_color": "#FFFFFF",
+                "secondary_button_color": "#FFFFFF",
+                "secondary_button_text_color": "#292929",
+                "input_background_color": "#FFFFFF",
+                "hyperlink_text": "#005CFF",
+                "dark_text_color": "#252428",
+                "GREY": {
+                    "g1": "#282828",
+                    "g2": "#151515",
+                    "g3": "#D9D9D9",
+                    "g4": "#B0B0B0",
+                    "g5": "#4B4B4B",
+                    "g6": "#999999",
+                    "g7": "#BBBBBB",
+                    "g8": "#2D2B2B",
+                    "g9": "#1D1D1D",
+                    "g10": "#8A8A8A"
+                },
+                "GREEN": {
+                    "g1": "#0B9518",
+                    "g2": "#67E0C8",
+                    "g3": "#52A74D"
+                },
+                "RED": {
+                    "r1": "#ff0610",
+                    "r2": "#EE6B6B"
+                },
+                "YELLOW": {
+                    "y1": "#FFCA40",
+                    "y2": "#623905"
+                }
+            }
+        },
+        "FONTS": {
+            "BOLD": "Montserrat-Bold",
+            "REGULAR": "Montserrat-REGULAR",
+            "SEMI_BOLD": "Montserrat-SemiBold",
+            "MEDIUM": "Montserrat-Medium"
+        },
+        "FONT_SIZES": {
+            "h1": 30,
+            "h2": 26,
+            "h3": 24,
+            "h4": 20,
+            "h5": 18,
+            "h6": 16,
+            "h7": 14,
+            "h8": 12,
+            "h9": 10
+        },
+        "TYPOGRAPHY": {
+            "BOLD": {
+                "h1": {
+                    "fontFamily": "Montserrat-Bold",
+                    "fontSize": 30,
+                    "color": "#FFFFFF"
+                },
+                "h2": {
+                    "fontFamily": "Montserrat-Bold",
+                    "fontSize": 26,
+                    "color": "#FFFFFF"
+                },
+                "h3": {
+                    "fontFamily": "Montserrat-Bold",
+                    "fontSize": 24,
+                    "color": "#FFFFFF"
+                },
+                "h4": {
+                    "fontFamily": "Montserrat-Bold",
+                    "fontSize": 20,
+                    "color": "#FFFFFF"
+                },
+                "h5": {
+                    "fontFamily": "Montserrat-Bold",
+                    "fontSize": 18,
+                    "color": "#FFFFFF"
+                },
+                "h6": {
+                    "fontFamily": "Montserrat-Bold",
+                    "fontSize": 16,
+                    "color": "#FFFFFF"
+                },
+                "h7": {
+                    "fontFamily": "Montserrat-Bold",
+                    "fontSize": 14,
+                    "color": "#FFFFFF"
+                },
+                "h8": {
+                    "fontFamily": "Montserrat-Bold",
+                    "fontSize": 12,
+                    "color": "#FFFFFF"
+                },
+                "h9": {
+                    "fontFamily": "Montserrat-Bold",
+                    "fontSize": 10,
+                    "color": "#FFFFFF"
+                }
+            },
+            "SEMI_BOLD": {
+                "h1": {
+                    "fontFamily": "Montserrat-SemiBold",
+                    "fontSize": 30,
+                    "color": "#FFFFFF"
+                },
+                "h2": {
+                    "fontFamily": "Montserrat-SemiBold",
+                    "fontSize": 26,
+                    "color": "#FFFFFF"
+                },
+                "h3": {
+                    "fontFamily": "Montserrat-SemiBold",
+                    "fontSize": 24,
+                    "color": "#FFFFFF"
+                },
+                "h4": {
+                    "fontFamily": "Montserrat-SemiBold",
+                    "fontSize": 20,
+                    "color": "#FFFFFF"
+                },
+                "h5": {
+                    "fontFamily": "Montserrat-SemiBold",
+                    "fontSize": 18,
+                    "color": "#FFFFFF"
+                },
+                "h6": {
+                    "fontFamily": "Montserrat-SemiBold",
+                    "fontSize": 16,
+                    "color": "#FFFFFF"
+                },
+                "h7": {
+                    "fontFamily": "Montserrat-SemiBold",
+                    "fontSize": 14,
+                    "color": "#FFFFFF"
+                },
+                "h8": {
+                    "fontFamily": "Montserrat-SemiBold",
+                    "fontSize": 12,
+                    "color": "#FFFFFF"
+                },
+                "h9": {
+                    "fontFamily": "Montserrat-SemiBold",
+                    "fontSize": 10,
+                    "color": "#FFFFFF"
+                }
+            },
+            "MEDIUM": {
+                "h1": {
+                    "fontFamily": "Montserrat-Medium",
+                    "fontSize": 30,
+                    "color": "#FFFFFF"
+                },
+                "h2": {
+                    "fontFamily": "Montserrat-Medium",
+                    "fontSize": 26,
+                    "color": "#FFFFFF"
+                },
+                "h3": {
+                    "fontFamily": "Montserrat-Medium",
+                    "fontSize": 24,
+                    "color": "#FFFFFF"
+                },
+                "h4": {
+                    "fontFamily": "Montserrat-Medium",
+                    "fontSize": 20,
+                    "color": "#FFFFFF"
+                },
+                "h5": {
+                    "fontFamily": "Montserrat-Medium",
+                    "fontSize": 18,
+                    "color": "#FFFFFF"
+                },
+                "h6": {
+                    "fontFamily": "Montserrat-Medium",
+                    "fontSize": 16,
+                    "color": "#FFFFFF"
+                },
+                "h7": {
+                    "fontFamily": "Montserrat-Medium",
+                    "fontSize": 14,
+                    "color": "#FFFFFF"
+                },
+                "h8": {
+                    "fontFamily": "Montserrat-Medium",
+                    "fontSize": 12,
+                    "color": "#FFFFFF"
+                },
+                "h9": {
+                    "fontFamily": "Montserrat-Medium",
+                    "fontSize": 10,
+                    "color": "#FFFFFF"
+                }
+            },
+            "REGULAR": {
+                "h1": {
+                    "fontFamily": "Montserrat-Regular",
+                    "fontSize": 30,
+                    "color": "#FFFFFF"
+                },
+                "h2": {
+                    "fontFamily": "Montserrat-Regular",
+                    "fontSize": 26,
+                    "color": "#FFFFFF"
+                },
+                "h3": {
+                    "fontFamily": "Montserrat-Regular",
+                    "fontSize": 24,
+                    "color": "#FFFFFF"
+                },
+                "h4": {
+                    "fontFamily": "Montserrat-Regular",
+                    "fontSize": 20,
+                    "color": "#FFFFFF"
+                },
+                "h5": {
+                    "fontFamily": "Montserrat-Regular",
+                    "fontSize": 18,
+                    "color": "#FFFFFF"
+                },
+                "h6": {
+                    "fontFamily": "Montserrat-Regular",
+                    "fontSize": 16,
+                    "color": "#FFFFFF"
+                },
+                "h7": {
+                    "fontFamily": "Montserrat-Regular",
+                    "fontSize": 14,
+                    "color": "#FFFFFF"
+                },
+                "h8": {
+                    "fontFamily": "Montserrat-Regular",
+                    "fontSize": 12,
+                    "color": "#FFFFFF"
+                },
+                "h9": {
+                    "fontFamily": "Montserrat-Regular",
+                    "fontSize": 10,
+                    "color": "#FFFFFF"
+                }
+            }
+        }
+    },
+    "ECOMMERCESHOP": {
+        "Permissions": {
+            "isRedeemPointsEnabled": true,
+            "isSearchSectionEnabled": false,
+            "isFilterSectionEnabled": false,
+            "isFeatureProductEnabled": true,
+            "isRatingSectionEnabled": false,
+            "isItemPriceSectionEnabled": true,
+            "isDeliverDateSectionEnabled": false,
+            "isRecommendedForuEnabled": false,
+            "isAdSectionEnabled": true,
+            "isCategorySectionEnabled": false,
+            "isProductBgWhite": true,
+            "isPhonePeEnable": false,
+            "isStripeEnable": true,
+            "isRetailPriceSectionEnabled": true,
+            "isSubCategorySectionEnabled": false
+        },
+        "Strings": {
+            "CHECKOUT_HEADER_TEXT": "Checkout",
+            "FETURE_PRODUCTS_TEXT": "Feature Products",
+            "RECOMMENDED_FORYOU_TEXT": "Recommended for you",
+            "RUPEE_SYMBOL_TEXT": "₹",
+            "REVIEWS_TEXT": "Reviews",
+            "RETAIL_PRICE_TEXT": "MRP: ",
+            "PLUS_TEXT": "+",
+            "SEARCH_TEXT": "Search...",
+            "OOPS_TITLE_TEXT": "Oops!",
+            "NO_DATA_FOUND_TEXT": "No Data Found"
+        },
+        "Images": {
+            "SMALL_LINE_IMAGE": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1701340071888.jpg",
+            "SEARCH_IMAGE": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1701349541469.jpg",
+            "FILTER_IMAGE": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1701340609447.jpg",
+            "BACKGROUND_IMAGE": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1701771898392.jpg",
+            "MV_COIN_IMAGE": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698333201679.jpg"
+        }
+    },
+    "COMMON": {
+        "Permissions": {
+            "isCartEnabled": true,
+            "isHeaderCoinEnabled": true,
+            "isHeaderBGGradientEnabled": true,
+            "isShowLoginScreen": false,
+            "isShopNowButtonEnable": false
+        },
+        "Strings": {
+            "COUNTRY_CODE": "+1",
+            "NO_RECORD_FOUND": "No Records Found",
+            "SEARCH_TEXT": "Search Here",
+            "YES_TEXT": "Yes",
+            "NO_TEXT": "No",
+            "LOGOUT_CONFIRMATION_TEXT": "Are You Sure to Logout?",
+            "COMING_SOON_TEXT": "Hey! Guys I will meet you soon.",
+            "BACK_TEXT": "Back",
+            "LOGOUT_TEXT": "Logout",
+            "DONE_TEXT": "Done",
+            "OPENSETTINGS_TEXT": "Go to Settings",
+            "PERMISSION_DESC_TEXT": "",
+            "CANCEL_TEXT": "Cancel",
+            "ANDROID_LOCATION_PERMISSION_TITLE": "Location Access Required",
+            "ANDROID_LOCATION_PERMISSION_DESC": "This App needs to Access your location",
+            "NO_INTERNET_CONNECTION_TEXT": "It appears you are offline. Please connect to the internet and try again.",
+            "NO_CONTENT_TEXT": "Scheduled maintenance in Progress",
+            "NO_INTERNET_DESC_TEXT": "You don't appear to be connected to the internet. Please connect with the internet and try again.",
+            "NO_CONTENT_DESC_TEXT": "Our system is temporarily down due to maintenance. We will be back soon.  Thank you for the patience. For immediate assistance, please contact support@turnkeytix.com. ",
+            "DELETE_CONFIRMATION_TEXT": "Are you sure you want to delete your account?",
+            "CURRENCY_CHECK_ERROR_MESSAGE": "Please add same currency items",
+            "ABOUT_US_TEXT": "About Us",
+            "EVENT_CREATOR_TEXT": "Event Creator",
+            "FAQ_TEXT": "FAQ",
+            "INSIGHT_TEXT": "Insight",
+            "INSIGHT_LINK_TEXT": "https://turnkeytix.com/insight",
+            "DOWNLOAD_APP_TEXT": "Download App",
+            "MY_PURCHASE_TEXT": "My Purchases",
+            "PROFILE_TEXT": "Profile",
+            "LOGIN_TEXT": "Login",
+            "ABOUT_TEXT": "About",
+            "FACEBOOK_LINK_TEXT": "https://www.facebook.com/turnkeytix",
+            "TWITTER_LINK_TEXT": "https://twitter.com/turnkeytix",
+            "LINKEDIN_LINK_TEXT": "https://www.linkedin.com/company/turnkeytix/about/",
+            "INSTAGRAM_LINK_TEXT": "https://www.instagram.com/turnkeytix/",
+            "CAREER_TEXT": "Careers",
+            "PRIVACY_POLICY_TEXT": "Privacy Policy",
+            "TERMS_TEXT": "Terms & Conditions",
+            "PURCHASE_POLICY_TEXT": "Purchase Policy",
+            "WEBSITE_COPYRIGHT_TEXT": "Copyright © 2024 Turnkey Inc. All Rights Reserved. Use of this website signifies your agreement with our Terms & Conditions, Privacy Policy, Purchase Policy and Cookies",
+            "DATE_SELECTION_ERROR_TEXT": "Please select date.",
+            "DATE_FORMAT_TEXT": "mm/dd/yyyy",
+            "TIME_FORMAT": "00:00 AM",
+            "DATE_FORMAT_TITLE_TEXT": "Select Date-Time*",
+            "URL_FORMAT_TITLE_TEXT": "Url",
+            "URL_FORMAT_TEXT": "//////"
+        },
+        "Images": {
+            "LOCATION_IMAGE": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1702708037457.jpg",
+            "TIME_IMAGE": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1702708064481.jpg",
+            "DELETE_ICON": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1701344322586.jpg",
+            "COUNTRY_CODE_IMAGE": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1701344472798.jpg",
+            "CART_COUNT_BG_IMAGE": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1701344507721.jpg",
+            "CART_BAG_IMAGE": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1701344610960.jpg",
+            "FEEBACK_LOTTIE_JSON_URL": "https://mintavibe-app.s3.ap-south-1.amazonaws.com/lottie/feedback.json",
+            "SUCCESS_LOTTIE_JSON_URL": "https://mintavibe-app.s3.ap-south-1.amazonaws.com/lottie/gameSuccess.json",
+            "MV_SUCCESS_LOTTIE_JSON_URL": "https://mintavibe-app.s3.ap-south-1.amazonaws.com/lottie/mvLottieJson.json",
+            "LOGOUT_PLACEHOLDER_CIRCLE_ICON": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1701345213186.jpg",
+            "USER_PLACEHOLDER_IMAGE": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698350478145.jpg",
+            "ROUND_ANUPAM_IMAGE": "",
+            "COMING_SOON_MODAL_IMAGE": "",
+            "INFO_MODAL_IMAGE": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1701345257006.jpg",
+            "CLOSE_IMAGE": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698327674972.jpg",
+            "SEARCH_IMAGE": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1701345295273.jpg",
+            "BACKGROUND_IMAGE": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1701771898392.jpg",
+            "NO_INTERNET_ICON": "",
+            "NO_CONTENT_ICON": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1701347349465.jpg",
+            "HEADER_BACK_ICON": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1701339941639.jpg",
+            "LOGOUT_ICON": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1701347406705.jpg",
+            "logo": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1701347454490.jpg",
+            "MV_COIN_IMAGE": "https://turnkey-prod-backend.s3.us-east-1.amazonaws.com/image/image_1698333201679.jpg",
+            "WEBSITE_LOGO": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1700025371710.jpg",
+            "APPLE_ICON": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1700027130110.jpg",
+            "ANDROID_ICON": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1700027149912.jpg",
+            "CALENDAR_IMAGE": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1700233592237.jpg",
+            "URL_IMAGE": "https://turnkey-uat-backend.s3.us-east-1.amazonaws.com/image/image_1700758334962.jpg"
+        }
+    },
+    "COMMON_FILTER": {
+        "Permissions": {
+            "isLocationEnabled": true,
+            "isSearchByEnabled": true,
+            "isBrandEnabled": true,
+            "isCategoryEnabled": true,
+            "isSubCategoryEnabled": true
+        },
+        "Strings": {
+            "LOCATION_TEXT": "Location",
+            "SEARCH_BY_EVENT_TEXT": "Search by event",
+            "SEARCH_BY_BRAND_TEXT": "Search by brand",
+            "SEARCH_BY_TICKET_TEXT": "Search by ticket",
+            "BRANDS_TEXT": "Brands",
+            "CATEGORY_TEXT": "Category",
+            "SUBCATEGORY_TEXT": "Sub Category",
+            "SEARCH_BY_TEAM_TEXT": "Search by team",
+            "SEARCH_BY_SPONSERS_TEXT": "Search by sponsors",
+            "SEARCH_BY_TEXT": "Search by"
+        },
+        "Images": {}
+    }
+}

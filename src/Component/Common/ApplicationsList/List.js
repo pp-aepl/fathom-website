@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import DataTable from "react-data-table-component";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createType } from "../../../store/reducer/index";
 
@@ -196,26 +196,7 @@ function List({ id }) {
       sortable: true,
     },
 
-    // {
-    //   name: "Payment Intent Id",
-    //   selector: "transactionsMetaInfo.paymentIntent_Id",
-    //   sortable: true,
-    //   dataKey: "age",
-    //   wrap: true,
-    //   cell: (row) => (
-    //     <a
-    //       onClick={() => {
-    //         showModalInter(row, row?._id);
-    //         setGatedata(row?.order_id);
-    //         setGatewayid(row?._id);
-    //       }}
-    //     >
-    //       {row?.order_id?.transactionsMetaInfo?.paymentIntent_Id
-    //         ? row?.order_id?.transactionsMetaInfo?.paymentIntent_Id
-    //         : "N/A"}
-    //     </a>
-    //   ),
-    // },
+   
 
     {
       name: "Edit",
@@ -234,12 +215,7 @@ function List({ id }) {
 
   return (
     <>
-      {/* {showEditTransaction && (
-        <TransactionDetails
-          transactionObj={transactionDetails}
-          showEditTransaction={showEditTransaction}
-        />
-      )} */}
+    
     
         <>
           <section className="">

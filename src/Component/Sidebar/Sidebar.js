@@ -126,7 +126,7 @@ function Sidebar() {
                   >
                     <img src="../../../images/reportsIcon.svg" alt="" />
                   </div>
-                  <span className={"nav__name"}>Analytics</span>
+                  <span className={"nav__name"}>Reports</span>
                 </Link>
               </div>
             </div>

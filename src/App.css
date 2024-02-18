@@ -4919,11 +4919,7 @@ h4.kala::after {
   }
 }
 
-.card {
-  /* flex: 1;
-  max-width: 300px;
-  margin-left: 10%; */
-}
+
 
 .card-image {
   width: 150%;
@@ -5050,7 +5046,7 @@ input[type=checkbox] {
 	vertical-align: text-top;
 	height: 20px;
 	width: 20px;
-	-webkit-appearance: none;
+	/* -webkit-appearance: none; */
   opacity: .5;
 }
 input[type=checkbox]:hover {
@@ -5090,7 +5086,7 @@ height: 925px;
 top: 99px;
 left: 1440px;
 border-radius: 0px, 0px, 20px, 20px;
-angle: -180 deg;
+/* angle: -180 deg; */
 }
 .header_logo{
 width: 38.85px;
