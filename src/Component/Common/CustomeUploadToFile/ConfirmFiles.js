@@ -65,13 +65,14 @@ function ConfirmFiles() {
       name: "Application",
       cell: (row) => (
         <>
-          <input
-            type="checkbox"
-            id="vehicle1"
-            name="vehicle1"
-            value="Bike"
-            className="form-control"
-          />
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckDefault"
+            />
+          </div>
         </>
       ),
       sortable: true,
@@ -81,13 +82,14 @@ function ConfirmFiles() {
       name: "Promise to Purchase",
       cell: (row) => (
         <>
-          <input
-            type="checkbox"
-            id="vehicle1"
-            name="vehicle1"
-            value="Bike"
-            className="form-control"
-          />
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckDefault"
+            />
+          </div>
         </>
       ),
       sortable: true,
@@ -96,13 +98,14 @@ function ConfirmFiles() {
       name: "Credit Limit Approval Report",
       cell: (row) => (
         <>
-          <input
-            type="checkbox"
-            id="vehicle1"
-            name="vehicle1"
-            value="Bike"
-            className="form-control"
-          />
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckDefault"
+            />
+          </div>
         </>
       ),
       sortable: true,
