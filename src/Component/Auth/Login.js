@@ -21,8 +21,8 @@ function Login() {
     let payload = { ...inpData };
     localStorage.setItem("cred", JSON.stringify(payload));
     // window.location.href = '/sidebar';
-    // navigate("/admin/dashboard");
-    navigate("/otp");
+    navigate("/admin/dashboard");
+    // navigate("/otp");
 
     // setIsLoading(true);
     // try {

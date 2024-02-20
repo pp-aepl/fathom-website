@@ -6,6 +6,7 @@ import Login from "./Component/Auth/Login";
 import List from "./Component/Common/ApplicationsList/List";
 import Sidebar from "./Component/Sidebar/Sidebar";
 import TwoFactor from "./Component/Auth/TwoFactor";
+import NewList from "./Component/Common/ApplicationsList/NewList";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         {/* Application list route with dynamic parameter */}
         <Route path="application/:userId" element={<List />} />
         {/* Application ADD/UPDATE form route with dynamic parameter */}
+        <Route path="application/list" element={<NewList />} />
 
       
 

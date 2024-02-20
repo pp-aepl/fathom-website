@@ -6,9 +6,11 @@ export const slicepopupReducer = createSlice({
     modal: {
       modalType: "",
       showModal: false,
+      showConfirmModal:false,
+      successModal:false,
+      scanModal:false,
       buyModal: false,
       ticketData: {},
-    
       updateId: [],
       type:''
     },

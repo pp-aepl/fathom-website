@@ -6,8 +6,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createType } from "../../../store/reducer/index";
 import UploadApplication from "./UploadApplication";
+import AccordianList from "./AccordianList";
 
-function List({ id }) {
+function NewList({ id }) {
   const tableRef = useRef();
   const params = useParams();
   const fetchParams = params.userId;
@@ -109,7 +110,38 @@ function List({ id }) {
   // Generating an array of dynamic data for the table
   const numberOfRowsToGenerate = 10; // Adjust as needed
   // const unprocessedData = generateDynamicDataArray(numberOfRowsToGenerate);
-  const unprocessedData = [];
+  const unprocessedData = [
+    {
+      _id: 1,
+      createdAt: new Date(),
+      CRN: "1220872-00",
+      status:'CONFIRM'
+    },
+    {
+      _id: 2,
+      createdAt: new Date(),
+      CRN: "1220872-00",
+      status:'CONFIRM'
+    },
+    {
+      _id: 3,
+      createdAt: new Date(),
+      CRN: "1220872-00",
+      status:'FAILED'
+    },
+    {
+      _id: 4,
+      createdAt: new Date(),
+      CRN: "1220872-00",
+      status:'CONFIRM'
+    },
+    {
+      _id: 5,
+      createdAt: new Date(),
+      CRN: "1220872-00",
+      status:'FAILED'
+    },
+  ];
 
   const columns = [
     {
@@ -118,55 +150,77 @@ function List({ id }) {
       sortable: true,
     },
     {
-      name: "Upload Date",
+      name: " Date",
       selector: (row) => new Date(row?.createdAt).toLocaleDateString(),
       sortable: true,
       dataKey: "id",
     },
     {
-      name: "Number of Application",
+      name: "Check CRN",
       // width: "300px",
-      cell: (row) => (row?._id ? row?._id : "N/A"),
+      cell: (row) => (row?.CRN ? row?.CRN : "N/A"),
       sortable: true,
     },
 
     {
-      name: "Status",
-      selector: (row) =>
-        row?.status ? (
-          row?.status === "inactive" ? (
-            <span style={{ color: "red" }} className="orderStatusa">
-              {" "}
-              {convertToCamelCase(row?.status)}
-            </span>
-          ) : row?.status === "shipped" ? (
-            <span style={{ color: "#ffc107" }} className="orderStatusa">
-              {" "}
-              {convertToCamelCase(row?.status)}
-            </span>
-          ) : (
-            <span
-              style={{ color: "green", fontWeight: "400" }}
-              className="orderStatusa"
-            >
-              {" "}
-              {convertToCamelCase(row?.status)}
-            </span>
-          )
-        ) : (
-          "---"
-        ),
-      sortable: true,
-    },
-
-    {
-      name: "Action",
+      name: "Rule 1",
       selector: (row) => (
         <>
-          <i
-            className="fas fa-edit text-primary mx-2 pointer"
-            onClick={() => handelTransaction(row)}
-          ></i>
+        {row?.status === 'CONFIRM' ? 
+         <i
+         class="fa fa-check-circle"
+         aria-hidden="true"
+         style={{ color: "green", fontSize: "18px" }}
+       /> :
+       <i
+       class="fa fa-times-circle"
+       aria-hidden="true"
+       style={{ color: "red", fontSize: "18px" }}
+     />
+       }
+         
+        </>
+      ),
+      sortable: true,
+    },
+    {
+      name: "Rule 2",
+      selector: (row) => (
+        <>
+        {row?.status === 'CONFIRM' ? 
+         <i
+         class="fa fa-check-circle"
+         aria-hidden="true"
+         style={{ color: "green", fontSize: "18px" }}
+       /> :
+       <i
+       class="fa fa-times-circle"
+       aria-hidden="true"
+       style={{ color: "red", fontSize: "18px" }}
+     />
+       }
+         
+        </>
+      ),
+      sortable: true,
+    },
+    {
+      name: "Rule 3",
+      selector: (row) => (
+        <>
+        {row?.status === 'CONFIRM' ? 
+         <i
+         class="fa fa-check-circle"
+         aria-hidden="true"
+         style={{ color: "green", fontSize: "18px" }}
+       /> :
+       <i
+       class="fa fa-times-circle"
+       aria-hidden="true"
+       style={{ color: "red", fontSize: "18px" }}
+     />
+       }
+         
         </>
       ),
       sortable: true,
@@ -174,7 +228,7 @@ function List({ id }) {
   ];
 
   return (
-
+    <>
       <>
         <section className="">
           <div className="container">
@@ -182,7 +236,8 @@ function List({ id }) {
               {/* <h5>{convertToCamelCase(fetchParams)}</h5> */}
               <h5>Upload New Application</h5>
               <div className="">
-                <div className="  row my-5" id="table-contexual">
+                <AccordianList/>
+                <div className=" row my-5" id="table-contexual">
                   <div className="col-12">
                     <div className="">
                       <div className="">
@@ -242,24 +297,20 @@ function List({ id }) {
                         </div>
                       </div>
                       <div className="">
-                        {unprocessedData?.length > 0 ? (
-                          <DataTable
-                            columns={columns}
-                            data={unprocessedData}
-                            tableRef={tableRef}
-                            pagination
-                            paginationServer
-                            paginationTotalRows={totalRows}
-                            onChangeRowsPerPage={handlePerRowsChange}
-                            onChangePage={handlePageChange}
-                            paginationPerPage={perPage}
-                            onRowClicked={handelTransaction}
-                            selectableRowsHighlight
-                            pointerOnHover
-                          />
-                        ) : (
-                          <UploadApplication />
-                        )}
+                        <DataTable
+                          columns={columns}
+                          data={unprocessedData}
+                          tableRef={tableRef}
+                          pagination
+                          paginationServer
+                          paginationTotalRows={totalRows}
+                          onChangeRowsPerPage={handlePerRowsChange}
+                          onChangePage={handlePageChange}
+                          paginationPerPage={perPage}
+                          selectableRows
+                          selectableRowsHighlight
+                          // onSelectedRowsChange={handleRowSelectionChange}
+                        />
                       </div>
                     </div>
                   </div>
@@ -269,8 +320,7 @@ function List({ id }) {
           </div>
         </section>
       </>
-   
+    </>
   );
 }
-
-export default List;
+export default NewList;

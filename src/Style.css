@@ -347,11 +347,11 @@
     display: flex;
     align-items: center;
   }
-  .selectAllCheckBox label input[type="checkbox"] {
+  /* .selectAllCheckBox label input[type="checkbox"] {
     height: 25px;
     width: 25px;
     margin-right: 10px;
-  }
+  } */
   
   .date input {
     color: #7c8188;
@@ -570,12 +570,12 @@
     opacity: 1;
   }
   
-  .vchForm input[type="checkbox"] {
+  /* .vchForm input[type="checkbox"] {
     border: 1px solid rgba(49, 108, 244, 0.15);
     border-radius: 5px;
     width: 25px;
     height: 25px;
-  }
+  } */
   .vchForm input[type="radio"] {
     border: 1px solid rgba(49, 108, 244, 0.15);
     border-radius: 5px;
