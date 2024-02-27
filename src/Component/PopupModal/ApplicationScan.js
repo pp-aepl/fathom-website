@@ -32,7 +32,6 @@ function ApplicationScan() {
     e.preventDefault();
     dispatch(SetpopupReducerData({ modalType: "APPSCAN", scanModal: false }));
     navigate("/admin/application/list");
-
   };
 
   return (

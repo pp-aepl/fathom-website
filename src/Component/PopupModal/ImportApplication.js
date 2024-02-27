@@ -41,12 +41,9 @@ function ImportApplication() {
         backdrop="static"
         keyboard={false}
       >
-       
         <Modal.Header closeButton>
           <Modal.Title>
-            <h3>
-              Import Application 
-            </h3>
+            <h3>Import Application</h3>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-5">
@@ -86,7 +83,7 @@ function ImportApplication() {
               <ConfirmFileList />
             </div>
           </div>
-          
+
           <div
             className={`d-flex align-items-center justify-content-around pt-4 `}
           >
@@ -99,7 +96,6 @@ function ImportApplication() {
           </div>
         </Modal.Body>
       </Modal>
-      
     </>
   );
 }

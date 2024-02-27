@@ -115,31 +115,31 @@ function NewList({ id }) {
       _id: 1,
       createdAt: new Date(),
       CRN: "1220872-00",
-      status:'CONFIRM'
+      status: "CONFIRM",
     },
     {
       _id: 2,
       createdAt: new Date(),
       CRN: "1220872-00",
-      status:'CONFIRM'
+      status: "CONFIRM",
     },
     {
       _id: 3,
       createdAt: new Date(),
       CRN: "1220872-00",
-      status:'FAILED'
+      status: "FAILED",
     },
     {
       _id: 4,
       createdAt: new Date(),
       CRN: "1220872-00",
-      status:'CONFIRM'
+      status: "CONFIRM",
     },
     {
       _id: 5,
       createdAt: new Date(),
       CRN: "1220872-00",
-      status:'FAILED'
+      status: "FAILED",
     },
   ];
 
@@ -166,19 +166,19 @@ function NewList({ id }) {
       name: "Rule 1",
       selector: (row) => (
         <>
-        {row?.status === 'CONFIRM' ? 
-         <i
-         class="fa fa-check-circle"
-         aria-hidden="true"
-         style={{ color: "green", fontSize: "18px" }}
-       /> :
-       <i
-       class="fa fa-times-circle"
-       aria-hidden="true"
-       style={{ color: "red", fontSize: "18px" }}
-     />
-       }
-         
+          {row?.status === "CONFIRM" ? (
+            <i
+              class="fa fa-check-circle"
+              aria-hidden="true"
+              style={{ color: "green", fontSize: "18px" }}
+            />
+          ) : (
+            <i
+              class="fa fa-times-circle"
+              aria-hidden="true"
+              style={{ color: "red", fontSize: "18px" }}
+            />
+          )}
         </>
       ),
       sortable: true,
@@ -187,19 +187,19 @@ function NewList({ id }) {
       name: "Rule 2",
       selector: (row) => (
         <>
-        {row?.status === 'CONFIRM' ? 
-         <i
-         class="fa fa-check-circle"
-         aria-hidden="true"
-         style={{ color: "green", fontSize: "18px" }}
-       /> :
-       <i
-       class="fa fa-times-circle"
-       aria-hidden="true"
-       style={{ color: "red", fontSize: "18px" }}
-     />
-       }
-         
+          {row?.status === "CONFIRM" ? (
+            <i
+              class="fa fa-check-circle"
+              aria-hidden="true"
+              style={{ color: "green", fontSize: "18px" }}
+            />
+          ) : (
+            <i
+              class="fa fa-times-circle"
+              aria-hidden="true"
+              style={{ color: "red", fontSize: "18px" }}
+            />
+          )}
         </>
       ),
       sortable: true,
@@ -208,19 +208,19 @@ function NewList({ id }) {
       name: "Rule 3",
       selector: (row) => (
         <>
-        {row?.status === 'CONFIRM' ? 
-         <i
-         class="fa fa-check-circle"
-         aria-hidden="true"
-         style={{ color: "green", fontSize: "18px" }}
-       /> :
-       <i
-       class="fa fa-times-circle"
-       aria-hidden="true"
-       style={{ color: "red", fontSize: "18px" }}
-     />
-       }
-         
+          {row?.status === "CONFIRM" ? (
+            <i
+              class="fa fa-check-circle"
+              aria-hidden="true"
+              style={{ color: "green", fontSize: "18px" }}
+            />
+          ) : (
+            <i
+              class="fa fa-times-circle"
+              aria-hidden="true"
+              style={{ color: "red", fontSize: "18px" }}
+            />
+          )}
         </>
       ),
       sortable: true,
@@ -235,249 +235,308 @@ function NewList({ id }) {
             <div className="voucherFormMain upload_new_application">
               {/* <h5>{convertToCamelCase(fetchParams)}</h5> */}
               <h3>Upload New Application</h3>
-<div className="top_list"> 
-<div className="list_row d-flex justify-content-between"> 
-<div>
-  <strong>RULE 1:</strong>  Check Agency agreement date, name, PO Box, Emirates  is filled and signed by Customer and Agent</div>
-  <div className="icon">3/6</div>
-  </div>  
-  <div className="list_row d-flex justify-content-between"> 
-<div>
-  <strong>RULE 2:</strong>  Check Schedule-1 Murabaha Agreement- Form of Sellers Intimation dated and signed by Bank</div>
-  <div className="icon">3/6</div>
-  </div> 
+              <div className="top_list">
+                <div className="list_row d-flex justify-content-between">
+                  <div>
+                    <strong>RULE 1:</strong> Check Agency agreement date, name,
+                    PO Box, Emirates is filled and signed by Customer and Agent
+                  </div>
+                  <div className="icon">3/6</div>
+                </div>
+                <div className="list_row d-flex justify-content-between">
+                  <div>
+                    <strong>RULE 2:</strong> Check Schedule-1 Murabaha
+                    Agreement- Form of Sellers Intimation dated and signed by
+                    Bank
+                  </div>
+                  <div className="icon">3/6</div>
+                </div>
 
-  <div className="list_row d-flex justify-content-between"> 
-<div>
-  <strong>RULE 3:</strong> Check Schedule-2 Form of Murabaha Agreement Dated and Signed by Agent and Bank</div>
-  
-  <div className="icon">3/6</div>
-  </div>  
-  <div className="mini my-2 p-4 border-bottom"> <span className="cursar"> <img src="../../images/arrow-circle-down.svg"></img> Minimalize RULES </span></div>
- 
+                <div className="list_row d-flex justify-content-between">
+                  <div>
+                    <strong>RULE 3:</strong> Check Schedule-2 Form of Murabaha
+                    Agreement Dated and Signed by Agent and Bank
+                  </div>
 
-  <div className="row pt-4">
-                          <div className="col-md-3">
-                            <label>Filter</label>
-                            <div className="border rounded p-2">
-                            <div class="form-check d-inline-block verticle">
-      <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something"></input>
-      
-    </div>
-                            <select
-                              class="form-select w-87 d-inline-block border-0"
-                              aria-label="Default select example"
-                            >
-                              <option selected>Months</option>
-                              <option value="1">Last day</option>
-                              <option value="2">Last week</option>
-                              <option value="2">Last month</option>
-                            </select>
-                            </div>
-                          </div>
-                          <div className="col-2">
-                            <span>Search Applictaion</span>
-                            <select class="form-select p-3">
-        <option>Last week</option>
-        
-      </select>
-                          </div>
-                          <div className="col-2">
-                            <span>Date from</span>
-                            <div className="border rounded p-2 text-right">
-                            <input type="date" id="birthday" name="birthday"></input>
-                          </div>
-                          </div>
-                          <div className="col-2">
-                            <span>Date to</span>
-                            <div className="border rounded p-2 text-right">
-                            <input type="date" id="birthday" name="birthday"></input>
-                          </div>
-                          </div>
-                          <div className="col-3">
-                          <span>&nbsp;</span>
-                          <select class="form-select p-3">
-  <option>Actions</option>
-  <option>Approve and Proceed</option>
-  <option>Proceed with exception</option>
-  <option>Reject & Send back for correction</option>
-</select>
-                          </div>
-                          
-                        </div>
+                  <div className="icon">3/6</div>
+                </div>
+                <div className="mini my-2 p-4 border-bottom">
+                  {" "}
+                  <span className="cursar">
+                    {" "}
+                    <img src="../../images/arrow-circle-down.svg"></img>{" "}
+                    Minimalize RULES{" "}
+                  </span>
+                </div>
+
+                <div className="row pt-4">
+                  <div className="col-md-3">
+                    <label>Filter</label>
+                    <div className="border rounded p-2">
+                      <div class="form-check d-inline-block verticle">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="check2"
+                          name="option2"
+                          value="something"
+                        ></input>
+                      </div>
+                      <select
+                        class="form-select w-87 d-inline-block border-0"
+                        aria-label="Default select example"
+                      >
+                        <option selected>Months</option>
+                        <option value="1">Last day</option>
+                        <option value="2">Last week</option>
+                        <option value="2">Last month</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-2">
+                    <span>Search Applictaion</span>
+                    <select class="form-select p-3">
+                      <option>Last week</option>
+                    </select>
+                  </div>
+                  <div className="col-2">
+                    <span>Date from</span>
+                    <div className="border rounded p-2 text-right">
+                      <input type="date" id="birthday" name="birthday"></input>
+                    </div>
+                  </div>
+                  <div className="col-2">
+                    <span>Date to</span>
+                    <div className="border rounded p-2 text-right">
+                      <input type="date" id="birthday" name="birthday"></input>
+                    </div>
+                  </div>
+                  <div className="col-3">
+                    <span>&nbsp;</span>
+                    <select class="form-select p-3">
+                      <option>Actions</option>
+                      <option>Approve and Proceed</option>
+                      <option>Proceed with exception</option>
+                      <option>Reject & Send back for correction</option>
+                    </select>
+                  </div>
+                </div>
               </div>
 
               <div class="input-group my-4">
-  <input type="text" class="form-control p-2" placeholder="Search"></input>
-    <button class="btn btn-success" type="button">Go</button>  
-</div>
+                <input
+                  type="text"
+                  class="form-control p-2"
+                  placeholder="Search"
+                ></input>
+                <button class="btn btn-success" type="button">
+                  Go
+                </button>
+              </div>
               <div className="">
                 {/* <AccordianList/> */}
 
-
-
                 <div className=" row my-5" id="table-contexual">
                   <div className="col-12">
-                    
-  <table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col"> </th>
-      <th scope="col">S.No. </th>
-      <th scope="col">Date</th>
-      <th scope="col">Check CRN</th>
-      <th scope="col">Rule 1</th>
-      <th scope="col">Rule 2</th>
-      <th scope="col">Rule 3</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-      <div class="form-check">
-  <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" checked></input>
+                    <table class="table">
+                      <thead class="thead-light">
+                        <tr>
+                          <th scope="col"> </th>
+                          <th scope="col">S.No. </th>
+                          <th scope="col">Date</th>
+                          <th scope="col">Check CRN</th>
+                          <th scope="col">Rule 1</th>
+                          <th scope="col">Rule 2</th>
+                          <th scope="col">Rule 3</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="check1"
+                                name="option1"
+                                value="something"
+                                
+                              ></input>
+                            </div>
+                          </td>
+                          <td>1</td>
+                          <td>13/05/2023</td>
+                          <td>1220872-00</td>
+                          <td>
+                            <img src="../../images/icon2.png"></img>
+                          </td>
+                          <td>
+                            <img src="../../images/icon2.png"></img>
+                          </td>
+                          <td>
+                            <img src="../../images/icon2.png"></img>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="check1"
+                                name="option1"
+                                value="something"
+                                
+                              ></input>
+                            </div>
+                          </td>
+                          <td>1</td>
+                          <td>13/05/2023</td>
+                          <td>1220872-00</td>
+                          <td>
+                            <img src="../../images/icon2.png"></img>
+                          </td>
+                          <td>
+                            <img src="../../images/icon1.png"></img>
+                          </td>
+                          <td>
+                            <img src="../../images/icon2.png"></img>
+                          </td>
+                        </tr>
 
-</div>
-      </td>
-      <td>1</td>
-      <td>13/05/2023</td>
-      <td>1220872-00</td>
-      <td>
-        <img src="../../images/icon2.png"></img>
-      </td>
-      <td>
-        <img src="../../images/icon2.png"></img>
-      </td>
-      <td>
-        <img src="../../images/icon2.png"></img>
-      </td>
-    </tr>
-    <tr>
-      <td>
-      <div class="form-check">
-  <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" checked></input>
+                        <tr>
+                          <td>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="check1"
+                                name="option1"
+                                value="something"
+                                
+                              ></input>
+                            </div>
+                          </td>
+                          <td>1</td>
+                          <td>13/05/2023</td>
+                          <td>1220872-00</td>
+                          <td>
+                            <img src="../../images/icon2.png"></img>
+                          </td>
+                          <td>
+                            <img src="../../images/icon2.png"></img>
+                          </td>
+                          <td>
+                            <img src="../../images/icon2.png"></img>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="check1"
+                                name="option1"
+                                value="something"
+                                
+                              ></input>
+                            </div>
+                          </td>
+                          <td>1</td>
+                          <td>13/05/2023</td>
+                          <td>1220872-00</td>
+                          <td>
+                            <img src="../../images/icon2.png"></img>
+                          </td>
+                          <td>
+                            <img src="../../images/icon2.png"></img>
+                          </td>
+                          <td>
+                            <img src="../../images/icon1.png"></img>
+                          </td>
+                        </tr>
 
-</div>
-      </td>
-      <td>1</td>
-      <td>13/05/2023</td>
-      <td>1220872-00</td>
-      <td>
-        <img src="../../images/icon2.png"></img>
-      </td>
-      <td>
-        <img src="../../images/icon1.png"></img>
-      </td>
-      <td>
-        <img src="../../images/icon2.png"></img>
-      </td>
-    </tr>
-   
-    <tr>
-      <td>
-      <div class="form-check">
-  <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" checked></input>
-
-</div>
-      </td>
-      <td>1</td>
-      <td>13/05/2023</td>
-      <td>1220872-00</td>
-      <td>
-        <img src="../../images/icon2.png"></img>
-      </td>
-      <td>
-        <img src="../../images/icon2.png"></img>
-      </td>
-      <td>
-        <img src="../../images/icon2.png"></img>
-      </td>
-    </tr>
-    <tr>
-      <td>
-      <div class="form-check">
-  <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" checked></input>
-
-</div>
-      </td>
-      <td>1</td>
-      <td>13/05/2023</td>
-      <td>1220872-00</td>
-      <td>
-        <img src="../../images/icon2.png"></img>
-      </td>
-      <td>
-        <img src="../../images/icon2.png"></img>
-      </td>
-      <td>
-        <img src="../../images/icon1.png"></img>
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-      <div class="form-check">
-  <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" checked></input>
-
-</div>
-      </td>
-      <td>1</td>
-      <td>13/05/2023</td>
-      <td>1220872-00</td>
-      <td>
-        <img src="../../images/icon2.png"></img>
-      </td>
-      <td>
-        <img src="../../images/icon2.png"></img>
-      </td>
-      <td>
-        <img src="../../images/icon2.png"></img>
-      </td>
-    </tr>
-    <tr>
-      <td>
-      <div class="form-check">
-  <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" checked></input>
-
-</div>
-      </td>
-      <td>1</td>
-      <td>13/05/2023</td>
-      <td>1220872-00</td>
-      <td>
-        <img src="../../images/icon2.png"></img>
-      </td>
-      <td>
-        <img src="../../images/icon2.png"></img>
-      </td>
-      <td>
-        <img src="../../images/icon2.png"></img>
-      </td>
-    </tr>
-    <tr>
-      <td>
-      <div class="form-check">
-  <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" checked></input>
-
-</div>
-      </td>
-      <td>1</td>
-      <td>13/05/2023</td>
-      <td>1220872-00</td>
-      <td>
-        <img src="../../images/icon1.png"></img>
-      </td>
-      <td>
-        <img src="../../images/icon2.png"></img>
-      </td>
-      <td>
-        <img src="../../images/icon2.png"></img>
-      </td>
-    </tr>
-   
-  </tbody>
-</table>
-
+                        <tr>
+                          <td>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="check1"
+                                name="option1"
+                                value="something"
+                                
+                              ></input>
+                            </div>
+                          </td>
+                          <td>1</td>
+                          <td>13/05/2023</td>
+                          <td>1220872-00</td>
+                          <td>
+                            <img src="../../images/icon2.png"></img>
+                          </td>
+                          <td>
+                            <img src="../../images/icon2.png"></img>
+                          </td>
+                          <td>
+                            <img src="../../images/icon2.png"></img>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="check1"
+                                name="option1"
+                                value="something"
+                                
+                              ></input>
+                            </div>
+                          </td>
+                          <td>1</td>
+                          <td>13/05/2023</td>
+                          <td>1220872-00</td>
+                          <td>
+                            <img src="../../images/icon2.png"></img>
+                          </td>
+                          <td>
+                            <img src="../../images/icon2.png"></img>
+                          </td>
+                          <td>
+                            <img src="../../images/icon2.png"></img>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="check1"
+                                name="option1"
+                                value="something"
+                                
+                              ></input>
+                            </div>
+                          </td>
+                          <td>1</td>
+                          <td>13/05/2023</td>
+                          <td>1220872-00</td>
+                          <td>
+                            <img src="../../images/icon1.png"></img>
+                          </td>
+                          <td>
+                            <img src="../../images/icon2.png"></img>
+                          </td>
+                          <td>
+                            <img src="../../images/icon2.png"></img>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
