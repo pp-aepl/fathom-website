@@ -15,6 +15,7 @@ function App() {
       <Route path="/otp" element={<TwoFactor />} />
 
       {/* Use a wrapper route for /admin */}
+    
       <Route path="/admin" element={<><Navbar /><Sidebar /></>} >
         {/* Dashboard route */}
         <Route path="dashboard" element={<Dashboard />} />

@@ -46,16 +46,9 @@ function ConfirmFiles() {
       name: "Application Ref.No/Agreement No.",
       selector: (row) => (
         <>
-          <i
-            class="fa fa-trash "
-            aria-hidden="true"
-            style={{ color: "red" }}
-          ></i>
-          <i
-            class="fa fa-file"
-            aria-hidden="true"
-            style={{ paddingLeft: "5px", paddingRight: "5px" }}
-          ></i>
+         <img src="../../images/delete.png"></img>
+          
+         <img className="notepad" src="../../images/notepad.png"></img>
           {"CRN - " + (row && row._id ? row._id : "N/A")}
         </>
       ),
@@ -124,12 +117,11 @@ function ConfirmFiles() {
         backdrop="static"
         keyboard={false}
       >
+        <div className="confirmation">
         <Modal.Header closeButton>
           <Modal.Title>
-            <h3 style={{ fontWeight: "bold", paddingLeft: "17rem" }}>
-              Files Confirmation
-            </h3>
-            <p style={{ fontSize: "medium", paddingLeft: "17rem" }}>
+            <h3>Files Confirmation</h3>
+            <p>
               Please confirm your file include following
             </p>
           </Modal.Title>
@@ -147,6 +139,7 @@ function ConfirmFiles() {
             </button>
           </div>
         </Modal.Body>
+        </div>
       </Modal>
     </>
   );

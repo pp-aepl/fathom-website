@@ -33,7 +33,7 @@ function ImportApplication() {
     <>
       {showConfirmModal && <ConfirmFiles />}
       <Modal
-        className={"publishModal"}
+        className={"publishModal modal_details"}
         show={showModal}
         size="md"
         centered
@@ -41,10 +41,11 @@ function ImportApplication() {
         backdrop="static"
         keyboard={false}
       >
+       
         <Modal.Header closeButton>
           <Modal.Title>
-            <h3 style={{ fontWeight: "bold", paddingLeft: "128px" }}>
-              Import Application
+            <h3>
+              Import Application 
             </h3>
           </Modal.Title>
         </Modal.Header>
@@ -52,7 +53,7 @@ function ImportApplication() {
           <div className="">
             <p>Select application category</p>
             <select
-              class="form-select mt-3"
+              class="form-select mt-3 p-3"
               aria-label="Default select example"
             >
               <option selected>Personal Finance - Murabaha</option>
@@ -61,7 +62,7 @@ function ImportApplication() {
               <option value="2">Auto Finance - Murabaha</option>
             </select>
             <select
-              class="form-select mt-3"
+              class="form-select mt-3 p-3"
               aria-label="Default select example"
             >
               <option selected>
@@ -81,10 +82,11 @@ function ImportApplication() {
               <UploadToFile />
             </div>
             <div className="mt-3">
-              <p>Files Uploaded</p>
+              <p className="pb-4">Files Uploaded</p>
               <ConfirmFileList />
             </div>
           </div>
+          
           <div
             className={`d-flex align-items-center justify-content-around pt-4 `}
           >
@@ -97,6 +99,7 @@ function ImportApplication() {
           </div>
         </Modal.Body>
       </Modal>
+      
     </>
   );
 }

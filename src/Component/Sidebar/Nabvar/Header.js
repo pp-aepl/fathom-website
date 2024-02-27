@@ -110,7 +110,7 @@ const Header = () => {
                           />
                         )}
                       </Link>
-                      <span className="content">Fathom</span>
+                      <span className="logo-content">Fathom</span>
                     </li>
                     <li className="d-none">
                       <Link href="/about">

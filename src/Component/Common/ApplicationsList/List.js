@@ -178,9 +178,15 @@ function List({ id }) {
       <>
         <section className="">
           <div className="container">
-            <div className="voucherFormMain">
+            <div className="voucherFormMain upload_new_application">
               {/* <h5>{convertToCamelCase(fetchParams)}</h5> */}
-              <h5>Upload New Application</h5>
+              <h3>Upload New Application</h3> 
+              <div className="top_list"> 
+<div className="list_row"> 
+  <strong>RULE 1:</strong>  Check Agency agreement date, name, PO Box, Emirates  is filled and signed by Customer and Agent</div>
+              </div>
+
+              
               <div className="">
                 <div className="  row my-5" id="table-contexual">
                   <div className="col-12">

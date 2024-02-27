@@ -1,10 +1,10 @@
 .adminLogin {
-  padding: 70px 0;
-  background: url(/public/images/logo2.jpeg) 100%;
+  background: url(/public/images/backgound.jpg) 100%;
   background-repeat:repeat;
   background-position: top;
   background-size: 100%;
   min-height: 700px;
+
 }
 
 .adminLogin .countryNumber .countryCode__control {
@@ -28,7 +28,7 @@
 .showPasswordLogin {
   position: absolute;
   bottom: 12px;
-  right: 0px;
+  right:17px;
 }
 
 .adminLoginBox {
@@ -2335,15 +2335,52 @@ input:-moz-placeholder {
   top: 0px;
   left: 0px;
 }
+
+
+
+
+
+
+
+
+
+
+.login_sec{ padding-top: 150px;}
+.login_sec h3{padding-bottom:10px; font-size: 30px; font-weight: 600; font-family: "Inter Tight", sans-serif;}
+.login_sec p{ padding-bottom:10px; margin-bottom: 0!important; font-size:16px; line-height: 25px;   font-family: "Inter Tight", sans-serif;}
+.login_sec label{ padding-bottom: 10px; font-size:14px; line-height: 20px; color: #000; font-family: "Inter Tight", sans-serif;}
+.login_sec .trabble{ padding-top: 20px; font-size: 16px; line-height: 22px;}
+.login_sec .trabble a{ color:rgba(0, 91, 144, 1); text-decoration: underline;}
+.login_sec .trabble a:hover{text-decoration: none;}
+.logo-content {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+  padding: 6px 0 0 10px}
 .login100-form-btn{
   display: flex;
     justify-content: center;
     align-items: center;
     padding: 0 20px;
+    font-size:15px;
     width: 100%;
-    height: 50px;
+    height: 40px;
     border-radius: 10px;
-    background: linear-gradient(0deg, #29296E, #29296E), linear-gradient(90deg, #8282FF 0%, #29296E 100%);
+    background-image: linear-gradient(
+  90deg,
+  hsl(240deg 92% 74%) 0%,
+  hsl(240deg 73% 69%) 11%,
+  hsl(240deg 60% 64%) 22%,
+  hsl(241deg 50% 59%) 33%,
+  hsl(241deg 42% 54%) 44%,
+  hsl(241deg 37% 49%) 56%,
+  hsl(241deg 39% 44%) 67%,
+  hsl(241deg 41% 39%) 78%,
+  hsl(240deg 43% 35%) 89%,
+  hsl(240deg 45% 30%) 100%
+);
     color: #fff;
     line-height: 1.2;
     /* text-transform: uppercase; */
@@ -2353,3 +2390,31 @@ input:-moz-placeholder {
     -moz-transition: all 0.4s;
     transition: all 0.4s;
 }
+
+.upload_new_application{ width: 100%;}
+.upload_new_application h3{ padding-bottom: 20px; width: 100%; font-size: 20px; line-height: 25px; color: #000; font-weight: bold;}
+.upload_new_application .top_list{ width: 100%; display: block;}
+.upload_new_application .top_list .list_row{ padding: 20px; border-bottom: 1px solid rgba(232, 232, 255, 1); font-size: 16px; line-height: 22px; color: rgba(21, 21, 23, 1); background: rgba(183, 183, 255, 0.1);
+;}
+.upload_new_application .top_list .icon{ padding: 5px 10px; display: inline-block; background: linear-gradient(90deg, #8282FF 0%, #29296E 100%);
+font-size: 14px; line-height: 16px; color: #fff; border-radius: 15px;}
+.upload_new_application .top_list .mini{ display: block; text-align: center; font-size: 14px; line-height: 25px;}
+.upload_new_application .top_list .mini img{ vertical-align: middle; margin-right: 10px;}
+.upload_new_application .top_list .mini .cursar{ cursor: pointer;}
+.upload_new_application .verticle{ vertical-align: middle;}
+.upload_new_application .w-87 { width: 87%;}
+.upload_new_application .text-right{ text-align: right;}
+.upload_new_application table th{ background:rgba(183, 183, 255, 0.1);}
+.upload_new_application table td{ padding:20px 10px;}
+
+.modal_details h3{ width: 100%; font-size: 24px; line-height: 30px; color: #000; text-align: center; font-weight: bold;}
+.modal_details .modal-title{ width: 100%;}
+.modal_details p{ width: 100%; font-size: 14px; line-height: 20px; color: #000; font-family: "Inter Tight", sans-serif;}
+.modal_details .form-select{ font-size: 13px; line-height: 15px;}
+
+
+.confirmation{display: block;}
+.confirmation h3{ display: block; text-align: center; width: 100%; font-size: 24px;line-height: 30px; color: #000; font-weight: bold;}
+.confirmation .modal-title{ width: 100%;}
+.confirmation .modal-title p{ width: 100%; font-size: 16px; line-height: 20px; color: #000; text-align: center;}
+.confirmation .notepad{ width:35px; height: 35px; margin: 0 5px;}

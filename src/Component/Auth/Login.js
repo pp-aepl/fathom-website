@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../Sidebar/Nabvar/Header";
 import permissions from "../../Config/Config.json";
+
+
 function Login() {
   console.log({ permissions });
   const [password, setPassword] = useState("");
@@ -138,12 +140,12 @@ function Login() {
             <div className="">
               <div className="">
                 <div className="row">
-                  <div className="col-md-4">
+                  <div className="col-md-4 login_sec">
                     <div className="py-5 ps-4 pe-3">
-                      <h3 className="auth-title">Welcome back.</h3>
+                      <h3>Welcome back.</h3>
                       <p className="auth-subtitle mb-5">
-                        To access your online banking, you'll need to log in
-                        securely using your unique credentials.
+                      To access your online banking, you'll need to log <br></br>
+in securely using your unique credentials.
                       </p>
                       <form
                         action=""
@@ -154,10 +156,11 @@ function Login() {
                         <div className="form-group">
                           <label>Your email address</label>
                           <input
+                          className="p-3 rounded w-100"
                             type="email"
-                            className="form-control"
+                            // className="form-select"
                             name="email"
-                            placeholder="example@gmail.com"
+                            // placeholder="example@gmail.com"
                             autoComplete={false}
                             required
                             value={inpData.email}
@@ -165,6 +168,7 @@ function Login() {
                             // onBlur={handleValidate}
                           />
                         </div>
+
                         {/* {errors.email ? (
                         <span
                           className="text-danger"
@@ -179,9 +183,10 @@ function Login() {
                         <div className="form-group mt-lg-4 mt-3 position-relative">
                           <label>Your password</label>
                           <input
+                          
                             type={showPassword ? "text" : "password"}
                             //type="password"
-                            className="form-control"
+                            className="p-3 rounded w-100 pr-4"
                             name="password"
                             placeholder=""
                             autoComplete={false}
@@ -237,13 +242,10 @@ function Login() {
                           </button>
                         </div>
 
-                        <p className="">
-                          <Link
-                            style={{ "text-decoration": "underline" }}
-                            href="/admin/signup"
-                          >
+                        <p className="trabble">
+                          <a href="">
                             Trouble logging in?
-                          </Link>
+                            </a>
                         </p>
                       </form>
                     </div>

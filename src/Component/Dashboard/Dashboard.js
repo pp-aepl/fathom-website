@@ -45,12 +45,12 @@ function Dashboard() {
   return (
     <section className="">
       <div className="container">
-        <p className="main_dash_content">Dashboard - Smart Onboard 360</p>
-
-        <div className="voucherFormMain">
-          <p className="dash_content">
+      <div className="main_dashboar">
+        <h2>Dashboard - Smart Onboard 360</h2>
+          <div className="voucherFormMain">
+          <h3>
             Onboarding Performance – Murabaha Personal Finance
-          </p>
+          </h3>
 
           <div className="">
             <div className=" row col-md-12 pt-4">
@@ -316,6 +316,7 @@ function Dashboard() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );
