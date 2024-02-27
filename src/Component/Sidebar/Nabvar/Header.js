@@ -150,9 +150,9 @@ const Header = () => {
                                 // }}
                                 className="btn btn-default"
                               >
-                                <span className="d-none d-sm-block">
-                                  Signup
-                                </span>
+                                <button className="d-inline-block border p-2 px-4 fs-4 text-dark bg-transparent rounded ">
+                                  Sign up
+                                </button>
                                 {/* <BsPersonCircle className="d-block d-sm-none" /> */}
                               </button>
                             </li>

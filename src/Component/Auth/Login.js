@@ -153,10 +153,11 @@ in securely using your unique credentials.
                         onSubmit={handleSubmit}
                         onKeyDown={handleKeyDown}
                       >
-                        <div className="form-group">
+                        <div className="form-group position-relative">
                           <label>Your email address</label>
+                          
                           <input
-                          className="p-3 rounded w-100"
+                          className="p-2 mb-4 rounded w-100 border"
                             type="email"
                             // className="form-select"
                             name="email"
@@ -180,13 +181,11 @@ in securely using your unique credentials.
                         ""
                       )} */}
                         {/* Login Hide and Show */}
-                        <div className="form-group mt-lg-4 mt-3 position-relative">
+                        <div className="form-group position-relative">
                           <label>Your password</label>
-                          <input
-                          
-                            type={showPassword ? "text" : "password"}
+                          <input type={showPassword ? "text" : "password"}
                             //type="password"
-                            className="p-3 rounded w-100 pr-4"
+                            className="p-2 mb-2 rounded w-100 pr-4 border" 
                             name="password"
                             placeholder=""
                             autoComplete={false}
