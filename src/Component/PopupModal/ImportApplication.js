@@ -43,14 +43,14 @@ function ImportApplication() {
       >
         <Modal.Header closeButton>
           <Modal.Title>
-            <h3>Import Application</h3>
+            <h3 className="fs-2">Import Application</h3>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-5">
           <div className="">
-            <p>Select application category</p>
+            <p className="text-center">Select application category</p>
             <select
-              class="form-select mt-3 p-3"
+              class="form-select mt-3 p-3 fs-5 text-center"
               aria-label="Default select example"
             >
               <option selected>Personal Finance - Murabaha</option>
