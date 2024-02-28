@@ -48,9 +48,9 @@ function ImportApplication() {
         </Modal.Header>
         <Modal.Body className="p-5">
           <div className="">
-            <p className="text-center">Select application category</p>
+            <p >Select application category</p>
             <select
-              class="form-select mt-3 p-3 fs-5 text-center"
+              class="form-select mt-3 p-3 fs-5"
               aria-label="Default select example"
             >
               <option selected>Personal Finance - Murabaha</option>

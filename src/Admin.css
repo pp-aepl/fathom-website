@@ -1441,15 +1441,51 @@ input:-moz-placeholder {
   height: 50px;
   font-size: 15px;
   border-radius: 10px;
-  background: #fff;
+
+      color: #fff;
+      line-height: 1.2;
+      /* text-transform: uppercase; */
+      letter-spacing: 1px;
+      -webkit-transition: all 0.4s;
+      -o-transition: all 0.4s;
+      -moz-transition: all 0.4s;
+      transition: all 0.4s;
   font-size: 16px;
   font-weight: 600;
 }
 .saveBtn button:first-child {
-  color: #1877f2;
+  background-color: white;
+
+    color:black;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
 }
 .saveBtn button:last-child {
-  background: #1877f2;
+  background-image: linear-gradient(
+  90deg,
+  hsl(240deg 92% 74%) 0%,
+  hsl(240deg 73% 69%) 11%,
+  hsl(240deg 60% 64%) 22%,
+  hsl(241deg 50% 59%) 33%,
+  hsl(241deg 42% 54%) 44%,
+  hsl(241deg 37% 49%) 56%,
+  hsl(241deg 39% 44%) 67%,
+  hsl(241deg 41% 39%) 78%,
+  hsl(240deg 43% 35%) 89%,
+  hsl(240deg 45% 30%) 100%
+);
+    
+    line-height: 1.2;
+    /* text-transform: uppercase; */
+    letter-spacing: 1px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
   color: #fff;
 }
 .dashbaorIn {

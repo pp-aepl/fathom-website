@@ -3,10 +3,13 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import DataTable from "react-data-table-component";
 import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { createType } from "../../../store/reducer/index";
-import UploadApplication from "./UploadApplication";
-import AccordianList from "./AccordianList";
+import { useDispatch, useSelector } from "react-redux";
+import { SetpopupReducerData, createType } from "../../../store/reducer/index";
+import ProceedModal from "../../PopupModal/ProceedModal";
+import RejectModal from "../../PopupModal/RejectModal";
+import ReasonModal from "../../PopupModal/ReasonModal";
+import ExceptionModal from "../../PopupModal/ExceptionModal";
+import SuccessfullyModal from "../../PopupModal/SuccessfullyModal";
 
 function NewList({ id }) {
   const tableRef = useRef();
@@ -22,6 +25,12 @@ function NewList({ id }) {
   const [totalRows, setTotalRows] = useState(0);
   const [selectedStartdate, setSelectedStartdate] = useState("");
   const [selectedEnddate, setSelectedEnddate] = useState("");
+  const { PopupReducer } = useSelector((state) => state);
+  const { proceedModal = false } = PopupReducer?.modal;
+  const { rejectModal = false } = PopupReducer?.modal;
+  const { reasonModal = false } = PopupReducer?.modal;
+  const { exceptionModal = false } = PopupReducer?.modal;
+  const { successModal = false } = PopupReducer?.modal;
 
   const [transactionDetails, setTransactionDetails] = useState({});
   const [show, setShow] = useState(false);
@@ -76,6 +85,22 @@ function NewList({ id }) {
     navigate("/admin/add");
     setTransactionDetails(row);
   };
+
+  // filter functionality
+  const fetchModal = (e) =>{
+    let filteValue = e.target.value
+    if(filteValue === 'APPROVE'){
+      dispatch(SetpopupReducerData({ modalType: "PROCEED", proceedModal: true }));
+
+    }else if(filteValue === 'REJECTED'){
+      dispatch(SetpopupReducerData({ modalType: "REJECTED", rejectModal: true }));
+
+    }else if(filteValue === 'PROCEED&EXCEPTION'){
+      dispatch(SetpopupReducerData({ modalType: "EXCEPTION", exceptionModal: true }));
+
+    }
+    
+  }
 
   //convertToCamelCase
 
@@ -228,8 +253,14 @@ function NewList({ id }) {
   ];
 
   return (
-    <>
+ 
       <>
+          {proceedModal && <ProceedModal/>}
+          {rejectModal && <RejectModal/>}
+          {reasonModal && <ReasonModal/>}
+          {exceptionModal && <ExceptionModal/>}
+          {successModal && <SuccessfullyModal/>}
+
         <section className="">
           <div className="container">
             <div className="voucherFormMain upload_new_application">
@@ -293,7 +324,7 @@ function NewList({ id }) {
                       </select>
                     </div>
                   </div>
-                  <div className="col-2">
+                  <div className="col-2 ">
                     <span>Search Applictaion</span>
                     <select class="form-select p-3">
                       <option>Last week</option>
@@ -301,23 +332,23 @@ function NewList({ id }) {
                   </div>
                   <div className="col-2">
                     <span>Date from</span>
-                    <div className="border rounded p-2 text-right">
-                      <input type="date" id="birthday" name="birthday"></input>
+                    <div className=" p-2 text-right">
+                      <input type="date" className="form-control" id="birthday" name="birthday"></input>
                     </div>
                   </div>
                   <div className="col-2">
                     <span>Date to</span>
-                    <div className="border rounded p-2 text-right">
-                      <input type="date" id="birthday" name="birthday"></input>
+                    <div className=" p-2 text-right">
+                      <input type="date" id="birthday" className="form-control" name="birthday"></input>
                     </div>
                   </div>
                   <div className="col-3">
                     <span>&nbsp;</span>
-                    <select class="form-select p-3">
-                      <option>Actions</option>
-                      <option>Approve and Proceed</option>
-                      <option>Proceed with exception</option>
-                      <option>Reject & Send back for correction</option>
+                    <select class="form-select p-3"  onChange={fetchModal}>
+                      <option value={""}>Actions</option>
+                      <option value={"APPROVE"}>Approve and Proceed</option>
+                      <option value={"PROCEED&EXCEPTION"}>Proceed with exception</option>
+                      <option value={"REJECTED"}>Reject & Send back for correction</option>
                     </select>
                   </div>
                 </div>
@@ -544,7 +575,7 @@ function NewList({ id }) {
           </div>
         </section>
       </>
-    </>
+  
   );
 }
 export default NewList;
