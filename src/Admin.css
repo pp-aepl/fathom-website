@@ -2419,3 +2419,7 @@ font-size: 14px; line-height: 16px; color: #fff; border-radius: 15px;}
 .confirmation .modal-title{ width: 100%;}
 .confirmation .modal-title p{ width: 100%; font-size: 16px; line-height: 20px; color: #000; text-align: center;}
 .confirmation .notepad{ width:35px; height: 35px; margin: 0 5px;}
+.confirmation .close{ font-size: 15px; height: 16px;}
+.confirmation .sc-eTNRI{ font-size: 1.3rem;font-family: "Inter";}
+
+.form-select,.form-control{ font-size: 1.6rem;}

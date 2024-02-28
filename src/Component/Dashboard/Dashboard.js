@@ -46,73 +46,73 @@ function Dashboard() {
     <section className="">
       <div className="container">
       <div className="main_dashboar">
-        <h2>Dashboard - Smart Onboard 360</h2>
+        <h2 className="fs-4 fw-bold">Dashboard - Smart Onboard 360</h2>
           <div className="voucherFormMain">
-          <h3>
+          <h3 className="fs-4 fw-bold">
             Onboarding Performance – Murabaha Personal Finance
           </h3>
 
           <div className="">
-            <div className=" row col-md-12 pt-4">
+            <div className=" row pt-4">
               <div className="col-md-3">
-                <span>Filter</span>
+                <label className="fs-7 pb-4">Filter</label>
                 <select class="form-select" aria-label="Default select example">
                   <option selected>Last week</option>
                   <option value="1">Last day</option>
                   <option value="2">Last Month</option>
                 </select>
               </div>
-              <div className="col-md-3"></div>
+              <div className="col-md-3">&nbsp;</div>
               <div className="col-md-3">
-                <span>Date from</span>
+              <label className="fs-7 pb-4">Date from</label>
                 <input className="form-control" type="date" />
               </div>
               <div className="col-md-3">
-                <span>Date to</span>
+              <label className="fs-7 pb-4">Date to</label>
                 <input className="form-control" type="date" />
               </div>
             </div>
             <div class="row pt-4">
               <div class="col-sm-4 pb-3">
-                <div class="card dash_card">
+                <div class="card dash_card w-100">
                   <div class="card-body">
-                    <h5 class="desh_title">New Cases</h5>
-                    <p class="desh_text">7,846</p>
+                  <h5 class="fs-5">New Cases</h5>
+                    <span class="fs-1 text-dark fw-bold">7,846</span>
                   </div>
                 </div>
               </div>
               <div class="col-sm-4">
-                <div class="card dash_card">
+                <div class="card dash_card w-100">
                   <div class="card-body">
-                    <h5 class="desh_title">Awaiting Commodity Purchase</h5>
-                    <p class="desh_text">2,945</p>
+                    <h5 class="fs-5">Awaiting Commodity Purchase</h5>
+                    <span class="fs-1 text-dark fw-bold">2,945</span>
                   </div>
                 </div>
               </div>
               <div class="col-sm-4">
-                <div class="card dash_card">
+                <div class="card dash_card w-100">
                   <div class="card-body">
-                    <h5 class="desh_title">
+                  <h5 class="fs-5">
                       Awaiting Customer Acceptance: Digital
                     </h5>
-                    <p class="desh_text">#37</p>
+                    <span class="fs-1 text-dark fw-bold">#37</span>
                   </div>
                 </div>
               </div>
               <div class="col-sm-4 pb-3">
                 <div class="card dash_card">
                   <div class="card-body">
-                    <h5 class="desh_title">
+                  <h5 class="fs-5">
                       Awaiting Customer Acceptance:Physica
                     </h5>
-                    <p class="desh_text">7,846</p>
+                    <span class="fs-1 text-dark fw-bold">7,846</span>
                   </div>
                 </div>
               </div>
               <div class="col-sm-4">
                 <div class="card dash_card">
                   <div class="card-body">
-                    <h5 class="desh_title">Agent appointment and response</h5>
+                  <h5 class="fs-5">Agent appointment and response</h5>
                     <p class="desh_text">2,945</p>
                   </div>
                 </div>
@@ -120,7 +120,7 @@ function Dashboard() {
               <div class="col-sm-4">
                 <div class="card dash_card">
                   <div class="card-body">
-                    <h5 class="desh_title">
+                  <h5 class="fs-5">
                       Completed – Welcome Letter issued
                     </h5>
                     <p class="desh_text">#50</p>
@@ -130,7 +130,7 @@ function Dashboard() {
               <div class="col-sm-4">
                 <div class="card dash_card">
                   <div class="card-body">
-                    <h5 class="desh_title">
+                  <h5 class="fs-5">
                       Rejected: Pending Channel Correction
                     </h5>
                     <p class="desh_text">7,846</p>

@@ -72,7 +72,7 @@ function ConfirmFiles() {
             />
             </> : 
             <>
-              <img src="../../images/close.png"></img>
+              <img src="../../images/close.png" className="close"></img>
             </>
             }
            
@@ -98,7 +98,7 @@ function ConfirmFiles() {
             />
             </> : 
             <>
-               <img src="../../images/close.png"></img>
+               <img src="../../images/close.png" className="close"></img>
             </>
             }
            
@@ -123,7 +123,7 @@ function ConfirmFiles() {
             />
             </> : 
             <>
-             <img src="../../images/close.png"></img>
+             <img src="../../images/close.png"  className="close"></img>
             </>
             }
            
@@ -151,7 +151,7 @@ function ConfirmFiles() {
           <Modal.Header closeButton>
             <Modal.Title>
               <h3 className="fs-2">Files Confirmation </h3>
-              <p>Please confirm your file include following</p>
+              <p className="fs-4">Please confirm your file include following</p>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body className="p-5">

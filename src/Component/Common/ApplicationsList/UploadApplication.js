@@ -34,12 +34,12 @@ function UploadApplication() {
       <div className="card uploadCard">
         <img
           className="card-img-top"
-          src="../../images/upload-image-icon-png-10.jpg"
+          src="../../images/upload_screen1.png"
           alt="Card image cap"
         ></img>
         <div className="card-body">
-          <h3 className="card-title">Import new application</h3>
-          <p className="card-text">
+          <h3 className="card-title fs-2 text-center">Import new application</h3>
+          <p className="card-text fs-4 mb-4">
             Press on the purple circle to upload your first application
           </p>
           <button className="login100-form-btn" onClick={handleSubmit}>
