@@ -17,7 +17,7 @@ function App() {
 
       {/* Use a wrapper route for /admin */}
     
-      <Route path="/admin" element={<><Navbar /><Sidebar /></>} >
+      <Route path="/admin" element={<><Navbar /></>} >
         {/* Dashboard route */}
         <Route path="dashboard" element={<Dashboard />} />
         {/* Application list route with dynamic parameter */}

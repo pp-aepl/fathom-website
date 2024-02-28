@@ -44,7 +44,7 @@ function Dashboard() {
 
   return (
     <section className="">
-      <div className="container">
+      <div className="">
       <div className="main_dashboar">
         <h2 className="fs-4 fw-bold">Dashboard - Smart Onboard 360</h2>
           <div className="voucherFormMain">

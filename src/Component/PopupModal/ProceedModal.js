@@ -38,7 +38,7 @@ function ProceedModal() {
    // const submit comidity 
    const onSubmitComidity = async (e,typeSubmit) =>{
     console.log(typeSubmit)
-    navigate("admin/application/inProcess");
+    navigate("/admin/application/inProcess");
    }
 
   return (
