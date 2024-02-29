@@ -2459,3 +2459,8 @@ font-size: 14px; line-height: 16px; color: #fff; border-radius: 15px;}
 .confirmation .sc-eTNRI{ font-size: 1.3rem;font-family: "Inter";}
 
 .form-select,.form-control{ font-size: 1.6rem;}
+
+.main{margin:0 0 0  64px;}
+
+
+.main_dashboar  .progress-bar{ height: 10px!important; position: relative; top: -3px;}

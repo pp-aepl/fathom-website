@@ -100,7 +100,7 @@ function Dashboard() {
                 </div>
               </div>
               <div class="col-sm-4 pb-3">
-                <div class="card dash_card">
+                <div class="card dash_card w-100">
                   <div class="card-body">
                   <h5 class="fs-5">
                       Awaiting Customer Acceptance:Physica
@@ -110,7 +110,7 @@ function Dashboard() {
                 </div>
               </div>
               <div class="col-sm-4">
-                <div class="card dash_card">
+                <div class="card dash_card w-100">
                   <div class="card-body">
                   <h5 class="fs-5">Agent appointment and response</h5>
                     <p class="desh_text">2,945</p>
@@ -118,7 +118,7 @@ function Dashboard() {
                 </div>
               </div>
               <div class="col-sm-4">
-                <div class="card dash_card">
+                <div class="card dash_card w-100">
                   <div class="card-body">
                   <h5 class="fs-5">
                       Completed – Welcome Letter issued
@@ -128,7 +128,7 @@ function Dashboard() {
                 </div>
               </div>
               <div class="col-sm-4">
-                <div class="card dash_card">
+                <div class="card dash_card w-100">
                   <div class="card-body">
                   <h5 class="fs-5">
                       Rejected: Pending Channel Correction
@@ -138,7 +138,7 @@ function Dashboard() {
                 </div>
               </div>
               <div class="col-sm-4 pb-3">
-                <div class="card dash_card">
+                <div class="card dash_card w-100">
                   <div class="card-body">
                     <h5 class="desh_title">Success rate</h5>
                     <div class="d-flex align-items-center p-2">
@@ -157,7 +157,7 @@ function Dashboard() {
                 </div>
               </div>
               <div class="col-sm-4 pb-3">
-                <div class="card dash_card">
+                <div class="card dash_card w-100">
                   <div class="card-body">
                     <h5 class="desh_title">Average Portfolio Productivity</h5>
                     <div class="d-flex align-items-center p-2">
@@ -211,13 +211,12 @@ function Dashboard() {
                 </div>
               </div>
 
-              <div class="col-sm-4 ">
-                <div class="card dash_card" style={{ height: "120px" }}>
-                  <div class="card-body">
-                    <h5 class="desh_title">Productivity Stage wise</h5>
+              <div className="col-md-4">
+              <div className="card p-4 dash_card">
+              <h5 class="desh_title">Productivity Stage wise</h5>
                     <p>Import to Commodity Purchase</p>
                     <div class="d-flex align-items-center p-2">
-                      <div class="progress bar-wrapper w-100 ">
+                      <div class="progress bar-wrapper p-2 w-100 ">
                         <div
                           class="progress-bar skill-bar desh_progress-bar"
                           role="progressbar"
@@ -228,91 +227,10 @@ function Dashboard() {
                       </div>
                       <span class="p-1">25min</span>
                     </div>
-                  </div>
-                </div>
-                <div class="card dash_card" style={{ height: "120px" }}>
-                  <div class="card-body">
-                    <h5 class="desh_title">
-                      Murabaha Agreement Generation to Customer Acceptance:
-                      Digital
-                    </h5>
-                    <div class="d-flex align-items-center p-2">
-                      <div class="progress bar-wrapper w-100 ">
-                        <div
-                          class="progress-bar skill-bar desh_progress-bar"
-                          role="progressbar"
-                          aria-valuenow="76"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                          style={{ width: "60%" }}
-                        ></div>
-                      </div>
-                      <span class="p-1">15min</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="card dash_card" style={{ height: "120px" }}>
-                  <div class="card-body">
-                    <h5 class="desh_title">
-                      Murabaha Agreement Generation to Customer Acceptance:-
-                      Physical
-                    </h5>
-                    <div class="d-flex align-items-center p-2">
-                      <div class="progress bar-wrapper w-100 ">
-                        <div
-                          class="progress-bar skill-bar desh_progress-bar"
-                          role="progressbar"
-                          aria-valuenow="76"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                          style={{ width: "80%" }}
-                        ></div>
-                      </div>
-                      <span class="p-1">10min</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="card dash_card" style={{ height: "120px" }}>
-                  <div class="card-body">
-                    <h5 class="desh_title">
-                      Customer Acceptance to Agent response
-                    </h5>
-                    <div class="d-flex align-items-center p-2">
-                      <div class="progress bar-wrapper w-100 ">
-                        <div
-                          class="progress-bar skill-bar desh_progress-bar"
-                          role="progressbar"
-                          aria-valuenow="76"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                          style={{ width: "70%" }}
-                        ></div>
-                      </div>
-                      <span class="p-1">5min</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="card dash_card" style={{ height: "120px" }}>
-                  <div class="card-body">
-                    <h5 class="desh_title">
-                      Agent response to funding and Letter issuance
-                    </h5>
-                    <div class="d-flex align-items-center p-2">
-                      <div class="progress bar-wrapper w-100 ">
-                        <div
-                          class="progress-bar skill-bar desh_progress-bar"
-                          role="progressbar"
-                          aria-valuenow="76"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                          style={{ width: "77%" }}
-                        ></div>
-                      </div>
-                      <span class="p-1">8min</span>
-                    </div>
-                  </div>
-                </div>
               </div>
+
+              </div>
+              
             </div>
           </div>
         </div>

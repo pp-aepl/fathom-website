@@ -5371,7 +5371,7 @@ border-color: #8282FF;
   padding-left: 38px;
 }
 .dash_card {
-  width: 353px;
+  width: 100%;
   height: 100px;
   border-radius: 7px;
   background: #f8f8ff;
