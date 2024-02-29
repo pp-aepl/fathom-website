@@ -8,6 +8,9 @@ import Sidebar from "./Component/Sidebar/Sidebar";
 import TwoFactor from "./Component/Auth/TwoFactor";
 import NewList from "./Component/Common/ApplicationsList/NewList";
 import InprocessList from "./Component/Common/ApplicationsList/ApplicationProcessSteps/InprocessList";
+import MurabahaList from "./Component/Common/ApplicationsList/MurabahaAgreement/MurabahaList";
+import SentList from "./Component/Common/ApplicationsList/MurabahaAgreement/SentList";
+import CommodityList from "./Component/Common/ApplicationsList/CommodityTrade/CommodityList";
 
 function App() {
   return (
@@ -25,6 +28,9 @@ function App() {
         {/* Application ADD/UPDATE form route with dynamic parameter */}
         <Route path="application/list" element={<NewList />} />
         <Route path="application/inProcess" element={<InprocessList />} />
+        <Route path="application/murabaha" element={<MurabahaList />} />
+        <Route path="application/sent" element={<SentList />} />
+        <Route path="application/commodity" element={<CommodityList />} />
 
       
 
