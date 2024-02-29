@@ -11,7 +11,15 @@ import InprocessList from "./Component/Common/ApplicationsList/ApplicationProces
 
 function App() {
   return (
-    <Routes>
+    <>
+
+<div className="fluid-container">
+
+<div className="sidebar"><Sidebar /></div>
+
+<div className="main">
+
+<Routes>
       <Route path="/" element={<Login />} />
       <Route path="/otp" element={<TwoFactor />} />
 
@@ -25,9 +33,6 @@ function App() {
         {/* Application ADD/UPDATE form route with dynamic parameter */}
         <Route path="application/list" element={<NewList />} />
         <Route path="application/inProcess" element={<InprocessList />} />
-
-      
-
         {/* Default redirect for /admin */}
         <Route index element={<Navigate to="dashboard" replace />} />
       </Route>
@@ -35,6 +40,11 @@ function App() {
       {/* Fallback route for unknown paths */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
+</div>
+
+    </div>
+    
+    </>
   );
 }
 
