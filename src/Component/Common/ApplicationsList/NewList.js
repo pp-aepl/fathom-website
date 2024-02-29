@@ -90,13 +90,13 @@ function NewList({ id }) {
   const fetchModal = (e) =>{
     let filteValue = e.target.value
     if(filteValue === 'APPROVE'){
-      dispatch(SetpopupReducerData({ modalType: "PROCEED", proceedModal: true }));
+      dispatch(SetpopupReducerData({ modalType: "PROCEED", proceedModal: true}));
 
     }else if(filteValue === 'REJECTED'){
       dispatch(SetpopupReducerData({ modalType: "REJECTED", rejectModal: true }));
 
     }else if(filteValue === 'PROCEED&EXCEPTION'){
-      dispatch(SetpopupReducerData({ modalType: "EXCEPTION", exceptionModal: true }));
+      dispatch(SetpopupReducerData({ modalType: "EXCEPTION", exceptionModal: true,type:'SUCCESSFULLY' }));
 
     }
     

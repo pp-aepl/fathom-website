@@ -11,6 +11,9 @@ function ExceptionModal() {
   const { PopupReducer } = useSelector((state) => state);
   const { exceptionModal = false } = PopupReducer?.modal;
   const { successModal = false } = PopupReducer?.modal;
+  const exceptionType = PopupReducer?.modal?.type;
+  console.log({exceptionType})
+
 
   const handleClosePopup = () => {
     dispatch(
@@ -20,12 +23,13 @@ function ExceptionModal() {
 
   // update create api
   const onSubmit = async (e, typeSubmit) => {
+    console.log({typeSubmit})
     e.preventDefault();
     dispatch(
       SetpopupReducerData({
         modalType: "SUCCESSFULLY",
         successModal: true,
-        type: "SUCCESSFULLY",
+        type: typeSubmit,
       })
     );
   };
@@ -46,13 +50,15 @@ function ExceptionModal() {
         <Modal.Body className="p-5">
           <div className="">
             <p style={{ textAlign: "center", fontWeight: "600" }}>
-              Upload Exception document
+              {exceptionType === 'CHANNELLIST' ? 'Import Completed Murabaha Agreement ' :  'Upload Exception document' }
             </p>
           </div>
           <div>
             <UploadToFile />
           </div>
-          <div>
+          {exceptionType !== 'CHANNELLIST' && 
+          <>
+           <div>
             <p className="pb-4">Files Uploaded</p>
             <div className="row">
               <div className="col-md-1 pt-2">
@@ -73,15 +79,7 @@ function ExceptionModal() {
                   <p style={{ fontWeight: "bold" }}>
                     Approval email/Exception document
                   </p>
-                  {/* <div class="progress bar-wrapper w-100 h-5px">
-              <div
-                class="progress-bar skill-bar desh_progress-bar"
-                role="progressbar"
-                aria-valuenow="76"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              ></div>
-            </div> */}
+              
                 </div>
               </div>
               <div className="col-md-2 pt-2" style={{ color: "red" }}>
@@ -99,11 +97,15 @@ function ExceptionModal() {
               </div>
             </div>
           </div>
+          </>
+          }
+         
           <div
             className={`d-flex align-items-center justify-content-around pt-4 ${"saveBtn"}`}
           >
-            <button  style={{ minWidth: "-webkit-fill-available" }} onClick={(e) => onSubmit(e, "create")}>
-              Proceed with Exception
+            <button  style={{ minWidth: "-webkit-fill-available" }} onClick={(e) => onSubmit(e,exceptionType )}>
+            {exceptionType === 'CHANNELLIST' ? 'Continue' : 'Proceed with Exception'}
+            
             </button>
           </div>
         </Modal.Body>

@@ -3,11 +3,13 @@ import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { SetpopupReducerData } from "../../store/reducer";
 import { useNavigate } from "react-router-dom";
+import SuccessfullyModal from "./SuccessfullyModal";
 function ProceedModal() {
   const dispatch = useDispatch();
   const { createType } = useSelector((state) => state?.Product);
   const { PopupReducer } = useSelector((state) => state);
   const { proceedModal = false } = PopupReducer?.modal;
+  const { successModal = false } = PopupReducer?.modal;
  const [commodityModal, setCommodityModal] = useState(false);
   const commodityType = PopupReducer?.modal?.type;
   const navigate = useNavigate();
@@ -37,12 +39,20 @@ function ProceedModal() {
   };
    // const submit comidity 
    const onSubmitComidity = async (e,typeSubmit) =>{
-    console.log(typeSubmit)
-    navigate("admin/application/inProcess");
+    e.preventDefault()
+    if(typeSubmit === 'COMIDITYAGENT'){
+      dispatch(SetpopupReducerData({ modalType: "SUCCESSFULLY", successModal: true,type:'COMIDITYAGENT' }));
+    }else {
+      navigate("/admin/application/inProcess");
+
+    }
    }
 
   return (
     <>
+
+      {successModal && <SuccessfullyModal />}
+
       <Modal
         className={"publishModal"}
         show={proceedModal}
@@ -52,12 +62,12 @@ function ProceedModal() {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header onClick={() => handleClosePopup(false)}>
+        {/* <Modal.Header onClick={() => handleClosePopup(false)}> */}
           <Modal.Title>
             {(commodityModal || commodityType === 'APP_PROCEED') ? (
               <img
                 src="../../images/icon2.png"
-                style={{ height: "100px", paddingLeft: "18rem" }}
+                style={{ height: "100px", paddingLeft: "19rem" }}
               />
             ) : (
               <i
@@ -71,7 +81,7 @@ function ProceedModal() {
               ></i>
             )}
           </Modal.Title>
-        </Modal.Header>
+        {/* </Modal.Header> */}
         <Modal.Body className="p-5">
           <div className="">
             {(commodityModal || commodityType === 'APP_PROCEED') ? (
@@ -93,8 +103,8 @@ function ProceedModal() {
             className={`d-flex align-items-center justify-content-around pt-4 ${"saveBtn"}`}
           >
             <button onClick={(e) => onSubmitProceed(e, "cancel")}>No</button>
-            {(commodityModal || commodityType === 'APP_PROCEED') ? 
-             <button onClick={(e) => onSubmitComidity(e, "comidity")}>Yes</button> :
+            {(commodityModal || commodityType === 'APP_PROCEED' || commodityType === 'COMIDITYAGENT') ? 
+             <button onClick={(e) => onSubmitComidity(e, commodityType)}>Yes</button> :
              <button onClick={(e) => onSubmitProceed(e, "create")}>Yes</button>
             }
 

@@ -29,7 +29,9 @@ function Sidebar() {
 
   return (
     <>
+  
       <div className="header__toggle" onClick={toggleMenu}>
+      
         <i
           className={`${"respMenu"} ${showMenu ? "active" : ""}`}
           id="header-toggle"
@@ -42,14 +44,29 @@ function Sidebar() {
           <FaXmark />
         </button>
         <nav className={"nav__container"}>
+      
           <div onMouseLeave={() => setOpenDropdown(-1)}>
             <div className={"nav__list"}>
+
+
+            <div  className={`${"nav__items"}  ${showActive === 1 ? "active" : ""} `} >
+                <Link to="/admin/dashboard" className={"nav__link"}>
+                  <div
+                    className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
+                  >
+                   <img alt="logo" src="../../../images/fathom_logo.png" class="header_logo"></img>
+                  </div>
+                  <span className={"nav__name"}>Fathom</span>
+                </Link>
+              </div>
+
+
               <div  className={`${"nav__items"}  ${showActive === 1 ? "active" : ""} `} >
                 <Link to="/admin/dashboard" className={"nav__link"}>
                   <div
                     className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
                   >
-                    <img src="../../../images/sponsorsIcon.svg" alt="" />
+                    <img src="../../../images/dashboard-icon.svg" alt="" />
                   </div>
                   <span className={"nav__name"}>Dashboard</span>
                 </Link>
@@ -68,7 +85,7 @@ function Sidebar() {
                     <div
                       className={` ${"icon_cmn"} ${"bx_home"} ${"nav__icon"}`}
                     >
-                      <img src="../../../images/eventIcon.svg" alt="" />
+                      <img src="../../../images/document-text.svg" alt="" />
                     </div>
                     <span className={"nav__name"}>Application Statuses</span>
                     <i
@@ -124,7 +141,7 @@ function Sidebar() {
                   <div
                     className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
                   >
-                    <img src="../../../images/reportsIcon.svg" alt="" />
+                    <img src="../../../images/task-square.svg" alt="" />
                   </div>
                   <span className={"nav__name"}>Reports</span>
                 </Link>

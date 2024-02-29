@@ -2,6 +2,7 @@ import React from "react";
 import Chart from "chart.js/auto";
 
 import { Line } from "react-chartjs-2";
+import CommonHeader from "../Sidebar/Nabvar/CommonHeader";
 
 function Dashboard() {
   const data = {
@@ -43,8 +44,9 @@ function Dashboard() {
   };
 
   return (
+
     <section className="">
-      
+      <CommonHeader></CommonHeader>
       <div className="main_dashboar">
         <h2 className="fs-4 fw-bold">Dashboard - Smart Onboard 360</h2>
           <div className="voucherFormMain">

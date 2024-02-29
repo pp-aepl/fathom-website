@@ -53,15 +53,7 @@ function ApplicationScan() {
           {statusType?.success != "SUCCESS" && (
             <div class="row d-flex justify-content-center ">
               <div class="col-md-6">
-                {/* <div class="progress blue">
-                   <span class="progress-left">
-                     <span class="progress-bar"></span>
-                   </span>
-                   <span class="progress-right">
-                     <span class="progress-bar"></span>
-                   </span>
-                   <div class="progress-value">90%</div>
-                 </div> */}
+             
                 <div class="progressChart yellow">
                   <span class="progressChart-left">
                     <span class="progressChart-bar"></span>
@@ -76,10 +68,11 @@ function ApplicationScan() {
           )}
 
           {statusType?.success === "SUCCESS" && (
-            <img
-              src="../../images/Check_green_circle.svg.png"
-              style={{ height: "100px", paddingLeft: "12rem" }}
+              <img
+              src="../../images/icon2.png"
+              style={{ height: "100px", paddingLeft: "18rem" }}
             />
+          
           )}
           <div className="">
             <h3>
