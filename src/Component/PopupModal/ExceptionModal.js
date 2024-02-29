@@ -12,6 +12,7 @@ function ExceptionModal() {
   const { exceptionModal = false } = PopupReducer?.modal;
   const { successModal = false } = PopupReducer?.modal;
   const exceptionType = PopupReducer?.modal?.type;
+  console.log({exceptionType})
 
 
   const handleClosePopup = () => {
@@ -22,6 +23,7 @@ function ExceptionModal() {
 
   // update create api
   const onSubmit = async (e, typeSubmit) => {
+    console.log({typeSubmit})
     e.preventDefault();
     dispatch(
       SetpopupReducerData({
