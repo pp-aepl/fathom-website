@@ -2172,7 +2172,7 @@ input:-moz-placeholder {
   .nav_2 {
     left: 0;
     padding: 1.2rem 13px !important;
-    width: 84px; /* Reduced navbar */
+    width: 79px; /* Reduced navbar */
     box-shadow: 0 6px 26px rgba(34, 55, 113, 0.1);
   }
   .nav__items {

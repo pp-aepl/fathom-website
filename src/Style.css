@@ -1319,12 +1319,12 @@
     background: #316cf4;
     color: #fff;
   }
-  .nav__list .active .nav__icon img {
+  /* .nav__list .active .nav__icon img {
     filter: brightness(0) invert(1);
-  }
-  .nav__link:hover img {
+  } */
+  /* .nav__link:hover img {
     filter: brightness(0) invert(1);
-  }
+  } */
   .nav__list .active .nav__name {
     color: #fff;
   }
