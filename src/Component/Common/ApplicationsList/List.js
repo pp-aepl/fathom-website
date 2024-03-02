@@ -177,21 +177,18 @@ function List({ id }) {
 
       <>
         <section className="">
-          <div className="container">
-            <div className="voucherFormMain upload_new_application">
+            <div className="upload_new_application">
               {/* <h5>{convertToCamelCase(fetchParams)}</h5> */}
-              <h3>Upload New Application</h3> 
-          
-
-              
+              <h3>Upload New Application</h3>
               <div className="">
-                <div className="  row my-5" id="table-contexual">
+                <div className="row my-5" id="table-contexual">
                   <div className="col-12">
                     <div className="">
                       <div className="">
                         <div className="row align-items-center py-1">
                           <div className="col-md-3">
-                            <span>Filter</span>
+                            <span className="label">Filter</span>
+                            
                             <select
                               class="form-select"
                               aria-label="Default select example"
@@ -203,7 +200,7 @@ function List({ id }) {
                             </select>
                           </div>
                           <div className="col-3">
-                            <span>Search Applictaion</span>
+                          <span className="label">Search Applictaion</span>
                             <div className="form-group has-search">
                               {/* <span className="fa fa-search form-control-feedback"></span> */}
                               <input
@@ -222,7 +219,7 @@ function List({ id }) {
                             </div>
                           </div>
                           <div className="col-3 ">
-                            <span>Date from</span>
+                          <span className="label">Date from</span>
                             <DatePicker
                               selected={selectedStartdate}
                               onChange={startDateFilter}
@@ -232,7 +229,7 @@ function List({ id }) {
                             />
                           </div>
                           <div className="col-3 ">
-                            <span>Date to</span>
+                          <span className="label">Date to</span>
                             <DatePicker
                               minDate={new Date(selectedStartdate)}
                               selected={selectedEnddate}
@@ -269,7 +266,6 @@ function List({ id }) {
                 </div>
               </div>
             </div>
-          </div>
         </section>
       </>
    

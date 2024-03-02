@@ -1273,7 +1273,7 @@ input:-moz-placeholder {
 }
 .nav__items {
   row-gap: 1.5rem;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
 }
 .nav__subtitle {
   font-size: 14px;
@@ -1416,7 +1416,7 @@ input:-moz-placeholder {
   filter: brightness(0) invert(1);
 } */
 .nav__list .active .nav__name {
-  color: #fff;
+  color: #000;
 }
 /* ========== MEDIA QUERIES ==========*/
 
@@ -2625,13 +2625,13 @@ input:-moz-placeholder {
   height: 16px;
 }
 .confirmation .sc-eTNRI {
-  font-size: 1.3rem;
+  font-size: 16px;
   font-family: "Inter";
 }
 
 .form-select,.form-control{ font-size: 1.6rem;}
 
-.main{margin:0 0 0 82px;}
+#main{margin:0 0 0 82px;}
 
 
 .main_dashboar .progress-bar{ height: 10px!important; position: relative; top: -3px;}
@@ -2644,15 +2644,25 @@ input:-moz-placeholder {
   border: 1px solid #716C6C;
   padding: 3px;
 }
-.agent_avatar{
-  height: 106px;
-    width: 100px;
-    border-radius: 50%;
-    margin-left: 175px;
-    overflow: hidden;
-}
-.agent_radio {
-  border: 1px solid #E0E3E2  ;
-  padding-right: 151px;
-  margin-top: 9px;
-}
+.agent_avatar{height: 106px;width: 100px;border-radius: 50%;margin-left: 175px;overflow: hidden;}
+.agent_radio {border: 1px solid #E0E3E2  ;padding-right: 151px;margin-top: 9px;}
+.upload_new_application{padding:2rem 0 0; height: 100vh;}
+.label{ padding-bottom: 16px; display: inline-block; font-size: 14px; line-height: 18px; color:rgba(117, 117, 117, 1);}
+.login100-form-btn{ font-size: 16px; font-style: italic; color:#ffff;}
+.form-select{ font-family: "Inter Tight", sans-serif;}
+.huezRP{ width:100%!important;}
+.faZveH{padding: 0 5px!important;}
+.success-pic{ margin-top: 70px;}
+.full-cover{ padding:100px 0;}
+.modal-title{ text-align: center;}
+.card-title{ padding-bottom: 10px!important; font-size:24px !important; line-height: 30px!important;
+   color: #000!important; font-weight: bold!important;font-family: "Inter Tight", sans-serif;}
+.card-title1{ padding-bottom: 20px!important; font-size:20px !important; line-height:26px!important;
+    color: #000!important; font-weight: bold!important;font-family: "Inter Tight", sans-serif;}
+.card-text{font-size: 14px!important; line-height:24px; color:rgba(117, 117, 117, 1);
+  text-align: center; font-family: "Inter Tight", sans-serif;}
+.buttons{ padding-top: 70px;}
+.application_san{ padding:30px 50px;}
+.label{font-size: 14px!important; line-height:24px; color:rgba(117, 117, 117, 1);font-family: "Inter Tight", sans-serif;}
+.checkbox{ margin-top: -10px;}
+.w-80{ width:80%;}

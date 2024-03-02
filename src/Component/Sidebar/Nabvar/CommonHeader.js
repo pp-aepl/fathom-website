@@ -3,6 +3,7 @@ import React from 'react'
 function CommonHeader() {
   return (
     <div className='commonHeader d-flex justify-content-between'>
+      
 <h1>Upload New Application</h1>
 
 <div className='right-side'>

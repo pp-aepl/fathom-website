@@ -49,10 +49,10 @@ function ApplicationScan() {
           <Modal.Header closeButton onClick={onSubmit}></Modal.Header>
         )}
 
-        <Modal.Body className="p-5">
+        <Modal.Body className="full-cover">
           {statusType?.success != "SUCCESS" && (
-            <div class="row d-flex justify-content-center ">
-              <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-12 text-center">
              
                 <div class="progressChart yellow">
                   <span class="progressChart-left">
@@ -69,18 +69,18 @@ function ApplicationScan() {
 
           {statusType?.success === "SUCCESS" && (
               <img
-              src="../../images/icon2.png"
+              src="../../images/success.png"
               style={{ height: "100px", paddingLeft: "18rem" }}
             />
           
           )}
-          <div className="">
-            <h3>
-              Application scanning{" "}
+          <div className="application_san">
+            <h3 className="card-title text-center">
+              Application scanning {" "}
               {statusType?.success === "SUCCESS" && "completed"}
             </h3>
 
-            <p style={{ textAlign: "center" }}>
+            <p className="card-text text-center">
               {statusType?.success === "SUCCESS" &&
                 "85 Application passed and 5 Application Failed"}
               {statusType?.success !== "SUCCESS" &&
@@ -88,8 +88,7 @@ function ApplicationScan() {
             </p>
           </div>
           {statusType?.success === "SUCCESS" && (
-            <div
-              className={`d-flex align-items-center justify-content-around pt-4 `}
+            <div className={`px-5 mt-4`}
             >
               <button
                 className="login100-form-btn"
