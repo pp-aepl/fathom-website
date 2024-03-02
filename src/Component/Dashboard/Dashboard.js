@@ -207,7 +207,7 @@ function Dashboard() {
                         </select>
                       </div>
 
-                      <Line data={data} />
+                      <Line data={data} /> 
                     </div>
                   </div>
                 </div>
