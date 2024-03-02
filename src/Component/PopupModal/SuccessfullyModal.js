@@ -63,38 +63,36 @@ function SuccessfullyModal() {
       >
         {/* <Modal.Header onClick={() => handleClosePopup(false)}> */}
         <Modal.Title>
-          <img
-            src="../../images/icon2.png"
-            style={{ height: "100px", paddingLeft: "19rem" }}
-          />
+          <img className="success-pic"
+            src="../../images/success.png"/>
         </Modal.Title>
         {/* </Modal.Header> */}
         <Modal.Body className="p-5">
           <div className="">
             {successType === "SUCCESSFULLY" ? (
-              <h3>Application Processed</h3>
+              <h3 className="card-title">Application Processed</h3>
             ) : successType === "CHANNELLIST" ? (
-              <h3>Murabaha Agreement Successfully uploaded</h3>
+              <h3 className="card-title">Murabaha Agreement Successfully uploaded</h3>
             ) : successType === "COMIDITYAGENT" ? (
-              <h3>Commodity has been sold</h3>
+              <h3 className="card-title">Commodity has been sold</h3>
             ) : (
-              <h3>Successfully Processed</h3>
+              <h3 className="card-title">Successfully Processed</h3>
             )}
             {successType !== "CHANNELLIST" &&
               successType !== "COMIDITYAGENT" && (
                 <>
                   {successType === "SUCCESSFULLY" ? (
-                    <p style={{ textAlign: "center", paddingLeft: "4rem" }}>
+                    <p className="card-text">
                       Your applications has passed all rules and those are added
                       to passed/completed app.
                     </p>
                   ) : (
                     <>
-                      <p style={{ textAlign: "center", paddingLeft: "4rem" }}>
-                        Out of 100 cases 90 has been processed and 10 is pending
-                        for file confirmation.
+                      <p className="card-text">
+                        Out of <strong>100</strong>  cases <strong>90 has been processed</strong> <br></br>
+                         and <strong>10 is pending</strong> for file confirmation.
                       </p>
-                      <p style={{ textAlign: "center" }}>
+                      <p className="card-text pt-4">
                         Do you want to validate right now?
                       </p>
                     </>
@@ -109,24 +107,24 @@ function SuccessfullyModal() {
             )}
           </div>
           <div
-            className={`d-flex align-items-center justify-content-around pt-4 ${"saveBtn"}`}
+            className={`d-flex justify-content-center buttons ${"saveBtn"}`}
           >
             {successType !== "COMIDITYAGENT" && (
               <>
                 {successType === "SUCCESSFULLY" ||
                 successType === "CHANNELLIST" ? (
-                  <button
-                    style={{ minWidth: "-webkit-fill-available" }}
+                  <button className="btn"
+                  
                     onClick={(e) => onSubmit(e, "create")}
                   >
                     Great
                   </button>
                 ) : (
                   <>
-                    <button onClick={(e) => onSubmit(e, "saveForLater")}>
+                    <button className="btn w-50" onClick={(e) => onSubmit(e, "saveForLater")}>
                       Later
                     </button>
-                    <button onClick={(e) => onSubmit(e, "create")}>Yes</button>
+                    <button className="btn ms-4 w-50" onClick={(e) => onSubmit(e, "create")}>Yes</button>
                   </>
                 )}
               </>

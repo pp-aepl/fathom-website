@@ -66,12 +66,34 @@ function Sidebar() {
                   <div
                     className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
                   >
-                    <img src="../../../images/dashboard-icon.svg" alt="" />
+                    <img src="../../../images/dashboad.svg" alt="" />
                   </div>
                   <span className={"nav__name"}>Dashboard</span>
                 </Link>
               </div>
               <div className={"nav__items"}>
+                <Link to="/admin/dashboard/sponser" className={"nav__link"}>
+                  <div
+                    className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
+                  >
+                    <img src="../../../images/document-text.svg" alt="" />
+                  </div>
+                  <span className={"nav__name"}>Application status </span>
+                </Link>
+              </div>
+
+
+              <div className={"nav__items"}>
+                <Link to="/admin/dashboard/sponser" className={"nav__link"}>
+                  <div
+                    className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
+                  >
+                    <img src="../../../images/upload_icon.svg" alt="" />
+                  </div>
+                  <span className={"nav__name"}>Ready to be import</span>
+                </Link>
+              </div>
+                 <div className={"nav__items"}>
                 <div
                   className={`${"nav__dropdown"} ${
                     openDropdown === 1 ? "open" : ""
@@ -85,9 +107,9 @@ function Sidebar() {
                     <div
                       className={` ${"icon_cmn"} ${"bx_home"} ${"nav__icon"}`}
                     >
-                      <img src="../../../images/document-text.svg" alt="" />
+                      <img src="../../../images/refresh_icon.svg" alt="" />
                     </div>
-                    <span className={"nav__name"}>Application Statuses</span>
+                    <span className={"nav__name"}>Under Process</span>
                     <i
                       className={` ${"ms_auto"} ${"bx_chevron_down"} ${"nav__icon"} ${
                         openDropdown === 1 ? "open" : ""
@@ -134,6 +156,31 @@ function Sidebar() {
                     </div>
                   </div>
                 </div>
+              </div>
+
+              <div className={"nav__items"}>
+                <Link to="/admin/dashboard/sponser" className={"nav__link"}>
+                  <div
+                    className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
+                  >
+                    <img src="../../../images/tick-circle.svg" alt="" />
+                  </div>
+                  <span className={"nav__name"}>Completed – Welcome 
+Letter issued</span>
+                </Link>
+              </div>
+
+              
+              <div className={"nav__items"}>
+                <Link to="/admin/dashboard/sponser" className={"nav__link"}>
+                  <div
+                    className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
+                  >
+                    <img src="../../../images/tick-circle.svg" alt="" />
+                  </div>
+                  <span className={"nav__name"}>Rejected - Pending 
+Channel correction</span>
+                </Link>
               </div>
 
               <div className={"nav__items"}>

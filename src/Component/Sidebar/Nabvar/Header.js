@@ -134,7 +134,7 @@ const Header = () => {
                       />
                     </button> */}
                 </div>
-                <div className="">
+                <div className="d-none">
                   <ul className="">
                     <>
                       <>
