@@ -55,8 +55,8 @@ function InprocessList() {
 
   return (
     <section className="">
-      <div className="container">
-        <div className="voucherFormMain upload_new_application">
+      
+        <div className="upload_new_application">
           <h3>Upload New Application</h3>
           <div className="top_list">
             <div class=" align-items-center p-1">
@@ -109,7 +109,7 @@ function InprocessList() {
             </div>
           </div>
         </div>
-      </div>
+      
     </section>
   );
 }

@@ -177,8 +177,8 @@ function List({ id }) {
 
       <>
         <section className="">
-          <div className="container">
-            <div className="voucherFormMain upload_new_application">
+         
+            <div className="upload_new_application px-4">
               {/* <h5>{convertToCamelCase(fetchParams)}</h5> */}
               <h3>Upload New Application</h3> 
           
@@ -269,7 +269,7 @@ function List({ id }) {
                 </div>
               </div>
             </div>
-          </div>
+          
         </section>
       </>
    

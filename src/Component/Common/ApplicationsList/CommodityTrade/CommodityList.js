@@ -56,9 +56,8 @@ function CommodityList() {
       {disbursedModal && <DisbursedModal />}
 
 
-      <section className="">
-        <div className="container">
-          <div className="voucherFormMain upload_new_application">
+      <section className=""> 
+          <div className="upload_new_application">
             <h3>Commodity Trade Status</h3>
             <div className="row col-md-12">
               <div className="col-md-1">
@@ -111,7 +110,6 @@ function CommodityList() {
               </div>
             </div>
           </div>
-        </div>
       </section>
     </>
   );
