@@ -1184,7 +1184,7 @@
   }
   .nav__items {
     row-gap: 1.5rem;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
   }
   .nav__subtitle {
     font-size: 14px;
@@ -1268,7 +1268,7 @@
   
   }
   .nav__dropdown_item {
-    font-size: 14px;
+    font-size: 13px;
     font-weight:normal;
     color: #000;
     text-decoration: none;

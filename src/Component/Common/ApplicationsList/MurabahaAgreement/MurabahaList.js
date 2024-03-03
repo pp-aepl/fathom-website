@@ -99,18 +99,18 @@ function MurabahaList() {
             <h3>Murabaha Agreement</h3>
             {!murabahaModal && !genratedModal && 
             <>
-              <div className="top_list">
-              <p>
+              <div className="top_list px-4">
+              <p className="card-text1">
                Murabaha Agreement would be sent to following recipient. 
               </p>
               <div className={`d-flex align-items-center  pt-4 ${"saveBtn"}`}>
                 {/* <button style={{ width: "274px" ,marginRight:"9px"}}>No</button>  */}
-                <button style={{ width: "274px" }} onClick={() => navigateToAgreement()}>Proceed</button>
+                <button className="w-25 button" onClick={() => navigateToAgreement()}>Proceed</button>
               </div>
 
               <div className="row pt-4">
-                <div className="col-md-2">
-                  <label>Filter</label>
+                <div className="col-md-3">
+                  <label className="label">Filter</label>
                   <select class="form-select ">
                     <option value={""}>All</option>
                     <option value={"EMAIL"}>Email</option>
@@ -120,12 +120,12 @@ function MurabahaList() {
                    
                   </select>
                 </div>
-                <div className="col-3 ">
-                  <span>Search Applictaion</span>
+                <div className="col-3">
+                <label className="label">Search Applictaion</label>
                   <input placeholder="Search" className="form-control" />
                 </div>
-                <div className="col-2">
-                  <span>Date from</span>
+                <div className="col-3">
+                <label className="label">Date from</label>
                   <div className="  text-right">
                     <input
                       type="date"
@@ -135,8 +135,8 @@ function MurabahaList() {
                     ></input>
                   </div>
                 </div>
-                <div className="col-2">
-                  <span>Date to</span>
+                <div className="col-3">
+                <label className="label">Date to</label>
                   <div className=" text-right">
                     <input
                       type="date"
@@ -152,7 +152,7 @@ function MurabahaList() {
             <div className="">
               <div className=" row my-5" id="table-contexual">
                 <div className="col-12">
-                  <table class="table">
+                  <table class="table muraba">
                     <thead class="thead-light">
                       <tr>
                         <th scope="col"> </th>
@@ -182,8 +182,8 @@ function MurabahaList() {
                         <td>{item?.app_name}</td>
                         <td>{item?.name}</td>
                        
-                        {item?.channel ? <td> <span className="channel_border">Send back to Tele sales</span></td> :  <td>{item?.email}</td> }
-                        <td >View</td>
+                        {item?.channel ? <td> <span className="send_back">Send back to Tele sales</span></td> :  <td>{item?.email}</td> }
+                        <td> <div className="view_btn">View</div></td>
                         
                         
                       </tr>
@@ -196,8 +196,7 @@ function MurabahaList() {
             </>
             }
           
-          </div>
-        </div>
+          </div>    
       </section>
     </>
   );

@@ -94,9 +94,8 @@ function SentList() {
     {agentModal && <AgentModal />}
 
      <section className="">
-      <div className="container">
-        <div className="voucherFormMain upload_new_application">
-          <h3>Murabaha Agreement Generation</h3>
+        <div className="upload_new_application">
+        <h3>Murabaha Agreement Generation</h3>
           <div className="top_list">
             <div className="row pt-4">
               <div className="col-md-3">
@@ -218,7 +217,6 @@ function SentList() {
             </div>
           </div>
         </div>
-      </div>
     </section>
     </>
    

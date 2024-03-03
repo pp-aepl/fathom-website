@@ -1273,7 +1273,7 @@ input:-moz-placeholder {
 }
 .nav__items {
   row-gap: 1.5rem;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
 }
 .nav__subtitle {
   font-size: 14px;
@@ -1416,7 +1416,7 @@ input:-moz-placeholder {
   filter: brightness(0) invert(1);
 } */
 .nav__list .active .nav__name {
-  color: #fff;
+  color: #000;
 }
 /* ========== MEDIA QUERIES ==========*/
 
@@ -1455,16 +1455,17 @@ input:-moz-placeholder {
   font-weight: 600;
 }
 .saveBtn button:first-child {
-  background-color: white;
-
-  color: black;
-  line-height: 1.2;
-  letter-spacing: 1px;
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-  transition: all 0.4s;
+background-color: white;
+color: black;
+line-height: 1.2;
+letter-spacing: 1px;
+-webkit-transition: all 0.4s;
+-o-transition: all 0.4s;
+-moz-transition: all 0.4s;
+transition: all 0.4s;
+border: 1px solid #316cf4;
 }
+
 .saveBtn button:last-child {
   background-image: linear-gradient(
     90deg,
@@ -2557,8 +2558,8 @@ input:-moz-placeholder {
 .upload_new_application .verticle {
   vertical-align: middle;
 }
-.upload_new_application .w-87 {
-  width: 87%;
+.upload_new_application .w-91 {
+  width:91%;
 }
 .upload_new_application .text-right {
   text-align: right;
@@ -2625,34 +2626,62 @@ input:-moz-placeholder {
   height: 16px;
 }
 .confirmation .sc-eTNRI {
-  font-size: 1.3rem;
+  font-size: 16px;
   font-family: "Inter";
 }
-
+.nav__list{z-index: 99; position: relative;}
+.nav__name{ margin-right:10px;}
 .form-select,.form-control{ font-size: 1.6rem;}
-
-.main{margin:0 0 0 82px;}
-
-
+#main{margin:0 0 0 82px;}
 .main_dashboar .progress-bar{ height: 10px!important; position: relative; top: -3px;}
 .commonHeader{ padding:20px; background: #fff; border-bottom: 1px solid rgba(238, 241, 240, 1);}
 .commonHeader h1{font-size: 18px; line-height: 25px; font-weight: bold; color: rgba(21, 21, 23, 1);}
 .commonHeader .notification{ cursor: pointer; width: 30px; text-align: center;}
 .commonHeader .upload{ cursor: pointer;}
 .commonHeader .upload img{ width:16px; height: 16px;}
-.channel_border{
-  border: 1px solid #716C6C;
-  padding: 3px;
-}
-.agent_avatar{
-  height: 106px;
-    width: 100px;
-    border-radius: 50%;
-    margin-left: 175px;
-    overflow: hidden;
-}
-.agent_radio {
-  border: 1px solid #E0E3E2  ;
-  padding-right: 151px;
-  margin-top: 9px;
-}
+.channel_border{border: 1px solid #716C6C;padding: 3px;}
+.agent_avatar{height: 106px;width: 100px;border-radius: 50%;margin-left: 175px;overflow: hidden;}
+.agent_radio {border: 1px solid #E0E3E2  ;padding-right: 151px;margin-top: 9px;}
+.upload_new_application{padding:2rem 0 0; height: 100vh;}
+.label{ padding-bottom: 16px; display: inline-block; font-size: 14px; line-height: 18px; color:rgba(117, 117, 117, 1);}
+.login100-form-btn{ font-size: 16px; font-style: italic; color:#ffff;}
+.form-select{ font-family: "Inter Tight", sans-serif;}
+.huezRP{ width:100%!important;}
+.faZveH{padding: 0 5px!important;}
+.success-pic{ margin-top: 70px; width:130px;}
+.full-cover{ padding:100px 0;}
+.modal-title{ text-align: center;}
+.card-title{ padding-bottom: 10px!important; font-size:24px !important; line-height: 30px!important;
+   color: #000!important; font-weight: bold!important;font-family: "Inter Tight", sans-serif;}
+.card-title1{ padding-bottom: 20px!important; font-size:20px !important; line-height:26px!important;
+    color: #000!important; font-weight: bold!important;font-family: "Inter Tight", sans-serif;}
+.card-text{font-size: 14px!important; line-height:24px; color:rgba(117, 117, 117, 1);
+  text-align: center; font-family: "Inter Tight", sans-serif;}
+.card-text1{font-size: 14px!important; line-height:24px; color:rgba(117, 117, 117, 1);
+    text-align: left; font-family: "Inter Tight", sans-serif;}
+.buttons{ padding-top: 70px; font-family: "Inter Tight", sans-serif;}
+.buttons button{font-family: "Inter Tight", sans-serif;}
+.application_san{ padding:30px 50px;}
+.label{font-size: 14px!important; line-height:24px; color:rgba(117, 117, 117, 1);font-family: "Inter Tight", sans-serif;}
+.checkbox{ margin-top: -10px;}
+.w-80{ width:80%;}
+.exclaim{ text-align: center; padding:100px 0 30px;}
+.exclaim img{width: 130px;}
+.table th{ color:rgba(117, 117, 117, 1); font-weight: normal;}
+.green{ padding: 2px 10px; border-radius:20px; color: #29CC6A; display: inline-block; background:rgba(41, 204, 106, 0.2);}
+.orange{padding: 2px 10px; border-radius:20px; color: #EAB308; display: inline-block; background:rgba(234, 179, 8, 0.2);}
+.upload_new_application.inProcess table td {padding:10px 5px;}
+.notepad{ display: block; text-align: center;}
+.notepad img{padding:100px 0 50px;}
+.confirm_heading{font-size:20px !important; line-height:26px!important;
+  color: #000!important; font-weight: bold!important;font-family: "Inter Tight", sans-serif;}
+.pb-10{ padding-bottom: 100px!important;}
+.py-10{ padding: 100px 0 50px;}
+.top_deatils{ padding:30px 20px;}
+.form-control{font-family: "Inter Tight", sans-serif;}
+.send_back{ display: inline-block; padding:6px 20px; border-radius: 8px; cursor: pointer; font-size: 16px; line-height:20px; color:rgba(117, 117, 117, 1);
+  text-align: center; font-family: "Inter Tight", sans-serif; border: 1px solid rgba(224, 227, 226, 1); }
+.view_btn{ display: inline-block; padding:3px 10px; border-radius: 8px; cursor: pointer; font-size: 16px; line-height:20px; color:rgba(117, 117, 117, 1);
+    text-align: center; font-family: "Inter Tight", sans-serif; border: 1px solid rgba(224, 227, 226, 1); }
+.muraba td{ border-bottom:1px solid rgba(242, 242, 242, 1);}
+.button{font-family: "Inter Tight", sans-serif;}

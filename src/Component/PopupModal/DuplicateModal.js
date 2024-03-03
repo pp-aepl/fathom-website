@@ -53,21 +53,21 @@ function DuplicateModal() {
             ></i>
           </div>
           <div>
-            <h3 style={{ textAlign: "center" }}>
-              Duplicated files will not going to be processed.
+            <h3 className="card-title">
+            Duplicated files will not<br></br> going to be processed.
             </h3>
-            <p style={{ textAlign: "center" }}>
+            <p className="card-text pb-10">
               Do you want to re-import again?
             </p>
           </div>
 
           <div
-            className={`d-flex align-items-center justify-content-around pt-4 ${"saveBtn"}`}
+            className={`d-flex align-items-center border-top justify-content-around buttons pt-5  ${"saveBtn"}`}
           >
-            <button style={{ width: "200px" }} onClick={handleClosePopup}>
+            <button className="w-50 me-4" onClick={handleClosePopup}>
               Review application
             </button>
-            <button onClick={(e) => onSubmit(e, "create")}>Continue</button>
+            <button className="w-50" onClick={(e) => onSubmit(e, "create")}>Continue</button>
           </div>
         </Modal.Body>
       </Modal>

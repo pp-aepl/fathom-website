@@ -262,10 +262,11 @@ function NewList({ id }) {
           {successModal && <SuccessfullyModal/>}
 
         <section className="">
-          <div className="container">
-            <div className="voucherFormMain upload_new_application">
+          
+            <div className="upload_new_application">
               {/* <h5>{convertToCamelCase(fetchParams)}</h5> */}
-              <h3>Upload New Application</h3>
+              
+              <h3 className="ps-4">Upload New Application </h3>
               <div className="top_list">
                 <div className="list_row d-flex justify-content-between">
                   <div>
@@ -300,11 +301,11 @@ function NewList({ id }) {
                   </span>
                 </div>
 
-                <div className="row pt-4">
+                <div className="row p-4 ps-4">
                   <div className="col-md-3">
-                    <label>Filter</label>
-                    <div className="border rounded p-2">
-                      <div class="form-check d-inline-block verticle">
+                    <label className="label">Filter</label>
+                    <div className="border rounded p-2 pe-0">
+                      <div class="form-check d-inline-block verticle checkbox">
                         <input
                           type="checkbox"
                           class="form-check-input"
@@ -314,7 +315,7 @@ function NewList({ id }) {
                         ></input>
                       </div>
                       <select
-                        class="form-select w-87 d-inline-block border-0"
+                        class="form-select w-91 d-inline-block border-0"
                         aria-label="Default select example"
                       >
                         <option selected>Months</option>
@@ -325,25 +326,25 @@ function NewList({ id }) {
                     </div>
                   </div>
                   <div className="col-2 ">
-                    <span>Search Applictaion</span>
+                  <label className="label">Search Applictaion</label>
                     <select class="form-select p-3">
                       <option>Last week</option>
                     </select>
                   </div>
                   <div className="col-2">
-                    <span>Date from</span>
-                    <div className=" p-2 text-right">
-                      <input type="date" className="form-control" id="birthday" name="birthday"></input>
+                  <label className="label">Date from</label>
+                    <div className=" text-right">
+                      <input type="date" className="form-control p-3" id="birthday" name="birthday"></input>
                     </div>
                   </div>
                   <div className="col-2">
-                    <span>Date to</span>
-                    <div className=" p-2 text-right">
-                      <input type="date" id="birthday" className="form-control" name="birthday"></input>
+                  <label className="label">Date to</label>
+                    <div className="text-right">
+                      <input type="date" id="birthday" className="form-control p-3" name="birthday"></input>
                     </div>
                   </div>
                   <div className="col-3">
-                    <span>&nbsp;</span>
+                  <label className="label">&nbsp;</label>
                     <select class="form-select p-3"  onChange={fetchModal}>
                       <option value={""}>Actions</option>
                       <option value={"APPROVE"}>Approve and Proceed</option>
@@ -354,15 +355,19 @@ function NewList({ id }) {
                 </div>
               </div>
 
-              <div class="input-group my-4">
+              <div class="input-group p-4">
+                <label className="d-block label py-3 w-100">Search Applications</label>
+                <button type="button" class="btn border-end-0 rounded border bg-white" data-mdb-ripple-init="">
+            <i class="fas fa-search fs-4 text-secondary"></i>
+          </button>
                 <input
                   type="text"
-                  class="form-control p-2"
+                  class="form-control p-2 border-start-0"
                   placeholder="Search"
                 ></input>
-                <button class="btn btn-success" type="button">
-                  Go
-                </button>
+               
+
+                
               </div>
               <div className="">
                 {/* <AccordianList/> */}
@@ -572,7 +577,7 @@ function NewList({ id }) {
                 </div>
               </div>
             </div>
-          </div>
+         
         </section>
       </>
   

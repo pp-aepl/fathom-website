@@ -71,55 +71,41 @@ function ProceedModal() {
         keyboard={false}
       >
         {/* <Modal.Header onClick={() => handleClosePopup(false)}> */}
-        <Modal.Title>
-          {/* {(commodityModal || commodityType === 'APP_PROCEED') ? (
-              <img
-                src="../../images/icon2.png"
-                style={{ height: "100px", paddingLeft: "19rem" }}
-              />
-            ) : ( */}
-          <i
-            class="fa fa-exclamation-circle"
-            aria-hidden="true"
-            style={{
-              paddingLeft: "19rem",
-              fontSize: "9rem",
-              color: "rgb(230 230 155)",
-            }}
-          ></i>
-          {/* // )} */}
-        </Modal.Title>
+          <Modal.Title>
+          <div className="exclaim">
+              <img src="../../images/exclaim.png"/></div>
+          </Modal.Title>
         {/* </Modal.Header> */}
         <Modal.Body className="p-5">
           <div className="">
             {commodityModal || commodityType === "APP_PROCEED" ? (
               <>
-                <span style={{ paddingLeft: "14rem", fontWeight: "600" }}>
+                <h3 className="card-title">
                   Proceed Commodity
-                </span>
-                <p style={{ textAlign: "center" }}>
+                </h3>
+                <p className="card-text">
                   Commodity purchase will be executed now for all the approved
                   cases.
                 </p>
               </>
             ) : (
-              <p style={{ textAlign: "center" }}>
+              <p className="card-text">
                 Are you sure ? Proceeding with commodity sale
               </p>
             )}
           </div>
           <div
-            className={`d-flex align-items-center justify-content-around pt-4 ${"saveBtn"}`}
+            className={`d-flex align-items-center justify-content-around buttons py-4 mb-4 ${"saveBtn"}`}
           >
-            <button onClick={(e) => onSubmitProceed(e, "cancel")}>No</button>
+            <button className="w-50 me-4"  onClick={(e) => onSubmitProceed(e, "cancel")}>No</button>
             {commodityModal ||
             commodityType === "APP_PROCEED" ||
             commodityType === "COMIDITYAGENT" ? (
-              <button onClick={(e) => onSubmitComidity(e, commodityType)}>
+              <button className="w-50 me-4" onClick={(e) => onSubmitComidity(e, commodityType)}>
                 Confirm
               </button>
             ) : (
-              <button onClick={(e) => onSubmitProceed(e, "create")}>Yes</button>
+              <button className="w-50"  onClick={(e) => onSubmitProceed(e, "create")}>Yes</button>
             )}
           </div>
         </Modal.Body>

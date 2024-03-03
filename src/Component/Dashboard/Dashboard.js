@@ -78,73 +78,76 @@ function Dashboard() {
               <div class="col-sm-4 pb-3">
                 <div class="card dash_card w-100">
                   <div class="card-body">
-                  <h5 class="fs-5">New Cases</h5>
-                    <span class="fs-1 text-dark fw-bold">7,846</span>
+                  <h5 class="label d-block w-100 pb-2">
+                    New Cases</h5>
+                    <span class="card-title">7,846</span>
                   </div>
                 </div>
               </div>
               <div class="col-sm-4">
                 <div class="card dash_card w-100">
                   <div class="card-body">
-                    <h5 class="fs-5">Awaiting Commodity Purchase</h5>
-                    <span class="fs-1 text-dark fw-bold">2,945</span>
+                  <h5 class="label d-block w-100 pb-2">
+                      Awaiting Commodity Purchase</h5>
+                    <span class="card-title">2,945</span>
                   </div>
                 </div>
               </div>
               <div class="col-sm-4">
                 <div class="card dash_card w-100">
                   <div class="card-body">
-                  <h5 class="fs-5">
+                  <h5 class="label d-block w-100 pb-2">
                       Awaiting Customer Acceptance: Digital
                     </h5>
-                    <span class="fs-1 text-dark fw-bold">#37</span>
+                    <span class="card-title">#37</span>
                   </div>
                 </div>
               </div>
               <div class="col-sm-4 pb-3">
                 <div class="card dash_card w-100">
                   <div class="card-body">
-                  <h5 class="fs-5">
+                  <h5 class="label d-block w-100 pb-2">
                       Awaiting Customer Acceptance:Physica
                     </h5>
-                    <span class="fs-1 text-dark fw-bold">7,846</span>
+                    <span class="card-title">7,846</span>
                   </div>
                 </div>
               </div>
               <div class="col-sm-4">
                 <div class="card dash_card w-100">
                   <div class="card-body">
-                  <h5 class="fs-5">Agent appointment and response</h5>
-                    <p class="desh_text">2,945</p>
+                  <h5 class="label d-block w-100 pb-2">
+                    Agent appointment and response</h5>
+                    <p class="card-title">2,945</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-4">
                 <div class="card dash_card w-100">
                   <div class="card-body">
-                  <h5 class="fs-5">
+                  <h5 class="label d-block w-100 pb-2">
                       Completed – Welcome Letter issued
                     </h5>
-                    <p class="desh_text">#50</p>
+                    <p class="card-title">#50</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-4">
                 <div class="card dash_card w-100">
                   <div class="card-body">
-                  <h5 class="fs-5">
+                  <h5 class="label d-block w-100 pb-2">
                       Rejected: Pending Channel Correction
                     </h5>
-                    <p class="desh_text">7,846</p>
+                    <p class="card-title">7,846</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-4 pb-3">
                 <div class="card dash_card w-100">
                   <div class="card-body">
-                    <h5 class="desh_title">Success rate</h5>
+                    <h5 class="label d-block w-100 pb-2">Success rate</h5>
                     <div class="d-flex align-items-center p-2">
-                      <div class="progress bar-wrapper w-100 ">
+                      <div class="progress dashboard-progess bar-wrapper w-100 ">
                         <div
                           class="progress-bar skill-bar desh_progress-bar"
                           role="progressbar"
@@ -161,9 +164,9 @@ function Dashboard() {
               <div class="col-sm-4 pb-3">
                 <div class="card dash_card w-100">
                   <div class="card-body">
-                    <h5 class="desh_title">Average Portfolio Productivity</h5>
+                    <h5 class="label d-block w-100 pb-2">Average Portfolio Productivity</h5>
                     <div class="d-flex align-items-center p-2">
-                      <div class="progress bar-wrapper w-100 ">
+                      <div class="progress dashboard-progess bar-wrapper w-100 ">
                         <div
                           class="progress-bar skill-bar desh_progress-bar"
                           role="progressbar"
@@ -179,7 +182,7 @@ function Dashboard() {
               </div>
             </div>
             <div class="row pt-4">
-              <div class="col-sm-8">
+              <div class="col-sm-9">
                 <div class="card">
                   <div class="card-body">
                     <div className=" row col-md-12 pt-4">
@@ -213,12 +216,12 @@ function Dashboard() {
                 </div>
               </div>
 
-              <div className="col-md-4">
-              <div className="card p-4 dash_card">
-              <h5 class="desh_title">Productivity Stage wise</h5>
-                    <p>Import to Commodity Purchase</p>
-                    <div class="d-flex align-items-center p-2">
-                      <div class="progress bar-wrapper p-2 w-100 ">
+              <div className="col-md-3">
+              <div className="card p-4 py-4 card-right">
+              <h5 class="card-title1">Productivity Stage wise</h5>
+                    <p className="label pb-0">Import to Commodity Purchase</p>
+                    <div class="d-flex align-items-center p-2 border-bottom">
+                    <div class="progress dashboard-progess bar-wrapper w-80 me-3">
                         <div
                           class="progress-bar skill-bar desh_progress-bar"
                           role="progressbar"
@@ -229,6 +232,72 @@ function Dashboard() {
                       </div>
                       <span class="p-1">25min</span>
                     </div>
+
+                    <p className="label pb-0 mt-4">Murabaha Agreement Generation to 
+Customer Acceptance: Digital</p>
+                    <div class="d-flex align-items-center p-2 border-bottom">
+                    <div class="progress dashboard-progess bar-wrapper w-80 me-3">
+                        <div
+                          class="progress-bar skill-bar desh_progress-bar"
+                          role="progressbar"
+                          aria-valuenow="76"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                      <span class="p-1">25 min</span>
+                    </div>
+
+                    <p className="label pb-0 mt-4 w-75">Murabaha Agreement Generation to
+Customer Acceptance:- Physical</p>
+                    <div class="d-flex align-items-center p-2 border-bottom">
+                    <div class="progress dashboard-progess bar-wrapper w-80 me-3">
+                        <div
+                          class="progress-bar skill-bar desh_progress-bar"
+                          role="progressbar"
+                          aria-valuenow="76"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                      <span class="p-1 w-50px">10 min</span>
+                    </div>
+
+
+                    <p className="label pb-0 mt-4 w-75">Customer Acceptance to 
+Agent response</p>
+                    <div class="d-flex align-items-center p-2 border-bottom">
+                    <div class="progress dashboard-progess bar-wrapper w-80 me-3">
+                        <div
+                          class="progress-bar skill-bar desh_progress-bar"
+                          role="progressbar"
+                          aria-valuenow="76"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                      <span class="p-1 w-50px">5 min</span>
+                    </div>
+
+                    <p className="label pb-0 mt-4 w-75">Agent response to funding 
+and Letter issuance</p>
+                    <div class="d-flex align-items-center p-2">
+                    <div class="progress dashboard-progess bar-wrapper w-80 me-3">
+                        <div
+                          class="progress-bar skill-bar desh_progress-bar"
+                          role="progressbar"
+                          aria-valuenow="76"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                      <span class="p-1 w-50px">5 min</span>
+                    </div>
+
+
+
+
+
               </div>
 
               </div>

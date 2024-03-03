@@ -40,14 +40,13 @@ function MurabahaGenratedModal() {
         keyboard={false}
       >
         <Modal.Body className="p-5">
-          <div className="">
+          <div className="w-100 py-10 text-center">
             <img
-              src="../../images/icon2.png"
-              style={{ height: "100px", paddingLeft: "19rem" }}
+              src="../../images/success.png"
             />
           </div>
           <div>
-            <h3 style={{ textAlign: "center" }}>
+            <h3 className="card-title1 pb-10">
             Murabaha Document Generate
             </h3>
             <p style={{textAlign:"center"}}>Murabaha document has been generated 

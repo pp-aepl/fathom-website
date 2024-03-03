@@ -140,7 +140,7 @@ const Header = () => {
                       <>
                         {/* {!AuthAdmin?.data?._id ? ( */}
                           <>
-                            <li className={""}>
+                            <li className="d-none">
                               <span>Dont't have an account?</span>
                               <button
                                 data-toggle="modal"

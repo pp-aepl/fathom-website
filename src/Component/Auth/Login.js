@@ -243,7 +243,7 @@ in securely using your unique credentials.
 
                         <p className="trabble">
                           <a href="">
-                            Trouble logging in?
+                          Reset Password
                             </a>
                         </p>
                       </form>
