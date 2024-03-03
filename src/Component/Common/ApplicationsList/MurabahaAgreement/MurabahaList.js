@@ -72,7 +72,6 @@ function MurabahaList() {
       {murabahaModal && <MurabahaModal />}
 
       <section className="">
-        <div className="container">
           <div className="voucherFormMain upload_new_application">
             <h3>Upload New Application</h3>
             {!murabahaModal && 
@@ -174,8 +173,7 @@ function MurabahaList() {
             </>
             }
           
-          </div>
-        </div>
+          </div>    
       </section>
     </>
   );

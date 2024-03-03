@@ -5398,13 +5398,17 @@ border-color: #8282FF;
   width: 35%;
   background: linear-gradient(90deg, #8282ff 0%, #29296e 100%);
 }
-.progress{ height: 2px;}
-.progress.dashboard-progess{ height: 7px;}
+
 .card-right {
   width: 100%;
   border-radius: 7px;
   background: #f8f8ff;
 }
+.progress{ height: 2px;}
+.progress.dashboard-progess{ height: 7px;}
+
+.progress.common-progess{ height: 7px;}
+.progress.common-progess .progress-bar{ height: 7px;}
 
 
 

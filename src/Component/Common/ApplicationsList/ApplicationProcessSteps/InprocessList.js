@@ -55,12 +55,11 @@ function InprocessList() {
 
   return (
     <section className="">
-      <div className="container">
-        <div className="voucherFormMain upload_new_application">
-          <h3>Upload New Application</h3>
-          <div className="top_list">
+      <div className="upload_new_application inProcess py-4 pe-4">
+          <h3 className="card-title1 ps-4">Upload New Application </h3>
+          <div className="top_list ps-4">
             <div class=" align-items-center p-1">
-              <div class="progress bar-wrapper w-100 h-6px">
+              <div class="progress common-progess bar-wrapper w-100">
                 <div
                   class="progress-bar skill-bar desh_progress-bar"
                   role="progressbar"
@@ -69,32 +68,27 @@ function InprocessList() {
                   aria-valuemax="100"
                 ></div>
               </div>
-              <p style={{ fontWeight: "bold" }}>10 of 30 Applications Done</p>
+              <p className="card-text1 pt-4">10 of 30 Applications Done</p>
             </div>
           </div>
 
           <div className="">
-            <div className=" row my-5" id="table-contexual">
+            <div className="row my-5" id="table-contexual">
               <div className="col-12">
                 <table class="table">
                   <thead class="thead-light">
                     <tr>
-                      <th scope="col">Application Name </th>
+                      <th className="ps-4" scope="col">Application Name </th>
                       <th scope="col">Status</th>
-                      <th scope="col">Rule 1</th>
+                      <th scope="col pe-4">Rule 1</th>
                     </tr>
                   </thead>
                   <tbody>
                     {arrList?.map((item) => (
                       <tr className="pointer" onClick={() => navigateToAgreement(item)}>
-                        <td>{item?.app_name}</td>
+                        <td className="ps-4">{item?.app_name}</td>
                         <td>
-                          <span
-                            style={{
-                              color:
-                                item?.status === "Done" ? "#29CC6A" : "#EAB308",
-                            }}
-                          >
+                          <span className={item?.status === "Done" ? "green" : "orange"}>
                             {item?.status}
                           </span>
                         </td>{" "}
@@ -109,7 +103,7 @@ function InprocessList() {
             </div>
           </div>
         </div>
-      </div>
+      
     </section>
   );
 }

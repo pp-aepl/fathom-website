@@ -64,22 +64,8 @@ function ProceedModal() {
       >
         {/* <Modal.Header onClick={() => handleClosePopup(false)}> */}
           <Modal.Title>
-            {(commodityModal || commodityType === 'APP_PROCEED') ? (
-              <img
-                src="../../images/icon2.png"
-                style={{ height: "100px", paddingLeft: "19rem" }}
-              />
-            ) : (
-              <i
-                class="fa fa-exclamation-circle"
-                aria-hidden="true"
-                style={{
-                  paddingLeft: "19rem",
-                  fontSize: "9rem",
-                  color: "rgb(230 230 155)",
-                }}
-              ></i>
-            )}
+          <div className="exclaim">
+              <img src="../../images/exclaim.png"/></div>
           </Modal.Title>
         {/* </Modal.Header> */}
         <Modal.Body className="p-5">
@@ -94,18 +80,16 @@ function ProceedModal() {
                 </p>
               </>
             ) : (
-              <p style={{ textAlign: "center" }}>
-                Are you sure you want to Proceed?
-              </p>
+              <h3 className="card-title1 text-center">Are you sure you want to Proceed?</h3>
             )}
           </div>
           <div
-            className={`d-flex align-items-center justify-content-around pt-4 ${"saveBtn"}`}
+            className={`d-flex align-items-center justify-content-around buttons py-4 mb-4 ${"saveBtn"}`}
           >
-            <button onClick={(e) => onSubmitProceed(e, "cancel")}>No</button>
+            <button className="w-50 me-4" onClick={(e) => onSubmitProceed(e, "cancel")}>No</button>
             {(commodityModal || commodityType === 'APP_PROCEED' || commodityType === 'COMIDITYAGENT') ? 
-             <button onClick={(e) => onSubmitComidity(e, commodityType)}>Yes</button> :
-             <button onClick={(e) => onSubmitProceed(e, "create")}>Yes</button>
+             <button className="w-50 me-4" onClick={(e) => onSubmitComidity(e, commodityType)}>Yes</button> :
+             <button className="w-50" onClick={(e) => onSubmitProceed(e, "create")}>Yes</button>
             }
 
           </div>

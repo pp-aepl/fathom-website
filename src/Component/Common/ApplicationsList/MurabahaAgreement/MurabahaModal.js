@@ -33,32 +33,29 @@ function MurabahaModal() {
         keyboard={false}
       >
       
-        <Modal.Body className="p-5">
-          <img
-            className="notepad"
-            style={{ height: "100px", paddingLeft: "18rem" }}
-            src="../../images/notepad.png"
+        <Modal.Body className="p-3 pb-5">
+          <div className="d-block text-end">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div className="notepad">
+          <img src="../../images/murabaha_circle.png"
           />
-
+        </div>
           <div className="">
-            <span style={{ paddingLeft: "12rem", fontWeight: "600" }}>
-              Murabaha Agreement Generated
-            </span>
-            <p style={{ textAlign: "center", paddingLeft: "4rem" }}>
-              Commodity Purchase has been completed, do you want to Export
+            <h4 className="card-title1 text-center">Murabaha Agreement Generated</h4>
+            <p className="card-text">
+              Commodity Purchase has been completed, do you <br></br> want to Export
               Agreement for all approved customers?
             </p>
           </div>
           <div
-            className={`d-flex align-items-center justify-content-around pt-4 ${"saveBtn"}`}
+            className={`d-flex align-items-center justify-content-around px-4 buttons pb-4 ${"saveBtn"}`}
           >
-            <button
-              style={{ width: "25rem" }}
-              onClick={(e) => handleClosePopup(e, "cancel")}
+            <button className="w-50 me-4" onClick={(e) => handleClosePopup(e, "cancel")}
             >
               No-save to proceed later
             </button>
-            <button onClick={(e) => onSubmitProceed(e, "create")}>
+            <button className="w-50" onClick={(e) => onSubmitProceed(e, "create")}>
               Proceed
             </button>
           </div>
