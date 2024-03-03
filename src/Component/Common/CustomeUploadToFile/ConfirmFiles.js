@@ -49,9 +49,9 @@ function ConfirmFiles() {
       name: "Application Ref.No/Agreement No.",
       selector: (row) => (
         <>
-          <img src="../../images/delete.png"></img>
+          <img className="d-inline-block" src="../../images/delete.png"></img>
 
-          <img className="notepad" src="../../images/notepad.png"></img>
+          <img className="notepad d-inline-block" src="../../images/notepad.png"></img>
           {"CRN - " + (row && row._id ? row._id : "N/A")}
         </>
       ),
@@ -150,8 +150,8 @@ function ConfirmFiles() {
         <div className="confirmation">
           <Modal.Header closeButton>
             <Modal.Title>
-              <h3 className="fs-2">Files Confirmation </h3>
-              <p className="fs-4">Please confirm your file include following</p>
+              <h3 className="confirm_heading pb-0">Files Confirmation </h3>
+              <p className="card-text">Please confirm your file include following</p>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body className="p-5">

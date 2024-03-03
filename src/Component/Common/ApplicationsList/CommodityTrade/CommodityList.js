@@ -17,36 +17,50 @@ function CommodityList() {
   const [arrList, setArrList] = useState([
     {
       app_name: "220872-00",
+      customer_name:'Craig Stanton',
+      
     },
     {
       app_name: "220873-00",
+      customer_name:'Alfredo Passaquindici Arcand',
     },
     {
       app_name: "220874-00",
+      customer_name:'Omar Ekstrom Bothman',
     },
     {
       app_name: "220875-00",
+      customer_name:'Cooper Calzoni',
     },
     {
       app_name: "220876-00",
+      customer_name:'Jaydon Dias',
     },
     {
       app_name: "220877-00",
+      customer_name:'Phillip Korsgaard',
     },
     {
       app_name: "220878-00",
+      customer_name:'Alfonso Stanton',
     },
     {
       app_name: "220879-00",
+      customer_name:'Craig Geidt',
     },
+
     {
       app_name: "220880-00",
+      customer_name:'Phillip Bergson',
     },
   ]);
 
   // navigate to agreement
   const navigateToAgreement = (item) => {
-    dispatch(SetpopupReducerData({ modalType: "PROCEED", proceedModal: true,type:'COMIDITYAGENT'}));
+    // dispatch(SetpopupReducerData({ modalType: "PROCEED", proceedModal: true,type:'COMIDITYAGENT'}));
+     dispatch(
+        SetpopupReducerData({ modalType: "DISBURSED", disbursedModal: true })
+      );
   };
 
   return (
@@ -77,7 +91,7 @@ function CommodityList() {
                     style={{ width: "278px" }}
                     onClick={() => navigateToAgreement()}
                   >
-                    Send to core banking system
+                    Proceed with welcome letter 
                   </button>
                 </div>
               </div>
@@ -90,8 +104,9 @@ function CommodityList() {
                     <thead class="thead-light">
                       <tr>
                         <th scope="col">S.No. </th>
-                        <th scope="col">Application </th>
-                        <th scope="col">CRN </th>
+                        <th scope="col">Customer Name </th>
+                        <th scope="col">Application no. </th>
+                        <th scope="col">Status </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -101,8 +116,9 @@ function CommodityList() {
                           onClick={() => navigateToAgreement(item)}
                         >
                           <td>{index + 1}</td>
-                          <td>Application name</td>
+                          <td>{item?.customer_name}</td>
                           <td>{item?.app_name}</td>
+                          <td style={{color:'#29CC6A'}}>Completed</td>
                         </tr>
                       ))}
                     </tbody>

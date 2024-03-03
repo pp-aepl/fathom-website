@@ -380,7 +380,7 @@ function NewList({ id }) {
                           <th scope="col"> </th>
                           <th scope="col">S.No. </th>
                           <th scope="col">Date</th>
-                          <th scope="col">Check CRN</th>
+                          <th scope="col">Application no.</th>
                           <th scope="col">Rule 1</th>
                           <th scope="col">Rule 2</th>
                           <th scope="col">Rule 3</th>

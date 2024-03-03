@@ -5,12 +5,18 @@ import { SetpopupReducerData } from "../../store/reducer/index";
 import UploadToFile from "../Common/CustomeUploadToFile/UploadToFile";
 import ConfirmFileList from "../Common/CustomeUploadToFile/ConfirmFileList";
 import ConfirmFiles from "../Common/CustomeUploadToFile/ConfirmFiles";
+import DuplicateModal from "./DuplicateModal";
+
 function ImportApplication() {
   const dispatch = useDispatch();
   const { createType } = useSelector((state) => state?.Product);
   const { PopupReducer } = useSelector((state) => state);
   const { showModal = false } = PopupReducer?.modal;
   const { showConfirmModal = false } = PopupReducer?.modal;
+  const { duplicatedModal = false } = PopupReducer?.modal;
+
+  const fileType = PopupReducer?.modal?.type;
+  let duplicatedFiles 
 
   const handleClosePopup = () => {
     dispatch(
@@ -20,18 +26,32 @@ function ImportApplication() {
 
   // update create api
   const onSubmit = async (e, typeSubmit) => {
+    console.log({typeSubmit})
     e.preventDefault();
     dispatch(
       SetpopupReducerData({ modalType: "UPLOADFILE", showModal: false })
     );
     dispatch(
-      SetpopupReducerData({ modalType: "FILESCONFIRM", showConfirmModal: true })
+      SetpopupReducerData({
+        modalType: "UPLOADFILE",
+        showModal: true,
+        type: typeSubmit,
+      })
     );
+    duplicatedFiles = 'CONTINUEFILES'
+    if(duplicatedFiles === 'CONTINUEFILES'){
+ dispatch(SetpopupReducerData({ modalType: "DUPLICATEFILES", duplicatedModal: true }));
+}
+  
+
+   
   };
 
   return (
     <>
-      {showConfirmModal && <ConfirmFiles />}
+      {/* {showConfirmModal && <ConfirmFiles />} */}
+      {duplicatedModal && <DuplicateModal/>}
+
       <Modal
         className={"publishModal modal_details"}
         show={showModal}
@@ -48,7 +68,7 @@ function ImportApplication() {
         </Modal.Header>
         <Modal.Body className="p-5">
           <div className="">
-            <p >Select application category</p>
+            <p>Select application category</p>
             <select
               class="form-select mt-3 p-3 fs-5"
               aria-label="Default select example"
@@ -80,6 +100,15 @@ function ImportApplication() {
             </div>
             <div className="mt-3">
               <p className="pb-4">Files Uploaded</p>
+              {fileType === "FILEUPLOADED" && (
+                <div
+                  className={`d-flex align-items-center justify-content-around ${"saveBtn"}`}
+                >
+                  <button>Files Uploaded</button>
+                  <button>Duplicated files</button>
+                </div>
+              )}
+
               <ConfirmFileList />
             </div>
           </div>
@@ -89,10 +118,20 @@ function ImportApplication() {
           >
             <button
               className="login100-form-btn"
-              onClick={(e) => onSubmit(e, "create")}
+              onClick={(e) => onSubmit(e, "FILEUPLOADED")}
             >
               Continue
             </button>
+            {/* continue for Uploaded files */}
+            {duplicatedFiles === 'CONTINUEFILES' &&  
+             <button
+             className="login100-form-btn"
+             onClick={(e) => onSubmit(e, "CONTINUEFILES")}
+           >
+             Continue
+           </button>
+            }
+           
           </div>
         </Modal.Body>
       </Modal>

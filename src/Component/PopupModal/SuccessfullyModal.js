@@ -37,9 +37,10 @@ function SuccessfullyModal() {
     } else if (successType === "CHANNELLIST") {
       dispatch(SetpopupReducerData({ modalType: "AGENT", agentModal: true }));
     } else if (successType === "COMIDITYAGENT") {
-      dispatch(
-        SetpopupReducerData({ modalType: "DISBURSED", disbursedModal: true })
-      );
+      handleClosePopup()
+      // dispatch(
+      //   SetpopupReducerData({ modalType: "DISBURSED", disbursedModal: true })
+      // );
     } else {
       dispatch(SetpopupReducerData({ modalType: "APPSCAN", scanModal: true }));
     }
@@ -72,7 +73,7 @@ function SuccessfullyModal() {
             {successType === "SUCCESSFULLY" ? (
               <h3 className="card-title">Application Processed</h3>
             ) : successType === "CHANNELLIST" ? (
-              <h3 className="card-title">Murabaha Agreement Successfully uploaded</h3>
+              <h3 className="card-title">Murabaha Agreement Successfully updated</h3>
             ) : successType === "COMIDITYAGENT" ? (
               <h3 className="card-title">Commodity has been sold</h3>
             ) : (
@@ -131,12 +132,14 @@ function SuccessfullyModal() {
             )}
 
             {successType === "COMIDITYAGENT" && (
-              <button
-                style={{ minWidth: "-webkit-fill-available" }}
-                onClick={(e) => onSubmit(e, "COMIDITYAGENT")}
-              >
-                Okey
-              </button>
+              <>
+                <button onClick={(e) => handleClosePopup()}>
+                  Proceed later
+                </button>
+                <button style={{width:"196px"}} onClick={(e) => onSubmit(e, "COMIDITYAGENT")}>
+                  Proceed with funding
+                </button>
+              </>
             )}
           </div>
         </Modal.Body>

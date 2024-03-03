@@ -72,15 +72,21 @@ function ProceedModal() {
           <div className="">
             {(commodityModal || commodityType === 'APP_PROCEED') ? (
               <>
-                <span style={{ paddingLeft: "9rem", fontWeight: "600" }}>
+                <h3 className="card-title">
                   Commodity purchase has been completed
-                </span>
-                <p style={{ textAlign: "center", paddingLeft: "4rem" }}>
+                </h3>
+                <p className="card-text">
                   Do you want to to proceed with Murabaha Agreement generation
                 </p>
               </>
             ) : (
+              <>
               <h3 className="card-title1 text-center">Are you sure you want to Proceed?</h3>
+              {/* <p style={{ textAlign: "center" }}>
+                Are you sure ?
+                Proceeding with commodity sale
+              </p> */}
+              </>
             )}
           </div>
           <div
