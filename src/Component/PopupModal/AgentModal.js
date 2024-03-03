@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { SetpopupReducerData } from "../../store/reducer";
 import { Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import ProceedModal from "./ProceedModal";
 
 function AgentModal() {
   const dispatch = useDispatch();
@@ -10,6 +11,7 @@ function AgentModal() {
 
   const { PopupReducer } = useSelector((state) => state);
   const { agentModal = false } = PopupReducer?.modal;
+  const { proceedModal = false } = PopupReducer?.modal;
 
   const handleClosePopup = () => {
     dispatch(SetpopupReducerData({ modalType: "AGENT", agentModal: false }));
@@ -18,11 +20,16 @@ function AgentModal() {
   // update create api
   const onSubmit = async (e, typeSubmit) => {
     e.preventDefault();
-    navigate("/admin/application/commodity");
-  };
+   navigate("/admin/application/commodity");
+  dispatch(SetpopupReducerData({ modalType: "PROCEED", proceedModal: true,type:'COMIDITYAGENT'}));
+
+};
 
   return (
-    <Modal
+    <>
+    {proceedModal && <ProceedModal />}
+
+      <Modal
       className={"publishModal"}
       show={agentModal}
       size="md"
@@ -56,6 +63,8 @@ function AgentModal() {
         </div>
       </Modal.Body>
     </Modal>
+    </>
+  
   );
 }
 

@@ -12,7 +12,6 @@ function ExceptionModal() {
   const { exceptionModal = false } = PopupReducer?.modal;
   const { successModal = false } = PopupReducer?.modal;
   const exceptionType = PopupReducer?.modal?.type;
-  console.log({exceptionType})
 
 
   const handleClosePopup = () => {

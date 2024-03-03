@@ -3,10 +3,13 @@ import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SetpopupReducerData } from "../../../../store/reducer";
+import MurabahaGenratedModal from "./MurabahaGenratedModal";
 function MurabahaModal() {
   const dispatch = useDispatch();
   const { PopupReducer } = useSelector((state) => state);
   const { murabahaModal = false } = PopupReducer?.modal;
+  const { genratedModal = false } = PopupReducer?.modal;
+
   const navigate = useNavigate();
 
   const handleClosePopup = () => {
@@ -19,10 +22,14 @@ function MurabahaModal() {
   const onSubmitProceed = async (e, typeSubmit) => {
     e.preventDefault();
     handleClosePopup();
+    dispatch(SetpopupReducerData({ modalType: "GENRATED", genratedModal: true }));
+
+
   };
 
   return (
     <>
+    {genratedModal && <MurabahaGenratedModal/>}
       <Modal
         className={"publishModal"}
         show={murabahaModal}
@@ -52,13 +59,8 @@ function MurabahaModal() {
           <div
             className={`d-flex align-items-center justify-content-around pt-4 ${"saveBtn"}`}
           >
-            <button
-              style={{ width: "25rem" }}
-              onClick={(e) => handleClosePopup(e, "cancel")}
-            >
-              No-save to proceed later
-            </button>
-            <button onClick={(e) => onSubmitProceed(e, "create")}>
+          
+            <button style={{ minWidth: "-webkit-fill-available" }} onClick={(e) => onSubmitProceed(e, "create")}>
               Proceed
             </button>
           </div>

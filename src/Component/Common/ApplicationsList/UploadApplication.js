@@ -5,6 +5,7 @@ import ImportApplication from "../../PopupModal/ImportApplication";
 import ConfirmFiles from "../CustomeUploadToFile/ConfirmFiles";
 import SuccessfullyModal from "../../PopupModal/SuccessfullyModal";
 import ApplicationScan from "../../PopupModal/ApplicationScan";
+import DuplicateModal from "../../PopupModal/DuplicateModal";
 
 function UploadApplication() {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ function UploadApplication() {
   const { showConfirmModal = false } = PopupReducer?.modal;
   const { successModal = false } = PopupReducer?.modal;
   const { scanModal = false } = PopupReducer?.modal;
+  const { duplicatedModal = false } = PopupReducer?.modal;
 
   const handleSubmit = async (e, typeSubmit) => {
     e.preventDefault();
@@ -30,6 +32,7 @@ function UploadApplication() {
       {showConfirmModal && <ConfirmFiles />}
       {successModal && <SuccessfullyModal />}
       {scanModal && <ApplicationScan />}
+      {duplicatedModal && <DuplicateModal />}
 
       <div className="card uploadCard">
         <img

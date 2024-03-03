@@ -3,6 +3,8 @@ import MurabahaModal from "./MurabahaModal";
 import { useDispatch, useSelector } from "react-redux";
 import { SetpopupReducerData } from "../../../../store/reducer";
 import { useNavigate } from "react-router-dom";
+import MurabahaGenratedModal from "./MurabahaGenratedModal";
+import ProceedModal from "../../../PopupModal/ProceedModal";
 
 function MurabahaList() {
   const dispatch = useDispatch();
@@ -10,13 +12,18 @@ function MurabahaList() {
 
   const { PopupReducer } = useSelector((state) => state);
   const { murabahaModal = false } = PopupReducer?.modal;
+  const { genratedModal = false } = PopupReducer?.modal;
+  const { proceedModal = false } = PopupReducer?.modal;
+
   const [arrList, setArrList] = useState([
     {
+      date:new Date(),
       app_name: "220872-00",
       name: "Nolan Levin",
       email:"nolan@gmail.com"
     },
     {
+      date:new Date(),
       app_name: "220873-00",
       name: "Aaeesha Mohamed ",
       channel: true
@@ -24,38 +31,45 @@ function MurabahaList() {
     {
       app_name: "220874-00",
       name: "Jaydon Calzoni",
-      email:"jaydon@yahoo.com"
+      email:"jaydon@yahoo.com",
+      date:new Date()
     },
     {
       app_name: "220875-00",
       name: "Maadhav Nazar ",
-      channel: true
+      channel: true,
+      date:new Date()
     },
     {
       app_name: "220876-00",
       name: "Emerson Vetrovs",
-      email:"emerson@gmail.com"
+      email:"emerson@gmail.com",
+      date:new Date()
 
     },
     {
       app_name: "220877-00",
       name: "Haajar Rahman",
-      channel: true
+      channel: true,
+      date:new Date()
     },
     {
       app_name: "220878-00",
       name: "Marcus Lipshutz",
-      email:"marcus@yahoo.com"
+      email:"marcus@yahoo.com",
+      date:new Date()
     },
     {
       app_name: "220879-00",
       name: "Zaire Culhane",
-      channel: true
+      channel: true,
+      date:new Date()
     },
     {
       app_name: "220880-00",
       name: "Saadiq Yousuf ",
-      email:"saadiq@gmail.com"
+      email:"saadiq@gmail.com",
+      date:new Date()
     },
   ]);
 
@@ -63,28 +77,32 @@ function MurabahaList() {
 
     // navigate to agreement
     const navigateToAgreement = () =>{
-        navigate("/admin/application/sent");
+        // navigate("/admin/application/sent");
+        dispatch(
+          SetpopupReducerData({ modalType: "GENRATEFILES", genratedModal: true })
+        );
       }
 
 
   return (
     <>
       {murabahaModal && <MurabahaModal />}
-
+      {genratedModal && <MurabahaGenratedModal/>}
+      {proceedModal && <ProceedModal />}
+      
       <section className="">
         <div className="container">
           <div className="voucherFormMain upload_new_application">
-            <h3>Upload New Application</h3>
+            <h3>Murabaha Agreement</h3>
             {!murabahaModal && 
             <>
               <div className="top_list">
               <p>
-                Murabaha Agreement would be sent to following recipient. Do you
-                want to continue?
+               Murabaha Agreement would be sent to following recipient. 
               </p>
               <div className={`d-flex align-items-center  pt-4 ${"saveBtn"}`}>
-                <button style={{ width: "274px" ,marginRight:"9px"}}>No</button> 
-                <button style={{ width: "274px" }} onClick={() => navigateToAgreement()}>Yes</button>
+                {/* <button style={{ width: "274px" ,marginRight:"9px"}}>No</button>  */}
+                <button style={{ width: "274px" }} onClick={() => navigateToAgreement()}>Proceed</button>
               </div>
 
               <div className="row pt-4">
@@ -92,13 +110,11 @@ function MurabahaList() {
                   <label>Filter</label>
                   <select class="form-select ">
                     <option value={""}>All</option>
-                    <option value={"APPROVE"}>Approve and Proceed</option>
-                    <option value={"PROCEED&EXCEPTION"}>
-                      Proceed with exception
+                    <option value={"EMAIL"}>Email</option>
+                    <option value={"CHANNEL"}>
+                      channel
                     </option>
-                    <option value={"REJECTED"}>
-                      Reject & Send back for correction
-                    </option>
+                   
                   </select>
                 </div>
                 <div className="col-3 ">
@@ -137,10 +153,11 @@ function MurabahaList() {
                     <thead class="thead-light">
                       <tr>
                         <th scope="col"> </th>
-                        <th scope="col">CRN#</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Application no.</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Channel</th>
+                        <th scope="col">Email/Channel</th>
+                        <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -158,10 +175,12 @@ function MurabahaList() {
                           </div>
                         </td>
                         
+                        <td>{item?.date.toLocaleDateString()}</td>
                         <td>{item?.app_name}</td>
                         <td>{item?.name}</td>
-                        <td>{item?.email}</td>
-                        {item?.channel && <td> <span className="channel_border">Send back to Tele sales</span></td> }
+                       
+                        {item?.channel ? <td> <span className="channel_border">Send back to Tele sales</span></td> :  <td>{item?.email}</td> }
+                        <td >View</td>
                         
                         
                       </tr>

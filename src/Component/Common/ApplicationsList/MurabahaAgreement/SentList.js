@@ -81,8 +81,10 @@ function SentList() {
     // update create api
     const onSubmit = async (e, typeSubmit) => {
         e.preventDefault();
-        dispatch(SetpopupReducerData({modalType: "EXCEPTION",exceptionModal: true,type: "CHANNELLIST"})
+        dispatch( SetpopupReducerData({modalType: "CHANNELLIST",successModal: true,type: typeSubmit,})
         );
+        // dispatch(SetpopupReducerData({modalType: "EXCEPTION",exceptionModal: true,type: "CHANNELLIST"})
+        // );
       };
 
   return (
@@ -94,7 +96,7 @@ function SentList() {
      <section className="">
       <div className="container">
         <div className="voucherFormMain upload_new_application">
-          <h3>Upload New Application</h3>
+          <h3>Murabaha Agreement Generation</h3>
           <div className="top_list">
             <div className="row pt-4">
               <div className="col-md-3">
@@ -147,7 +149,7 @@ function SentList() {
                   <button style={{ width: "274px", marginRight: "9px" }}>
                     Check for update
                   </button>
-                  <button style={{ width: "274px" }} onClick={(e) => onSubmit(e, "create")} >Proceed</button>
+                  <button style={{ width: "274px" }} onClick={(e) => onSubmit(e, "CHANNELLIST")} >Proceed</button>
                 </div>
               </div>
             </div>
@@ -161,10 +163,11 @@ function SentList() {
                     <th scope="col"> </th>
                     <th scope="col">S.No. </th>
                     <th scope="col">Date</th>
-                    <th scope="col">Check CRN</th>
-                    <th scope="col">Rules</th>
+                    <th scope="col">Application no.</th>
                     <th scope="col">Channel</th>
+                  
                     <th scope="col">Status</th>
+                    
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
@@ -186,25 +189,24 @@ function SentList() {
                       <td>{item?.currentDate.toLocaleDateString()}</td>
                       <td>{item?.CRN_NO}</td>
                       <td>
-                        <span>{item?.rules}</span>
-                      </td>
-                      {item?.channel && (
-                        <td>
-                          <span className="channel_border">Reserved</span>
-                        </td>
-                      )}
-                      <td>
                         <span
                           style={{
                             color:
                               item?.status === "Digital Signature"
-                                ? "#29CC6A"
-                                : "#EAB308",
+                                ? "#8282FF"
+                                : "#0099FF",
                           }}
                         >
                           {item?.status}
                         </span>
                       </td>
+                    
+                      {item?.channel && (
+                        <td>
+                          <span >Reserved</span>
+                        </td>
+                      )}
+                   
 
                       <td>
                         <span className="channel_border">View</span>

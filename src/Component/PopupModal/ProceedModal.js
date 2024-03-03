@@ -95,7 +95,8 @@ function ProceedModal() {
               </>
             ) : (
               <p style={{ textAlign: "center" }}>
-                Are you sure you want to Proceed?
+                Are you sure ?
+                Proceeding with commodity sale
               </p>
             )}
           </div>
