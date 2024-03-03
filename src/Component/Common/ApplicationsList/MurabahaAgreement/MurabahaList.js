@@ -196,7 +196,8 @@ function MurabahaList() {
             </>
             }
           
-          </div>    
+          </div>  
+          </div>  
       </section>
     </>
   );

@@ -48,11 +48,9 @@ function Dashboard() {
     <section className="">
       <CommonHeader></CommonHeader>
       <div className="main_dashboar">
-        <h2 className="fs-4 fw-bold">Dashboard - Smart Onboard 360</h2>
+        <h2 className="fs-4 fw-bold"> Onboarding Performance – Murabaha Personal Finance</h2>
           <div className="voucherFormMain">
-          <h3 className="fs-4 fw-bold">
-            Onboarding Performance – Murabaha Personal Finance
-          </h3>
+         
 
           <div className="">
             <div className=" row pt-4">

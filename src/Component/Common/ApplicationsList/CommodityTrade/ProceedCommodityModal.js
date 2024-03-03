@@ -41,7 +41,7 @@ function ProceedCommodityModal() {
         <Modal.Title>
           <img
             src="../../images/icon2.png"
-            style={{ height: "100px", paddingLeft: "19rem" }}
+            style={{ height: "100px"}}
           />
         </Modal.Title>
 

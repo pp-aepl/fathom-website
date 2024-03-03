@@ -4,7 +4,7 @@ function CommonHeader() {
   return (
     <div className='commonHeader d-flex justify-content-between'>
       
-<h1>Upload New Application</h1>
+<h1>Dashboard - Smart Onboard 360</h1>
 
 <div className='right-side'>
   <div className='border px-2 p-1 rounded-2 d-inline-block me-3 notification'>

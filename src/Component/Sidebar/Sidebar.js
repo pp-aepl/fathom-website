@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import {
   FaAngleDown,
   FaAngleRight,
@@ -29,9 +29,7 @@ function Sidebar() {
 
   return (
     <>
-  
       <div className="header__toggle" onClick={toggleMenu}>
-      
         <i
           className={`${"respMenu"} ${showMenu ? "active" : ""}`}
           id="header-toggle"
@@ -44,24 +42,32 @@ function Sidebar() {
           <FaXmark />
         </button>
         <nav className={"nav__container"}>
-      
           <div onMouseLeave={() => setOpenDropdown(-1)}>
             <div className={"nav__list"}>
-
-
-            <div  className={`${"nav__items"}  ${showActive === 1 ? "active" : ""} `} >
+              <div
+                className={`${"nav__items"}  ${
+                  showActive === 1 ? "active" : ""
+                } `}
+              >
                 <Link to="/admin/dashboard" className={"nav__link"}>
                   <div
                     className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
                   >
-                   <img alt="logo" src="../../../images/fathom_logo.png" class="header_logo"></img>
+                    <img
+                      alt="logo"
+                      src="../../../images/fathom_logo.png"
+                      class="header_logo"
+                    ></img>
                   </div>
                   <span className={"nav__name"}>Fathom</span>
                 </Link>
               </div>
 
-
-              <div  className={`${"nav__items"}  ${showActive === 1 ? "active" : ""} `} >
+              <div
+                className={`${"nav__items"}  ${
+                  showActive === 1 ? "active" : ""
+                } `}
+              >
                 <Link to="/admin/dashboard" className={"nav__link"}>
                   <div
                     className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
@@ -72,8 +78,12 @@ function Sidebar() {
                 </Link>
               </div>
 
-              <div className={`${"nav__items"}  ${showActive === 1 ? "active" : ""} `} >
-                <Link  className={"nav__link"}>
+              <div
+                className={`${"nav__items"}  ${
+                  showActive === 1 ? "active" : ""
+                } `}
+              >
+                <Link className={"nav__link"}>
                   <div
                     className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
                   >
@@ -82,8 +92,12 @@ function Sidebar() {
                   <span className={"nav__name"}>Application status</span>
                 </Link>
               </div>
-              <div className={`${"nav__items"}  ${showActive === 1 ? "active" : ""} `} >
-                <Link  className={"nav__link"}>
+              <div
+                className={`${"nav__items"}  ${
+                  showActive === 1 ? "active" : ""
+                } `}
+              >
+                <Link className={"nav__link"} to="/admin/application/upload">
                   <div
                     className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
                   >
@@ -125,32 +139,38 @@ function Sidebar() {
                   >
                     <div className={"nav__dropdown_content"}>
                       <Link
-                        to="/admin/application/unprocessed"
+                        to="/admin/application/waiting"
                         className={`${"nav__dropdown_item"} d-flex justify-content-between align-items-center`}
                       >
-                        Ready to be import
+                        Awaiting Commodity Purchase
                         <FaAngleRight />
                       </Link>
                       <Link
-                        to="/admin/application/rejected"
+                        to="/admin/application/digital"
                         className={`${"nav__dropdown_item"} d-flex justify-content-between align-items-center`}
                       >
-                       Under Process
+                        Digital: Awaiting Customer acceptance on the Agreement
                         <FaAngleRight />
                       </Link>
                       <Link
-                        to="/admin/application/inprocessed"
+                        to="/admin/application/physical"
                         className={`${"nav__dropdown_item"} d-flex justify-content-between align-items-center`}
                       >
-                       Completed - Welcome
-                       Letter issued
+                        Physical – Awaiting Customer acceptance on the Agreement
                         <FaAngleRight />
                       </Link>
                       <Link
-                        to="/admin/application/loandisbursed"
+                        to="/admin/application/agent"
                         className={`${"nav__dropdown_item"} d-flex justify-content-between align-items-center`}
                       >
-                       Rejected - Pending Channel correction
+                        Awaiting Agent Appointment and Response.
+                        <FaAngleRight />
+                      </Link>
+                      <Link
+                        to="/admin/application/funding"
+                        className={`${"nav__dropdown_item"} d-flex justify-content-between align-items-center`}
+                      >
+                        Awaiting funding and Welcome letter issuance
                         <FaAngleRight />
                       </Link>
                     </div>
@@ -158,28 +178,37 @@ function Sidebar() {
                 </div>
               </div>
 
-
-              <div className={`${"nav__items"}  ${showActive === 1 ? "active" : ""} `} >
-                <Link  className={"nav__link"}>
+              <div
+                className={`${"nav__items"}  ${
+                  showActive === 1 ? "active" : ""
+                } `}
+              >
+                <Link className={"nav__link"}>
                   <div
                     className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
                   >
                     <img src="../../../images/tick-circle.svg" alt="" />
                   </div>
-                  <span className={"nav__name"}>Completed – Welcome Letter issued</span>
+                  <span className={"nav__name"}>
+                    Completed – Welcome Letter issued
+                  </span>
                 </Link>
               </div>
 
-              
-              <div className={`${"nav__items"}  ${showActive === 1 ? "active" : ""} `} >
-                <Link  className={"nav__link"}>
+              <div
+                className={`${"nav__items"}  ${
+                  showActive === 1 ? "active" : ""
+                } `}
+              >
+                <Link className={"nav__link"}>
                   <div
                     className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
                   >
                     <img src="../../../images/close-circle.svg" alt="" />
                   </div>
-                  <span className={"nav__name"}>Rejected - Pending 
-Channel correction</span>
+                  <span className={"nav__name"}>
+                    Rejected - Pending Channel correction
+                  </span>
                 </Link>
               </div>
 

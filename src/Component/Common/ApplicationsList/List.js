@@ -9,8 +9,11 @@ import UploadApplication from "./UploadApplication";
 
 function List({ id }) {
   const tableRef = useRef();
-  const params = useParams();
-  const fetchParams = params.userId;
+ const params = useParams();
+
+ const fetchParams = params.userId;
+
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1); //page
@@ -78,6 +81,8 @@ function List({ id }) {
     },
   ]);
 
+
+
   const [filterKey, setFilterKey] = useState({
     search: "",
     offset: currentPage,
@@ -105,9 +110,15 @@ function List({ id }) {
     setPerPage(perPage);
     setCurrentPage(page);
   };
+
   useEffect(()=>{
-    setArrList([])
-  })
+   
+if(fetchParams === 'upload'){
+  setArrList([])
+}else {
+
+}
+  },[arrList])
 
   return (
     <>
@@ -178,7 +189,7 @@ function List({ id }) {
                       </div>
                     </div>
                     <div className="">
-                      {arrList?.length > 0 ? (
+                      {fetchParams !== 'upload' && arrList?.length > 0 ? (
                         <div className=" row my-5" id="table-contexual">
                           <div className="col-12">
                             <table class="table">

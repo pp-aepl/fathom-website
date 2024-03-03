@@ -54,7 +54,7 @@ function InprocessList() {
   useEffect(()=>{
     setTimeout(() => {
       dispatch(SetpopupReducerData({ modalType: "MURABAHA", proceedCommodityModal: true }));
-    }, 3000);
+    }, 2000);
   },[])
 
 
