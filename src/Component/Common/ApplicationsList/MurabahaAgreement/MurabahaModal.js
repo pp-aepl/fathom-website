@@ -21,8 +21,9 @@ function MurabahaModal() {
   // update create api
   const onSubmitProceed = async (e, typeSubmit) => {
     e.preventDefault();
-    handleClosePopup();
+    // handleClosePopup();
     dispatch(SetpopupReducerData({ modalType: "GENRATED", genratedModal: true }));
+
 
 
   };
@@ -30,6 +31,7 @@ function MurabahaModal() {
   return (
     <>
     {genratedModal && <MurabahaGenratedModal/>}
+
       <Modal
         className={"publishModal"}
         show={murabahaModal}

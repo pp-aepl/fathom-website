@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SetpopupReducerData } from "../../../../store/reducer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import ProceedCommodityModal from "../CommodityTrade/ProceedCommodityModal";
 
 function InprocessList() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { PopupReducer } = useSelector((state) => state);
+  const { proceedCommodityModal = false } = PopupReducer?.modal;
+  const { murabahaModal = false } = PopupReducer?.modal;
+
 
   const [arrList, setArrList] = useState([
     {
@@ -46,6 +51,12 @@ function InprocessList() {
     },
   ]);
 
+  useEffect(()=>{
+    setTimeout(() => {
+      dispatch(SetpopupReducerData({ modalType: "MURABAHA", proceedCommodityModal: true }));
+    }, 3000);
+  },[])
+
 
   // navigate to agreement
   const navigateToAgreement = (item) =>{
@@ -54,10 +65,12 @@ function InprocessList() {
   }
 
   return (
-    <section className="">
+    <>
+    {proceedCommodityModal && <ProceedCommodityModal/>}
+      <section className="">
       <div className="container">
         <div className="voucherFormMain upload_new_application">
-          <h3>Upload New Application</h3>
+          <h3>Application in process</h3>
           <div className="top_list">
             <div class=" align-items-center p-1">
               <div class="progress bar-wrapper w-100 h-6px">
@@ -97,7 +110,7 @@ function InprocessList() {
                           >
                             {item?.status}
                           </span>
-                        </td>{" "}
+                        </td>
                         <td>
                           <img src="../../images/icon2.png"></img>
                         </td>
@@ -111,6 +124,8 @@ function InprocessList() {
         </div>
       </div>
     </section>
+    </>
+  
   );
 }
 

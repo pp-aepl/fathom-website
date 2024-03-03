@@ -5,6 +5,7 @@ import { SetpopupReducerData } from "../../../../store/reducer";
 import { useNavigate } from "react-router-dom";
 import MurabahaGenratedModal from "./MurabahaGenratedModal";
 import ProceedModal from "../../../PopupModal/ProceedModal";
+import MurabahaSuccessfully from "./MurabahaSuccessfully";
 
 function MurabahaList() {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ function MurabahaList() {
   const { murabahaModal = false } = PopupReducer?.modal;
   const { genratedModal = false } = PopupReducer?.modal;
   const { proceedModal = false } = PopupReducer?.modal;
+  const { murabahaSuccessModal = false } = PopupReducer?.modal;
 
   const [arrList, setArrList] = useState([
     {
@@ -79,7 +81,7 @@ function MurabahaList() {
     const navigateToAgreement = () =>{
         // navigate("/admin/application/sent");
         dispatch(
-          SetpopupReducerData({ modalType: "GENRATEFILES", genratedModal: true })
+          SetpopupReducerData({ modalType: "MURABAHASUCCESS", murabahaSuccessModal: true })
         );
       }
 
@@ -89,12 +91,13 @@ function MurabahaList() {
       {murabahaModal && <MurabahaModal />}
       {genratedModal && <MurabahaGenratedModal/>}
       {proceedModal && <ProceedModal />}
+      {murabahaSuccessModal && <MurabahaSuccessfully />}
       
       <section className="">
         <div className="container">
           <div className="voucherFormMain upload_new_application">
             <h3>Murabaha Agreement</h3>
-            {!murabahaModal && 
+            {!murabahaModal && !genratedModal && 
             <>
               <div className="top_list">
               <p>

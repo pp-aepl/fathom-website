@@ -16,7 +16,6 @@ function ImportApplication() {
   const { duplicatedModal = false } = PopupReducer?.modal;
 
   const fileType = PopupReducer?.modal?.type;
-  let duplicatedFiles 
 
   const handleClosePopup = () => {
     dispatch(
@@ -26,31 +25,28 @@ function ImportApplication() {
 
   // update create api
   const onSubmit = async (e, typeSubmit) => {
-    console.log({typeSubmit})
-    e.preventDefault();
-    dispatch(
-      SetpopupReducerData({ modalType: "UPLOADFILE", showModal: false })
-    );
-    dispatch(
-      SetpopupReducerData({
-        modalType: "UPLOADFILE",
-        showModal: true,
-        type: typeSubmit,
-      })
-    );
-    duplicatedFiles = 'CONTINUEFILES'
-    if(duplicatedFiles === 'CONTINUEFILES'){
- dispatch(SetpopupReducerData({ modalType: "DUPLICATEFILES", duplicatedModal: true }));
-}
-  
 
-   
+    e.preventDefault();
+    dispatch(SetpopupReducerData({ modalType: "UPLOADFILE", showModal: false }));
+    dispatch(SetpopupReducerData({modalType: "UPLOADFILE",showModal: true,type: typeSubmit,}));
+ 
   };
+
+  const onSubmitContinue = ()=>{
+   
+      dispatch(
+        SetpopupReducerData({
+          modalType: "DUPLICATEFILES",
+          duplicatedModal: true,
+        })
+      );
+    
+  }
 
   return (
     <>
       {/* {showConfirmModal && <ConfirmFiles />} */}
-      {duplicatedModal && <DuplicateModal/>}
+      {duplicatedModal && <DuplicateModal />}
 
       <Modal
         className={"publishModal modal_details"}
@@ -116,22 +112,21 @@ function ImportApplication() {
           <div
             className={`d-flex align-items-center justify-content-around pt-4 `}
           >
-            <button
-              className="login100-form-btn"
-              onClick={(e) => onSubmit(e, "FILEUPLOADED")}
-            >
-              Continue
-            </button>
+          
             {/* continue for Uploaded files */}
-            {duplicatedFiles === 'CONTINUEFILES' &&  
-             <button
-             className="login100-form-btn"
-             onClick={(e) => onSubmit(e, "CONTINUEFILES")}
-           >
-             Continue
-           </button>
-            }
-           
+            {fileType === "FILEUPLOADED" ? (
+              <button
+                className="login100-form-btn"
+                onClick={(e) => onSubmitContinue(e)}
+              >
+                Continue
+              </button>
+            ) :   <button
+            className="login100-form-btn"
+            onClick={(e) => onSubmit(e, "FILEUPLOADED")}
+          >
+            Continue
+          </button>}
           </div>
         </Modal.Body>
       </Modal>

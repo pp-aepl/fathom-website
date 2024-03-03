@@ -3,36 +3,34 @@ import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { SetpopupReducerData } from "../../../../store/reducer";
 import { useNavigate } from "react-router-dom";
-import ProceedModal from "../../../PopupModal/ProceedModal";
 
-function MurabahaGenratedModal() {
+function MurabahaSuccessfully() {
   const dispatch = useDispatch();
   const { createType } = useSelector((state) => state?.Product);
   const { PopupReducer } = useSelector((state) => state);
-  const { genratedModal = false } = PopupReducer?.modal;
-  const { proceedModal = false } = PopupReducer?.modal;
+  const { murabahaSuccessModal = false } = PopupReducer?.modal;
   const navigate = useNavigate();
 
   const handleClosePopup = () => {
     dispatch(
-      SetpopupReducerData({ modalType: "GENRATEFILES", genratedModal: false })
+      SetpopupReducerData({ modalType: "GENRATEFILES", murabahaSuccessModal: false })
     );
   };
 
   // update create api
   const onSubmit = async (e, typeSubmit) => {
     e.preventDefault();
-    dispatch(
-      SetpopupReducerData({ modalType: "FILESCONFIRM", showConfirmModal: true })
-    );
-    // navigate("/admin/application/sent");
+    // dispatch(
+    //   SetpopupReducerData({ modalType: "FILESCONFIRM", showConfirmModal: true })
+    // );
+    navigate("/admin/application/sent");
   };
 
   return (
     <>
       <Modal
         className={"publishModal"}
-        show={genratedModal}
+        show={murabahaSuccessModal}
         size="md"
         centered
         onHide={handleClosePopup}
@@ -48,10 +46,10 @@ function MurabahaGenratedModal() {
           </div>
           <div>
             <h3 style={{ textAlign: "center" }}>
-            Murabaha Document Generate
+            Murabaha Agreements have
+been sent to selected channels
             </h3>
-            <p style={{textAlign:"center"}}>Murabaha document has been generated 
-for all approved customers.</p>
+           
           </div>
 
           <div
@@ -61,7 +59,7 @@ for all approved customers.</p>
               style={{ minWidth: "-webkit-fill-available" }}
               onClick={(e) => onSubmit(e, "create")}
             >
-              Proceed
+              Okey
             </button>
           </div>
         </Modal.Body>
@@ -70,4 +68,4 @@ for all approved customers.</p>
   );
 }
 
-export default MurabahaGenratedModal;
+export default MurabahaSuccessfully
