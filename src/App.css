@@ -5208,7 +5208,7 @@ input[type="checkbox"]:before {
 }
 
 .uploadCard{
-  width: 24rem;
+  width: 29rem;
   margin: auto;
   margin-top: 10rem;
   --bs-card-border-color: aliceblue;

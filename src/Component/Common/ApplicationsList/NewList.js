@@ -303,8 +303,8 @@ function NewList({ id }) {
 
                 <div className="row p-4 ps-4">
                   <div className="col-md-3">
-                    <label>Filter</label>
-                    <div className="border rounded p-2">
+                    <label className="label">Filter</label>
+                    <div className="border rounded p-2 pe-0">
                       <div class="form-check d-inline-block verticle checkbox">
                         <input
                           type="checkbox"
@@ -315,7 +315,7 @@ function NewList({ id }) {
                         ></input>
                       </div>
                       <select
-                        class="form-select w-87 d-inline-block border-0"
+                        class="form-select w-91 d-inline-block border-0"
                         aria-label="Default select example"
                       >
                         <option selected>Months</option>
@@ -326,25 +326,25 @@ function NewList({ id }) {
                     </div>
                   </div>
                   <div className="col-2 ">
-                    <span>Search Applictaion</span>
+                  <label className="label">Search Applictaion</label>
                     <select class="form-select p-3">
                       <option>Last week</option>
                     </select>
                   </div>
                   <div className="col-2">
-                    <span>Date from</span>
-                    <div className=" p-2 text-right">
-                      <input type="date" className="form-control" id="birthday" name="birthday"></input>
+                  <label className="label">Date from</label>
+                    <div className=" text-right">
+                      <input type="date" className="form-control p-3" id="birthday" name="birthday"></input>
                     </div>
                   </div>
                   <div className="col-2">
-                    <span>Date to</span>
-                    <div className=" p-2 text-right">
-                      <input type="date" id="birthday" className="form-control" name="birthday"></input>
+                  <label className="label">Date to</label>
+                    <div className="text-right">
+                      <input type="date" id="birthday" className="form-control p-3" name="birthday"></input>
                     </div>
                   </div>
                   <div className="col-3">
-                    <span>&nbsp;</span>
+                  <label className="label">&nbsp;</label>
                     <select class="form-select p-3"  onChange={fetchModal}>
                       <option value={""}>Actions</option>
                       <option value={"APPROVE"}>Approve and Proceed</option>
