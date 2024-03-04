@@ -83,7 +83,7 @@ function Sidebar() {
                   showActive === 1 ? "active" : ""
                 } `}
               >
-                <Link className={"nav__link"}>
+                <Link className={"nav__link"} to="/admin/application/status">
                   <div
                     className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
                   >
@@ -183,7 +183,7 @@ function Sidebar() {
                   showActive === 1 ? "active" : ""
                 } `}
               >
-                <Link className={"nav__link"}>
+                <Link className={"nav__link"} to="/admin/application/completed">
                   <div
                     className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
                   >
@@ -200,7 +200,7 @@ function Sidebar() {
                   showActive === 1 ? "active" : ""
                 } `}
               >
-                <Link className={"nav__link"}>
+                <Link className={"nav__link"} to="/admin/application/rejected">
                   <div
                     className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
                   >

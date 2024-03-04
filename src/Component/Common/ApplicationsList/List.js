@@ -20,6 +20,7 @@ function List({ id }) {
   const [perPage, setPerPage] = useState(30); //limit
   const [selectedStartdate, setSelectedStartdate] = useState("");
   const [selectedEnddate, setSelectedEnddate] = useState("");
+  const [listName, setListName] = useState("");
 
   const [arrList, setArrList] = useState([
     {
@@ -111,13 +112,14 @@ function List({ id }) {
     setCurrentPage(page);
   };
 
+
+
   useEffect(()=>{
    
 if(fetchParams === 'upload'){
   setArrList([])
-}else {
+}else {}
 
-}
   },[arrList])
 
   return (
@@ -125,8 +127,18 @@ if(fetchParams === 'upload'){
       <section className="">
         <div className="container">
           <div className="voucherFormMain upload_new_application">
-            {/* <h5>{convertToCamelCase(fetchParams)}</h5> */}
-            <h3>Upload New Application</h3>
+            
+            <h3>{fetchParams === 'upload' ? 'Upload New Application' :
+             fetchParams === 'status' ? 'Application Status' : 
+             fetchParams === 'waiting' ? 'Awaiting Commodity Purchase' : 
+             fetchParams === 'digital' ? ' Digital: Awaiting Customer Acceptance On The Agreement':
+             fetchParams === 'physical' ? ' Physical – Awaiting Customer Acceptance On The Agreement':
+             fetchParams === 'agent' ? 'Awaiting Agent Appointment And Response':
+             fetchParams === 'funding' ? 'Awaiting funding and Welcome Letter Issuance':
+             fetchParams === 'completed' ? 'Completed – Welcome Letter Issued':
+             fetchParams === 'rejected' ? 'Rejected - Pending Channel Correction':
+             ''
+             }</h3>
 
             <div className="">
               <div className="  row my-5" id="table-contexual">
@@ -217,14 +229,16 @@ if(fetchParams === 'upload'){
                                       <span
                                         style={{
                                           color:
-                                            item?.status === "Approved"
-                                              ? "#29CC6A"
-                                              : item?.status === "Pending"
-                                              ? "#EAB308"
-                                              : "#EF4444",
+                                            (item?.status === "Approved" ||(fetchParams === 'completed' && fetchParams !== 'rejected'))? "#29CC6A" :
+                                             (item?.status === "Reject"  || fetchParams === 'rejected') ? " #EF4444": 
+                                             (item?.status === "Pending") ? "#EAB308":""
                                         }}
                                       >
-                                        {item?.status}
+                                       {
+                                       fetchParams === 'completed' ? 'Approved' : 
+                                       fetchParams === 'rejected' ? 'Reject' : 
+                                       item?.status
+                                       } 
                                       </span>
                                     </td>
                                     <td>View</td>
