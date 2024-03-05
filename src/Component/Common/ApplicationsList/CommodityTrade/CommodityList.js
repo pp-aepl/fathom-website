@@ -71,26 +71,23 @@ function CommodityList() {
 
 
       <section className="">
-        <div className="container">
-          <div className="voucherFormMain upload_new_application">
-            <h3>Commodity Trade Status</h3>
-            <div className="row col-md-12">
-              <div className="col-md-1">
-                <img src="../../images/icon2.png" style={{ height: "74px" }} />{" "}
+        
+          <div className="upload_new_application">
+            <h3 className="card-title1 ps-4">Commodity Trade Status</h3>
+            <div className="row ps-4">
+              <div className="col-md-1 text-center pt-4">
+                <img className="h-75px" src="../../images/success.png"/>{" "}
               </div>
               <div className="col-md-7">
-                <h2>Completed Commodity Trade</h2>
-                <p>
-                  Commodity Trade has been completed and amount depositing is in
+                <h2 className="card-title">Completed Commodity Trade</h2>
+                <p className="card-text1">
+                  Commodity Trade has been completed and amount<br></br> depositing is in
                   progress for following applications.
                 </p>
               </div>
               <div className="col-md-3">
                 <div className={`d-flex align-items-center  pt-4 ${"saveBtn"}`}>
-                  <button
-                    style={{ width: "278px" }}
-                    onClick={() => navigateToAgreement()}
-                  >
+                  <button className="button px-4" onClick={() => navigateToAgreement()}>
                     Proceed with welcome letter 
                   </button>
                 </div>
@@ -103,7 +100,7 @@ function CommodityList() {
                   <table class="table">
                     <thead class="thead-light">
                       <tr>
-                        <th scope="col">S.No. </th>
+                        <th scope="col" className="ps-4">S.No. </th>
                         <th scope="col">Customer Name </th>
                         <th scope="col">Application no. </th>
                         <th scope="col">Status </th>
@@ -115,7 +112,7 @@ function CommodityList() {
                           className="pointer"
                           onClick={() => navigateToAgreement(item)}
                         >
-                          <td>{index + 1}</td>
+                          <td className="ps-4">{index + 1}</td>
                           <td>{item?.customer_name}</td>
                           <td>{item?.app_name}</td>
                           <td style={{color:'#29CC6A'}}>Completed</td>
@@ -127,7 +124,7 @@ function CommodityList() {
               </div>
             </div>
           </div>
-        </div>
+        
       </section>
     </>
   );

@@ -1272,9 +1272,11 @@
     font-weight:normal;
     color: #000;
     text-decoration: none;
-    line-height: 50px;
-    padding:0 10px;
+    line-height:22px;
+    padding:0 0 0 60px;
+    margin-bottom:15px;
   }
+  .nav__dropdown_item svg{ display: none;}
   .nav__dropdown_item:hover {
     color: #000;  
   }
@@ -1290,9 +1292,9 @@
   .nav__dropdown.open svg {
     transform: rotate(180deg);
   }
-  .nav__dropdown.open .nav__dropdown_content svg {
+  /* .nav__dropdown.open .nav__dropdown_content svg {
     transform: rotate(0deg);
-  }
+  } */
   /*===== Show menu =====*/
   .showmenu {
     left: 0;
@@ -1880,9 +1882,9 @@
       /* opacity: 0;
       transition: 0.3s; */
     }
-    .nav_2:hover {
+    /* .nav_2:hover {
       width: 290px;
-    }
+    } */
     .nav_2:hover .nav__logo-name {
       opacity: 1;
     }
@@ -1969,4 +1971,7 @@
     .adminLogin{padding:0 0 70px 15px;}
   }
   
+  /* .nav__dropdown_item.multiline svg { position: relative; top:-10px;
+    transform: rotate(0deg);
+  } */
   

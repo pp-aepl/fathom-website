@@ -1242,9 +1242,10 @@ input:-moz-placeholder {
 }
 /*=============== Nav Bar =======================*/
 .nav_2 {
-  position: fixed;
+  /* position: fixed;
   top: 0;
-  left: -100%;
+  left: -100%; */
+  border-right: 1px solid #d1d5d8;
   height: 100vh;
   padding: 1rem 1rem 0;
   background-color: #fff;
@@ -1315,12 +1316,13 @@ input:-moz-placeholder {
   margin-top: 5rem;
 }
 .header__toggle {
-  display: none;
+  /* display: none; */
   background: #000;
-  position: fixed;
+  position: static;
   top: 80px;
   padding: 5px;
   display: block;
+  width: 290px;
   color: #fff;
   border-radius: 0 5px 4px 0px;
   cursor: pointer;
@@ -2166,14 +2168,13 @@ border: 1px solid #316cf4;
   }
 }
 @media screen and (min-width: 1200px) {
-  .header__toggle {
+  /* .header__toggle {
     display: none;
-  }
+  } */
 
   .nav_2 {
-    left: 0;
     padding: 1.2rem 13px !important;
-    width: 79px; /* Reduced navbar */
+    width:310px; /* Reduced navbar */
     box-shadow: 0 6px 26px rgba(34, 55, 113, 0.1);
   }
   .nav__items {
@@ -2189,9 +2190,9 @@ border: 1px solid #316cf4;
     /* opacity: 0; */
     transition: 0.3s;
   }
-  .nav_2:hover {
+  /* .nav_2:hover {
     width: 290px;
-  }
+  } */
   .nav_2:hover .nav__logo-name {
     opacity: 1;
   }
@@ -2632,7 +2633,7 @@ border: 1px solid #316cf4;
 .nav__list{z-index: 99; position: relative;}
 .nav__name{ margin-right:10px;}
 .form-select,.form-control{ font-size: 1.6rem;}
-#main{margin:0 0 0 82px;}
+#main{margin:0 0 0 305px;}
 .main_dashboar .progress-bar{ height: 10px!important; position: relative; top: -3px;}
 .commonHeader{ padding:20px; background: #fff; border-bottom: 1px solid rgba(238, 241, 240, 1);}
 .commonHeader h1{font-size: 18px; line-height: 25px; font-weight: bold; color: rgba(21, 21, 23, 1);}
@@ -2685,3 +2686,4 @@ border: 1px solid #316cf4;
     text-align: center; font-family: "Inter Tight", sans-serif; border: 1px solid rgba(224, 227, 226, 1); }
 .muraba td{ border-bottom:1px solid rgba(242, 242, 242, 1);}
 .button{font-family: "Inter Tight", sans-serif;}
+.h-75px{ height: 75px;}
