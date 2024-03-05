@@ -11,7 +11,7 @@ function ProceedModal() {
   const { proceedModal = false } = PopupReducer?.modal;
   const { successModal = false } = PopupReducer?.modal;
   const [commodityModal, setCommodityModal] = useState(false);
-  const commodityType = PopupReducer?.modal?.type;
+  const commodityType = PopupReducer?.modal?.type; // COMIDITYAGENT
   const navigate = useNavigate();
 
   const handleClosePopup = () => {

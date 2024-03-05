@@ -13,7 +13,9 @@ function CommodityList() {
   const { proceedModal = false } = PopupReducer?.modal;
   const { successModal = false } = PopupReducer?.modal;
   const { disbursedModal = false } = PopupReducer?.modal;
+  const commodityType = PopupReducer?.modal?.type; // COMIDITYAGENT
 
+console.log({commodityType})
   const [arrList, setArrList] = useState([
     {
       app_name: "220872-00",
@@ -73,7 +75,7 @@ function CommodityList() {
       <section className="">
         
           <div className="upload_new_application">
-            <h3 className="card-title1 ps-4">Commodity Trade Status</h3>
+            <h3 className="card-title1 ps-4"> {commodityType === 'COMIDITYAGENT' ? 'Commodity Trade Status' : 'Funding and welcome letter issuance'}</h3>
             <div className="row ps-4">
               <div className="col-md-1 text-center pt-4">
                 <img className="h-75px" src="../../images/success.png"/>{" "}
@@ -81,14 +83,14 @@ function CommodityList() {
               <div className="col-md-7">
                 <h2 className="card-title">Completed Commodity Trade</h2>
                 <p className="card-text1">
-                  Commodity Trade has been completed and amount<br></br> depositing is in
-                  progress for following applications.
+                  {commodityType === 'COMIDITYAGENT' ? 'Commodity Trade has been completed and amount<br></br> depositing is in progress for following applications.' : 'Funding to customer account in progress for following applications' }
                 </p>
               </div>
               <div className="col-md-3">
                 <div className={`d-flex align-items-center  pt-4 ${"saveBtn"}`}>
                   <button className="button px-4" onClick={() => navigateToAgreement()}>
-                    Proceed with welcome letter 
+                    {commodityType === 'COMIDITYAGENT' ? 'Proceed' : 'Proceed with welcome letter '}
+                    
                   </button>
                 </div>
               </div>

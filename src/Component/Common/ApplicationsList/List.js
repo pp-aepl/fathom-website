@@ -129,8 +129,7 @@ if(fetchParams === 'upload'){
           <div className="upload_new_application">
             {/* <h5>{convertToCamelCase(fetchParams)}</h5> */}
             <h3 className="card-title1 ps-5">{fetchParams === 'upload' ? 'Upload New Application' :
-             fetchParams === 'status' ? 'Application Status' : 
-             fetchParams === 'waiting' ? 'Awaiting Commodity Purchase' : 
+             fetchParams === 'status' ? 'Upload New Application' :  
              fetchParams === 'digital' ? ' Digital: Awaiting Customer Acceptance On The Agreement':
              fetchParams === 'physical' ? ' Physical – Awaiting Customer Acceptance On The Agreement':
              fetchParams === 'agent' ? 'Awaiting Agent Appointment And Response':

@@ -59,7 +59,7 @@ function Sidebar() {
                       class="header_logo"
                     ></img>
                   </div>
-                  <span className={"nav__name"}>Fathom</span>
+                  <span className="logo-content">Fathom</span>
                 </Link>
               </div>
 
@@ -143,35 +143,35 @@ function Sidebar() {
                   >
                     <div className={"nav__dropdown_content"}>
                       <Link
-                        to="/admin/application/waiting"
+                        to="/admin/application/list"
                         className={`${"nav__dropdown_item"} d-flex justify-content-between align-items-center`}
                       >
                         Awaiting Commodity Purchase
                         <FaAngleRight />
                       </Link>
                       <Link
-                        to="/admin/application/digital"
+                        to="/admin/application/sent"
                         className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
                       >
                         Digital: Awaiting Customer acceptance on <br></br>the Agreement
                         <FaAngleRight />
                       </Link>
                       <Link
-                        to="/admin/application/physical"
+                        to="/admin/application/sent"
                         className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
                       >
                         Physical – Awaiting Customer acceptance on<br></br> the Agreement
                         <FaAngleRight />
                       </Link>
                       <Link
-                        to="/admin/application/agent"
+                        to="/admin/application/sent"
                         className={`${"nav__dropdown_item"} d-flex justify-content-between align-items-center`}
                       >
                         Awaiting Agent Appointment and Response.
                         <FaAngleRight />
                       </Link>
                       <Link
-                        to="/admin/application/funding"
+                        to="/admin/application/commodity"
                         className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
                       >
                         Awaiting funding and Welcome <br></br>letter issuance
