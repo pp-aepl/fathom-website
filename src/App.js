@@ -11,6 +11,7 @@ import InprocessList from "./Component/Common/ApplicationsList/ApplicationProces
 import MurabahaList from "./Component/Common/ApplicationsList/MurabahaAgreement/MurabahaList";
 import SentList from "./Component/Common/ApplicationsList/MurabahaAgreement/SentList";
 import CommodityList from "./Component/Common/ApplicationsList/CommodityTrade/CommodityList";
+import ReportList from "./Component/Common/Reports/ReportList";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="application/murabaha" element={<MurabahaList />} />
         <Route path="application/sent" element={<SentList />} />
         <Route path="application/commodity" element={<CommodityList />} />
+        <Route path="reports/:reportList" element={<ReportList />} />
 
       
 

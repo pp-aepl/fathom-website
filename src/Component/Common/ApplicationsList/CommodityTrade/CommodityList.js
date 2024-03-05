@@ -15,7 +15,6 @@ function CommodityList() {
   const { disbursedModal = false } = PopupReducer?.modal;
   const commodityType = PopupReducer?.modal?.type; // COMIDITYAGENT
 
-console.log({commodityType})
   const [arrList, setArrList] = useState([
     {
       app_name: "220872-00",

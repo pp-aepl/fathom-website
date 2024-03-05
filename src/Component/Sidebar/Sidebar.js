@@ -220,7 +220,7 @@ function Sidebar() {
                 </Link>
               </div>
 
-              <div className={"nav__items"}>
+              {/* <div className={"nav__items"}>
                 <Link to="/admin/dashboard/sponser" className={"nav__link"}>
                   <div
                     className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
@@ -229,7 +229,67 @@ function Sidebar() {
                   </div>
                   <span className={"nav__name"}>Reports</span>
                 </Link>
+              </div> */}
+
+
+
+              <div className={"nav__items"}>
+                <div
+                  className={`${"nav__dropdown"} ${
+                    openDropdown === 1 ? "open" : ""
+                  }  `}
+                >
+                  <a
+                    to="#"
+                    className={"nav__link"}
+                    onClick={() => toggleDropdown(1)}
+                  >
+                    <div
+                      className={` ${"icon_cmn"} ${"bx_home"} ${"nav__icon"}`}
+                    >
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="6" cy="6" r="5.25" stroke="#151517" stroke-width="1.5"/>
+                  </svg>
+                    </div>
+                    <span className={"nav__name"}>Reports</span>
+                    <i
+                      className={` ${"ms_auto"} ${"bx_chevron_down"} ${"nav__icon"} ${
+                        openDropdown === 1 ? "open" : ""
+                      } `}
+                    >
+                      <FaAngleDown />
+                    </i>
+                  </a>
+                  <div
+                    className={`${"nav__dropdown_collapse"} ${
+                      openDropdown === 1 ? "open" : ""
+                    }`}
+                  >
+                    <div className={"nav__dropdown_content"}>
+                      <Link
+                        to="/admin/reports/disbursal"
+                        className={`${"nav__dropdown_item"} d-flex justify-content-between align-items-center`}
+                      >
+                        Disbursal Report
+                        <FaAngleRight />
+                      </Link>
+                      <Link
+                        to="/admin/reports/error"
+                        className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
+                      >
+                       Pending / Error
+                        <FaAngleRight />
+                      </Link>
+                     
+                    </div>
+                  </div>
+                </div>
               </div>
+
+
+
+
+
             </div>
           </div>
         </nav>
