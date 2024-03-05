@@ -17,7 +17,7 @@ function ConfirmFileList() {
             value=""
             id="flexCheckDefault"
           />
-          <label class="form-check-label" for="flexCheckDefault">
+          <label class="label" for="flexCheckDefault">
             Select All
           </label>
         </div>

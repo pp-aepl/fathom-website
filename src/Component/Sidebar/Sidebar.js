@@ -29,18 +29,18 @@ function Sidebar() {
 
   return (
     <>
-      <div className="header__toggle" onClick={toggleMenu}>
+      {/* <div className="header__toggle">
         <i
           className={`${"respMenu"} ${showMenu ? "active" : ""}`}
           id="header-toggle"
         >
           <FaChevronRight />
         </i>
-      </div>
+      </div> */}
       <div className={`${"nav_2"} ${showMenu ? "active" : ""}`} id={"navbar"}>
-        <button className={"toggleClose"} onClick={toggleMenu}>
+        {/* <button className={"toggleClose"}>
           <FaXmark />
-        </button>
+        </button> */}
         <nav className={"nav__container"}>
           <div onMouseLeave={() => setOpenDropdown(-1)}>
             <div className={"nav__list"}>
@@ -101,7 +101,9 @@ function Sidebar() {
                   <div
                     className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
                   >
-                    <img src="../../../images/upload_icon.svg" alt="" />
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="6" cy="6" r="5.25" stroke="#151517" stroke-width="1.5"/>
+                  </svg>
                   </div>
                   <span className={"nav__name"}>Ready to be import</span>
                 </Link>
@@ -121,7 +123,9 @@ function Sidebar() {
                     <div
                       className={` ${"icon_cmn"} ${"bx_home"} ${"nav__icon"}`}
                     >
-                      <img src="../../../images/refresh_icon.svg" alt="" />
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="6" cy="6" r="5.25" stroke="#151517" stroke-width="1.5"/>
+                  </svg>
                     </div>
                     <span className={"nav__name"}>Under Process</span>
                     <i
@@ -147,16 +151,16 @@ function Sidebar() {
                       </Link>
                       <Link
                         to="/admin/application/digital"
-                        className={`${"nav__dropdown_item"} d-flex justify-content-between align-items-center`}
+                        className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
                       >
-                        Digital: Awaiting Customer acceptance on the Agreement
+                        Digital: Awaiting Customer acceptance on <br></br>the Agreement
                         <FaAngleRight />
                       </Link>
                       <Link
                         to="/admin/application/physical"
-                        className={`${"nav__dropdown_item"} d-flex justify-content-between align-items-center`}
+                        className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
                       >
-                        Physical – Awaiting Customer acceptance on the Agreement
+                        Physical – Awaiting Customer acceptance on<br></br> the Agreement
                         <FaAngleRight />
                       </Link>
                       <Link
@@ -168,9 +172,9 @@ function Sidebar() {
                       </Link>
                       <Link
                         to="/admin/application/funding"
-                        className={`${"nav__dropdown_item"} d-flex justify-content-between align-items-center`}
+                        className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
                       >
-                        Awaiting funding and Welcome letter issuance
+                        Awaiting funding and Welcome <br></br>letter issuance
                         <FaAngleRight />
                       </Link>
                     </div>
@@ -187,7 +191,9 @@ function Sidebar() {
                   <div
                     className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
                   >
-                    <img src="../../../images/tick-circle.svg" alt="" />
+                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="6" cy="6" r="5.25" stroke="#151517" stroke-width="1.5"/>
+                  </svg>
                   </div>
                   <span className={"nav__name"}>
                     Completed – Welcome Letter issued
@@ -204,7 +210,9 @@ function Sidebar() {
                   <div
                     className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
                   >
-                    <img src="../../../images/close-circle.svg" alt="" />
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="6" cy="6" r="5.25" stroke="#151517" stroke-width="1.5"/>
+                  </svg>
                   </div>
                   <span className={"nav__name"}>
                     Rejected - Pending Channel correction

@@ -123,18 +123,18 @@ if(fetchParams === 'upload'){
   return (
     <>
       <section className="">
-        <div className="container">
-          <div className="voucherFormMain upload_new_application">
+      
+          <div className="upload_new_application">
             {/* <h5>{convertToCamelCase(fetchParams)}</h5> */}
-            <h3>Upload New Application</h3>
+            <h3 className="card-title1 ps-5">Upload New Application</h3>
 
             <div className="">
-              <div className="  row my-5" id="table-contexual">
+              <div className="row my-5" id="table-contexual">
                 <div className="col-12">
                   <div className="">
                     <div className="">
-                      <div className="row align-items-center py-1">
-                        <div className="col-md-3">
+                      <div className="row align-items-center py-1 px-5">
+                        <div className="col-md-3 px-4">
                           <span>Filter</span>
                           <select
                             class="form-select"
@@ -195,7 +195,7 @@ if(fetchParams === 'upload'){
                             <table class="table">
                               <thead class="thead-light">
                                 <tr>
-                                  <th scope="col">S.No. </th>
+                                  <th scope="col" className="ps-4">S.No. </th>
                                   <th scope="col">Import Date </th>
                                   <th scope="col">Application no. </th>
                                   <th scope="col">Status </th>
@@ -208,7 +208,7 @@ if(fetchParams === 'upload'){
                                     className="pointer"
                                     //  onClick={() => navigateToAgreement(item)}
                                   >
-                                    <td>{index + 1}</td>
+                                    <td className="ps-4">{index + 1}</td>
                                     <td>
                                       {item?.currentDate.toLocaleDateString()}
                                     </td>
@@ -243,7 +243,7 @@ if(fetchParams === 'upload'){
               </div>
             </div>
           </div>
-        </div>
+        
       </section>
     </>
   );

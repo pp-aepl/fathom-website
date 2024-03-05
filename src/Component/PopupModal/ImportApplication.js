@@ -59,7 +59,7 @@ function ImportApplication() {
       >
         <Modal.Header closeButton>
           <Modal.Title>
-            <h3 className="fs-2">Import Application</h3>
+            <h3 className="card-title1">Import Application</h3>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-5">
@@ -94,14 +94,14 @@ function ImportApplication() {
             <div>
               <UploadToFile />
             </div>
-            <div className="mt-3">
-              <p className="pb-4">Files Uploaded</p>
+            <div className="buttons d-block pt-3 ">
+              {/* <p className="pb-4">Files Uploaded</p> */}
               {fileType === "FILEUPLOADED" && (
                 <div
-                  className={`d-flex align-items-center justify-content-around ${"saveBtn"}`}
+                  className={`d-flex align-items-center justify-content-around pb-4 ${"saveBtn"}`}
                 >
-                  <button>Files Uploaded</button>
-                  <button>Duplicated files</button>
+                  <button className="w-50 me-3">Files Uploaded</button>
+                  <button className="w-50">Duplicated files</button>
                 </div>
               )}
 
