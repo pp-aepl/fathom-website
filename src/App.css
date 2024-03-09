@@ -5404,6 +5404,10 @@ border-color: #8282FF;
   border-radius: 7px;
   background: #f8f8ff;
 }
+.scanQr_code{
+  width: 258px;
+  height: 258px; 
+}
 .progress{ height: 2px;}
 .progress.dashboard-progess{ height: 7px;}
 

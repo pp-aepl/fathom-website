@@ -3,14 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import Header from "../Sidebar/Nabvar/Header";
 import permissions from "../../Config/Config.json";
 
-
 function Login() {
   console.log({ permissions });
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [apiErrors, setApiErrors] = useState({ message: "", response: "" });
   const [errors, setErrors] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+  const [showQRcode, setShowQRcode] = useState(false);
   const [inpData, setInpData] = useState({
     email: "",
     password: "",
@@ -23,7 +22,9 @@ function Login() {
     let payload = { ...inpData };
     localStorage.setItem("cred", JSON.stringify(payload));
     // window.location.href = '/sidebar';
-    navigate("/admin/dashboard");
+   navigate("/admin/dashboard");
+    // setShowQRcode(true); // for two factor
+
     // navigate("/otp");
 
     // setIsLoading(true);
@@ -142,12 +143,26 @@ function Login() {
                 <div className="row">
                   <div className="col-md-4 login_sec">
                     <div className="py-5 ps-4 pe-3">
-                      <h3>Welcome back.</h3>
-                      <p className="auth-subtitle mb-5">
-                      To access your online banking, you'll need to log <br></br>
-in securely using your unique credentials.
-                      </p>
-                      <form
+                      <h3>{showQRcode ? `Enable Two Factor Authentication` : 'Welcome back.'}</h3>
+                      {showQRcode ?  <p className="auth-subtitle mb-5">
+                      Please scan the QR code to generate
+                        <br></br>
+                        a secure number.
+                      </p> :  
+                       <p className="auth-subtitle mb-5">
+                        To access your online banking, you'll need to log{" "}
+                        <br></br>
+                        in securely using your unique credentials.
+                      </p> 
+                      }
+                    {showQRcode ?  <img
+                        className="scanQr_code"
+                        src="../../../images/HelloTech-qr-code.webp"
+                        alt=""
+
+                      /> : 
+                      <>
+                        <form
                         action=""
                         method="post"
                         onSubmit={handleSubmit}
@@ -155,9 +170,9 @@ in securely using your unique credentials.
                       >
                         <div className="form-group position-relative">
                           <label>Your email address</label>
-                          
+
                           <input
-                          className="p-2 mb-4 rounded w-100 border"
+                            className="p-2 mb-4 rounded w-100 border"
                             type="email"
                             // className="form-select"
                             name="email"
@@ -183,9 +198,10 @@ in securely using your unique credentials.
                         {/* Login Hide and Show */}
                         <div className="form-group position-relative">
                           <label>Your password</label>
-                          <input type={showPassword ? "text" : "password"}
+                          <input
+                            type={showPassword ? "text" : "password"}
                             //type="password"
-                            className="p-2 mb-2 rounded w-100 pr-4 border" 
+                            className="p-2 mb-2 rounded w-100 pr-4 border"
                             name="password"
                             placeholder=""
                             autoComplete={false}
@@ -242,23 +258,16 @@ in securely using your unique credentials.
                         </div>
 
                         <p className="trabble">
-                          <a href="">
-                          Reset Password
-                            </a>
+                          <a href="">Reset Password</a>
                         </p>
                       </form>
+                      </> 
+                      }
+                    
+
                     </div>
                   </div>
-                  {/* <div className="col-md-8 d-none d-md-block">
-                    <div className="footBallImg">
-                      <img
-                        className="img-fluid"
-                        src="../../../images/logo2.jpeg"
-                        alt=""
-
-                      />
-                    </div>
-                  </div> */}
+                
                 </div>
               </div>
             </div>
