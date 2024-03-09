@@ -52,8 +52,16 @@ export default [
     },
     {
         name: "Report",
-        icon: "",
-        url: "#item2"
+        children:[
+          {
+            name: "Disbursal Report",
+            url: "#child431"
+          },
+          {
+            name: "Pending / Error",
+            url: "#child431"
+          },
+        ]
       }
   ];
   

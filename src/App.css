@@ -5519,7 +5519,7 @@ border-color: #8282FF;
   max-height: 1000px;
   transition: max-height 0.5s linear;
 }
-.nav li:nth-child(1) span{ margin-left: 10px; cursor: pointer; padding:5px 10px 5px 35px; background: url(../public/images/dashboard_icon.svg) no-repeat 0 5px;}
+.nav li:nth-child(1) span{ cursor: pointer; padding:5px 10px 5px 35px; background: url(../public/images/dashboard_icon.svg) no-repeat 0 5px;}
 .nav li:nth-child(2) span{ cursor: pointer; padding:5px 10px 5px 35px; background: url(../public/images/application_icon.svg) no-repeat 0 5px;}
 .nav li:nth-child(3) span{cursor: pointer;padding:5px 10px 5px 35px; background: url(../public/images/report_icon.svg) no-repeat 0 5px;}
 .nav li .nav-submenu li:nth-child(1n) span {margin-left: 10px; cursor: pointer;padding:5px 10px 5px 35px; background: url(../public/images/circle1.svg) no-repeat 0 10px;}
