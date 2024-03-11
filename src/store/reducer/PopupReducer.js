@@ -19,6 +19,8 @@ export const slicepopupReducer = createSlice({
       duplicatedModal:false,
       genratedModal:false,
       murabahaModal:false,
+      logoutModal:false,
+      loginValidationModal:false,
       scanModal:false,
       buyModal: false,
       ticketData: {},
