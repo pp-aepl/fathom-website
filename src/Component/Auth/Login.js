@@ -2,14 +2,33 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../Sidebar/Nabvar/Header";
 import permissions from "../../Config/Config.json";
+import { API } from "../../apiwrapper";
+import { apiURl } from "../../store/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { isValid, validateEmail } from "../Common/Validation/Validation";
+import { SetloaderData, SetpopupReducerData } from "../../store/reducer";
+import { validationMessages } from "../../store/actions/api-url";
+import LoginValidationModal from "../PopupModal/LoginValidationModal";
 
-function Login() {
-  console.log({ permissions });
+// import { SetpopupReducerData } from "../../store/reducer";
+// import LogoutModal from "../PopupModal/LogoutModal";
+
+function Login({ handleLogin }) {
+  console.log(handleLogin,'====>18')
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [apiErrors, setApiErrors] = useState({ message: "", response: "" });
   const [errors, setErrors] = useState({});
   const [showQRcode, setShowQRcode] = useState(false);
+
+   const { PopupReducer } = useSelector((state) => state);
+  // const { logoutModal = false } = PopupReducer?.modal;
+   const { loginValidationModal = false } = PopupReducer?.modal;
+
+  const dispatch = useDispatch();
+
+
   const [inpData, setInpData] = useState({
     email: "",
     password: "",
@@ -19,79 +38,67 @@ function Login() {
   // console.log(AuthAdmin,"AuthAdminUser")
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let payload = { ...inpData };
-    localStorage.setItem("cred", JSON.stringify(payload));
-    // window.location.href = '/sidebar';
-   navigate("/admin/dashboard");
+    // dispatch(SetpopupReducerData({ modalType: "LOGOUT", logoutModal: true }));
     // setShowQRcode(true); // for two factor
+    navigate("/admin/dashboard");
+    handleLogin({  ...inpData});
+    try {
+      let err = validateAll();
+      if (isValid(err)) {
+       console.log(err,'err==>')
+         dispatch(SetloaderData(true));
+       
+        await API({
+          url: apiURl.login,
+          method: "POST",
+          body: { ...inpData },
+        }).then((data) => {
+          console.log(data)
+          if (data?.status || data?.status === true) {
+            const token = data?.token;
+            const accessToken = data?.accessToken;
+            const roleId = data?.response?.roleID?._id
+           
 
-    // navigate("/otp");
+            if (!token) {
+             setApiErrors({ message: validationMessages.unableToLogin });
+              return;
+            }
+            localStorage.clear();
+            localStorage.setItem("token", token);
+            localStorage.setItem("accessToken", accessToken);
+            localStorage.setItem("roleId", roleId);
+            localStorage.setItem('cred', JSON.stringify(inpData));
+            toast.success(data?.message);
+            // dispatch(SetAuthUserData(data?.response));
+            handleLogin({  ...inpData});
+            navigate("/admin/dashboard");
 
-    // setIsLoading(true);
-    // try {
-    //   let err = validateAll();
-    //   if (isValid(err)) {
-    //     await ADMINAPI({
-    //       url: adminApiUrl.login,
-    //       method: "POST",
-    //       body: { ...inpData },
-    //     })
-    //       .then(async (data) => {
-    //         if (data?.status || data?.status === true) {
-    //           const token = data?.token;
-    //           const accessToken = data?.accessToken;
-    //           const roleId = data?.response?.roleID?._id;
-    //           toast.success(data?.message);
-    //           if (!token) {
-    //             setApiErrors({ message: validationMessages.unableToLogin });
-    //             return;
-    //           }
-    //           let isValidUser = data.response;
-    //           localStorage.clear();
-    //           storage().set("admintoken", token);
-    //           storage().set("adminaccesstoken", accessToken);
-    //           storage().set("roleId", roleId);
-    //           storage().set("cred", JSON.stringify(inpData));
-    //           // console.log(data.response              ,"datadatadata");
-    //           dispatch(SetAuthAdminData(data?.response));
-    //           dispatch(SetAuthUserData(data?.response));
-    //           await fetchLocationList();
-    //           dispatch(
-    //             SetpopupReducerData({
-    //               modalType: "NEWPASSWORD",
-    //               showModal: true,
-    //             })
-    //           );
-    //           setTimeout(() => {
-    //             if (isValidUser?.firstName && isValidUser?.contact?.mobile) {
-    //               navigate.push("/admin/dashboard/main", { scroll: false });
-    //               // console.log(isValidUser?.firstName, isValidUser?.lastName, isValidUser?.contact?.mobile, "userData is avilable");
-    //             } else {
-    //               // console.log("userData is not avilable");
-    //               navigate.push("/admin/dashboard/additional-details", {
-    //                 scroll: false,
-    //               });
-    //             }
-    //           }, 200);
-    //         } else {
-    //           toast.error(data?.message);
-    //           setApiErrors({ message: data?.message });
-    //           dispatch(SetAuthAdminData({}));
-    //         }
-    //       })
-    //       .catch((err) => {
-    //         toast.error("Invaild credentials for brand admin");
-    //       });
-    //   } else {
-    //     setErrors({ ...err });
-    //     // setApiErrors({ message: error?.message });
-    //     // dispatch(SetloaderData(false));
-    //   }
-    // } catch (error) {
-    //   // toast.error(error);
-    //   // setApiErrors({ message: error?.message });
-    //   // dispatch(SetloaderData(false));
-    // }
+            // setTimeout(() => {
+            //   navigate("/");
+            // }, 500);
+            // dispatch(
+            //   // SetpopupReducerData({ modalType: "NEWPASSWORD", showModal: true })
+            // );
+          } else {
+            console.log((data?.message),'message')
+            toast.error(data?.message);
+            setApiErrors({ message: data?.message });
+            // dispatch(SetAuthUserData({}));
+          }
+        });
+       
+        dispatch(SetloaderData(false));
+      } else {
+        setErrors(err);
+        dispatch(SetpopupReducerData({ modalType: "LOGIN", loginValidationModal: true }));
+      }
+    } catch (error) {
+      toast.error(error);
+      setApiErrors({ message: error.message });
+      dispatch(SetloaderData(false));
+    }
+  
   };
 
   const togglePasswordVisibility = () => {
@@ -99,31 +106,28 @@ function Login() {
   };
   const handleChange = (e) => {
     setInpData({ ...inpData, [e.target.name]: e.target.value });
-    // handleValidate(e);
-    // setApiErrors({ message: "" });
+    handleValidate(e);
+    setApiErrors({ message: "" });
     //setPassword();  //update here need to ask
   };
 
-  // const handleValidate = (e) => {
-  //   const errors1 = {};
-  //   switch (e.target.name) {
-  //     case "email":
-  //       errors1.email = validateEmail(e.target.value);
-  //       break;
-  //     case "password":
-  //       errors1.password = validateRequirePass(e.target.value);
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  //   setErrors(errors1);
-  // };
-  // const validateAll = () => {
-  //   let err1 = {};
-  //   err1.email = validateEmail(inpData.email);
-  //   err1.password = validateRequirePass(inpData.password);
-  //   return err1;
-  // };
+  const handleValidate = (e) => {
+    const errors1 = {};
+    switch (e.target.name) {
+      case "email":
+        errors1.email = validateEmail(e.target.value);
+        break;
+   
+      default:
+        break;
+    }
+    setErrors(errors1);
+  };
+  const validateAll = () => {
+    let err1 = {};
+    err1.email = validateEmail(inpData.email);
+    return err1;
+  };
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
@@ -132,8 +136,10 @@ function Login() {
     }
   };
 
+
   return (
     <>
+     {loginValidationModal && <LoginValidationModal/>} 
       <Header />
       <section className="adminLogin">
         <div className="container">
@@ -174,14 +180,13 @@ function Login() {
                           <input
                             className="p-2 mb-4 rounded w-100 border"
                             type="email"
-                            // className="form-select"
                             name="email"
-                            // placeholder="example@gmail.com"
+                             placeholder="example@gmail.com"
                             autoComplete={false}
                             required
                             value={inpData.email}
                             onChange={handleChange}
-                            // onBlur={handleValidate}
+                           onBlur={handleValidate}
                           />
                         </div>
 
@@ -194,7 +199,7 @@ function Login() {
                         </span>
                       ) : (
                         ""
-                      )} */}
+                      )}  */}
                         {/* Login Hide and Show */}
                         <div className="form-group position-relative">
                           <label>Your password</label>
@@ -206,11 +211,10 @@ function Login() {
                             placeholder=""
                             autoComplete={false}
                             required
-                            // value={password}
-                            //onChange={(e) => setPassword(e.target.value)}
+                            // onChange={(e) => setPassword(e.target.value)}
                             value={inpData.password}
                             onChange={handleChange}
-                            // onBlur={handleValidate}
+                           onBlur={handleValidate}
                           />
 
                           <div className="showPasswordLogin">
@@ -237,12 +241,12 @@ function Login() {
                             </span>
                           </div>
                         </div>
-                        {errors.password ? (
+                        {apiErrors.message ? (
                           <span
                             className="text-danger"
                             style={{ fontSize: "14px" }}
                           >
-                            {errors.password}
+                            {apiErrors.message}
                           </span>
                         ) : (
                           ""
