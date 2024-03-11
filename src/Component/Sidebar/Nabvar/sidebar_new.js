@@ -4,7 +4,7 @@ export default [
     icon: "",
     url: "/admin/dashboard",
   },
-
+ 
   {
     name: "Application Statuses",
     children: [
