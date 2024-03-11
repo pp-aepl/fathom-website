@@ -78,23 +78,45 @@ function Sidebar() {
                 </Link>
               </div>
 
+
+              <div className={"nav__items"}>
               <div
-                className={`${"nav__items"}  ${
-                  showActive === 1 ? "active" : ""
+                className={`${"nav__dropdown"}  ${
+                   openDropdown === 0 ? "open" : ""
                 } `}
               >
-                <Link className={"nav__link"} to="/admin/application/status">
+                {/* showActive === 1 ? "active" : ""&& */}
+                 
+                <a
+                    to="#"
+                    className={"nav__link"}
+                    onClick={() => toggleDropdown(0)}
+                  >
+               
+                 <Link className={"nav__link"} to="/admin/application/status">
                   <div
                     className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
                   >
                     <img src="../../../images/application_icon.svg" alt="" />
                   </div>
                   <span className={"nav__name"}>Application status</span>
+                  <i
+                      className={` ${"ms_auto"} ${"bx_chevron_down"} ${"nav__icon"} ${
+                        openDropdown === 0 ? "open" : ""
+                      } `}
+                    >
+                      <FaAngleDown />
+                    </i>
                 </Link>
-              </div>
+                </a>
+                <div className={`${"nav__dropdown_collapse"} ${
+                      openDropdown === 0 ? "open" : ""
+                    }`}
+                  >
+                    <div className={"nav__dropdown_content"}>
               <div
                 className={`${"nav__items"}  ${
-                  showActive === 1 ? "active" : ""
+                  showActive === 0 ? "active" : ""
                 } `}
               >
                 <Link className={"nav__link"} to="/admin/application/upload">
@@ -112,13 +134,13 @@ function Sidebar() {
               <div className={"nav__items"}>
                 <div
                   className={`${"nav__dropdown"} ${
-                    openDropdown === 1 ? "open" : ""
+                    openDropdown === 2 ? "open" : ""
                   }  `}
                 >
                   <a
                     to="#"
                     className={"nav__link"}
-                    onClick={() => toggleDropdown(1)}
+                    onClick={() => toggleDropdown(2)}
                   >
                     <div
                       className={` ${"icon_cmn"} ${"bx_home"} ${"nav__icon"}`}
@@ -130,7 +152,7 @@ function Sidebar() {
                     <span className={"nav__name"}>Under Process</span>
                     <i
                       className={` ${"ms_auto"} ${"bx_chevron_down"} ${"nav__icon"} ${
-                        openDropdown === 1 ? "open" : ""
+                        openDropdown === 3 ? "open" : ""
                       } `}
                     >
                       <FaAngleDown />
@@ -138,7 +160,7 @@ function Sidebar() {
                   </a>
                   <div
                     className={`${"nav__dropdown_collapse"} ${
-                      openDropdown === 1 ? "open" : ""
+                      openDropdown ===3 ? "open" : ""
                     }`}
                   >
                     <div className={"nav__dropdown_content"}>
@@ -180,6 +202,10 @@ function Sidebar() {
                     </div>
                   </div>
                 </div>
+                </div>
+              </div>
+
+
               </div>
 
               <div
@@ -219,7 +245,8 @@ function Sidebar() {
                   </span>
                 </Link>
               </div>
-
+              </div>
+</div>
               {/* <div className={"nav__items"}>
                 <Link to="/admin/dashboard/sponser" className={"nav__link"}>
                   <div
@@ -234,27 +261,24 @@ function Sidebar() {
 
 
               <div className={"nav__items"}>
-                <div
-                  className={`${"nav__dropdown"} ${
-                    openDropdown === 1 ? "open" : ""
+                <div className={`${"nav__dropdown"} ${
+                    openDropdown === 3 ? "open" : ""
                   }  `}
                 >
                   <a
                     to="#"
                     className={"nav__link"}
-                    onClick={() => toggleDropdown(1)}
+                    onClick={() => toggleDropdown(3)}
                   >
                     <div
                       className={` ${"icon_cmn"} ${"bx_home"} ${"nav__icon"}`}
                     >
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="6" cy="6" r="5.25" stroke="#151517" stroke-width="1.5"/>
-                  </svg>
+                 <img src="../../images/report_icon.svg"></img>
                     </div>
                     <span className={"nav__name"}>Reports</span>
                     <i
                       className={` ${"ms_auto"} ${"bx_chevron_down"} ${"nav__icon"} ${
-                        openDropdown === 1 ? "open" : ""
+                        openDropdown === 3 ? "open" : ""
                       } `}
                     >
                       <FaAngleDown />
@@ -262,7 +286,7 @@ function Sidebar() {
                   </a>
                   <div
                     className={`${"nav__dropdown_collapse"} ${
-                      openDropdown === 1 ? "open" : ""
+                      openDropdown === 3 ? "open" : ""
                     }`}
                   >
                     <div className={"nav__dropdown_content"}>
