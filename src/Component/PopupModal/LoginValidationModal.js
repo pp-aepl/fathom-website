@@ -7,7 +7,10 @@ function LoginValidationModal() {
   const dispatch = useDispatch();
   const { PopupReducer } = useSelector((state) => state);
   const { loginValidationModal = false } = PopupReducer?.modal;
+  const messageType = PopupReducer?.modal?.type;
+console.log({messageType})
   let loginAccess = localStorage.getItem('accessToken')
+
 
   const handleClosePopup = () => {
     dispatch(SetpopupReducerData({ modalType: "LOGIN", loginValidationModal: false }));
@@ -47,8 +50,9 @@ function LoginValidationModal() {
           <div className="">
            
             <h3 style={{ textAlign: "center" }}>
-                {loginAccess ? 'Verification Successful' : 
-               <span dangerouslySetInnerHTML={{ __html: 'User name or <br>Password Invalid' }} /> }
+                { messageType 
+              //  <span dangerouslySetInnerHTML={{ __html: 'User name or <br>Password Invalid' }} /> 
+               }
            
             </h3>
           </div>

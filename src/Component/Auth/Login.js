@@ -40,12 +40,11 @@ function Login({ handleLogin }) {
     e.preventDefault();
     // dispatch(SetpopupReducerData({ modalType: "LOGOUT", logoutModal: true }));
     // setShowQRcode(true); // for two factor
-    navigate("/admin/dashboard");
-    handleLogin({  ...inpData});
+  //  navigate("/admin/dashboard");
+  //  handleLogin({  ...inpData});
     try {
       let err = validateAll();
       if (isValid(err)) {
-       console.log(err,'err==>')
          dispatch(SetloaderData(true));
        
         await API({
@@ -53,7 +52,6 @@ function Login({ handleLogin }) {
           method: "POST",
           body: { ...inpData },
         }).then((data) => {
-          console.log(data)
           if (data?.status || data?.status === true) {
             const token = data?.token;
             const accessToken = data?.accessToken;
@@ -81,9 +79,10 @@ function Login({ handleLogin }) {
             //   // SetpopupReducerData({ modalType: "NEWPASSWORD", showModal: true })
             // );
           } else {
-            console.log((data?.message),'message')
             toast.error(data?.message);
             setApiErrors({ message: data?.message });
+            dispatch(SetpopupReducerData({ modalType: "LOGIN", loginValidationModal: true ,type:data?.message}));
+
             // dispatch(SetAuthUserData({}));
           }
         });
@@ -91,11 +90,13 @@ function Login({ handleLogin }) {
         dispatch(SetloaderData(false));
       } else {
         setErrors(err);
-        dispatch(SetpopupReducerData({ modalType: "LOGIN", loginValidationModal: true }));
+        dispatch(SetpopupReducerData({ modalType: "LOGIN", loginValidationModal: true,type:'User name or Password Invalid' }));
       }
     } catch (error) {
       toast.error(error);
       setApiErrors({ message: error.message });
+      dispatch(SetpopupReducerData({ modalType: "LOGIN", loginValidationModal: true,type:error.message }));
+
       dispatch(SetloaderData(false));
     }
   
@@ -241,7 +242,7 @@ function Login({ handleLogin }) {
                             </span>
                           </div>
                         </div>
-                        {apiErrors.message ? (
+                        {/* {apiErrors.message ? (
                           <span
                             className="text-danger"
                             style={{ fontSize: "14px" }}
@@ -250,7 +251,7 @@ function Login({ handleLogin }) {
                           </span>
                         ) : (
                           ""
-                        )}
+                        )} */}
                         <div className="form-group forget-password text-end mt-3 forgot"></div>
                         <div className="form-group mt-lg-4 mt-3">
                           <button
