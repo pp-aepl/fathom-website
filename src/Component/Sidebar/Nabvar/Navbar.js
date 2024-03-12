@@ -16,6 +16,13 @@ function Navbar() {
     }));
   };
 
+
+  var element = document.getElementsByClassName("nav li:nth-child(2) span");
+element.classList.add("open");
+
+element.classList.remove("close");
+ 
+
   const handler = (children) => {
     return children.map((child, i) => {
       console.log(child,'child==>21')

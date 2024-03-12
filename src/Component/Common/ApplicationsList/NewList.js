@@ -315,7 +315,7 @@ function NewList({ id }) {
                         ></input>
                       </div>
                       <select
-                        class="form-select w-91 d-inline-block border-0"
+                        class="form-select w-85 d-inline-block border-0"
                         aria-label="Default select example"
                       >
                         <option selected>Months</option>

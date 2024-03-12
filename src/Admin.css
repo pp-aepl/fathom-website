@@ -2559,17 +2559,21 @@ border: 1px solid #316cf4;
 .upload_new_application .verticle {
   vertical-align: middle;
 }
-.upload_new_application .w-91 {
-  width:91%;
+.upload_new_application .w-85 {
+  width:85%;
 }
 .upload_new_application .text-right {
   text-align: right;
 }
 .upload_new_application table th {
   background: rgba(183, 183, 255, 0.1);
+  font-size: 15px;
+  font-family: "Inter Tight", sans-serif;
 }
 .upload_new_application table td {
   padding: 20px 10px;
+  font-size: 15px;
+  font-family: "Inter Tight", sans-serif;
 }
 
 .modal_details h3 {
@@ -2633,7 +2637,7 @@ border: 1px solid #316cf4;
 .nav__list{z-index: 99; position: relative;}
 .nav__name{ margin-right:10px;}
 .form-select,.form-control{ font-size: 1.6rem;}
-#main{margin:0 0 0 305px;}
+.content{margin:0 0 0 0; width: 100%;}
 .main_dashboar .progress-bar{ height: 10px!important; position: relative; top: -3px;}
 .commonHeader{ padding:20px; background: #fff; border-bottom: 1px solid rgba(238, 241, 240, 1);}
 .commonHeader h1{font-size: 18px; line-height: 25px; font-weight: bold; color: rgba(21, 21, 23, 1);}
@@ -2687,3 +2691,4 @@ border: 1px solid #316cf4;
 .muraba td{ border-bottom:1px solid rgba(242, 242, 242, 1);}
 .button{font-family: "Inter Tight", sans-serif;}
 .h-75px{ height: 75px;}
+.form-select, .form-control{ font-size: 14px;font-family: "Inter Tight", sans-serif;}

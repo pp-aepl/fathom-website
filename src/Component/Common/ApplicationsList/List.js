@@ -143,7 +143,7 @@ if(fetchParams === 'upload'){
                     <div className="">
                       <div className="row align-items-center py-1 px-5">
                         <div className="col-md-3 px-4">
-                          <span>Filter</span>
+                          <label className="label">Filter</label>
                           <select
                             class="form-select"
                             aria-label="Default select example"
@@ -155,7 +155,7 @@ if(fetchParams === 'upload'){
                           </select>
                         </div>
                         <div className="col-3">
-                          <span>Search Applictaion</span>
+                        <label className="label">Search Applictaion</label>
                           <div className="form-group has-search">
                             {/* <span className="fa fa-search form-control-feedback"></span> */}
                             <input
@@ -174,7 +174,7 @@ if(fetchParams === 'upload'){
                           </div>
                         </div>
                         <div className="col-3 ">
-                          <span>Date from</span>
+                        <label className="label">Date from</label>
                           <DatePicker
                             selected={selectedStartdate}
                             onChange={startDateFilter}
@@ -184,7 +184,7 @@ if(fetchParams === 'upload'){
                           />
                         </div>
                         <div className="col-3 ">
-                          <span>Date to</span>
+                        <label className="label">Date to</label>
                           <DatePicker
                             minDate={new Date(selectedStartdate)}
                             selected={selectedEnddate}

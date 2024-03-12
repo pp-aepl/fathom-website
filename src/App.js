@@ -167,11 +167,12 @@ function App() {
       ) }
        {(isSidebar==='SIDEBAR') &&    
       <div className="main-wrapper">
+        
       <aside className="sidebar">
         <div className="sidebar-header" />
         <ul className="nav">{handler(SidebarRoutes,isSidebar)}</ul>
       </aside>
-      <main className="">
+      <div className="content">
         <Routes>
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/application/:userId" element={<List />} />
@@ -193,7 +194,7 @@ function App() {
 
           <Route index element={<Navigate to="/" replace />} />
         </Routes>
-      </main>
+      </div>
     </div>
      }
        
