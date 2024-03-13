@@ -40,7 +40,7 @@ function Login({ handleLogin }) {
     e.preventDefault();
     // dispatch(SetpopupReducerData({ modalType: "LOGOUT", logoutModal: true }));
     // setShowQRcode(true); // for two factor
-  //  navigate("/admin/dashboard");
+   navigate("/admin/dashboard");
   //  handleLogin({  ...inpData});
     try {
       let err = validateAll();
@@ -257,6 +257,7 @@ function Login({ handleLogin }) {
                           <button
                             className="login100-form-btn"
                             onClick={handleSubmit}
+                           
                           >
                             Log in
                           </button>

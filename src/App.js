@@ -170,7 +170,22 @@ function App() {
         
       <aside className="sidebar">
         <div className="sidebar-header" />
+        <div className="d-block p-4 pt-2 cursor border-bottom">
+                    <img
+                      alt="logo"
+                      src="../../../images/fathom_logo.png"
+                      class="header_logo d-inline-block"
+                    ></img>
+                    <span className="logo-content d-inline-block verticle">Fathom</span>
+                  </div>
         <ul className="nav">{handler(SidebarRoutes,isSidebar)}</ul>
+
+<div className="logout p-3 border-top">
+  <img src="../../../images/profile.svg" className="d-inline-block verticle cursor me-4"></img>
+  <span className="d-inline-block text verticle me-4">Noor Abdullah</span>
+  <img src="../../../images/setting.svg"  className="d-inline-block verticle cursor me-2"></img>
+  <img src="../../../images/logout.svg" className="d-inline-block verticle cursor"></img>
+</div>
       </aside>
       <div className="content">
         <Routes>

@@ -65,7 +65,7 @@ element.classList.remove("close");
         <div className="App">
         <div className="main-wrapper">
           <aside className="sidebar">
-            <div className="sidebar-header" />
+            <div className="sidebar-header" />    
             <ul className="nav">{handler(SidebarRoutes)}</ul>
           </aside>
           <main className="content" />

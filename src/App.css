@@ -5491,9 +5491,10 @@ border-color: #8282FF;
 .sidebar {
   width: 290px;
   height: 100vh;
-  padding: 20px 10px 10px 0px;
+  padding: 20px 10px 10px 10px;
   background: #fff;
   font-size: 14px;
+  position: relative;
 }
 
 .nav-submenu {max-height: 0;overflow: hidden;transition: max-height 0.5s linear;cursor: pointer;}
@@ -5507,6 +5508,9 @@ border-color: #8282FF;
 .nav li ul.open ul li:nth-child(1n) a{ padding:0 0 0 20px!important;}
 .nav li:nth-child(2) span::after{ position: absolute; right: -20px; top: 12px; content:""; height:12px; width:20px; background: url(../public/images/arrow-circle-down1.svg) no-repeat 0 -5px;}
 .nav li .nav-submenu li:nth-child(1n) span:after{background: none;}
+.logout{ position: absolute; left:10px; bottom: 0; width: 90%;}
+.logout .text{ font-size: 14px; line-height: 16px; color: #000; width: auto;}
+.cursor{cursor: pointer;}
 
 
 

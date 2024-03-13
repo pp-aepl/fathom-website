@@ -128,7 +128,7 @@ if(fetchParams === 'upload'){
       
           <div className="upload_new_application">
             {/* <h5>{convertToCamelCase(fetchParams)}</h5> */}
-            <h3 className="card-title1 ps-5">{fetchParams === 'upload' ? 'Upload New Application' :
+            <h3 className="card-title1 ps-4">{fetchParams === 'upload' ? 'Upload New Application' :
              fetchParams === 'status' ? 'Upload New Application' :              
              fetchParams === 'completed' ? 'Completed – Welcome Letter Issued':
              fetchParams === 'rejected' ? 'Rejected - Pending Channel Correction':
