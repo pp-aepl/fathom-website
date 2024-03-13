@@ -33,34 +33,35 @@ console.log({messageType})
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header> 
-        <Modal.Title >
+        
+        <Modal.Header className="p-5 border-0"> 
+        <Modal.Title className="p-5 w-100 text-center">
+          
             {loginAccess ? 
              <img className="success-pic"
              src="../../images/success.png"/> : 
              <img
-             src="../../images/icon1.png"
-             style={{ height: "100px", paddingLeft: "19rem" }}
+             src="../../images/username_icon.png"
+             
            />
         }
            
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body className="p-5" >
+        
+        <Modal.Body className="p-5 margin-bottom">
           <div className="">
            
-            <h3 style={{ textAlign: "center" }}>
-                { messageType 
-              //  <span dangerouslySetInnerHTML={{ __html: 'User name or <br>Password Invalid' }} /> 
-               }
+            <div className="card-title1 text-center p-5">
+            User name or <br></br> Password Invalid
            
-            </h3>
+            </div>
           </div>
           <div
-            className={`d-flex align-items-center justify-content-around pt-4 ${"saveBtn"}`}
+            className={`d-flex align-items-center buttons justify-content-around pt-4 ${"saveBtn"}`}
           >
-            <button
-              style={{ minWidth: "-webkit-fill-available" }}
+            <button  
+              style={{minWidth: "-webkit-fill-available" }}
               onClick={(e) => onSubmit(e, "create")}
             >
           {loginAccess ? 'Okey' : 'Try again'}   

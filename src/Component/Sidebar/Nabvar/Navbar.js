@@ -17,7 +17,7 @@ function Navbar() {
   };
 
 
-  var element = document.getElementsByClassName("nav li:nth-child(2) span");
+var element = document.getElementsByClassName("nav li:nth-child(2) span.open");
 element.classList.add("open");
 
 element.classList.remove("close");

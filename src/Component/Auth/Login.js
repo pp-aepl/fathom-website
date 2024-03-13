@@ -90,7 +90,7 @@ function Login({ handleLogin }) {
         dispatch(SetloaderData(false));
       } else {
         setErrors(err);
-        dispatch(SetpopupReducerData({ modalType: "LOGIN", loginValidationModal: true,type:'User name or Password Invalid' }));
+        dispatch(SetpopupReducerData({ modalType: "LOGIN", loginValidationModal: true,type:'User name or <br> Password Invalid' }));
       }
     } catch (error) {
       toast.error(error);
