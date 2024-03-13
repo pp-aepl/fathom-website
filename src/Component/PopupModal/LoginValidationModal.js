@@ -8,19 +8,21 @@ function LoginValidationModal() {
   const { PopupReducer } = useSelector((state) => state);
   const { loginValidationModal = false } = PopupReducer?.modal;
   const messageType = PopupReducer?.modal?.type;
-console.log({messageType})
-  let loginAccess = localStorage.getItem('accessToken')
-
+  console.log({ messageType });
+  let loginAccess = localStorage.getItem("accessToken");
 
   const handleClosePopup = () => {
-    dispatch(SetpopupReducerData({ modalType: "LOGIN", loginValidationModal: false }));
+    dispatch(
+      SetpopupReducerData({ modalType: "LOGIN", loginValidationModal: false })
+    );
   };
 
   const onSubmit = async (type) => {
     console.log(type, "17");
-    dispatch(SetpopupReducerData({ modalType: "LOGIN", loginValidationModal: false }));
+    dispatch(
+      SetpopupReducerData({ modalType: "LOGIN", loginValidationModal: false })
+    );
   };
-
 
   return (
     <>
@@ -33,27 +35,25 @@ console.log({messageType})
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header> 
-        <Modal.Title >
-            {loginAccess ? 
-             <img className="success-pic"
-             src="../../images/success.png"/> : 
-             <img
-             src="../../images/icon1.png"
-             style={{ height: "100px", paddingLeft: "19rem" }}
-           />
-        }
-           
+        <Modal.Header>
+          <Modal.Title>
+            {loginAccess ? (
+              <img className="success-pic" src="../../images/success.png" />
+            ) : (
+              <img
+                src="../../images/icon1.png"
+                style={{ height: "100px", paddingLeft: "19rem" }}
+              />
+            )}
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body className="p-5" >
+        <Modal.Body className="p-5">
           <div className="">
-           
             <h3 style={{ textAlign: "center" }}>
-                { messageType 
-              //  <span dangerouslySetInnerHTML={{ __html: 'User name or <br>Password Invalid' }} /> 
-               }
-           
+              {
+                messageType
+                //  <span dangerouslySetInnerHTML={{ __html: 'User name or <br>Password Invalid' }} />
+              }
             </h3>
           </div>
           <div
@@ -63,7 +63,7 @@ console.log({messageType})
               style={{ minWidth: "-webkit-fill-available" }}
               onClick={(e) => onSubmit(e, "create")}
             >
-          {loginAccess ? 'Okey' : 'Try again'}   
+              {loginAccess ? "Okey" : "Try again"}
             </button>
           </div>
         </Modal.Body>
@@ -72,4 +72,4 @@ console.log({messageType})
   );
 }
 
-export default LoginValidationModal
+export default LoginValidationModal;

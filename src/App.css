@@ -5495,7 +5495,9 @@ border-color: #8282FF;
   background: #fff;
   font-size: 14px;
 }
-
+#main{
+  margin-left: 300px;
+}
 .nav-submenu {max-height: 0;overflow: hidden;transition: max-height 0.5s linear;cursor: pointer;}
 .nav-submenu.open {max-height: 1000px;transition: max-height 0.5s linear;}
 .nav li:nth-child(1) span{ cursor: pointer; padding:5px 10px 5px 35px; background: url(../public/images/dashboard_icon.svg) no-repeat 0 5px;}

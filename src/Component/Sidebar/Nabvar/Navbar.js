@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
-import Header from './Header'
-import { Outlet } from 'react-router-dom'
-import Sidebar from '../Sidebar'
+import React, { useState } from "react";
+import Header from "./Header";
+import { Outlet } from "react-router-dom";
+import Sidebar from "../Sidebar";
 import SidebarRoutes from "./sidebar_new";
-
 
 function Navbar() {
   const [state, setState] = useState({});
@@ -16,16 +15,14 @@ function Navbar() {
     }));
   };
 
+  var element = document?.getElementsByClassName("nav li:nth-child(2) span");
+  element?.classList?.add("open");
 
-  var element = document.getElementsByClassName("nav li:nth-child(2) span");
-element.classList.add("open");
-
-element.classList.remove("close");
- 
+  element?.classList?.remove("close");
 
   const handler = (children) => {
     return children.map((child, i) => {
-      console.log(child,'child==>21')
+      console.log(child, "child==>21");
       const category = !child.category ? null : (
         <div className="nav-item category">{child.category}</div>
       );
@@ -61,29 +58,26 @@ element.classList.remove("close");
 
   return (
     <div id="app">
-        <div className="sidebar">
+      <div className="sidebar">
         <div className="App">
-        <div className="main-wrapper">
-          <aside className="sidebar">
-            <div className="sidebar-header" />
-            <ul className="nav">{handler(SidebarRoutes)}</ul>
-          </aside>
-          <main className="content" />
-          
+          <div className="main-wrapper">
+            <aside className="sidebar">
+              <div className="sidebar-header" />
+              <ul className="nav">{handler(SidebarRoutes)}</ul>
+            </aside>
+            <main className="content" />
+          </div>
         </div>
       </div>
-        </div>
-        {/* <header className="mainHeader">
+      {/* <header className="mainHeader">
           <Header />
         </header> */}
-        <div id="main">
+      <div id="main">
         {/* <Header /> */}
-          <Outlet />
-        </div>
-      
+        <Outlet />
       </div>
-  
-  )
+    </div>
+  );
 }
 
-export default Navbar
+export default Navbar;

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../Sidebar/Nabvar/Header";
-import permissions from "../../Config/Config.json";
 import { API } from "../../apiwrapper";
 import { apiURl } from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,20 +13,18 @@ import LoginValidationModal from "../PopupModal/LoginValidationModal";
 // import { SetpopupReducerData } from "../../store/reducer";
 // import LogoutModal from "../PopupModal/LogoutModal";
 
-function Login({ handleLogin }) {
-  console.log(handleLogin,'====>18')
+function Login() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [apiErrors, setApiErrors] = useState({ message: "", response: "" });
   const [errors, setErrors] = useState({});
   const [showQRcode, setShowQRcode] = useState(false);
 
-   const { PopupReducer } = useSelector((state) => state);
+  const { PopupReducer } = useSelector((state) => state);
   // const { logoutModal = false } = PopupReducer?.modal;
-   const { loginValidationModal = false } = PopupReducer?.modal;
+  const { loginValidationModal = false } = PopupReducer?.modal;
 
   const dispatch = useDispatch();
-
 
   const [inpData, setInpData] = useState({
     email: "",
@@ -40,13 +37,13 @@ function Login({ handleLogin }) {
     e.preventDefault();
     // dispatch(SetpopupReducerData({ modalType: "LOGOUT", logoutModal: true }));
     // setShowQRcode(true); // for two factor
-  //  navigate("/admin/dashboard");
-  //  handleLogin({  ...inpData});
+    //  navigate("/admin/dashboard");
+    //  handleLogin({  ...inpData});
     try {
       let err = validateAll();
       if (isValid(err)) {
-         dispatch(SetloaderData(true));
-       
+        dispatch(SetloaderData(true));
+
         await API({
           url: apiURl.login,
           method: "POST",
@@ -54,52 +51,59 @@ function Login({ handleLogin }) {
         }).then((data) => {
           if (data?.status || data?.status === true) {
             const token = data?.token;
-            const accessToken = data?.accessToken;
-            const roleId = data?.response?.roleID?._id
-           
-
             if (!token) {
-             setApiErrors({ message: validationMessages.unableToLogin });
+              setApiErrors({ message: validationMessages.unableToLogin });
               return;
             }
             localStorage.clear();
             localStorage.setItem("token", token);
-            localStorage.setItem("accessToken", accessToken);
-            localStorage.setItem("roleId", roleId);
-            localStorage.setItem('cred', JSON.stringify(inpData));
+            localStorage.setItem("cred", JSON.stringify(inpData));
             toast.success(data?.message);
-            // dispatch(SetAuthUserData(data?.response));
-            handleLogin({  ...inpData});
-            navigate("/admin/dashboard");
+            // dispatch(SetAuthUserData(data?.data));
+            setShowQRcode(true);
 
-            // setTimeout(() => {
-            //   navigate("/");
-            // }, 500);
             // dispatch(
             //   // SetpopupReducerData({ modalType: "NEWPASSWORD", showModal: true })
             // );
           } else {
             toast.error(data?.message);
             setApiErrors({ message: data?.message });
-            dispatch(SetpopupReducerData({ modalType: "LOGIN", loginValidationModal: true ,type:data?.message}));
+            dispatch(
+              SetpopupReducerData({
+                modalType: "LOGIN",
+                loginValidationModal: true,
+                type: data?.message,
+              })
+            );
 
             // dispatch(SetAuthUserData({}));
           }
         });
-       
+
         dispatch(SetloaderData(false));
       } else {
         setErrors(err);
-        dispatch(SetpopupReducerData({ modalType: "LOGIN", loginValidationModal: true,type:'User name or Password Invalid' }));
+        dispatch(
+          SetpopupReducerData({
+            modalType: "LOGIN",
+            loginValidationModal: true,
+            type: "User name or Password Invalid",
+          })
+        );
       }
     } catch (error) {
       toast.error(error);
       setApiErrors({ message: error.message });
-      dispatch(SetpopupReducerData({ modalType: "LOGIN", loginValidationModal: true,type:error.message }));
+      dispatch(
+        SetpopupReducerData({
+          modalType: "LOGIN",
+          loginValidationModal: true,
+          type: error.message,
+        })
+      );
 
       dispatch(SetloaderData(false));
     }
-  
   };
 
   const togglePasswordVisibility = () => {
@@ -118,7 +122,7 @@ function Login({ handleLogin }) {
       case "email":
         errors1.email = validateEmail(e.target.value);
         break;
-   
+
       default:
         break;
     }
@@ -137,11 +141,9 @@ function Login({ handleLogin }) {
     }
   };
 
-
   return (
     <>
-     {loginValidationModal && <LoginValidationModal/>} 
-      <Header />
+      {loginValidationModal && <LoginValidationModal />}
       <section className="adminLogin">
         <div className="container">
           <div className="row justify-content-center">
@@ -150,48 +152,63 @@ function Login({ handleLogin }) {
                 <div className="row">
                   <div className="col-md-4 login_sec">
                     <div className="py-5 ps-4 pe-3">
-                      <h3>{showQRcode ? `Enable Two Factor Authentication` : 'Welcome back.'}</h3>
-                      {showQRcode ?  <p className="auth-subtitle mb-5">
-                      Please scan the QR code to generate
-                        <br></br>
-                        a secure number.
-                      </p> :  
-                       <p className="auth-subtitle mb-5">
-                        To access your online banking, you'll need to log{" "}
-                        <br></br>
-                        in securely using your unique credentials.
-                      </p> 
-                      }
-                    {showQRcode ?  <img
-                        className="scanQr_code"
-                        src="../../../images/HelloTech-qr-code.webp"
-                        alt=""
-
-                      /> : 
-                      <>
-                        <form
-                        action=""
-                        method="post"
-                        onSubmit={handleSubmit}
-                        onKeyDown={handleKeyDown}
-                      >
-                        <div className="form-group position-relative">
-                          <label>Your email address</label>
-
-                          <input
-                            className="p-2 mb-4 rounded w-100 border"
-                            type="email"
-                            name="email"
-                             placeholder="example@gmail.com"
-                            autoComplete={false}
-                            required
-                            value={inpData.email}
-                            onChange={handleChange}
-                           onBlur={handleValidate}
+                      <h3>
+                        {showQRcode
+                          ? `Enable Two Factor Authentication`
+                          : "Welcome back."}
+                      </h3>
+                      {showQRcode ? (
+                        <p className="auth-subtitle mb-5">
+                          Please scan the QR code to generate
+                          <br></br>a secure number.
+                        </p>
+                      ) : (
+                        <p className="auth-subtitle mb-5">
+                          To access your online banking, you'll need to log{" "}
+                          <br></br>
+                          in securely using your unique credentials.
+                        </p>
+                      )}
+                      {showQRcode ? (
+                        <>
+                          <img
+                            className="scanQr_code"
+                            src="../../../images/HelloTech-qr-code.webp"
+                            alt=""
                           />
-                        </div>
+                          <br />
 
-                        {/* {errors.email ? (
+                          <Link to={"/otp"}>
+                            <div class="form-group mt-lg-4 mt-3">
+                              <button class="login100-form-btn">Next</button>
+                            </div>
+                          </Link>
+                        </>
+                      ) : (
+                        <>
+                          <form
+                            action=""
+                            method="post"
+                            onSubmit={handleSubmit}
+                            onKeyDown={handleKeyDown}
+                          >
+                            <div className="form-group position-relative">
+                              <label>Your email address</label>
+
+                              <input
+                                className="p-2 mb-4 rounded w-100 border"
+                                type="email"
+                                name="email"
+                                placeholder="example@gmail.com"
+                                autoComplete={false}
+                                required
+                                value={inpData.email}
+                                onChange={handleChange}
+                                onBlur={handleValidate}
+                              />
+                            </div>
+
+                            {/* {errors.email ? (
                         <span
                           className="text-danger"
                           style={{ fontSize: "14px" }}
@@ -201,48 +218,51 @@ function Login({ handleLogin }) {
                       ) : (
                         ""
                       )}  */}
-                        {/* Login Hide and Show */}
-                        <div className="form-group position-relative">
-                          <label>Your password</label>
-                          <input
-                            type={showPassword ? "text" : "password"}
-                            //type="password"
-                            className="p-2 mb-2 rounded w-100 pr-4 border"
-                            name="password"
-                            placeholder=""
-                            autoComplete={false}
-                            required
-                            // onChange={(e) => setPassword(e.target.value)}
-                            value={inpData.password}
-                            onChange={handleChange}
-                           onBlur={handleValidate}
-                          />
-
-                          <div className="showPasswordLogin">
-                            <span
-                              onClick={() => setShowPassword(!showPassword)}
-                              style={{ cursor: "pointer" }}
-                            >
-                              <img
-                                src={
-                                  showPassword
-                                    ? "../../images/eye-regular.svg"
-                                    : "../../images/eye-slash-regular.svg"
-                                }
-                                alt={
-                                  showPassword
-                                    ? "Hide Password"
-                                    : "Show Password"
-                                }
-                                onClick={togglePasswordVisibility}
-                                width={20}
-                                height={20}
-                                style={{ cursor: "pointer", marginLeft: "5px" }}
+                            {/* Login Hide and Show */}
+                            <div className="form-group position-relative">
+                              <label>Your password</label>
+                              <input
+                                type={showPassword ? "text" : "password"}
+                                //type="password"
+                                className="p-2 mb-2 rounded w-100 pr-4 border"
+                                name="password"
+                                placeholder=""
+                                autoComplete={false}
+                                required
+                                // onChange={(e) => setPassword(e.target.value)}
+                                value={inpData.password}
+                                onChange={handleChange}
+                                onBlur={handleValidate}
                               />
-                            </span>
-                          </div>
-                        </div>
-                        {/* {apiErrors.message ? (
+
+                              <div className="showPasswordLogin">
+                                <span
+                                  onClick={() => setShowPassword(!showPassword)}
+                                  style={{ cursor: "pointer" }}
+                                >
+                                  <img
+                                    src={
+                                      showPassword
+                                        ? "../../images/eye-regular.svg"
+                                        : "../../images/eye-slash-regular.svg"
+                                    }
+                                    alt={
+                                      showPassword
+                                        ? "Hide Password"
+                                        : "Show Password"
+                                    }
+                                    onClick={togglePasswordVisibility}
+                                    width={20}
+                                    height={20}
+                                    style={{
+                                      cursor: "pointer",
+                                      marginLeft: "5px",
+                                    }}
+                                  />
+                                </span>
+                              </div>
+                            </div>
+                            {/* {apiErrors.message ? (
                           <span
                             className="text-danger"
                             style={{ fontSize: "14px" }}
@@ -252,27 +272,26 @@ function Login({ handleLogin }) {
                         ) : (
                           ""
                         )} */}
-                        <div className="form-group forget-password text-end mt-3 forgot"></div>
-                        <div className="form-group mt-lg-4 mt-3">
-                          <button
-                            className="login100-form-btn"
-                            onClick={handleSubmit}
-                          >
-                            Log in
-                          </button>
-                        </div>
+                            <div className="form-group forget-password text-end mt-3 forgot"></div>
+                            <div className="form-group mt-lg-4 mt-3">
+                              <button
+                                className="login100-form-btn"
+                                onClick={handleSubmit}
+                              >
+                                Log in
+                              </button>
+                            </div>
 
-                        <p className="trabble">
-                          <a href="">Reset Password</a>
-                        </p>
-                      </form>
-                      </> 
-                      }
-                    
-
+                            <p className="trabble">
+                              <Link to={"/forgot-password"}>
+                                Reset Password
+                              </Link>
+                            </p>
+                          </form>
+                        </>
+                      )}
                     </div>
                   </div>
-                
                 </div>
               </div>
             </div>
