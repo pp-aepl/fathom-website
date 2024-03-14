@@ -18,6 +18,7 @@ import "./App.css";
 import UserLayout from "./Component/Layout/UserLayout";
 import AdminLayout from "./Component/Layout/AdminLayout";
 import ForgotPassword from "./Component/Auth/ForgotPassword";
+import ChangePassword from "./Component/Auth/ChangePassword";
 // import "./styles.css"
 
 // function App() {
@@ -205,6 +206,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/otp" element={<TwoFactor />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/changePassword/:_id?" element={<ChangePassword />} />
       </Route>
       <Route element={<RequireAuth authorized={userToken ? true : false} />}>
         <Route path="/admin" element={<AdminLayout />}>
