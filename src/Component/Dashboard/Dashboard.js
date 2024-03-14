@@ -48,10 +48,10 @@ function Dashboard() {
     <section className="">
       <CommonHeader></CommonHeader>
       <div className="main_dashboar">
-        <h2 className="fs-4 fw-bold"> Onboarding Performance – Murabaha Personal Finance</h2>
+       
           <div className="voucherFormMain">
          
-
+          <h2 className="card-title1 ps-0"> Onboarding Performance – Murabaha Personal Finance</h2>
           <div className="">
             <div className=" row pt-4">
               <div className="col-md-3">

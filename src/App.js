@@ -176,9 +176,9 @@ function App() {
                       src="../../../images/fathom_logo.png"
                       class="header_logo d-inline-block"
                     ></img>
-                    <span className="logo-content d-inline-block verticle">Fathom</span>
+                    <span className="logo-content d-inline-block verticle fs-3">Fathom</span>
                   </div>
-        <ul className="nav">{handler(SidebarRoutes,isSidebar)}</ul>
+        <ul className="nav mt-4">{handler(SidebarRoutes,isSidebar)}</ul>
 
 <div className="logout p-3 border-top">
   <img src="../../../images/profile.svg" className="d-inline-block verticle cursor me-4"></img>

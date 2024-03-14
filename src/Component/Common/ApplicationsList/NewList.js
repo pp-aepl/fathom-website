@@ -266,7 +266,7 @@ function NewList({ id }) {
             <div className="upload_new_application">
               {/* <h5>{convertToCamelCase(fetchParams)}</h5> */}
               
-              <h3 className="ps-5">Upload New Application </h3>
+              <h3 className="ps-4 card-title1">Upload New Application </h3>
               <div className="top_list">
                 <div className="list_row d-flex justify-content-between">
                   <div>
