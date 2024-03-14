@@ -41,16 +41,8 @@ function DuplicateModal() {
         keyboard={false}
       >
         <Modal.Body className="p-5">
-          <div className="">
-            <i
-              class="fa fa-exclamation-circle"
-              aria-hidden="true"
-              style={{
-                paddingLeft: "19rem",
-                fontSize: "9rem",
-                color: "rgb(230 230 155)",
-              }}
-            ></i>
+          <div className=" text-center w-100 pb-5">
+            <img className="w-50"  src="../../../images/exclaim.png"></img>
           </div>
           <div>
             <h3 className="card-title">
@@ -62,12 +54,12 @@ function DuplicateModal() {
           </div>
 
           <div
-            className={`d-flex align-items-center border-top justify-content-around buttons pt-5  ${"saveBtn"}`}
+            className={`border-top buttons pt-5  ${"saveBtn"}`}
           >
-            <button className="w-50 me-4" onClick={handleClosePopup}>
+            <button className="w-75 me-4" onClick={handleClosePopup}>
               Review application
             </button>
-            <button className="w-50" onClick={(e) => onSubmit(e, "create")}>Continue</button>
+            <button className="w-75" onClick={(e) => onSubmit(e, "create")}>Continue</button>
           </div>
         </Modal.Body>
       </Modal>

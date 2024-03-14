@@ -55,7 +55,7 @@ function Dashboard() {
           <div className="">
             <div className=" row pt-4">
               <div className="col-md-3">
-                <label className="fs-7 pb-4">Filter</label>
+                <label className="label pb-4">Filter</label>
                 <select class="form-select" aria-label="Default select example">
                   <option selected>Last week</option>
                   <option value="1">Last day</option>
@@ -64,11 +64,11 @@ function Dashboard() {
               </div>
               <div className="col-md-3">&nbsp;</div>
               <div className="col-md-3">
-              <label className="fs-7 pb-4">Date from</label>
+              <label className="label pb-4">Date from</label>
                 <input className="form-control" type="date" />
               </div>
               <div className="col-md-3">
-              <label className="fs-7 pb-4">Date to</label>
+              <label className="label pb-4">Date to</label>
                 <input className="form-control" type="date" />
               </div>
             </div>
@@ -154,7 +154,7 @@ function Dashboard() {
                           aria-valuemax="100"
                         ></div>
                       </div>
-                      <span class="p-1">25%</span>
+                      <span class="time">25%</span>
                     </div>
                   </div>
                 </div>
@@ -173,7 +173,7 @@ function Dashboard() {
                           aria-valuemax="100"
                         ></div>
                       </div>
-                      <span class="p-1">25min</span>
+                      <span class="time">25min</span>
                     </div>
                   </div>
                 </div>
@@ -228,7 +228,7 @@ function Dashboard() {
                           aria-valuemax="100"
                         ></div>
                       </div>
-                      <span class="p-1">25min</span>
+                      <span class="time">25 min</span>
                     </div>
 
                     <p className="label pb-0 mt-4">Murabaha Agreement Generation to 
@@ -243,7 +243,7 @@ Customer Acceptance: Digital</p>
                           aria-valuemax="100"
                         ></div>
                       </div>
-                      <span class="p-1">25 min</span>
+                      <span class="time">25 min</span>
                     </div>
 
                     <p className="label pb-0 mt-4 w-75">Murabaha Agreement Generation to
@@ -258,7 +258,7 @@ Customer Acceptance:- Physical</p>
                           aria-valuemax="100"
                         ></div>
                       </div>
-                      <span class="p-1 w-50px">10 min</span>
+                      <span class="time">10 min</span>
                     </div>
 
 
@@ -274,7 +274,7 @@ Agent response</p>
                           aria-valuemax="100"
                         ></div>
                       </div>
-                      <span class="p-1 w-50px">5 min</span>
+                      <span class="time">5 min</span>
                     </div>
 
                     <p className="label pb-0 mt-4 w-75">Agent response to funding 
@@ -289,7 +289,7 @@ and Letter issuance</p>
                           aria-valuemax="100"
                         ></div>
                       </div>
-                      <span class="p-1 w-50px">5 min</span>
+                      <span class="time">5 min</span>
                     </div>
 
 

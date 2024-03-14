@@ -223,12 +223,12 @@ if(fetchParams === 'upload'){
                                     <td>{item?.CRN_NO}</td>
                                     <td>
                                       <span
-                                        style={{
-                                          color:
-                                            (item?.status === "Approved" ||(fetchParams === 'completed' && fetchParams !== 'rejected'))? "#29CC6A" :
-                                             (item?.status === "Reject"  || fetchParams === 'rejected') ? " #EF4444": 
-                                             (item?.status === "Pending") ? "#EAB308":""
-                                        }}
+                                        className={
+                                          
+                                            (item?.status === "Approved" ||(fetchParams === 'completed' && fetchParams !== 'rejected'))? "btn btn-success" :
+                                             (item?.status === "Reject"  || fetchParams === 'rejected') ? "btn btn-danger": 
+                                             (item?.status === "Pending") ? "btn btn-warning":""
+                                            }
                                       >
                                        {
                                        fetchParams === 'completed' ? 'Approved' : 
@@ -237,7 +237,7 @@ if(fetchParams === 'upload'){
                                        } 
                                       </span>
                                     </td>
-                                    <td>View</td>
+                                    <td><span className="btn btn-secondary">View</span> </td>
                                   </tr>
                                 ))}
                               </tbody>

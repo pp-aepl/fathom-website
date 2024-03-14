@@ -2658,7 +2658,7 @@ border: 1px solid #316cf4;
 .modal-title{ text-align: center;}
 .card-title{ padding-bottom: 10px!important; font-size:24px !important; line-height: 30px!important;
    color: #000!important; font-weight: bold!important;font-family: "Inter Tight", sans-serif;}
-.card-title1{ padding-bottom: 20px!important; font-size:20px !important; line-height:26px!important;
+.card-title1{ padding-bottom: 20px!important; font-size:18px !important; line-height:26px!important;
     color: #000!important; font-weight: bold!important;font-family: "Inter Tight", sans-serif;}
 .card-text{font-size: 14px!important; line-height:24px; color:rgba(117, 117, 117, 1);
   text-align: center; font-family: "Inter Tight", sans-serif;}
@@ -2673,8 +2673,9 @@ border: 1px solid #316cf4;
 .exclaim{ text-align: center; padding:100px 0 30px;}
 .exclaim img{width: 130px;}
 .table th{ color:rgba(117, 117, 117, 1); font-weight: normal;}
-.green{ padding: 2px 10px; border-radius:20px; color: #29CC6A; display: inline-block; background:rgba(41, 204, 106, 0.2);}
-.orange{padding: 2px 10px; border-radius:20px; color: #EAB308; display: inline-block; background:rgba(234, 179, 8, 0.2);}
+.green{ padding: 6px 15px; border-radius:20px; color: #29CC6A; display: inline-block; background:rgba(41, 204, 106, 0.2);}
+.yallow{padding: 2px 10px; border-radius:20px; color: #EAB308; display: inline-block; background:rgba(234, 179, 8, 0.2);}
+.red{padding: 2px 10px; border-radius:20px; color: rgba(239, 68, 68, 0.1); display: inline-block; background:rgba(239, 68, 68, 0.1);}
 .upload_new_application.inProcess table td {padding:10px 5px;}
 .notepad{ display: block; text-align: center;}
 .notepad img{padding:100px 0 50px;}
@@ -2694,3 +2695,4 @@ border: 1px solid #316cf4;
 .form-select, .form-control{ font-size: 14px;font-family: "Inter Tight", sans-serif;}
 .margin-bottom{ margin-bottom: 20px;}
 .verticle{ vertical-align: middle;}
+.time{ width:50px; font-size: 13px; line-height: 17px; color: #000;}
