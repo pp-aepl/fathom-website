@@ -7,17 +7,22 @@ import {
   validatePassWord,
 } from "../Common/Validation/Validation";
 import { useDispatch } from "react-redux";
-import { SetloaderData } from "../../store/reducer";
+import { SetloaderData, SetpopupReducerData } from "../../store/reducer";
 import { API } from "../../apiwrapper";
 import { apiURl } from "../../store/actions";
 
 function ChangePassword() {
+  let regexNum = /^(?=.*[0-9])/;
+  let regexSmlChar = /^(?=.*[a-z])/;
+  let regexUprChar = /^(?=.*[A-Z])/;
+  let regexSpclChar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { _id } = useParams();
   const [errors, setErrors] = useState({});
   const [apiErrors, setApiErrors] = useState({ message: "", response: "" });
   const [inpData, setInpData] = useState({ newPassword: "", cnewPassword: "" });
+  const { newPassword, cnewPassword } = inpData;
   const handleChange = (e) => {
     setInpData({ ...inpData, [e.target.name]: e.target.value });
     handleValidate(e);
@@ -44,31 +49,72 @@ function ChangePassword() {
     );
     return err1;
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       let err = validateAll();
       if (isValid(err)) {
         dispatch(SetloaderData(true));
-        await API({
+        const data = await API({
           url: `${apiURl.reset}/${_id}`,
           method: "POST",
           body: { ...inpData },
-        }).then((data) => {
-          if (data?.status || data?.status === true) {
-            navigate("/login");
-          } else {
-            // dispatch(SetAuthUserData({}));
-          }
         });
-        dispatch(SetloaderData(false));
+
+        handleShowModal(data);
       } else {
         setErrors(err);
       }
     } catch (error) {
-      setApiErrors({ message: error.message });
+      if (error?.response?.status === 406) {
+        handleShowModal(error?.response?.data);
+      }
+      setApiErrors({ message: error?.response?.data?.message });
     } finally {
       dispatch(SetloaderData(false));
+    }
+  };
+  const handleClosePopup = () => {
+    dispatch(
+      SetpopupReducerData({
+        modalType: "",
+        showModal: false,
+        message: "",
+        status: false,
+        callBack: () => {},
+      })
+    );
+  };
+
+  const handleShowModal = (data) => {
+    if (data?.status || data?.status === true) {
+      dispatch(
+        SetpopupReducerData({
+          modalType: "COMMON",
+          showModal: true,
+          message: data?.message,
+          title: "Password reset",
+          status: true,
+          callBack: () => {
+            navigate("/login");
+            handleClosePopup();
+          },
+        })
+      );
+    } else {
+      dispatch(
+        SetpopupReducerData({
+          modalType: "COMMON",
+          showModal: true,
+          message: data?.message,
+          title: "Password reset",
+          status: false,
+          callBack: () => {
+            handleClosePopup();
+          },
+        })
+      );
     }
   };
 
@@ -104,14 +150,84 @@ function ChangePassword() {
                             onBlur={handleValidate}
                           />
                         </div>
-
                         {errors.newPassword ? (
-                          <span
-                            className="text-danger"
-                            style={{ fontSize: "14px" }}
-                          >
-                            {errors.newPassword}
-                          </span>
+                          <>
+                            {" "}
+                            <span
+                              className="text-danger"
+                              style={{ fontSize: "14px" }}
+                            >
+                              {errors.newPassword}
+                            </span>
+                            <ul className="wrongPassComment">
+                              <li
+                                className={
+                                  newPassword.length >= 8
+                                    ? "text-success"
+                                    : "text-danger"
+                                }
+                                style={{ fontSize: "14px" }}
+                              >
+                                {newPassword.length >= 8 && (
+                                  <i className="fas fa-check-circle"></i>
+                                )}
+                                8 characters
+                              </li>
+
+                              <li
+                                className={
+                                  regexUprChar.test(newPassword)
+                                    ? "text-success"
+                                    : "text-danger"
+                                }
+                                style={{ fontSize: "14px" }}
+                              >
+                                {regexUprChar.test(newPassword) && (
+                                  <i className="fas fa-check-circle"></i>
+                                )}{" "}
+                                1 Uppercase{" "}
+                              </li>
+                              <li
+                                className={
+                                  regexSmlChar.test(newPassword)
+                                    ? "text-success"
+                                    : "text-danger"
+                                }
+                                style={{ fontSize: "14px" }}
+                              >
+                                {regexSmlChar.test(newPassword) && (
+                                  <i className="fas fa-check-circle"></i>
+                                )}{" "}
+                                1 Lowercase{" "}
+                              </li>
+                              <li
+                                className={
+                                  regexNum.test(newPassword)
+                                    ? "text-success"
+                                    : "text-danger"
+                                }
+                                style={{ fontSize: "14px" }}
+                              >
+                                {regexNum.test(newPassword) && (
+                                  <i className="fas fa-check-circle"></i>
+                                )}{" "}
+                                1 Number{" "}
+                              </li>
+                              <li
+                                className={
+                                  regexSpclChar.test(newPassword)
+                                    ? "text-success"
+                                    : "text-danger"
+                                }
+                                style={{ fontSize: "14px" }}
+                              >
+                                {regexSpclChar.test(newPassword) && (
+                                  <i className="fas fa-check-circle"></i>
+                                )}{" "}
+                                1 Special character
+                              </li>
+                            </ul>
+                          </>
                         ) : (
                           <span
                             className=""

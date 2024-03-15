@@ -14,6 +14,7 @@ const apiURl = {
   login: `${config.version}/${config.common_microservice}/auth/login`,
   forgot: `${config.version}/${config.common_microservice}/forgot`,
   reset: `${config.version}/${config.common_microservice}/change-password`,
+  applications_list: `${config.version}/${config.common_microservice}/applications/list`,
 };
 
 export const NotificationMsg = {
