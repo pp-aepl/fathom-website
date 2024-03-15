@@ -5496,7 +5496,7 @@ border-color: #8282FF;
   font-size: 14px;
 }
 #main{
-  margin-left: 300px;
+  margin-left: 306px;
 }
 .nav-submenu {max-height: 0;overflow: hidden;transition: max-height 0.5s linear;cursor: pointer;}
 .nav-submenu.open {max-height: 1000px;transition: max-height 0.5s linear;}

@@ -18,6 +18,8 @@ import "./App.css";
 import UserLayout from "./Component/Layout/UserLayout";
 import AdminLayout from "./Component/Layout/AdminLayout";
 import ForgotPassword from "./Component/Auth/ForgotPassword";
+import ChangePassword from "./Component/Auth/ChangePassword";
+import OpenModal from "./Component/PopupModal/OpenModal";
 // import "./styles.css"
 
 // function App() {
@@ -200,29 +202,33 @@ function App() {
   const userToken = localStorage.getItem("token");
 
   return (
-    <Routes>
-      <Route element={<UserLayout />}>
-        <Route path="/login" element={<Login />} />
-        <Route path="/otp" element={<TwoFactor />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-      </Route>
-      <Route element={<RequireAuth authorized={userToken ? true : false} />}>
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="application/:userId" element={<List />} />
-          <Route path="application/list" element={<NewList />} />
-          <Route path="application/inProcess" element={<InprocessList />} />
-          <Route path="application/murabaha" element={<MurabahaList />} />
-          <Route path="application/sent" element={<SentList />} />
-          <Route path="application/commodity" element={<CommodityList />} />
-          <Route path="reports/:reportList" element={<ReportList />} />
-          <Route index element={<Navigate to="dashboard" replace />} />
+    <>
+      <OpenModal />
+      <Routes>
+        <Route element={<UserLayout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/otp" element={<TwoFactor />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/changePassword/:_id?" element={<ChangePassword />} />
         </Route>
-      </Route>
+        <Route element={<RequireAuth authorized={userToken ? true : false} />}>
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="application/:status?" element={<List />} />
+            <Route path="application/list" element={<NewList />} />
+            <Route path="application/inProcess" element={<InprocessList />} />
+            <Route path="application/murabaha" element={<MurabahaList />} />
+            <Route path="application/sent" element={<SentList />} />
+            <Route path="application/commodity" element={<CommodityList />} />
+            <Route path="reports/:reportList" element={<ReportList />} />
+            <Route index element={<Navigate to="dashboard" replace />} />
+          </Route>
+        </Route>
 
-      <Route path="/" element={<Navigate to="/login" replace />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </>
   );
 }
 

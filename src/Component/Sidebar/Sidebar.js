@@ -78,175 +78,240 @@ function Sidebar() {
                 </Link>
               </div>
 
-
               <div className={"nav__items"}>
-              <div
-                className={`${"nav__dropdown"}  ${
-                   openDropdown === 0 ? "open" : ""
-                } `}
-              >
-                {/* showActive === 1 ? "active" : ""&& */}
-                 
-                <a
+                <div
+                  className={`${"nav__dropdown"}  ${
+                    openDropdown === 0 ? "open" : ""
+                  } `}
+                >
+                  {/* showActive === 1 ? "active" : ""&& */}
+
+                  <a
                     to="#"
                     className={"nav__link"}
                     onClick={() => toggleDropdown(0)}
                   >
-               
-                 <Link className={"nav__link"} to="/admin/application/status">
-                  <div
-                    className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
-                  >
-                    <img src="../../../images/application_icon.svg" alt="" />
-                  </div>
-                  <span className={"nav__name"}>Application status</span>
-                  <i
-                      className={` ${"ms_auto"} ${"bx_chevron_down"} ${"nav__icon"} ${
-                        openDropdown === 0 ? "open" : ""
-                      } `}
+                    <Link
+                      className={"nav__link"}
+                      to="/admin/application/status"
                     >
-                      <FaAngleDown />
-                    </i>
-                </Link>
-                </a>
-                <div className={`${"nav__dropdown_collapse"} ${
+                      <div
+                        className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
+                      >
+                        <img
+                          src="../../../images/application_icon.svg"
+                          alt=""
+                        />
+                      </div>
+                      <span className={"nav__name"}>Application status</span>
+                      <i
+                        className={` ${"ms_auto"} ${"bx_chevron_down"} ${"nav__icon"} ${
+                          openDropdown === 0 ? "open" : ""
+                        } `}
+                      >
+                        <FaAngleDown />
+                      </i>
+                    </Link>
+                  </a>
+                  <div
+                    className={`${"nav__dropdown_collapse"} ${
                       openDropdown === 0 ? "open" : ""
                     }`}
                   >
                     <div className={"nav__dropdown_content"}>
-              <div
-                className={`${"nav__items"}  ${
-                  showActive === 0 ? "active" : ""
-                } `}
-              >
-                <Link className={"nav__link"} to="/admin/application/upload">
-                  <div
-                    className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
-                  >
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="6" cy="6" r="5.25" stroke="#151517" stroke-width="1.5"/>
-                  </svg>
-                  </div>
-                  <span className={"nav__name"}>Ready to be import</span>
-                </Link>
-              </div>
+                      <div
+                        className={`${"nav__items"}  ${
+                          showActive === 0 ? "active" : ""
+                        } `}
+                      >
+                        <Link
+                          className={"nav__link"}
+                          to="/admin/application/upload"
+                        >
+                          <div
+                            className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
+                          >
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 12 12"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <circle
+                                cx="6"
+                                cy="6"
+                                r="5.25"
+                                stroke="#151517"
+                                stroke-width="1.5"
+                              />
+                            </svg>
+                          </div>
+                          <span className={"nav__name"}>
+                            Ready to be import
+                          </span>
+                        </Link>
+                      </div>
 
-              <div className={"nav__items"}>
-                <div
-                  className={`${"nav__dropdown"} ${
-                    openDropdown === 2 ? "open" : ""
-                  }  `}
-                >
-                  <a
-                    to="#"
-                    className={"nav__link"}
-                    onClick={() => toggleDropdown(2)}
-                  >
-                    <div
-                      className={` ${"icon_cmn"} ${"bx_home"} ${"nav__icon"}`}
-                    >
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="6" cy="6" r="5.25" stroke="#151517" stroke-width="1.5"/>
-                  </svg>
+                      <div className={"nav__items"}>
+                        <div
+                          className={`${"nav__dropdown"} ${
+                            openDropdown === 2 ? "open" : ""
+                          }  `}
+                        >
+                          <a
+                            to="#"
+                            className={"nav__link"}
+                            onClick={() => toggleDropdown(2)}
+                          >
+                            <div
+                              className={` ${"icon_cmn"} ${"bx_home"} ${"nav__icon"}`}
+                            >
+                              <svg
+                                width="12"
+                                height="12"
+                                viewBox="0 0 12 12"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <circle
+                                  cx="6"
+                                  cy="6"
+                                  r="5.25"
+                                  stroke="#151517"
+                                  stroke-width="1.5"
+                                />
+                              </svg>
+                            </div>
+                            <span className={"nav__name"}>Under Process</span>
+                            <i
+                              className={` ${"ms_auto"} ${"bx_chevron_down"} ${"nav__icon"} ${
+                                openDropdown === 3 ? "open" : ""
+                              } `}
+                            >
+                              <FaAngleDown />
+                            </i>
+                          </a>
+                          <div
+                            className={`${"nav__dropdown_collapse"} ${
+                              openDropdown === 3 ? "open" : ""
+                            }`}
+                          >
+                            <div className={"nav__dropdown_content"}>
+                              <Link
+                                to="/admin/application/list"
+                                className={`${"nav__dropdown_item"} d-flex justify-content-between align-items-center`}
+                              >
+                                Awaiting Commodity Purchase
+                                <FaAngleRight />
+                              </Link>
+                              <Link
+                                to="/admin/application/sent"
+                                className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
+                              >
+                                Digital: Awaiting Customer acceptance on{" "}
+                                <br></br>the Agreement
+                                <FaAngleRight />
+                              </Link>
+                              <Link
+                                to="/admin/application/sent"
+                                className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
+                              >
+                                Physical – Awaiting Customer acceptance on
+                                <br></br> the Agreement
+                                <FaAngleRight />
+                              </Link>
+                              <Link
+                                to="/admin/application/sent"
+                                className={`${"nav__dropdown_item"} d-flex justify-content-between align-items-center`}
+                              >
+                                Awaiting Agent Appointment and Response.
+                                <FaAngleRight />
+                              </Link>
+                              <Link
+                                to="/admin/application/commodity"
+                                className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
+                              >
+                                Awaiting funding and Welcome <br></br>letter
+                                issuance
+                                <FaAngleRight />
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <span className={"nav__name"}>Under Process</span>
-                    <i
-                      className={` ${"ms_auto"} ${"bx_chevron_down"} ${"nav__icon"} ${
-                        openDropdown === 3 ? "open" : ""
-                      } `}
-                    >
-                      <FaAngleDown />
-                    </i>
-                  </a>
+                  </div>
+
                   <div
-                    className={`${"nav__dropdown_collapse"} ${
-                      openDropdown ===3 ? "open" : ""
-                    }`}
+                    className={`${"nav__items"}  ${
+                      showActive === 1 ? "active" : ""
+                    } `}
                   >
-                    <div className={"nav__dropdown_content"}>
-                      <Link
-                        to="/admin/application/list"
-                        className={`${"nav__dropdown_item"} d-flex justify-content-between align-items-center`}
+                    <Link
+                      className={"nav__link"}
+                      to="/admin/application/completed"
+                    >
+                      <div
+                        className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
                       >
-                        Awaiting Commodity Purchase
-                        <FaAngleRight />
-                      </Link>
-                      <Link
-                        to="/admin/application/sent"
-                        className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 12 12"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <circle
+                            cx="6"
+                            cy="6"
+                            r="5.25"
+                            stroke="#151517"
+                            stroke-width="1.5"
+                          />
+                        </svg>
+                      </div>
+                      <span className={"nav__name"}>
+                        Completed – Welcome Letter issued
+                      </span>
+                    </Link>
+                  </div>
+
+                  <div
+                    className={`${"nav__items"}  ${
+                      showActive === 1 ? "active" : ""
+                    } `}
+                  >
+                    <Link
+                      className={"nav__link"}
+                      to="/admin/application/rejected"
+                    >
+                      <div
+                        className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
                       >
-                        Digital: Awaiting Customer acceptance on <br></br>the Agreement
-                        <FaAngleRight />
-                      </Link>
-                      <Link
-                        to="/admin/application/sent"
-                        className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
-                      >
-                        Physical – Awaiting Customer acceptance on<br></br> the Agreement
-                        <FaAngleRight />
-                      </Link>
-                      <Link
-                        to="/admin/application/sent"
-                        className={`${"nav__dropdown_item"} d-flex justify-content-between align-items-center`}
-                      >
-                        Awaiting Agent Appointment and Response.
-                        <FaAngleRight />
-                      </Link>
-                      <Link
-                        to="/admin/application/commodity"
-                        className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
-                      >
-                        Awaiting funding and Welcome <br></br>letter issuance
-                        <FaAngleRight />
-                      </Link>
-                    </div>
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 12 12"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <circle
+                            cx="6"
+                            cy="6"
+                            r="5.25"
+                            stroke="#151517"
+                            stroke-width="1.5"
+                          />
+                        </svg>
+                      </div>
+                      <span className={"nav__name"}>
+                        Rejected - Pending Channel correction
+                      </span>
+                    </Link>
                   </div>
                 </div>
-                </div>
               </div>
-
-
-              </div>
-
-              <div
-                className={`${"nav__items"}  ${
-                  showActive === 1 ? "active" : ""
-                } `}
-              >
-                <Link className={"nav__link"} to="/admin/application/completed">
-                  <div
-                    className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
-                  >
-                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="6" cy="6" r="5.25" stroke="#151517" stroke-width="1.5"/>
-                  </svg>
-                  </div>
-                  <span className={"nav__name"}>
-                    Completed – Welcome Letter issued
-                  </span>
-                </Link>
-              </div>
-
-              <div
-                className={`${"nav__items"}  ${
-                  showActive === 1 ? "active" : ""
-                } `}
-              >
-                <Link className={"nav__link"} to="/admin/application/rejected">
-                  <div
-                    className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
-                  >
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="6" cy="6" r="5.25" stroke="#151517" stroke-width="1.5"/>
-                  </svg>
-                  </div>
-                  <span className={"nav__name"}>
-                    Rejected - Pending Channel correction
-                  </span>
-                </Link>
-              </div>
-              </div>
-</div>
               {/* <div className={"nav__items"}>
                 <Link to="/admin/dashboard/sponser" className={"nav__link"}>
                   <div
@@ -258,10 +323,9 @@ function Sidebar() {
                 </Link>
               </div> */}
 
-
-
               <div className={"nav__items"}>
-                <div className={`${"nav__dropdown"} ${
+                <div
+                  className={`${"nav__dropdown"} ${
                     openDropdown === 3 ? "open" : ""
                   }  `}
                 >
@@ -273,7 +337,7 @@ function Sidebar() {
                     <div
                       className={` ${"icon_cmn"} ${"bx_home"} ${"nav__icon"}`}
                     >
-                 <img src="../../images/report_icon.svg"></img>
+                      <img src="../../images/report_icon.svg"></img>
                     </div>
                     <span className={"nav__name"}>Reports</span>
                     <i
@@ -301,19 +365,13 @@ function Sidebar() {
                         to="/admin/reports/error"
                         className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
                       >
-                       Pending / Error
+                        Pending / Error
                         <FaAngleRight />
                       </Link>
-                     
                     </div>
                   </div>
                 </div>
               </div>
-
-
-
-
-
             </div>
           </div>
         </nav>

@@ -98,7 +98,7 @@ function Login() {
         SetpopupReducerData({
           modalType: "LOGIN",
           loginValidationModal: true,
-          type: error.message,
+          type: error?.response?.data?.message,
         })
       );
 

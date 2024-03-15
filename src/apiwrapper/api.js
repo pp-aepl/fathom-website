@@ -15,19 +15,18 @@ export const api = async ({ url, method, body }) => {
   try {
     return await axios({
       method,
-      url:BASECONFIG.BASE_URL + url,
+      url: BASECONFIG.BASE_URL + url,
       data: body,
-      
     }).then((response) => response);
   } catch (error) {
-    throw Error(error);
+    throw error;
   }
 };
 
 // Add a request interceptor
 axios.interceptors.request.use(
   (config) => {
-    config["headers"]["version"] = "2.0"
+    config["headers"]["version"] = "2.0";
     if (!config.url.includes(apiURl.login)) {
       config["headers"]["Authorization"] = `Bearer ${localStorage.getItem(
         "token"
@@ -36,9 +35,8 @@ axios.interceptors.request.use(
       config["headers"]["accessToken"] = `${localStorage.getItem(
         "accessToken"
       )}`;
-     
     }
-   
+
     return config;
   },
   (error) => {
@@ -53,28 +51,33 @@ axios.interceptors.response.use(
     return response ? response.data : { status: false };
   },
   (error) => {
-    if (error?.response?.status === 403) {
-      // unique toastId to differentiate toasts
-     
-      // RefreshTokenService();
-    }else if(error?.response?.status === 405) {
-      console.log(error.response.data.message)
-      // Your current session has expired. Please log in again.
-      toast.error(error.response.data.message)
-      setTimeout(() => {
-        localStorage.clear()
-        window.location.href = "/login";
-      }, 2000);
-    
+    if (error?.response) {
+      // If there is a response, handle specific status codes
+      const { status, data } = error.response;
+      if (status === 403) {
+        // Handle 403 error
+        // unique toastId to differentiate toasts
+        // RefreshTokenService();
+      } else if (status === 405) {
+        // Handle 405 error
+        console.log(data.message);
+        // Your current session has expired. Please log in again.
+        toast.error(data.message);
+        setTimeout(() => {
+          localStorage.clear();
+          window.location.href = "/login";
+        }, 2000);
+      }
+      // } else {
+      //   // For other errors or if there is no specific handling, reject with the error object
+      //   console.log(data, "response ==== data");
+      //   return Promise.reject({ status: status, error: data });
+      // }
     }
-    // Handle response error here
-    // handleMessage(error?.response?.data?.message)
+    // If there is no response or if there's an unhandled error, reject with the original error object
     return Promise.reject(error);
   }
 );
-
-
-
 // export const RefreshTokenService = async () => {
 //   if (refreshCallInProgress) {
 //     return;
@@ -82,7 +85,7 @@ axios.interceptors.response.use(
 //   refreshCallInProgress = true;
 //   let tokenDetails = localStorage.getItem("token");
 //   if (tokenDetails) {
-//     const decoded = jwtDecode(tokenDetails); 
+//     const decoded = jwtDecode(tokenDetails);
 //     const currentTime = Math.ceil(Date.now() / 1000);
 
 //     if (typeof decoded.exp !== "undefined" && decoded.exp < currentTime) {
@@ -101,38 +104,37 @@ axios.interceptors.response.use(
 
 //             // window.location.href = "";
 //           } else {
-       
+
 //           }
 //         });
 //       } catch (error) {
 //         refreshCallInProgress = false;
-      
+
 //       }
 //     }else {
-//       // code for logout and navigate to 
+//       // code for logout and navigate to
 //     }
 //   }
 //   return tokenDetails;
 // };
 
-
 export const uploadvideo = async ({ url, method, body }) => {
   let baseUrl = localStorage.getItem("baseUrl");
 
-// export const uploadvideo = async ({
-//   body,
-//   headers = {},
-//   method,
-//   signal,
-//   url,
-//   formData = false,
-// }) => {
+  // export const uploadvideo = async ({
+  //   body,
+  //   headers = {},
+  //   method,
+  //   signal,
+  //   url,
+  //   formData = false,
+  // }) => {
 
-try {
+  try {
     return await axios({
       method,
       // formData : false,
-      url:BASECONFIG.BASE_URL+ url,
+      url: BASECONFIG.BASE_URL + url,
       // url: BASECONFIG.IMAGE_BASE_URL + url,
       // data: body ? (formData ? body : JSON.stringify(body)) : null,
       data: JSON.stringify(body),
@@ -150,7 +152,7 @@ try {
   //   })
   //     .then((response) => {
   //       if (response.status === 403) {
-   
+
   //       } else if (response.status === 401) {
   //       }
   //       return response.clone().json();
@@ -159,8 +161,6 @@ try {
   // } catch (error) {
   //   throw Error(error);
   // }
-
-
 };
 
 export const allApi = async ({
@@ -187,7 +187,6 @@ export const allApi = async ({
     })
       .then((response) => {
         if (response.status === 403) {
-
         } else if (response.status === 401) {
         }
         return response.clone().json();
@@ -198,21 +197,17 @@ export const allApi = async ({
   }
 };
 
-
-
 export const getAwsImageUrl = async (image, folder = "user") => {
-  console.log("🚀 ~ file: api.js:282 ~ getAwsImageUrl ~ image:", image)
+  console.log("🚀 ~ file: api.js:282 ~ getAwsImageUrl ~ image:", image);
   try {
-    
     if (typeof image === "string") {
       return image;
     }
 
-   
     let fd = new FormData();
-    if(image.type === 'video/mp4'){
+    if (image.type === "video/mp4") {
       fd.append("video", image);
-    }else {
+    } else {
       fd.append("image", image);
     }
     let imgUrl = await api({
@@ -285,8 +280,5 @@ export const getMediaLocation = async () => {
     console.error("An error occurred:", error);
   }
 };
-
-
-
 
 export default api;
