@@ -6,8 +6,8 @@ import SidebarRoutes from "./sidebar_new";
 
 
 function Navbar() {
-  const [state, setState] = useState({});
-
+  const [state, setState] = useState({}); 
+ 
   const handleClick = (e, item) => {
     e.stopPropagation();
     setState((state) => ({

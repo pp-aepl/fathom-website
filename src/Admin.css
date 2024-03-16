@@ -2514,7 +2514,7 @@ border: 1px solid #316cf4;
 .upload_new_application {
   width: 100%;
 }
-.upload_new_application h3 {
+.upload_new_application h3 { 
   padding-bottom: 20px;
   width: 100%;
   font-size: 20px;
