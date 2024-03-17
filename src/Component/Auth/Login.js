@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../Sidebar/Nabvar/Header";
@@ -9,6 +10,7 @@ import { isValid, validateEmail } from "../Common/Validation/Validation";
 import { SetloaderData, SetpopupReducerData } from "../../store/reducer";
 import { validationMessages } from "../../store/actions/api-url";
 import LoginValidationModal from "../PopupModal/LoginValidationModal";
+import { SetAuthUserData } from "../../store/reducer/authUser";
 
 // import { SetpopupReducerData } from "../../store/reducer";
 // import LogoutModal from "../PopupModal/LogoutModal";
@@ -49,7 +51,7 @@ function Login() {
           method: "POST",
           body: { ...inpData },
         }).then((data) => {
-          console.log(data,"loginData");
+          console.log(data, "loginData");
           if (data?.status || data?.status === true) {
             const token = data?.token;
             if (!token) {
@@ -60,7 +62,7 @@ function Login() {
             localStorage.setItem("token", token);
             localStorage.setItem("cred", JSON.stringify(inpData));
             toast.success(data?.message);
-            // dispatch(SetAuthUserData(data?.data));
+            dispatch(SetAuthUserData(data?.data));
             setShowQRcode(true);
 
             // dispatch(

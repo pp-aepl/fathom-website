@@ -1,8 +1,7 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { memo, useCallback, useEffect, useState } from "react";
-import { fetchAllRulesList } from "../../../Config/FetchListingData";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import React, { memo } from "react";
+import { useSelector } from "react-redux";
 import { Spinner } from "react-bootstrap";
 
 function Rules() {

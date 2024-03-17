@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Routes, Route, Navigate, Outlet, Router } from "react-router-dom";
 import Navbar from "./Component/Sidebar/Nabvar/Navbar";
@@ -21,7 +22,7 @@ import AdminLayout from "./Component/Layout/AdminLayout";
 import ForgotPassword from "./Component/Auth/ForgotPassword";
 import ChangePassword from "./Component/Auth/ChangePassword";
 import OpenModal from "./Component/PopupModal/OpenModal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAllCategories,
   fetchAllRulesList,
@@ -207,6 +208,7 @@ import {
 function App() {
   const userToken = localStorage.getItem("token");
   const dispatch = useDispatch();
+  const { authUser } = useSelector((state) => state);
   const fetchListingData = useCallback(async () => {
     try {
       await dispatch(fetchAllRulesList());
@@ -214,10 +216,10 @@ function App() {
     } catch (error) {
       console.log(error, "error");
     }
-  }, [userToken]);
+  }, [authUser]);
 
   useEffect(() => {
-    if (userToken) {
+    if (authUser?.data?._id) {
       fetchListingData();
     }
   }, [fetchListingData]);

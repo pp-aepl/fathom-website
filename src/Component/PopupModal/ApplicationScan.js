@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -50,7 +52,7 @@ function ApplicationScan() {
         )}
 
         <Modal.Body className="full-cover">
-          {statusType?.success != "SUCCESS" && (
+          {statusType?.success !== "SUCCESS" && (
             <div class="row">
               <div class="col-md-12 text-center">
              

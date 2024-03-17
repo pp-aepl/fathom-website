@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +9,7 @@ function DuplicateModal() {
   const dispatch = useDispatch();
   const { createType } = useSelector((state) => state?.Product);
   const { PopupReducer } = useSelector((state) => state);
-  const {  showConfirmModal = false, showModal = false } = PopupReducer?.modal;
+  const { showConfirmModal = false, showModal = false } = PopupReducer?.modal;
 
   const handleClosePopup = () => {
     dispatch(
@@ -23,7 +24,11 @@ function DuplicateModal() {
   const onSubmit = async (e, typeSubmit) => {
     e.preventDefault();
     dispatch(
-      SetpopupReducerData({ modalType: "FILESCONFIRM", showConfirmModal: true })
+      SetpopupReducerData({
+        ...PopupReducer?.modal,
+        modalType: "FILESCONFIRM",
+        showConfirmModal: true,
+      })
     );
   };
 
