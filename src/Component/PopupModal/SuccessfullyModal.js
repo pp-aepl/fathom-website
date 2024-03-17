@@ -37,7 +37,7 @@ function SuccessfullyModal() {
     } else if (successType === "CHANNELLIST") {
       dispatch(SetpopupReducerData({ modalType: "AGENT", agentModal: true }));
     } else if (successType === "COMIDITYAGENT") {
-      handleClosePopup()
+      handleClosePopup();
       // dispatch(
       //   SetpopupReducerData({ modalType: "DISBURSED", disbursedModal: true })
       // );
@@ -64,8 +64,7 @@ function SuccessfullyModal() {
       >
         {/* <Modal.Header onClick={() => handleClosePopup(false)}> */}
         <Modal.Title>
-          <img className="success-pic"
-            src="../../images/success.png"/>
+          <img className="success-pic" src="../../images/success.png" />
         </Modal.Title>
         {/* </Modal.Header> */}
         <Modal.Body className="p-5">
@@ -73,7 +72,9 @@ function SuccessfullyModal() {
             {successType === "SUCCESSFULLY" ? (
               <h3 className="card-title">Application Processed</h3>
             ) : successType === "CHANNELLIST" ? (
-              <h3 className="card-title">Murabaha Agreement Successfully updated</h3>
+              <h3 className="card-title">
+                Murabaha Agreement Successfully updated
+              </h3>
             ) : successType === "COMIDITYAGENT" ? (
               <h3 className="card-title">Commodity has been sold</h3>
             ) : (
@@ -90,11 +91,15 @@ function SuccessfullyModal() {
                   ) : (
                     <>
                       <p className="card-text">
-                        Out of <strong>100</strong>  cases <strong>90 has been processed</strong> <br></br>
-                         and <strong>10 is pending</strong> for file confirmation.
+                        Out of <strong>100</strong> cases <strong>90 </strong>
+                        cases have been processed <br></br>
+                        <strong>10 </strong> cases have not been process due to
+                        one or more document missing please check the pending
+                        document flow for more information
                       </p>
                       <p className="card-text pt-4">
-                        Do you want to validate right now?
+                        Do you want to validate <strong>90 </strong> successful
+                        cases?
                       </p>
                     </>
                   )}
@@ -102,30 +107,35 @@ function SuccessfullyModal() {
               )}
             {successType === "COMIDITYAGENT" && (
               <p style={{ textAlign: "center" }}>
-                Commodity has been sold and a deposited in Client’s account with
-                the bank.
+                Proceed with disbursal of funds
               </p>
             )}
           </div>
-          <div
-            className={`d-flex justify-content-center buttons ${"saveBtn"}`}
-          >
+          <div className={`d-flex justify-content-center buttons ${"saveBtn"}`}>
             {successType !== "COMIDITYAGENT" && (
               <>
                 {successType === "SUCCESSFULLY" ||
                 successType === "CHANNELLIST" ? (
-                  <button className="btn"
-                  
+                  <button
+                    className="btn"
                     onClick={(e) => onSubmit(e, "create")}
                   >
                     Great
                   </button>
                 ) : (
                   <>
-                    <button className="btn w-50" onClick={(e) => onSubmit(e, "saveForLater")}>
+                    <button
+                      className="btn w-50"
+                      onClick={(e) => onSubmit(e, "saveForLater")}
+                    >
                       Later
                     </button>
-                    <button className="btn ms-4 w-50" onClick={(e) => onSubmit(e, "create")}>Yes</button>
+                    <button
+                      className="btn ms-4 w-50"
+                      onClick={(e) => onSubmit(e, "create")}
+                    >
+                      Yes
+                    </button>
                   </>
                 )}
               </>
@@ -136,7 +146,10 @@ function SuccessfullyModal() {
                 <button onClick={(e) => handleClosePopup()}>
                   Proceed later
                 </button>
-                <button style={{width:"196px"}} onClick={(e) => onSubmit(e, "COMIDITYAGENT")}>
+                <button
+                  style={{ width: "196px" }}
+                  onClick={(e) => onSubmit(e, "COMIDITYAGENT")}
+                >
                   Proceed with funding
                 </button>
               </>

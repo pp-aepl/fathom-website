@@ -8,11 +8,12 @@ import {
 } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
-function Sidebar() {
+function Sidebar({ showMenu, setShowMenu }) {
   // console.log(Style)
   const [showActive, setShowActive] = useState(-1);
   const [openDropdown, setOpenDropdown] = useState(-1);
-  const [showMenu, setShowMenu] = useState(false);
+  const [openProcess, setOpenProcess] = useState(-1);
+
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
@@ -29,18 +30,19 @@ function Sidebar() {
 
   return (
     <>
-      {/* <div className="header__toggle">
+      <div className="header__toggle">
         <i
           className={`${"respMenu"} ${showMenu ? "active" : ""}`}
           id="header-toggle"
+          onClick={toggleMenu}
         >
           <FaChevronRight />
         </i>
-      </div> */}
+      </div>
       <div className={`${"nav_2"} ${showMenu ? "active" : ""}`} id={"navbar"}>
-        {/* <button className={"toggleClose"}>
+        <button className={"toggleClose"} onClick={toggleMenu}>
           <FaXmark />
-        </button> */}
+        </button>
         <nav className={"nav__container"}>
           <div onMouseLeave={() => setOpenDropdown(-1)}>
             <div className={"nav__list"}>
@@ -152,97 +154,97 @@ function Sidebar() {
                           </span>
                         </Link>
                       </div>
-
-                      <div className={"nav__items"}>
+                    </div>
+                  </div>
+                  <div className={"nav__items"}>
+                    <div
+                      className={`${"nav__dropdown"} ${
+                        openProcess === 1 ? "open" : ""
+                      }  `}
+                    >
+                      <a
+                        to="#"
+                        className={"nav__link"}
+                        onClick={() =>
+                          setOpenProcess(openProcess === 1 ? -1 : 1)
+                        }
+                      >
                         <div
-                          className={`${"nav__dropdown"} ${
-                            openDropdown === 2 ? "open" : ""
-                          }  `}
+                          className={` ${"icon_cmn"} ${"bx_home"} ${"nav__icon"}`}
                         >
-                          <a
-                            to="#"
-                            className={"nav__link"}
-                            onClick={() => toggleDropdown(2)}
+                          <svg
+                            width="12"
+                            height="12"
+                            viewBox="0 0 12 12"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
                           >
-                            <div
-                              className={` ${"icon_cmn"} ${"bx_home"} ${"nav__icon"}`}
-                            >
-                              <svg
-                                width="12"
-                                height="12"
-                                viewBox="0 0 12 12"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <circle
-                                  cx="6"
-                                  cy="6"
-                                  r="5.25"
-                                  stroke="#151517"
-                                  stroke-width="1.5"
-                                />
-                              </svg>
-                            </div>
-                            <span className={"nav__name"}>Under Process</span>
-                            <i
-                              className={` ${"ms_auto"} ${"bx_chevron_down"} ${"nav__icon"} ${
-                                openDropdown === 3 ? "open" : ""
-                              } `}
-                            >
-                              <FaAngleDown />
-                            </i>
-                          </a>
-                          <div
-                            className={`${"nav__dropdown_collapse"} ${
-                              openDropdown === 3 ? "open" : ""
-                            }`}
+                            <circle
+                              cx="6"
+                              cy="6"
+                              r="5.25"
+                              stroke="#151517"
+                              stroke-width="1.5"
+                            />
+                          </svg>
+                        </div>
+                        <span className={"nav__name"}>Under Process</span>
+                        <i
+                          className={` ${"ms_auto"} ${"bx_chevron_down"} ${"nav__icon"} ${
+                            openProcess === 1 ? "open" : ""
+                          } `}
+                        >
+                          <FaAngleDown />
+                        </i>
+                      </a>
+                      <div
+                        className={`${"nav__dropdown_collapse"} ${
+                          openProcess === 1 ? "open" : ""
+                        }`}
+                      >
+                        <div className={"nav__dropdown_content"}>
+                          <Link
+                            to="/admin/application/list"
+                            className={`${"nav__dropdown_item"} d-flex justify-content-between align-items-center`}
                           >
-                            <div className={"nav__dropdown_content"}>
-                              <Link
-                                to="/admin/application/list"
-                                className={`${"nav__dropdown_item"} d-flex justify-content-between align-items-center`}
-                              >
-                                Awaiting Commodity Purchase
-                                <FaAngleRight />
-                              </Link>
-                              <Link
-                                to="/admin/application/sent"
-                                className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
-                              >
-                                Digital: Awaiting Customer acceptance on{" "}
-                                <br></br>the Agreement
-                                <FaAngleRight />
-                              </Link>
-                              <Link
-                                to="/admin/application/sent"
-                                className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
-                              >
-                                Physical – Awaiting Customer acceptance on
-                                <br></br> the Agreement
-                                <FaAngleRight />
-                              </Link>
-                              <Link
-                                to="/admin/application/sent"
-                                className={`${"nav__dropdown_item"} d-flex justify-content-between align-items-center`}
-                              >
-                                Awaiting Agent Appointment and Response.
-                                <FaAngleRight />
-                              </Link>
-                              <Link
-                                to="/admin/application/commodity"
-                                className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
-                              >
-                                Awaiting funding and Welcome <br></br>letter
-                                issuance
-                                <FaAngleRight />
-                              </Link>
-                            </div>
-                          </div>
+                            Awaiting Commodity Purchase
+                            <FaAngleRight />
+                          </Link>
+                          <Link
+                            to="/admin/application/sent"
+                            className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
+                          >
+                            Digital: Awaiting Customer acceptance on <br></br>
+                            the Agreement
+                            <FaAngleRight />
+                          </Link>
+                          <Link
+                            to="/admin/application/sent"
+                            className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
+                          >
+                            Physical – Awaiting Customer acceptance on
+                            <br></br> the Agreement
+                            <FaAngleRight />
+                          </Link>
+                          <Link
+                            to="/admin/application/sent"
+                            className={`${"nav__dropdown_item"} d-flex justify-content-between align-items-center`}
+                          >
+                            Awaiting Agent Appointment and Response.
+                            <FaAngleRight />
+                          </Link>
+                          <Link
+                            to="/admin/application/commodity"
+                            className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
+                          >
+                            Awaiting funding and Welcome <br></br>letter
+                            issuance
+                            <FaAngleRight />
+                          </Link>
                         </div>
                       </div>
                     </div>
                   </div>
-
                   <div
                     className={`${"nav__items"}  ${
                       showActive === 1 ? "active" : ""
@@ -312,6 +314,7 @@ function Sidebar() {
                   </div>
                 </div>
               </div>
+
               {/* <div className={"nav__items"}>
                 <Link to="/admin/dashboard/sponser" className={"nav__link"}>
                   <div

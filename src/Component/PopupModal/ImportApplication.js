@@ -1,53 +1,116 @@
 import React, { useState } from "react";
-import { Modal } from "react-bootstrap";
+import { Modal, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { SetpopupReducerData } from "../../store/reducer/index";
+import {
+  SetloaderData,
+  SetpopupReducerData,
+  reSetPopupReducerData,
+} from "../../store/reducer/index";
 import UploadToFile from "../Common/CustomeUploadToFile/UploadToFile";
 import ConfirmFileList from "../Common/CustomeUploadToFile/ConfirmFileList";
 import ConfirmFiles from "../Common/CustomeUploadToFile/ConfirmFiles";
 import DuplicateModal from "./DuplicateModal";
+import { API } from "../../apiwrapper";
+import { apiURl } from "../../store/actions";
 
 function ImportApplication() {
   const dispatch = useDispatch();
   const { createType } = useSelector((state) => state?.Product);
-  const { PopupReducer } = useSelector((state) => state);
-  const { showModal = false } = PopupReducer?.modal;
-  const { showConfirmModal = false } = PopupReducer?.modal;
-  const { duplicatedModal = false } = PopupReducer?.modal;
+  const { PopupReducer, Loader, ConfigData } = useSelector((state) => state);
 
-  const fileType = PopupReducer?.modal?.type;
+  const {
+    showModal = false,
+    documents = [],
+    formId = "",
+  } = PopupReducer?.modal;
+  const [isUploaded, setIsUploaded] = useState(false);
 
   const handleClosePopup = () => {
+    dispatch(reSetPopupReducerData());
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (!formId) {
+        alert("Please select application category.");
+        return;
+      }
+      if (!documents?.length) {
+        alert("Please import application, Only PDF files are allowed.");
+        return;
+      }
+
+      const fd = new FormData();
+      const obj = documents?.[0];
+      fd.append("file", obj?.document);
+      fd.append("formId", formId);
+      fd.append("showStatus", "Pending");
+      dispatch(SetloaderData(true));
+
+      const data = await API({
+        url: `${apiURl.applications}`,
+        method: "POST",
+        body: fd,
+      });
+
+      if (data?.status || data?.status === "true") {
+        const awsUrls = data?.awsUrl;
+        const updatedObj = { ...obj, document: awsUrls?.[0] };
+        const updatedDocuments = [...documents];
+        updatedDocuments[0] = updatedObj;
+        dispatch(
+          SetpopupReducerData({
+            ...PopupReducer?.modal,
+            documents: updatedDocuments,
+          })
+        );
+
+        setIsUploaded(true);
+      } else {
+        setIsUploaded(false);
+      }
+    } catch (error) {
+      // Handle errors
+      console.error("Error submitting form:", error);
+      // Set error state if needed
+      // setApiErrors({ message: error.message });
+    } finally {
+      // Dispatch loader action to hide loader
+      dispatch(SetloaderData(false));
+    }
+  };
+
+  const onSubmitContinue = () => {
     dispatch(
-      SetpopupReducerData({ modalType: "UPLOADFILE", showModal: false })
+      SetpopupReducerData({
+        modalType: "DUPLICATE_FILES",
+        showModal: true,
+      })
     );
   };
 
-  // update create api
-  const onSubmit = async (e, typeSubmit) => {
+  const handleFileChange = (e) => {
+    let files = e.target.files;
 
-    e.preventDefault();
-    dispatch(SetpopupReducerData({ modalType: "UPLOADFILE", showModal: false }));
-    dispatch(SetpopupReducerData({modalType: "UPLOADFILE",showModal: true,type: typeSubmit,}));
- 
+    let arr = Array.from(files)?.map((ele) => {
+      return {
+        name: ele.name,
+        size: ele.size,
+        type: ele.type,
+        document: ele,
+      };
+    });
+    dispatch(
+      SetpopupReducerData({
+        ...PopupReducer?.modal,
+        documents: [...documents, ...arr],
+      })
+    );
   };
-
-  const onSubmitContinue = ()=>{
-   
-      dispatch(
-        SetpopupReducerData({
-          modalType: "DUPLICATEFILES",
-          duplicatedModal: true,
-        })
-      );
-    
-  }
 
   return (
     <>
-      {/* {showConfirmModal && <ConfirmFiles />} */}
-      {duplicatedModal && <DuplicateModal />}
-
       <Modal
         className={"publishModal modal_details"}
         show={showModal}
@@ -67,12 +130,21 @@ function ImportApplication() {
             <p>Select application category</p>
             <select
               class="form-select mt-3 p-3 fs-5"
-              aria-label="Default select example"
+              name="formId"
+              value={formId}
+              onChange={(e) =>
+                dispatch(
+                  SetpopupReducerData({
+                    ...PopupReducer?.modal,
+                    formId: e.target.value,
+                  })
+                )
+              }
             >
-              <option selected>Personal Finance - Murabaha</option>
-              <option value="1">Credit card Murabaha</option>
-              <option value="2">Home Finance - ijarah</option>
-              <option value="2">Auto Finance - Murabaha</option>
+              <option value={""}>Select</option>
+              {ConfigData?.categories?.map((ele) => (
+                <option value={ele?._id}>{ele?.form_name}</option>
+              ))}
             </select>
             <select
               class="form-select mt-3 p-3"
@@ -92,11 +164,11 @@ function ImportApplication() {
               </option>
             </select>
             <div>
-              <UploadToFile />
+              <UploadToFile handleFileChange={handleFileChange} />
             </div>
             <div className="buttons d-block pt-3 ">
               {/* <p className="pb-4">Files Uploaded</p> */}
-              {fileType === "FILEUPLOADED" && (
+              {isUploaded && (
                 <div
                   className={`d-flex align-items-center justify-content-around pb-4 ${"saveBtn"}`}
                 >
@@ -112,21 +184,23 @@ function ImportApplication() {
           <div
             className={`d-flex align-items-center justify-content-around pt-4 `}
           >
-          
             {/* continue for Uploaded files */}
-            {fileType === "FILEUPLOADED" ? (
+            {isUploaded ? (
               <button
                 className="login100-form-btn"
                 onClick={(e) => onSubmitContinue(e)}
               >
                 Continue
               </button>
-            ) :   <button
-            className="login100-form-btn"
-            onClick={(e) => onSubmit(e, "FILEUPLOADED")}
-          >
-            Continue
-          </button>}
+            ) : (
+              <button
+                className="login100-form-btn"
+                onClick={(e) => onSubmit(e)}
+                disabled={Loader?.data || false}
+              >
+                {Loader?.data ? <Spinner /> : "Continue"}
+              </button>
+            )}
           </div>
         </Modal.Body>
       </Modal>

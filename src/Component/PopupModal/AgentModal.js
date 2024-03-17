@@ -43,7 +43,7 @@ function AgentModal() {
         <div className="">
           <h3>Sending to Agent</h3>
           <p style={{ textAlign: "center" }}>
-            Sending information to agent by selling commodity.
+            Sending information to agent for selling commodity.
           </p>
         </div>
         <div>

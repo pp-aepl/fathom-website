@@ -1,17 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { SetpopupReducerData } from "../../../../store/reducer";
+import { SetloaderData, SetpopupReducerData } from "../../../../store/reducer";
 import { useDispatch, useSelector } from "react-redux";
-import ProceedCommodityModal from "../CommodityTrade/ProceedCommodityModal";
+import { apiURl } from "../../../../store/actions";
+import { API } from "../../../../apiwrapper";
 
 function InprocessList() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { PopupReducer } = useSelector((state) => state);
-  const { proceedCommodityModal = false } = PopupReducer?.modal;
-  const { murabahaModal = false } = PopupReducer?.modal;
-
-
+  const { selectedApplication = [], status = "" } = PopupReducer?.modal;
+ 
   const [arrList, setArrList] = useState([
     {
       app_name: "220872-00",
@@ -51,24 +51,61 @@ function InprocessList() {
     },
   ]);
 
-  useEffect(()=>{
-    setTimeout(() => {
-      dispatch(SetpopupReducerData({ modalType: "MURABAHA", proceedCommodityModal: true }));
-    }, 2000);
-  },[])
-
-
   // navigate to agreement
-  const navigateToAgreement = (item) =>{
+  const navigateToAgreement = (item) => {
     navigate("/admin/application/murabaha");
-    dispatch(SetpopupReducerData({ modalType: "MURABAHA", murabahaModal: true }));
-  }
+    dispatch(
+      SetpopupReducerData({
+        ...PopupReducer?.modal,
+        selectedApplication: [item?._id],
+        modalType: "MURABAHA",
+        showModal: true,
+      })
+    );
+  };
+
+  const handleProcess = async () => {
+    try {
+      let payload = {
+        ids: selectedApplication,
+        status: "AWAITING_COMMODITY_PURCHASE",
+      };
+      dispatch(SetloaderData(true));
+      const data = await API({
+        url: `${apiURl.applications}`,
+        method: "PUT",
+        body: payload,
+      });
+
+      if (data?.status || data?.status === "true") {
+        setTimeout(() => {
+          navigate("/admin/application/list");
+          dispatch(
+            SetpopupReducerData({
+              ...PopupReducer?.modal,
+              modalType: "ProceedCommodity",
+              showModal: true,
+            })
+          );
+        }, 2000);
+      } else {
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch(SetloaderData(false));
+    }
+  };
+  useEffect(() => {
+    if (selectedApplication?.length > 0) {
+      handleProcess();
+    }
+  }, []);
 
   return (
     <>
-      {proceedCommodityModal && <ProceedCommodityModal/>}
-    <section className="">
-      <div className="upload_new_application inProcess py-4 pe-4">
+      <section className="px-2">
+        <div className="upload_new_application inProcess py-4 pe-4">
           <h3 className="card-title1 ps-4">Application in process </h3>
           <div className="top_list ps-4">
             <div class=" align-items-center p-1">
@@ -91,17 +128,26 @@ function InprocessList() {
                 <table class="table">
                   <thead class="thead-light">
                     <tr>
-                      <th className="ps-4" scope="col">Application Name </th>
+                      <th className="ps-4" scope="col">
+                        Application Name{" "}
+                      </th>
                       <th scope="col">Status</th>
                       <th scope="col pe-4">Rule 1</th>
                     </tr>
                   </thead>
                   <tbody>
                     {arrList?.map((item) => (
-                      <tr className="pointer" onClick={() => navigateToAgreement(item)}>
+                      <tr
+                        className="pointer"
+                        onClick={() => navigateToAgreement(item)}
+                      >
                         <td className="ps-4">{item?.app_name}</td>
                         <td>
-                          <span className={item?.status === "Done" ? "green" : "orange"}>
+                          <span
+                            className={
+                              item?.status === "Done" ? "green" : "orange"
+                            }
+                          >
                             {item?.status}
                           </span>
                         </td>
@@ -116,12 +162,8 @@ function InprocessList() {
             </div>
           </div>
         </div>
-      
-    </section>
+      </section>
     </>
-  
-
-  
   );
 }
 

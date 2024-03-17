@@ -1,4 +1,6 @@
-import React, { useState, useRef } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable jsx-a11y/alt-text */
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import DataTable from "react-data-table-component";
@@ -10,11 +12,12 @@ import RejectModal from "../../PopupModal/RejectModal";
 import ReasonModal from "../../PopupModal/ReasonModal";
 import ExceptionModal from "../../PopupModal/ExceptionModal";
 import SuccessfullyModal from "../../PopupModal/SuccessfullyModal";
+import Rules from "./Rules";
+import Filter from "./Filter";
+import { fetchApplicationList } from "../../../Config/FetchListingData";
+import moment from "moment";
 
-function NewList({ id }) {
-  const tableRef = useRef();
-  const params = useParams();
-  const fetchParams = params.userId;
+function NewList() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showAddMore, setShowAddMore] = useState(false);
@@ -31,6 +34,7 @@ function NewList({ id }) {
   const { reasonModal = false } = PopupReducer?.modal;
   const { exceptionModal = false } = PopupReducer?.modal;
   const { successModal = false } = PopupReducer?.modal;
+  const [showRules, setShowRules] = useState(false);
 
   const [transactionDetails, setTransactionDetails] = useState({});
   const [show, setShow] = useState(false);
@@ -45,13 +49,6 @@ function NewList({ id }) {
     },
   ]);
 
-  const [filterKey, setFilterKey] = useState({
-    search: "",
-    offset: currentPage,
-    limit: perPage,
-    startDate: "",
-    endDate: "",
-  });
   const [Transactions, setTransactions] = useState([]);
 
   // filter
@@ -80,35 +77,13 @@ function NewList({ id }) {
   };
 
   // transaction details
-  const handelTransaction = (row) => {
-    dispatch(createType(fetchParams));
-    navigate("/admin/add");
-    setTransactionDetails(row);
-  };
+  // const handelTransaction = (row) => {
+  //   dispatch(createType(fetchParams));
+  //   navigate("/admin/add");
+  //   setTransactionDetails(row);
+  // };
 
   // filter functionality
-  const fetchModal = (e) =>{
-    let filteValue = e.target.value
-    if(filteValue === 'APPROVE'){
-      dispatch(SetpopupReducerData({ modalType: "PROCEED", proceedModal: true}));
-
-    }else if(filteValue === 'REJECTED'){
-      dispatch(SetpopupReducerData({ modalType: "REJECTED", rejectModal: true }));
-
-    }else if(filteValue === 'PROCEED&EXCEPTION'){
-      dispatch(SetpopupReducerData({ modalType: "EXCEPTION", exceptionModal: true,type:'SUCCESSFULLY' }));
-
-    }
-    
-  }
-
-  //convertToCamelCase
-
-  const convertToCamelCase = (str) => {
-    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-  };
-
-  // Array of dynamic first names and last names
 
   const statuses = ["active", "inactive"];
 
@@ -252,335 +227,216 @@ function NewList({ id }) {
     },
   ];
 
+  const [arrList, setArrList] = useState([]);
+  const [selectedApplication, setSelectedApplication] = useState([]);
+  const [action, setAction] = useState("");
+
+  const [filterKey, setFilterKey] = useState({
+    serial_number: "",
+    pageNo: currentPage,
+    limit: perPage,
+    startDate: "",
+    endDate: "",
+    periodFrom: "",
+  });
+  const handleChangeCheckBox = (e, id) => {
+    let arr = [...selectedApplication];
+    if (e.target.checked) {
+      arr.push(id);
+    } else {
+      arr = arr.filter((ele) => ele !== id);
+    }
+    setSelectedApplication(arr);
+  };
+
+  const fetchModal = (e) => {
+    if (selectedApplication?.length === 0) {
+      alert("Please select application to proceed.");
+      return;
+    }
+    let value = e.target.value;
+    setAction(value);
+    if (value === "APPROVED") {
+      dispatch(
+        SetpopupReducerData({
+          modalType: "PROCEED",
+          showModal: true,
+          selectedApplication: selectedApplication,
+          status: value,
+        })
+      );
+    } else if (value === "REJECTED") {
+      dispatch(
+        SetpopupReducerData({ modalType: "REJECTED", rejectModal: true })
+      );
+    } else if (value === "PROCEED&EXCEPTION") {
+      dispatch(
+        SetpopupReducerData({
+          modalType: "EXCEPTION",
+          exceptionModal: true,
+          type: "SUCCESSFULLY",
+        })
+      );
+    }
+  };
+
+  const fetchListingData = useCallback(async () => {
+    try {
+      let payload = {
+        status: "IMPORTED",
+        ...filterKey,
+      };
+      const data = await dispatch(fetchApplicationList(payload, filterKey));
+      if (data?.status || data?.status === "true") {
+        console.log(data, "dattt");
+        setArrList(data?.results);
+      } else {
+        setArrList([]);
+      }
+    } catch (error) {
+      console.log(error, "error");
+    }
+  }, [ filterKey]);
+
+  useEffect(() => {
+    fetchListingData();
+  }, [fetchListingData]);
+  console.log(selectedApplication, "list");
   return (
- 
-      <>
-          {proceedModal && <ProceedModal/>}
-          {rejectModal && <RejectModal/>}
-          {reasonModal && <ReasonModal/>}
-          {exceptionModal && <ExceptionModal/>}
-          {successModal && <SuccessfullyModal/>}
+    <>
+      {rejectModal && <RejectModal />}
+      {reasonModal && <ReasonModal />}
+      {exceptionModal && <ExceptionModal />}
+      {successModal && <SuccessfullyModal />}
 
-        <section className="">
-          
-            <div className="upload_new_application">
-              {/* <h5>{convertToCamelCase(fetchParams)}</h5> */}
-              
-              <h3 className="ps-5">Upload New Application </h3>
-              <div className="top_list">
-                <div className="list_row d-flex justify-content-between">
-                  <div>
-                    <strong>RULE 1:</strong> Check Agency agreement date, name,
-                    PO Box, Emirates is filled and signed by Customer and Agent
-                  </div>
-                  <div className="icon">3/6</div>
-                </div>
-                <div className="list_row d-flex justify-content-between">
-                  <div>
-                    <strong>RULE 2:</strong> Check Schedule-1 Murabaha
-                    Agreement- Form of Sellers Intimation dated and signed by
-                    Bank
-                  </div>
-                  <div className="icon">3/6</div>
-                </div>
+      <section className="">
+        <div className="upload_new_application">
+         
+          <h3 className="ps-5">Commodity Purchase </h3>
+          <div className="top_list">
+            {showRules && <Rules />}
+            <div className="mini my-2 p-4 border-bottom">
+              {" "}
+              <span className="cursar" onClick={() => setShowRules(!showRules)}>
+                {" "}
+                <img src="../../images/arrow-circle-down.svg"></img>{" "}
+                {showRules ? "Minimize" : "Show"} Rule{" "}
+              </span>
+            </div>
 
-                <div className="list_row d-flex justify-content-between">
-                  <div>
-                    <strong>RULE 3:</strong> Check Schedule-2 Form of Murabaha
-                    Agreement Dated and Signed by Agent and Bank
-                  </div>
-
-                  <div className="icon">3/6</div>
-                </div>
-                <div className="mini my-2 p-4 border-bottom">
-                  {" "}
-                  <span className="cursar">
-                    {" "}
-                    <img src="../../images/arrow-circle-down.svg"></img>{" "}
-                    Minimalize RULES{" "}
-                  </span>
-                </div>
-
-                <div className="row p-4 ps-4">
-                  <div className="col-md-3">
-                    <label className="label">Filter</label>
-                    <div className="border rounded p-2 pe-0">
-                      <div class="form-check d-inline-block verticle checkbox">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="check2"
-                          name="option2"
-                          value="something"
-                        ></input>
-                      </div>
-                      <select
-                        class="form-select w-85 d-inline-block border-0"
-                        aria-label="Default select example"
-                      >
-                        <option selected>Months</option>
-                        <option value="1">Last day</option>
-                        <option value="2">Last week</option>
-                        <option value="2">Last month</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="col-2 ">
-                  <label className="label">Search Applictaion</label>
-                    <select class="form-select p-3">
-                      <option>Last week</option>
-                    </select>
-                  </div>
-                  <div className="col-2">
-                  <label className="label">Date from</label>
-                    <div className=" text-right">
-                      <input type="date" className="form-control p-3" id="birthday" name="birthday"></input>
-                    </div>
-                  </div>
-                  <div className="col-2">
-                  <label className="label">Date to</label>
-                    <div className="text-right">
-                      <input type="date" id="birthday" className="form-control p-3" name="birthday"></input>
-                    </div>
-                  </div>
-                  <div className="col-3">
-                  <label className="label">&nbsp;</label>
-                    <select class="form-select p-3"  onChange={fetchModal}>
-                      <option value={""}>Actions</option>
-                      <option value={"APPROVE"}>Approve and Proceed</option>
-                      <option value={"PROCEED&EXCEPTION"}>Proceed with exception</option>
-                      <option value={"REJECTED"}>Reject & Send back for correction</option>
-                    </select>
-                  </div>
+            <div className="row p-4 ps-4">
+              <div className="col-9">
+                <div className="row ">
+                  <Filter filterKey={filterKey} setFilterKey={setFilterKey} />
                 </div>
               </div>
 
-              <div class="input-group p-4">
-                <label className="d-block label py-3 w-100">Search Applications</label>
-                <button type="button" class="btn border-end-0 rounded border bg-white" data-mdb-ripple-init="">
-            <i class="fas fa-search fs-4 text-secondary"></i>
-          </button>
-                <input
-                  type="text"
-                  class="form-control p-2 border-start-0"
-                  placeholder="Search"
-                ></input>
-               
-
-                
-              </div>
-              <div className="">
-                {/* <AccordianList/> */}
-
-                <div className=" row my-5" id="table-contexual">
-                  <div className="col-12">
-                    <table class="table">
-                      <thead class="thead-light">
-                        <tr>
-                          <th scope="col"> </th>
-                          <th scope="col">S.No. </th>
-                          <th scope="col">Date</th>
-                          <th scope="col">Application no.</th>
-                          <th scope="col">Rule 1</th>
-                          <th scope="col">Rule 2</th>
-                          <th scope="col">Rule 3</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="check1"
-                                name="option1"
-                                value="something"
-                                
-                              ></input>
-                            </div>
-                          </td>
-                          <td>1</td>
-                          <td>13/05/2023</td>
-                          <td>1220872-00</td>
-                          <td>
-                            <img src="../../images/icon2.png"></img>
-                          </td>
-                          <td>
-                            <img src="../../images/icon2.png"></img>
-                          </td>
-                          <td>
-                            <img src="../../images/icon2.png"></img>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="check1"
-                                name="option1"
-                                value="something"
-                                
-                              ></input>
-                            </div>
-                          </td>
-                          <td>1</td>
-                          <td>13/05/2023</td>
-                          <td>1220872-00</td>
-                          <td>
-                            <img src="../../images/icon2.png"></img>
-                          </td>
-                          <td>
-                            <img src="../../images/icon1.png"></img>
-                          </td>
-                          <td>
-                            <img src="../../images/icon2.png"></img>
-                          </td>
-                        </tr>
-
-                        <tr>
-                          <td>
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="check1"
-                                name="option1"
-                                value="something"
-                                
-                              ></input>
-                            </div>
-                          </td>
-                          <td>1</td>
-                          <td>13/05/2023</td>
-                          <td>1220872-00</td>
-                          <td>
-                            <img src="../../images/icon2.png"></img>
-                          </td>
-                          <td>
-                            <img src="../../images/icon2.png"></img>
-                          </td>
-                          <td>
-                            <img src="../../images/icon2.png"></img>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="check1"
-                                name="option1"
-                                value="something"
-                                
-                              ></input>
-                            </div>
-                          </td>
-                          <td>1</td>
-                          <td>13/05/2023</td>
-                          <td>1220872-00</td>
-                          <td>
-                            <img src="../../images/icon2.png"></img>
-                          </td>
-                          <td>
-                            <img src="../../images/icon2.png"></img>
-                          </td>
-                          <td>
-                            <img src="../../images/icon1.png"></img>
-                          </td>
-                        </tr>
-
-                        <tr>
-                          <td>
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="check1"
-                                name="option1"
-                                value="something"
-                                
-                              ></input>
-                            </div>
-                          </td>
-                          <td>1</td>
-                          <td>13/05/2023</td>
-                          <td>1220872-00</td>
-                          <td>
-                            <img src="../../images/icon2.png"></img>
-                          </td>
-                          <td>
-                            <img src="../../images/icon2.png"></img>
-                          </td>
-                          <td>
-                            <img src="../../images/icon2.png"></img>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="check1"
-                                name="option1"
-                                value="something"
-                                
-                              ></input>
-                            </div>
-                          </td>
-                          <td>1</td>
-                          <td>13/05/2023</td>
-                          <td>1220872-00</td>
-                          <td>
-                            <img src="../../images/icon2.png"></img>
-                          </td>
-                          <td>
-                            <img src="../../images/icon2.png"></img>
-                          </td>
-                          <td>
-                            <img src="../../images/icon2.png"></img>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="check1"
-                                name="option1"
-                                value="something"
-                                
-                              ></input>
-                            </div>
-                          </td>
-                          <td>1</td>
-                          <td>13/05/2023</td>
-                          <td>1220872-00</td>
-                          <td>
-                            <img src="../../images/icon1.png"></img>
-                          </td>
-                          <td>
-                            <img src="../../images/icon2.png"></img>
-                          </td>
-                          <td>
-                            <img src="../../images/icon2.png"></img>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+              <div className="col-3">
+                <label className="label">&nbsp;</label>
+                <select
+                  class="form-select p-3"
+                  onChange={fetchModal}
+                  value={action}
+                  name="action"
+                >
+                  <option value={""}>Actions</option>
+                  <option value={"APPROVED"}>Approve and Proceed</option>
+                  <option value={"PROCEED&EXCEPTION"}>
+                    Proceed with exception
+                  </option>
+                  <option value={"REJECTED"}>
+                    Reject & Send back for correction
+                  </option>
+                </select>
               </div>
             </div>
-         
-        </section>
-      </>
-  
+          </div>
+
+          <div class="input-group p-4">
+            <label className="d-block label py-3 w-100">
+              Search Applications
+            </label>
+            <button
+              type="button"
+              class="btn border-end-0 rounded border bg-white"
+              data-mdb-ripple-init=""
+            >
+              <i class="fas fa-search fs-4 text-secondary"></i>
+            </button>
+            <input
+              type="text"
+              class="form-control p-2 border-start-0"
+              placeholder="Search"
+            ></input>
+          </div>
+          <div className="">
+            {/* <AccordianList/> */}
+
+            <div className=" row my-5" id="table-contexual">
+              <div className="col-12">
+                <table class="table">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col"> </th>
+                      <th scope="col">S.No. </th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Application no.</th>
+                      {arrList?.[0]?.rules?.map((ele, index) => (
+                        <th scope="col">Rule {index + 1}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {arrList?.length > 0
+                      ? arrList?.map((ele, index) => (
+                          <tr key={index}>
+                            <td>
+                              <div class="form-check">
+                                <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  value=""
+                                  id={ele._id}
+                                  checked={selectedApplication?.includes(
+                                    ele?._id
+                                  )}
+                                  onChange={(e) =>
+                                    handleChangeCheckBox(e, ele._id)
+                                  }
+                                />
+                              </div>
+                            </td>
+                            <td>{index + 1}</td>
+                            <td>
+                              {moment(ele?.createdAt)
+                                .local()
+                                .format("DD/MM/YYYY hh:mm a")}
+                            </td>
+                            <td>{ele?.serial_number}</td>
+                            {ele?.rules?.map((item) => (
+                              <>
+                                <td title={item?.ruleId?.rule_name}>
+                                  <img
+                                    src={
+                                      item?.status
+                                        ? "../../images/icon2.png"
+                                        : "../../images/icon1.png"
+                                    }
+                                  />
+                                </td>
+                              </>
+                            ))}
+                          </tr>
+                        ))
+                      : ""}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
 export default NewList;

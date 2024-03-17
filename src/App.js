@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Routes, Route, Navigate, Outlet, Router } from "react-router-dom";
 import Navbar from "./Component/Sidebar/Nabvar/Navbar";
 import Dashboard from "./Component/Dashboard/Dashboard";
@@ -11,7 +12,7 @@ import MurabahaList from "./Component/Common/ApplicationsList/MurabahaAgreement/
 import SentList from "./Component/Common/ApplicationsList/MurabahaAgreement/SentList";
 import CommodityList from "./Component/Common/ApplicationsList/CommodityTrade/CommodityList";
 import ReportList from "./Component/Common/Reports/ReportList";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import SidebarRoutes from "./Component/Sidebar/Nabvar/sidebar_new";
 import RequireAuth from "./Component/Auth/useAuth";
 import "./App.css";
@@ -20,6 +21,11 @@ import AdminLayout from "./Component/Layout/AdminLayout";
 import ForgotPassword from "./Component/Auth/ForgotPassword";
 import ChangePassword from "./Component/Auth/ChangePassword";
 import OpenModal from "./Component/PopupModal/OpenModal";
+import { useDispatch } from "react-redux";
+import {
+  fetchAllCategories,
+  fetchAllRulesList,
+} from "./Config/FetchListingData";
 // import "./styles.css"
 
 // function App() {
@@ -200,7 +206,21 @@ import OpenModal from "./Component/PopupModal/OpenModal";
 
 function App() {
   const userToken = localStorage.getItem("token");
+  const dispatch = useDispatch();
+  const fetchListingData = useCallback(async () => {
+    try {
+      await dispatch(fetchAllRulesList());
+      await dispatch(fetchAllCategories());
+    } catch (error) {
+      console.log(error, "error");
+    }
+  }, [userToken]);
 
+  useEffect(() => {
+    if (userToken) {
+      fetchListingData();
+    }
+  }, [fetchListingData]);
   return (
     <>
       <OpenModal />

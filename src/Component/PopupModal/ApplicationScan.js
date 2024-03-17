@@ -82,9 +82,9 @@ function ApplicationScan() {
 
             <p className="card-text text-center">
               {statusType?.success === "SUCCESS" &&
-                "85 Application passed and 5 Application Failed"}
+                "85 Application passed and 5 Application failed"}
               {statusType?.success !== "SUCCESS" &&
-                "Application scanning is it in process"}
+                "Application scanning is in process"}
             </p>
           </div>
           {statusType?.success === "SUCCESS" && (
@@ -94,7 +94,7 @@ function ApplicationScan() {
                 className="login100-form-btn"
                 onClick={(e) => navigateToList(e, "new")}
               >
-                Okey
+                Okay
               </button>
             </div>
           )}
