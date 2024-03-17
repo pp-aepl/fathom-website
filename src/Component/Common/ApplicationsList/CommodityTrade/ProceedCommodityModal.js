@@ -1,29 +1,32 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { SetpopupReducerData } from "../../../../store/reducer";
+import {
+  SetpopupReducerData,
+  reSetPopupReducerData,
+} from "../../../../store/reducer";
 
 function ProceedCommodityModal() {
   const dispatch = useDispatch();
   const { createType } = useSelector((state) => state?.Product);
   const { PopupReducer } = useSelector((state) => state);
-  const { proceedCommodityModal = false } = PopupReducer?.modal;
+  const { showModal = false } = PopupReducer?.modal;
   const navigate = useNavigate();
 
   const handleClosePopup = () => {
-    dispatch(
-      SetpopupReducerData({
-        modalType: "PROCEED",
-        proceedCommodityModal: false,
-      })
-    );
+    dispatch(reSetPopupReducerData());
   };
 
   const navigateToAgreement = (item) => {
     navigate("/admin/application/murabaha");
     dispatch(
-      SetpopupReducerData({ modalType: "MURABAHA", murabahaModal: true })
+      SetpopupReducerData({
+        ...PopupReducer?.modal,
+        modalType: "MURABAHA",
+        showModal: true,
+      })
     );
   };
 
@@ -31,22 +34,21 @@ function ProceedCommodityModal() {
     <>
       <Modal
         className={"publishModal"}
-        show={proceedCommodityModal}
+        show={showModal}
         size="md"
         centered
         onHide={handleClosePopup}
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Title>
-          <img
-            src="../../images/icon2.png"
-            style={{ height: "100px"}}
-          />
-        </Modal.Title>
-
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
         <Modal.Body className="p-5">
           <div className="">
+            <div className="text-center mb-2">
+              <img src="../../images/icon2.png" style={{ height: "100px" }} />
+            </div>
             <span style={{ paddingLeft: "9rem", fontWeight: "600" }}>
               Commodity purchase has been completed
             </span>

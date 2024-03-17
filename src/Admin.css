@@ -1322,7 +1322,7 @@ input:-moz-placeholder {
   top: 80px;
   padding: 5px;
   display: block;
-  width: 290px;
+  width: 30px;
   color: #fff;
   border-radius: 0 5px 4px 0px;
   cursor: pointer;
@@ -2259,6 +2259,7 @@ border: 1px solid #316cf4;
   }
   .toggleClose {
     display: block;
+    top: 5px;
   }
   .nav__list {
     width: 300px;

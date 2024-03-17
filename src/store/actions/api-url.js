@@ -9,12 +9,15 @@ const config = {
   ecommerce_microservice: "ecommerce",
   reels_microservice: "reels",
   events_microservice: "events",
+  admin: "admin",
 };
 const apiURl = {
   login: `${config.version}/${config.common_microservice}/auth/login`,
   forgot: `${config.version}/${config.common_microservice}/forgot`,
   reset: `${config.version}/${config.common_microservice}/change-password`,
-  applications_list: `${config.version}/${config.common_microservice}/applications/list`,
+  applications: `${config.version}/${config.common_microservice}/applications`,
+  forms: `${config.version}/${config.common_microservice}/forms`,
+  rules: `${config.version}/${config.admin}/rules`,
 };
 
 export const NotificationMsg = {

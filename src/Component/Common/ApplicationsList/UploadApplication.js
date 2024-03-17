@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SetpopupReducerData } from "../../../store/reducer";
@@ -10,17 +11,18 @@ import DuplicateModal from "../../PopupModal/DuplicateModal";
 function UploadApplication() {
   const dispatch = useDispatch();
   const { PopupReducer } = useSelector((state) => state);
-  const { showModal = false } = PopupReducer?.modal;
-  const { showConfirmModal = false } = PopupReducer?.modal;
-  const { successModal = false } = PopupReducer?.modal;
-  const { scanModal = false } = PopupReducer?.modal;
-  const { duplicatedModal = false } = PopupReducer?.modal;
+  const {
+    showConfirmModal = false,
+    successModal = false,
+    scanModal = false,
+    showModal = false,
+  } = PopupReducer?.modal;
 
-  const handleSubmit = async (e, typeSubmit) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(
       SetpopupReducerData({
-        modalType: "UPLOADFILE",
+        modalType: "UPLOAD_FILE",
         showModal: true,
       })
     );
@@ -28,25 +30,27 @@ function UploadApplication() {
 
   return (
     <>
-      {showModal && <ImportApplication />}
       {showConfirmModal && <ConfirmFiles />}
       {successModal && <SuccessfullyModal />}
       {scanModal && <ApplicationScan />}
-      {duplicatedModal && <DuplicateModal />}
 
       <div className="card uploadCard">
         <img
           className="card-img-top"
           src="../../images/upload_screen1.png"
           alt="Card image cap"
+          onClick={handleSubmit}
+          style={{ cursor: "pointer" }}
         ></img>
         <div className="card-body">
-          <h3 className="card-title fs-2 text-center">Import new application</h3>
+          <h3 className="card-title fs-2 text-center">
+            Import new application
+          </h3>
           <p className="card-text fs-4 mb-4">
-            Press on the purple circle to upload your first application
+            Click on the purple circle to upload application
           </p>
           <button className="login100-form-btn" onClick={handleSubmit}>
-            Upload
+            Import
           </button>
           {/* <a href="#" className="btn btn-primary">Upload</a> */}
         </div>

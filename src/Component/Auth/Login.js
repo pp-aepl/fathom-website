@@ -49,6 +49,7 @@ function Login() {
           method: "POST",
           body: { ...inpData },
         }).then((data) => {
+          console.log(data,"loginData");
           if (data?.status || data?.status === true) {
             const token = data?.token;
             if (!token) {

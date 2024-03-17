@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import UploadApplication from "./UploadApplication";
 import { fetchApplicationList } from "../../../Config/FetchListingData";
 import moment from "moment";
+import Filter from "./Filter";
 
 function List({ id }) {
   const tableRef = useRef();
@@ -26,7 +27,7 @@ function List({ id }) {
 
   const [filterKey, setFilterKey] = useState({
     serial_number: "",
-    offset: currentPage,
+    pageNo: currentPage,
     limit: perPage,
     startDate: "",
     endDate: "",
@@ -36,22 +37,7 @@ function List({ id }) {
   const handleFilterChange = (e) => {
     setFilterKey({ ...filterKey, [e.target.name]: e.target.value, pageNo: 1 });
   };
-  const handleChangePeriod = (e) => {
-    const val = e.target.value;
-    let date = new Date(); // Current date
-
-    if (val === "day") {
-      date.setDate(date.getDate() - 1); // Subtract 1 day
-    } else if (val === "week") {
-      date.setDate(date.getDate() - 7); // Subtract 7 days (1 week)
-    } else if (val === "month") {
-      date.setMonth(date.getMonth() - 1); // Subtract 1 month
-    } else if (val === "") {
-      date = "";
-    }
-    setFilterKey({ ...filterKey, periodFrom: date, pageNo: 1 });
-  };
-
+ 
   const fetchListingData = useCallback(async () => {
     try {
       let checkStatus =
@@ -111,67 +97,10 @@ function List({ id }) {
                 <div className="">
                   <div className="">
                     <div className="row align-items-center py-1 px-5">
-                      <div className="col-md-3 px-4">
-                        <label className="label">Filter</label>
-                        <select
-                          class="form-select"
-                          name="period"
-                          // value={filterKey?.period}
-                          onChange={handleChangePeriod}
-                        >
-                          <option value={""}>Select</option>
-                          <option value="day">Last day</option>
-                          <option value="week">Last week</option>
-                          <option value="month">Last month</option>
-                        </select>
-                      </div>
-                      <div className="col-3">
-                        <label className="label">Search Applications</label>
-                        <div className="form-group has-search">
-                          {/* <span className="fa fa-search form-control-feedback"></span> */}
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="serial_number"
-                            value={filterKey.serial_number}
-                            inputMode="numeric"
-                            placeholder="Search..."
-                            onChange={(e) => handleFilterChange(e)}
-                          />
-                        </div>
-                      </div>
-                      <div className="col-3 ">
-                        <label className="label">Date from</label>
-                        <DatePicker
-                          selected={filterKey.startDate}
-                          onChange={(date) => {
-                            setFilterKey({
-                              ...filterKey,
-                              startDate: date,
-                            });
-                          }}
-                          className="form-control"
-                          isClearable={filterKey.startDate}
-                          placeholderText="Select start date"
-                        />
-                      </div>
-                      <div className="col-3 ">
-                        <label className="label">Date to</label>
-                        <DatePicker
-                          minDate={filterKey.startDate}
-                          maxDate={new Date()}
-                          selected={filterKey.endDate}
-                          onChange={(date) => {
-                            setFilterKey({
-                              ...filterKey,
-                              endDate: date,
-                            });
-                          }}
-                          className="form-control"
-                          isClearable={filterKey.endDate}
-                          placeholderText="Select end date"
-                        />
-                      </div>
+                      <Filter
+                        filterKey={filterKey}
+                        setFilterKey={setFilterKey}
+                      />
                     </div>
                   </div>
                   <div className="">

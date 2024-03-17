@@ -8,14 +8,13 @@ function DuplicateModal() {
   const dispatch = useDispatch();
   const { createType } = useSelector((state) => state?.Product);
   const { PopupReducer } = useSelector((state) => state);
-  const { duplicatedModal = false } = PopupReducer?.modal;
-  const { showConfirmModal = false } = PopupReducer?.modal;
+  const {  showConfirmModal = false, showModal = false } = PopupReducer?.modal;
 
   const handleClosePopup = () => {
     dispatch(
       SetpopupReducerData({
-        modalType: "DUPLICATEFILES",
-        duplicatedModal: false,
+        modalType: "DUPLICATE_FILES",
+        showModal: false,
       })
     );
   };
@@ -33,7 +32,7 @@ function DuplicateModal() {
       {showConfirmModal && <ConfirmFiles />}
       <Modal
         className={"publishModal"}
-        show={duplicatedModal}
+        show={showModal}
         size="md"
         centered
         onHide={handleClosePopup}
@@ -54,11 +53,9 @@ function DuplicateModal() {
           </div>
           <div>
             <h3 className="card-title">
-            Duplicated files will not<br></br> going to be processed.
+              Duplicated files will not<br></br> going to be processed.
             </h3>
-            <p className="card-text pb-10">
-              Do you want to re-import again?
-            </p>
+            <p className="card-text pb-10">Do you want to re-import again?</p>
           </div>
 
           <div
@@ -67,7 +64,9 @@ function DuplicateModal() {
             <button className="w-50 me-4" onClick={handleClosePopup}>
               Review application
             </button>
-            <button className="w-50" onClick={(e) => onSubmit(e, "create")}>Continue</button>
+            <button className="w-50" onClick={(e) => onSubmit(e, "create")}>
+              Continue
+            </button>
           </div>
         </Modal.Body>
       </Modal>

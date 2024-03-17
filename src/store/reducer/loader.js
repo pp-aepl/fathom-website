@@ -12,7 +12,6 @@ export const sliceloader = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
 const { fetched } = sliceloader.actions;
 
 export const SetloaderData = (data) => async (dispatch) => {

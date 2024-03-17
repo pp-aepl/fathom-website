@@ -46,13 +46,13 @@ function ConfirmFiles() {
 
   const columns = [
     {
-      name: "Application Ref.No/Agreement No.",
+      name: "",
       selector: (row) => (
         <>
           <img className="d-inline-block" src="../../images/delete.png"></img>
 
           <img className="notepad d-inline-block" src="../../images/notepad.png"></img>
-          {"CRN - " + (row && row._id ? row._id : "N/A")}
+          {"Agreement No - " + (row && row._id ? row._id : "N/A")}
         </>
       ),
       sortable: true,
