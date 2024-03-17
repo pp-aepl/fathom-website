@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useEffect, useState } from "react";
 import { SetpopupReducerData } from "../../../../store/reducer";
 import { useDispatch, useSelector } from "react-redux";

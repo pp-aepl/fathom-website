@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { toast } from "react-toastify";
 import { apiURl } from "../store/actions";
 import jwtDecode from "jwt-decode";

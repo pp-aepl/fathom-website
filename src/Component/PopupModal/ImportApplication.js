@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { Modal, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -84,6 +85,7 @@ function ImportApplication() {
   const onSubmitContinue = () => {
     dispatch(
       SetpopupReducerData({
+        ...PopupReducer?.modal,
         modalType: "DUPLICATE_FILES",
         showModal: true,
       })
