@@ -2,12 +2,11 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import { createLogger } from "redux-logger";
-import { Loader, PopupReducer, Product, ConfigData, authUser } from "./reducer";
+import { Loader, PopupReducer, ConfigData, authUser } from "./reducer";
 
 const reducer = {
   Loader,
   PopupReducer,
-  Product,
   ConfigData,
   authUser,
 };

@@ -7,7 +7,6 @@ import SuccessfullyModal from "./SuccessfullyModal";
 
 function ExceptionModal() {
   const dispatch = useDispatch();
-  const { createType } = useSelector((state) => state?.Product);
   const { PopupReducer } = useSelector((state) => state);
   const { exceptionModal = false } = PopupReducer?.modal;
   const { successModal = false } = PopupReducer?.modal;

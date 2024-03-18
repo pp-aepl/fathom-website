@@ -11,7 +11,6 @@ import SuccessfullyModal from "../../PopupModal/SuccessfullyModal";
 
 function ConfirmFiles() {
   const dispatch = useDispatch();
-  const { createType } = useSelector((state) => state?.Product);
   const { PopupReducer } = useSelector((state) => state);
   const { successModal = false, documents = [] } = PopupReducer?.modal;
   const { showConfirmModal = false } = PopupReducer?.modal;
@@ -65,6 +64,23 @@ function ConfirmFiles() {
       })
     );
   };
+  const handleChangeCheckbox = (e, idx) => {
+    let arr = [...documents];
+    let obj = arr[idx];
+    const updatedObj = {
+      ...obj,
+      [e.target.name]: e.target.checked,
+    };
+    const updatedDocuments = [...documents];
+    updatedDocuments[0] = updatedObj;
+    dispatch(
+      SetpopupReducerData({
+        ...PopupReducer?.modal,
+        documents: updatedDocuments,
+      })
+    );
+    console.log(obj, "ele");
+  };
   const columns = [
     {
       name: "",
@@ -93,23 +109,18 @@ function ConfirmFiles() {
     },
     {
       name: "Application",
-      cell: (row) => (
+      cell: (row, indx) => (
         <>
           <div>
-            {row?.status === "FAILED" ? (
-              <>
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault"
-                />
-              </>
-            ) : (
-              <>
-                <img src="../../images/close.png" className="close"></img>
-              </>
-            )}
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value={row?.application}
+              name="application"
+              checked={row?.application}
+              onChange={(e) => handleChangeCheckbox(e, indx)}
+              id="flexCheckDefault"
+            />
           </div>
         </>
       ),
@@ -118,23 +129,18 @@ function ConfirmFiles() {
     },
     {
       name: "Promise to Purchase",
-      cell: (row) => (
+      cell: (row, indx) => (
         <>
           <div>
-            {row?.status === "FAILED" ? (
-              <>
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault"
-                />
-              </>
-            ) : (
-              <>
-                <img src="../../images/close.png" className="close"></img>
-              </>
-            )}
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value={row?.promise_to_purchase}
+              name="promise_to_purchase"
+              checked={row?.promise_to_purchase}
+              onChange={(e) => handleChangeCheckbox(e, indx)}
+              id="flexCheckDefault"
+            />
           </div>
         </>
       ),
@@ -142,23 +148,18 @@ function ConfirmFiles() {
     },
     {
       name: "Credit Limit Approval Report",
-      cell: (row) => (
+      cell: (row, indx) => (
         <>
           <div>
-            {row?.status === "FAILED" ? (
-              <>
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault"
-                />
-              </>
-            ) : (
-              <>
-                <img src="../../images/close.png" className="close"></img>
-              </>
-            )}
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value={row?.credit_limit_approval}
+              name="credit_limit_approval"
+              checked={row?.credit_limit_approval}
+              onChange={(e) => handleChangeCheckbox(e, indx)}
+              id="flexCheckDefault"
+            />
           </div>
         </>
       ),

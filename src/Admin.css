@@ -1141,7 +1141,7 @@ input:-moz-placeholder {
   font-size: 16px;
   font-weight: 600;
   display: flex;
-  align-items: end;
+  align-items: flex-end;
 }
 .upload-btn-wrapper input[type="file"] {
   font-size: 100px;

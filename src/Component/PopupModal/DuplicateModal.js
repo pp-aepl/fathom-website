@@ -7,7 +7,6 @@ import ConfirmFiles from "../Common/CustomeUploadToFile/ConfirmFiles";
 
 function DuplicateModal() {
   const dispatch = useDispatch();
-  const { createType } = useSelector((state) => state?.Product);
   const { PopupReducer } = useSelector((state) => state);
   const { showConfirmModal = false, showModal = false } = PopupReducer?.modal;
 

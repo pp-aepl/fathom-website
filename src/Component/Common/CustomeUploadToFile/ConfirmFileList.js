@@ -1,11 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SetpopupReducerData } from "../../../store/reducer";
 
-function ConfirmFileList() {
+function ConfirmFileList({ setIsUploaded }) {
   const dispatch = useDispatch();
 
   const { PopupReducer } = useSelector((state) => state);
@@ -21,6 +22,12 @@ function ConfirmFileList() {
       })
     );
   };
+  useEffect(() => {
+    if (documents?.length === 0) {
+      setIsUploaded(false);
+    }
+  }, [documents]);
+
   return (
     <>
       {/* Uploaded/duplicate  files */}

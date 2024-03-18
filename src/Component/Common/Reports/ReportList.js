@@ -131,7 +131,7 @@ function ReportList() {
   const fetchListingData = useCallback(async () => {
     try {
       let payload = {
-        status: fetchParams === "error" ? "" : "AWAITING_AGENT_APPOINTMENT",
+        status: fetchParams === "error" ? "PENDING" : "DISBURSAL",
         ...filterKey,
       };
       const data = await dispatch(fetchApplicationList(payload, filterKey));
@@ -154,7 +154,7 @@ function ReportList() {
   console.log(selectedApplication, "list");
   return (
     <>
-      <section className="">
+      <section className="px-3">
         <div className="upload_new_application">
           <h3 className="ps-5">
             {fetchParams === "error" ? "Pending / Error" : "Disbursal Report"}{" "}
