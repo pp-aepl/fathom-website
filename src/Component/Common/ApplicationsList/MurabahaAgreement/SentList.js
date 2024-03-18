@@ -86,7 +86,7 @@ function SentList() {
   ]);
 
   // update create api
-  const onSubmit = async (e, typeSubmit) => {
+  const onUpdate = async (e, typeSubmit) => {
     e.preventDefault();
     dispatch(
       SetpopupReducerData({
@@ -95,9 +95,12 @@ function SentList() {
         type: typeSubmit,
       })
     );
-    // dispatch(SetpopupReducerData({modalType: "EXCEPTION",exceptionModal: true,type: "CHANNELLIST"})
-    // );
   };
+  const onSubmit = async (e, typeSubmit) => {
+    e.preventDefault();
+    dispatch(SetpopupReducerData({ modalType: "AGENT", agentModal: true }));
+  };
+
   const [arrList, setArrList] = useState([]);
   const [selectedApplication, setSelectedApplication] = useState([]);
   const [action, setAction] = useState("");
@@ -245,7 +248,10 @@ function SentList() {
               </div>
               <div className="col-3 mt-2">
                 <div className={`d-flex align-items-center  pt-4 ${"saveBtn"}`}>
-                  <button style={{ width: "274px", marginRight: "9px" }}>
+                  <button
+                    style={{ width: "274px", marginRight: "9px" }}
+                    onClick={(e) => onUpdate(e, "CHANNELLIST")}
+                  >
                     Check for update
                   </button>
                   <button
