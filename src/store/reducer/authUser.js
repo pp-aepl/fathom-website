@@ -1,17 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const sliceAuthUser = createSlice({
-  name: "authuser",
+  name: "authUser",
   initialState: {
-    data: null, // changed the initial state to null
+    data: null,
   },
   reducers: {
     fetched: (state, action) => {
-      // state.data = { ...state.data, [name]: value };
       state.data = action.payload.data;
     },
     logout: (state) => {
-      state.data = null; // sets the data to null when the user logs out
+      state.data = sliceAuthUser.getInitialState().data;
     },
   },
 });

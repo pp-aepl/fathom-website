@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-escape */
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 import {
   isValid,
   validateCPassWord,
