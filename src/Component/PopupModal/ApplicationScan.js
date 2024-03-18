@@ -1,16 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { SetpopupReducerData } from "../../store/reducer";
+import {
+  SetpopupReducerData,
+  reSetPopupReducerData,
+} from "../../store/reducer";
 import { useNavigate } from "react-router-dom";
 function ApplicationScan() {
   const dispatch = useDispatch();
-  const { createType } = useSelector((state) => state?.Product);
   const navigate = useNavigate();
   const { PopupReducer } = useSelector((state) => state);
-  const { scanModal = false } = PopupReducer?.modal;
+  const { showModal } = PopupReducer?.modal;
 
   const [statusType, setStatusType] = useState({
     success: "",
@@ -19,12 +22,12 @@ function ApplicationScan() {
   });
 
   const handleClosePopup = () => {
-    dispatch(SetpopupReducerData({ modalType: "APPSCAN", scanModal: false }));
+    dispatch(reSetPopupReducerData());
   };
 
   const onSubmit = async (e, typeSubmit) => {
     e.preventDefault();
-    dispatch(SetpopupReducerData({ modalType: "APPSCAN", scanModal: true }));
+    dispatch(SetpopupReducerData({ modalType: "APP_SCAN", showModal: true }));
     let data = { ...statusType };
     data.success = "SUCCESS";
     setStatusType(data);
@@ -32,15 +35,32 @@ function ApplicationScan() {
   };
   const navigateToList = async (e, typeSubmit) => {
     e.preventDefault();
-    dispatch(SetpopupReducerData({ modalType: "APPSCAN", scanModal: false }));
-    navigate("/admin/application/list");
+    dispatch(SetpopupReducerData({ modalType: "APP_SCAN", showModal: false }));
+    // navigate("/admin/application/list");
+    setTimeout(() => {
+      dispatch(
+        SetpopupReducerData({
+          ...PopupReducer?.modal,
+          modalType: "FILESCONFIRM",
+          showConfirmModal: true,
+        })
+      );
+    }, 200);
   };
-
+  useEffect(() => {
+    setTimeout(() => {
+      setStatusType({
+        success: "SUCCESS",
+        failed: "",
+        default: "DEFAULT",
+      });
+    }, 3000);
+  }, []);
   return (
     <>
       <Modal
         className={"publishModal"}
-        show={scanModal}
+        show={showModal}
         size="md"
         centered
         onHide={handleClosePopup}
@@ -55,7 +75,6 @@ function ApplicationScan() {
           {statusType?.success !== "SUCCESS" && (
             <div class="row">
               <div class="col-md-12 text-center">
-             
                 <div class="progressChart yellow">
                   <span class="progressChart-left">
                     <span class="progressChart-bar"></span>
@@ -70,15 +89,14 @@ function ApplicationScan() {
           )}
 
           {statusType?.success === "SUCCESS" && (
-              <img
+            <img
               src="../../images/success.png"
               style={{ height: "100px", paddingLeft: "18rem" }}
             />
-          
           )}
           <div className="application_san">
             <h3 className="card-title text-center">
-              Application scanning {" "}
+              Application scanning{" "}
               {statusType?.success === "SUCCESS" && "completed"}
             </h3>
 
@@ -90,8 +108,7 @@ function ApplicationScan() {
             </p>
           </div>
           {statusType?.success === "SUCCESS" && (
-            <div className={`px-5 mt-4`}
-            >
+            <div className={`px-5 mt-4`}>
               <button
                 className="login100-form-btn"
                 onClick={(e) => navigateToList(e, "new")}

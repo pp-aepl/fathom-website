@@ -10,7 +10,6 @@ import AgentModal from "./AgentModal";
 import DisbursedModal from "./DisbursedModal";
 function SuccessfullyModal() {
   const dispatch = useDispatch();
-  const { createType } = useSelector((state) => state?.Product);
   const { PopupReducer } = useSelector((state) => state);
   const { successModal = false } = PopupReducer?.modal;
   const { scanModal = false } = PopupReducer?.modal;
@@ -44,13 +43,13 @@ function SuccessfullyModal() {
       //   SetpopupReducerData({ modalType: "DISBURSED", disbursedModal: true })
       // );
     } else {
-      dispatch(SetpopupReducerData({ modalType: "APPSCAN", scanModal: true }));
+      dispatch(SetpopupReducerData({ modalType: "APP_SCAN", showModal: true }));
     }
   };
 
   return (
     <>
-      {scanModal && <ApplicationScan />}
+      {/* {scanModal && <ApplicationScan />} */}
       {proceedModal && <ProceedModal />}
       {agentModal && <AgentModal />}
       {disbursedModal && <DisbursedModal />}

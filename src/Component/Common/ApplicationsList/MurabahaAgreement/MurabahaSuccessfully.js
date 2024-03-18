@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 function MurabahaSuccessfully() {
   const dispatch = useDispatch();
-  const { createType } = useSelector((state) => state?.Product);
   const { PopupReducer } = useSelector((state) => state);
   const { murabahaSuccessModal = false } = PopupReducer?.modal;
   const navigate = useNavigate();

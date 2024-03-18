@@ -231,7 +231,7 @@ header.headerHome .loginBar .loginIcon button:hover {
 
 .nav-elements ul {
   display: flex;
-  justify-content: start;
+  justify-content:flex-start;
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -349,7 +349,7 @@ header.headerHome .loginBar ul {
   margin: 0px;
   padding: 0px;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
   color: #fff;
 }
 

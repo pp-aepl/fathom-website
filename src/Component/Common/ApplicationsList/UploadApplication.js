@@ -33,7 +33,7 @@ function UploadApplication() {
     <>
       {showConfirmModal && <ConfirmFiles />}
       {successModal && <SuccessfullyModal />}
-      {scanModal && <ApplicationScan />}
+      {/* {scanModal && <ApplicationScan />} */}
 
       <div className="card uploadCard">
         <img

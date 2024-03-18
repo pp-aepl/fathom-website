@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from "react";
+import React from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,6 @@ import {
 
 function ProceedCommodityModal() {
   const dispatch = useDispatch();
-  const { createType } = useSelector((state) => state?.Product);
   const { PopupReducer } = useSelector((state) => state);
   const { showModal = false } = PopupReducer?.modal;
   const navigate = useNavigate();

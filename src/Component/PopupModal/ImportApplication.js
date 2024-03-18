@@ -16,7 +16,6 @@ import { apiURl } from "../../store/actions";
 
 function ImportApplication() {
   const dispatch = useDispatch();
-  const { createType } = useSelector((state) => state?.Product);
   const { PopupReducer, Loader, ConfigData } = useSelector((state) => state);
 
   const {
@@ -57,7 +56,12 @@ function ImportApplication() {
 
       if (data?.status || data?.status === "true") {
         const awsUrls = data?.awsUrl;
-        const updatedObj = { ...obj, document: awsUrls?.[0] };
+        const newObj=data?.data?.[0]
+        const updatedObj = {
+          ...obj,
+          document: awsUrls?.[0],
+         ...newObj
+        };
         const updatedDocuments = [...documents];
         updatedDocuments[0] = updatedObj;
         dispatch(
@@ -83,10 +87,18 @@ function ImportApplication() {
   };
 
   const onSubmitContinue = () => {
+    // dispatch(
+    //   SetpopupReducerData({
+    //     ...PopupReducer?.modal,
+    //     modalType: "DUPLICATE_FILES",
+    //     showModal: true,
+    //   })
+    // );
+
     dispatch(
       SetpopupReducerData({
         ...PopupReducer?.modal,
-        modalType: "DUPLICATE_FILES",
+        modalType: "APP_SCAN",
         showModal: true,
       })
     );
@@ -175,11 +187,11 @@ function ImportApplication() {
                   className={`d-flex align-items-center justify-content-around pb-4 ${"saveBtn"}`}
                 >
                   <button className="w-50 me-3">Files Uploaded</button>
-                  <button className="w-50">Duplicated files</button>
+                  {/* <button className="w-50">Duplicated files</button> */}
                 </div>
               )}
 
-              <ConfirmFileList />
+              <ConfirmFileList setIsUploaded={setIsUploaded} />
             </div>
           </div>
 

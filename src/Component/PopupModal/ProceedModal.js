@@ -14,7 +14,6 @@ import { API } from "../../apiwrapper";
 import { apiURl } from "../../store/actions";
 function ProceedModal() {
   const dispatch = useDispatch();
-  const { createType } = useSelector((state) => state?.Product);
   const { PopupReducer, Loader } = useSelector((state) => state);
   const { showModal = false, successModal = false } = PopupReducer?.modal;
 

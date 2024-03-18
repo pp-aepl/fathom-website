@@ -27,6 +27,8 @@ import {
   fetchAllCategories,
   fetchAllRulesList,
 } from "./Config/FetchListingData";
+import IsAlreadyLoggedIn from "./Component/Auth/IsAlreadyLoggedIn";
+import AlreadyLoggedIn from "./Component/Auth/AlreadyLoggedIn";
 // import "./styles.css"
 
 // function App() {
@@ -228,10 +230,17 @@ function App() {
       <OpenModal />
       <Routes>
         <Route element={<UserLayout />}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/otp" element={<TwoFactor />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/changePassword/:_id?" element={<ChangePassword />} />
+          <Route
+            element={
+              <IsAlreadyLoggedIn authorized={userToken ? true : false} />
+            }
+          >
+            <Route path="/login" element={<Login />} />
+            <Route path="/otp" element={<TwoFactor />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/changePassword/:_id?" element={<ChangePassword />} />
+            <Route path="/already_logged_in" element={<AlreadyLoggedIn />} />
+          </Route>
         </Route>
         <Route element={<RequireAuth authorized={userToken ? true : false} />}>
           <Route path="/admin" element={<AdminLayout />}>

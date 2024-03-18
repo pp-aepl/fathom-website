@@ -17,10 +17,14 @@ export const sliceConfigData = createSlice({
     setCategories: (state, { payload }) => {
       state.categories = payload.categories;
     },
+    reSetConfigData: (state) => {
+      Object.assign(state, sliceConfigData.getInitialState());
+    },
   },
 });
 
-const { fetched, setRules, setCategories } = sliceConfigData.actions;
+const { fetched, setRules, setCategories, reSetConfigData } =
+  sliceConfigData.actions;
 
 export const SetConfigData = (data) => async (dispatch) => {
   dispatch(fetched({ data }));
@@ -34,4 +38,7 @@ export const SetCategories = (categories) => async (dispatch) => {
   dispatch(setCategories({ categories }));
 };
 
+export const ReSetConfigData = () => async (dispatch) => {
+  dispatch(reSetConfigData());
+};
 export default sliceConfigData.reducer;

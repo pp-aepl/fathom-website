@@ -38,7 +38,7 @@ function List({ id }) {
   const handleFilterChange = (e) => {
     setFilterKey({ ...filterKey, [e.target.name]: e.target.value, pageNo: 1 });
   };
- 
+
   const fetchListingData = useCallback(async () => {
     try {
       let checkStatus =
@@ -105,7 +105,9 @@ function List({ id }) {
                     </div>
                   </div>
                   <div className="">
-                    {fetchParams !== "upload" && arrList?.length > 0 ? (
+                    {fetchParams === "upload" ? (
+                      <UploadApplication />
+                    ) : arrList?.length > 0 ? (
                       <div className=" row my-5" id="table-contexual">
                         <div className="col-12">
                           <table class="table">
@@ -160,7 +162,7 @@ function List({ id }) {
                         </div>
                       </div>
                     ) : (
-                      <UploadApplication />
+                      ""
                     )}
                   </div>
                 </div>

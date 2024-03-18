@@ -5,7 +5,6 @@ import { SetpopupReducerData } from "../../store/reducer";
 import ReasonModal from "./ReasonModal";
 function RejectModal() {
   const dispatch = useDispatch();
-  const { createType } = useSelector((state) => state?.Product);
   const { PopupReducer } = useSelector((state) => state);
   const { rejectModal = false } = PopupReducer?.modal;
   const { reasonModal = false } = PopupReducer?.modal;
