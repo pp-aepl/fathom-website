@@ -236,11 +236,11 @@ function App() {
             }
           >
             <Route path="/login" element={<Login />} />
-            <Route path="/otp" element={<TwoFactor />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/changePassword/:_id?" element={<ChangePassword />} />
             <Route path="/already_logged_in" element={<AlreadyLoggedIn />} />
           </Route>
+          <Route path="/otp" element={<TwoFactor />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/changePassword/:_id?" element={<ChangePassword />} />
         </Route>
         <Route element={<RequireAuth authorized={userToken ? true : false} />}>
           <Route path="/admin" element={<AdminLayout />}>
