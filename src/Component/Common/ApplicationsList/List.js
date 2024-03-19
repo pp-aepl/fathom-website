@@ -139,19 +139,19 @@ function List({ id }) {
                                     <span
                                       style={{
                                         color:
-                                          item?.status === "APPROVED" ||
+                                          item?.showStatus === "APPROVED" ||
                                           (fetchParams === "completed" &&
                                             fetchParams !== "rejected")
                                             ? "#29CC6A"
-                                            : item?.status === "Reject" ||
+                                            : item?.showStatus === "Reject" ||
                                               fetchParams === "rejected"
                                             ? " #EF4444"
-                                            : item?.status === "Pending"
+                                            : item?.showStatus === "Pending"
                                             ? "#EAB308"
                                             : "",
                                       }}
                                     >
-                                      {item?.status}
+                                      {item?.showStatus}
                                     </span>
                                   </td>
                                   <td>View</td>
