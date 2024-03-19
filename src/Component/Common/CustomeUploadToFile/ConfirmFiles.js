@@ -3,15 +3,17 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import { Modal } from "react-bootstrap";
+import { Modal, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { SetpopupReducerData } from "../../../store/reducer";
+import { SetloaderData, SetpopupReducerData } from "../../../store/reducer";
 import DataTable from "react-data-table-component";
 import SuccessfullyModal from "../../PopupModal/SuccessfullyModal";
+import { API } from "../../../apiwrapper";
+import { apiURl } from "../../../store/actions";
 
 function ConfirmFiles() {
   const dispatch = useDispatch();
-  const { PopupReducer } = useSelector((state) => state);
+  const { PopupReducer,Loader } = useSelector((state) => state);
   const { successModal = false, documents = [] } = PopupReducer?.modal;
   const { showConfirmModal = false } = PopupReducer?.modal;
   let obj = documents?.[0];
@@ -24,7 +26,37 @@ function ConfirmFiles() {
       })
     );
   };
+  const onSubmitSignDocument = async () => {
+    try {
+      let payload = {
+        email: "",
+        murbaha_url: obj?.document,
+        id: obj?._id,
+        status: "IMPORTED",
+        showStatus: "Pending",
+      };
+      dispatch(SetloaderData(true));
+      const data = await API({
+        url: `${apiURl.signDocument}`,
+        method: "POST",
+        body: payload,
+      });
 
+      if (data?.status || data?.status === "true") {
+        dispatch(
+          SetpopupReducerData({
+            modalType: "SUCCESSFULLY",
+            successModal: true,
+          })
+        );
+      } else {
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+      dispatch(SetloaderData(false));
+    }
+  };
   // update create api
   const onSubmit = async (e, typeSubmit) => {
     e.preventDefault();
@@ -33,9 +65,7 @@ function ConfirmFiles() {
       obj?.credit_limit_approval &&
       obj?.promise_to_purchase
     ) {
-      dispatch(
-        SetpopupReducerData({...PopupReducer?.modal, modalType: "SUCCESSFULLY", successModal: true })
-      );
+      await onSubmitSignDocument();
     } else if (
       !obj?.application ||
       !obj?.credit_limit_approval ||
@@ -232,8 +262,10 @@ function ConfirmFiles() {
                 <button
                   className="login100-form-btn"
                   onClick={(e) => onSubmit(e, "create")}
-                >
-                  Continue
+                  disabled={Loader?.data || false}
+            >
+              {Loader?.data ? <Spinner /> : "Continue"}
+                  
                 </button>
               )}
             </div>

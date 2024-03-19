@@ -12,7 +12,10 @@ function MurabahaSuccessfully() {
 
   const handleClosePopup = () => {
     dispatch(
-      SetpopupReducerData({ modalType: "GENRATEFILES", murabahaSuccessModal: false })
+      SetpopupReducerData({
+        modalType: "GENRATEFILES",
+        murabahaSuccessModal: false,
+      })
     );
   };
 
@@ -45,10 +48,8 @@ function MurabahaSuccessfully() {
           </div>
           <div>
             <h3 style={{ textAlign: "center" }}>
-            Murabaha Agreements have
-been sent to selected channels
+              Murabaha Agreements have been sent to selected channels
             </h3>
-           
           </div>
 
           <div
@@ -58,7 +59,7 @@ been sent to selected channels
               style={{ minWidth: "-webkit-fill-available" }}
               onClick={(e) => onSubmit(e, "create")}
             >
-              Okey
+              Okay
             </button>
           </div>
         </Modal.Body>
@@ -67,4 +68,4 @@ been sent to selected channels
   );
 }
 
-export default MurabahaSuccessfully
+export default MurabahaSuccessfully;

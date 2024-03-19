@@ -88,8 +88,8 @@ function CheckedApplications() {
           >
             <button
               style={{ minWidth: "-webkit-fill-available" }}
-              disabled={Loader?.data || false}
               onClick={(e) => onSubmit(e)}
+              disabled={Loader?.data || false}
             >
               {Loader?.data ? <Spinner /> : "Okay"}
             </button>
