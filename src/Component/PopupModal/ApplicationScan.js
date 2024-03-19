@@ -35,7 +35,7 @@ function ApplicationScan() {
   };
   const navigateToList = async (e, typeSubmit) => {
     e.preventDefault();
-    dispatch(SetpopupReducerData({ modalType: "APP_SCAN", showModal: false }));
+    dispatch(SetpopupReducerData({...PopupReducer?.modal, modalType: "APP_SCAN", showModal: false }));
     // navigate("/admin/application/list");
     setTimeout(() => {
       dispatch(
@@ -54,7 +54,7 @@ function ApplicationScan() {
         failed: "",
         default: "DEFAULT",
       });
-    }, 3000);
+    }, 5000);
   }, []);
   return (
     <>
