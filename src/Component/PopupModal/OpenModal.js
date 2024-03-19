@@ -7,6 +7,7 @@ import ProceedModal from "./ProceedModal";
 import ProceedCommodityModal from "../Common/ApplicationsList/CommodityTrade/ProceedCommodityModal";
 import MurabahaModal from "../Common/ApplicationsList/MurabahaAgreement/MurabahaModal";
 import ApplicationScan from "./ApplicationScan";
+import CheckedApplications from "./CheckedApplications";
 
 function OpenModal() {
   const { PopupReducer } = useSelector((state) => state);
@@ -23,6 +24,7 @@ function OpenModal() {
           {modalType === "ProceedCommodity" && <ProceedCommodityModal />}
           {modalType === "MURABAHA" && <MurabahaModal />}
           {modalType === "APP_SCAN" && <ApplicationScan />}
+          {modalType === "CHECKED_APPLICATION" && <CheckedApplications />}
         </>
       ) : (
         ""

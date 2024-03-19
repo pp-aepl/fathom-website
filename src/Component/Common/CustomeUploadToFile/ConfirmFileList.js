@@ -4,7 +4,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SetpopupReducerData } from "../../../store/reducer";
+import { SetloaderData, SetpopupReducerData } from "../../../store/reducer";
 
 function ConfirmFileList({ setIsUploaded }) {
   const dispatch = useDispatch();
@@ -13,6 +13,7 @@ function ConfirmFileList({ setIsUploaded }) {
   const { documents = [] } = PopupReducer?.modal;
 
   const handleDelete = (idx) => {
+    dispatch(SetloaderData(false));
     let arr = [...documents];
     arr.splice(idx, 1);
     dispatch(

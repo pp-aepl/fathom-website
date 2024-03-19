@@ -27,6 +27,7 @@ function ImportApplication() {
 
   const handleClosePopup = () => {
     dispatch(reSetPopupReducerData());
+    dispatch(SetloaderData(false));
   };
 
   const onSubmit = async (e) => {
@@ -43,6 +44,7 @@ function ImportApplication() {
 
       const fd = new FormData();
       const obj = documents?.[0];
+      console.log(obj);
       fd.append("file", obj?.document);
       fd.append("formId", formId);
       fd.append("showStatus", "Pending");
@@ -56,11 +58,11 @@ function ImportApplication() {
 
       if (data?.status || data?.status === "true") {
         const awsUrls = data?.awsUrl;
-        const newObj=data?.data?.[0]
+        const newObj = data?.data?.[0];
         const updatedObj = {
           ...obj,
-          document: awsUrls?.[0],
-         ...newObj
+          document: newObj?.document || awsUrls?.[0],
+          ...newObj?.newRecords,
         };
         const updatedDocuments = [...documents];
         updatedDocuments[0] = updatedObj;
@@ -76,12 +78,8 @@ function ImportApplication() {
         setIsUploaded(false);
       }
     } catch (error) {
-      // Handle errors
       console.error("Error submitting form:", error);
-      // Set error state if needed
-      // setApiErrors({ message: error.message });
     } finally {
-      // Dispatch loader action to hide loader
       dispatch(SetloaderData(false));
     }
   };

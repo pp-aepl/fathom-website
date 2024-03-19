@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -57,7 +58,7 @@ function RejectModal() {
                 </p>
                 <p style={{ textAlign: "center" }}>
                   Your applications has been rejected because those could not
-                  pass all rules. Upload again to rescan applications.
+                  pass all rules. Upload again to re-scan applications.
                 </p>
               </>
             ) : (
@@ -73,7 +74,7 @@ function RejectModal() {
               style={{ minWidth: "-webkit-fill-available" }}
               onClick={(e) => onSubmit(e, "create")}
             >
-              Okey
+              Okay
             </button>
           </div>
         </Modal.Body>

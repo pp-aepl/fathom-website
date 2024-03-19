@@ -14,7 +14,8 @@ function ConfirmFiles() {
   const { PopupReducer } = useSelector((state) => state);
   const { successModal = false, documents = [] } = PopupReducer?.modal;
   const { showConfirmModal = false } = PopupReducer?.modal;
-
+  let obj = documents?.[0];
+  console.log(obj, "confirm");
   const handleClosePopup = () => {
     dispatch(
       SetpopupReducerData({
@@ -27,10 +28,29 @@ function ConfirmFiles() {
   // update create api
   const onSubmit = async (e, typeSubmit) => {
     e.preventDefault();
-    dispatch(
-      SetpopupReducerData({ modalType: "SUCCESSFULLY", successModal: true })
-    );
+    if (
+      obj?.application &&
+      obj?.credit_limit_approval &&
+      obj?.promise_to_purchase
+    ) {
+      dispatch(
+        SetpopupReducerData({...PopupReducer?.modal, modalType: "SUCCESSFULLY", successModal: true })
+      );
+    } else if (
+      !obj?.application ||
+      !obj?.credit_limit_approval ||
+      !obj?.promise_to_purchase
+    ) {
+      dispatch(
+        SetpopupReducerData({
+          ...PopupReducer?.modal,
+          modalType: "CHECKED_APPLICATION",
+          showModal: true,
+        })
+      );
+    }
   };
+
   const handleReImport = async (e) => {
     e.preventDefault();
     dispatch(
@@ -118,6 +138,7 @@ function ConfirmFiles() {
               value={row?.application}
               name="application"
               checked={row?.application}
+              disabled
               onChange={(e) => handleChangeCheckbox(e, indx)}
               id="flexCheckDefault"
             />
@@ -137,6 +158,7 @@ function ConfirmFiles() {
               type="checkbox"
               value={row?.promise_to_purchase}
               name="promise_to_purchase"
+              disabled
               checked={row?.promise_to_purchase}
               onChange={(e) => handleChangeCheckbox(e, indx)}
               id="flexCheckDefault"
@@ -156,6 +178,7 @@ function ConfirmFiles() {
               type="checkbox"
               value={row?.credit_limit_approval}
               name="credit_limit_approval"
+              disabled
               checked={row?.credit_limit_approval}
               onChange={(e) => handleChangeCheckbox(e, indx)}
               id="flexCheckDefault"
