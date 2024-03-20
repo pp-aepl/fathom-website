@@ -17,6 +17,7 @@ import Rules from "./Rules";
 import Filter from "./Filter";
 import { fetchApplicationList } from "../../../Config/FetchListingData";
 import moment from "moment";
+import ListingWithRule from "./ListingWithRule";
 
 function NewList() {
   const dispatch = useDispatch();
@@ -268,7 +269,12 @@ function NewList() {
       );
     } else if (value === "REJECTED") {
       dispatch(
-        SetpopupReducerData({ modalType: "REJECTED", rejectModal: true })
+        SetpopupReducerData({
+          modalType: "REJECTED",
+          rejectModal: true,
+          selectedApplication: selectedApplication,
+          status: value,
+        })
       );
     } else if (value === "PROCEED&EXCEPTION") {
       dispatch(
@@ -276,6 +282,8 @@ function NewList() {
           modalType: "EXCEPTION",
           exceptionModal: true,
           type: "SUCCESSFULLY",
+          selectedApplication: selectedApplication,
+          status: value,
         })
       );
     }
@@ -297,7 +305,7 @@ function NewList() {
     } catch (error) {
       console.log(error, "error");
     }
-  }, [ filterKey]);
+  }, [filterKey]);
 
   useEffect(() => {
     fetchListingData();
@@ -312,7 +320,6 @@ function NewList() {
 
       <section className="">
         <div className="upload_new_application">
-         
           <h3 className="ps-5">Commodity Purchase </h3>
           <div className="top_list">
             {showRules && <Rules />}
@@ -371,9 +378,12 @@ function NewList() {
             ></input>
           </div>
           <div className="">
-            {/* <AccordianList/> */}
-
-            <div className=" row my-5" id="table-contexual">
+            <ListingWithRule
+              selectedApplication={selectedApplication}
+              listingData={arrList}
+              handleChangeCheckBox={handleChangeCheckBox}
+            />
+            {/* <div className=" row my-5" id="table-contexual">
               <div className="col-12">
                 <table class="table">
                   <thead class="thead-light">
@@ -433,7 +443,7 @@ function NewList() {
                   </tbody>
                 </table>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

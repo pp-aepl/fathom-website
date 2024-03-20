@@ -13,7 +13,7 @@ import { apiURl } from "../../../store/actions";
 
 function ConfirmFiles() {
   const dispatch = useDispatch();
-  const { PopupReducer,Loader } = useSelector((state) => state);
+  const { PopupReducer, Loader } = useSelector((state) => state);
   const { successModal = false, documents = [] } = PopupReducer?.modal;
   const { showConfirmModal = false } = PopupReducer?.modal;
   let obj = documents?.[0];
@@ -47,6 +47,7 @@ function ConfirmFiles() {
           SetpopupReducerData({
             modalType: "SUCCESSFULLY",
             successModal: true,
+            type: "SUCCESSFULLY",
           })
         );
       } else {
@@ -263,9 +264,8 @@ function ConfirmFiles() {
                   className="login100-form-btn"
                   onClick={(e) => onSubmit(e, "create")}
                   disabled={Loader?.data || false}
-            >
-              {Loader?.data ? <Spinner /> : "Continue"}
-                  
+                >
+                  {Loader?.data ? <Spinner /> : "Continue"}
                 </button>
               )}
             </div>

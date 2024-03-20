@@ -15,7 +15,11 @@ import { apiURl } from "../../store/actions";
 function ProceedModal() {
   const dispatch = useDispatch();
   const { PopupReducer, Loader } = useSelector((state) => state);
-  const { showModal = false, successModal = false } = PopupReducer?.modal;
+  const {
+    showModal = false,
+    successModal = false,
+    selectedApplication = [],
+  } = PopupReducer?.modal;
 
   const [commodityModal, setCommodityModal] = useState(false);
   const commodityType = PopupReducer?.modal?.type; // COMIDITYAGENT
@@ -24,7 +28,46 @@ function ProceedModal() {
   const handleClosePopup = () => {
     dispatch(reSetPopupReducerData());
   };
+  const handleProcess = async () => {
+    try {
+      let payload = {
+        ids: selectedApplication,
+        status: "PROCESSING_COMMODITY_PURCHASE",
+      };
+      dispatch(SetloaderData(true));
+      const data = await API({
+        url: `${apiURl.applications}`,
+        method: "PUT",
+        body: payload,
+      });
 
+      if (data?.status || data?.status === "true") {
+        // setTimeout(() => {
+        //   navigate("/admin/application/list");
+        //   dispatch(
+        //     SetpopupReducerData({
+        //       ...PopupReducer?.modal,
+        //       modalType: "ProceedCommodity",
+        //       showModal: true,
+        //     })
+        //   );
+        // }, 2000);
+        navigate("/admin/application/inProcess");
+        dispatch(
+          SetpopupReducerData({
+            ...PopupReducer?.modal,
+            modalType: "",
+            showModal: false,
+          })
+        );
+      } else {
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch(SetloaderData(false));
+    }
+  };
   // update create api
   const onSubmitProceed = async (e, typeSubmit) => {
     e.preventDefault();
@@ -59,14 +102,15 @@ function ProceedModal() {
         })
       );
     } else {
-      navigate("/admin/application/inProcess");
-      dispatch(
-        SetpopupReducerData({
-          ...PopupReducer?.modal,
-          modalType: "",
-          showModal: false,
-        })
-      );
+      // navigate("/admin/application/inProcess");
+      // dispatch(
+      //   SetpopupReducerData({
+      //     ...PopupReducer?.modal,
+      //     modalType: "",
+      //     showModal: false,
+      //   })
+      // );
+     await handleProcess()
     }
   };
 

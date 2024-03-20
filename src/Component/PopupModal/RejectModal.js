@@ -1,16 +1,21 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from "react";
+import React  from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { SetpopupReducerData } from "../../store/reducer";
 import ReasonModal from "./ReasonModal";
+import { useNavigate } from "react-router-dom";
 function RejectModal() {
   const dispatch = useDispatch();
   const { PopupReducer } = useSelector((state) => state);
-  const { rejectModal = false } = PopupReducer?.modal;
+  const {
+    rejectModal = false,
+    selectedApplication,
+    status,
+  } = PopupReducer?.modal;
   const { reasonModal = false } = PopupReducer?.modal;
   const rejectType = PopupReducer?.modal?.type;
-
+  const navigate = useNavigate();
   const handleClosePopup = () => {
     dispatch(
       SetpopupReducerData({ modalType: "REJECTED", rejectModal: false })
@@ -18,14 +23,23 @@ function RejectModal() {
   };
 
   // update create api
-  const onSubmit = async (e, typeSubmit) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (rejectType === "REASONREJECT") {
+      navigate("/admin/application/rejected");
       dispatch(
         SetpopupReducerData({ modalType: "REJECTED", rejectModal: false })
       );
     } else {
-      dispatch(SetpopupReducerData({ modalType: "REASON", reasonModal: true }));
+      dispatch(
+        SetpopupReducerData({
+          modalType: "REASON",
+          reasonModal: true,
+          rejectModal: false,
+          selectedApplication: selectedApplication,
+          status: status,
+        })
+      );
     }
   };
 
@@ -41,16 +55,17 @@ function RejectModal() {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header onClick={() => handleClosePopup(false)}>
-          <Modal.Title>
-            <img
-              src="../../images/icon1.png"
-              style={{ height: "100px", paddingLeft: "19rem" }}
-            />
-          </Modal.Title>
+        <Modal.Header onClick={() => handleClosePopup(false)} closeButton>
+          <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-5">
           <div className="">
+            <div>
+              <img
+                src="../../images/icon1.png"
+                style={{ height: "100px", paddingLeft: "19rem" }}
+              />
+            </div>
             {rejectType === "REASONREJECT" ? (
               <>
                 <p style={{ textAlign: "center", fontWeight: "600" }}>
