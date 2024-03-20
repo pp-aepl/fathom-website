@@ -1,28 +1,59 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { SetpopupReducerData } from "../../store/reducer";
+import { SetloaderData, SetpopupReducerData } from "../../store/reducer";
 import RejectModal from "./RejectModal";
+import { useNavigate } from "react-router-dom";
+import { API } from "../../apiwrapper";
+import { apiURl } from "../../store/actions";
 function ReasonModal() {
   const dispatch = useDispatch();
   const { PopupReducer } = useSelector((state) => state);
-  const { reasonModal = false } = PopupReducer?.modal;
+  const { reasonModal = false, selectedApplication = [] } = PopupReducer?.modal;
   const { rejectModal = false } = PopupReducer?.modal;
-
+  const navigate = useNavigate();
+  const [reason, setReason] = useState();
   const handleClosePopup = () => {
     dispatch(SetpopupReducerData({ modalType: "REASON", reasonModal: false }));
   };
+  const handleProcess = async () => {
+    try {
+      let payload = {
+        ids: selectedApplication,
+        status: "REJECTED",
+        showStatus: "Rejected",
+        rejectReason: reason,
+      };
+      dispatch(SetloaderData(true));
+      const data = await API({
+        url: `${apiURl.applications}`,
+        method: "PUT",
+        body: payload,
+      });
 
+      if (data?.status || data?.status === "true") {
+        setTimeout(() => {
+          navigate("/admin/application/list");
+          dispatch(
+            SetpopupReducerData({
+              modalType: "REJECTED",
+              rejectModal: true,
+              type: "REASONREJECT",
+            })
+          );
+        }, 2000);
+      } else {
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch(SetloaderData(false));
+    }
+  };
   // update create api
   const onSubmit = async (e, typeSubmit) => {
     e.preventDefault();
-    dispatch(
-      SetpopupReducerData({
-        modalType: "REJECTED",
-        rejectModal: true,
-        type: "REASONREJECT",
-      })
-    );
+    await handleProcess();
   };
 
   return (
@@ -38,7 +69,6 @@ function ReasonModal() {
         backdrop="static"
         keyboard={false}
       >
-      
         <Modal.Body className="p-5">
           <div className="">
             <p style={{ paddingLeft: "11rem", fontWeight: "600" }}>
@@ -52,6 +82,9 @@ function ReasonModal() {
               placeholder="Write your reason"
               cols={60}
               rows={10}
+              value={reason}
+              name="reason"
+              onChange={(e) => setReason(e.target.value)}
             />
           </div>
           <div

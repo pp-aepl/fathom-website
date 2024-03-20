@@ -69,6 +69,7 @@ function MurabahaModal() {
               class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              onClick={handleClosePopup}
             ></button>
           </div>
           <div className="notepad">

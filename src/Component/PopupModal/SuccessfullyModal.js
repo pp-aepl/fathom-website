@@ -3,7 +3,10 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { SetpopupReducerData, reSetPopupReducerData } from "../../store/reducer";
+import {
+  SetpopupReducerData,
+  reSetPopupReducerData,
+} from "../../store/reducer";
 import ApplicationScan from "./ApplicationScan";
 import ProceedModal from "./ProceedModal";
 import AgentModal from "./AgentModal";
@@ -11,7 +14,7 @@ import DisbursedModal from "./DisbursedModal";
 import { useNavigate } from "react-router-dom";
 function SuccessfullyModal() {
   const dispatch = useDispatch();
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const { PopupReducer } = useSelector((state) => state);
   const { successModal = false } = PopupReducer?.modal;
   const { scanModal = false } = PopupReducer?.modal;
@@ -30,13 +33,15 @@ function SuccessfullyModal() {
   const onSubmit = async (e, typeSubmit) => {
     e.preventDefault();
     if (successType === "SUCCESSFULLY") {
-      dispatch(
-        SetpopupReducerData({
-          modalType: "PROCEED",
-          proceedModal: true,
-          type: "APP_PROCEED",
-        })
-      );
+      // dispatch(
+      //   SetpopupReducerData({
+      //     modalType: "PROCEED",
+      //     proceedModal: true,
+      //     type: "APP_PROCEED",
+      //   })
+      // );
+      dispatch(reSetPopupReducerData());
+      navigate("/admin/application/status");
     } else if (successType === "CHANNELLIST") {
       dispatch(SetpopupReducerData({ modalType: "AGENT", agentModal: true }));
     } else if (successType === "COMIDITYAGENT") {
@@ -46,7 +51,7 @@ function SuccessfullyModal() {
       // );
     } else {
       // dispatch(SetpopupReducerData({ modalType: "APP_SCAN", showModal: true }));
-      dispatch(reSetPopupReducerData())
+      dispatch(reSetPopupReducerData());
       navigate("/admin/application/status");
     }
   };

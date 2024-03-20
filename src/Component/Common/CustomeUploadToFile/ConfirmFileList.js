@@ -6,7 +6,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SetloaderData, SetpopupReducerData } from "../../../store/reducer";
 
-function ConfirmFileList({ setIsUploaded }) {
+function ConfirmFileList({ setIsUploaded = () => {} }) {
   const dispatch = useDispatch();
 
   const { PopupReducer } = useSelector((state) => state);
