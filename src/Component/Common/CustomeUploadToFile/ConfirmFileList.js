@@ -6,7 +6,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SetloaderData, SetpopupReducerData } from "../../../store/reducer";
 
-function ConfirmFileList({ setIsUploaded = () => {} }) {
+function ConfirmFileList({ setIsUploaded = () => {}, isUploaded = false }) {
   const dispatch = useDispatch();
 
   const { PopupReducer } = useSelector((state) => state);
@@ -68,7 +68,7 @@ function ConfirmFileList({ setIsUploaded = () => {} }) {
               <div class="col-sm-8">
                 <div class=" align-items-center p-1">
                   <p className="card-text1 fw-bold">{ele.name}</p>
-                  {typeof ele?.document === "string" ? (
+                  {isUploaded || typeof ele?.document === "string" ? (
                     <span className="text-success card-text1 fw-bold">
                       UPLOADED
                     </span>

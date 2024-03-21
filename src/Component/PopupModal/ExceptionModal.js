@@ -74,33 +74,41 @@ function ExceptionModal() {
       const fd = new FormData();
       const obj = documents?.[0];
       console.log(obj);
-      fd.append("file", obj?.document);
-      fd.append("showStatus", "Pending");
-      fd.append("status", "Pending");
-      fd.append("ids", JSON.stringify(selectedApplication));
+
+      let payload = {
+        status: "Pending",
+        showStatus: "Pending",
+        ids: selectedApplication,
+      };
+      // fd.append("file", obj?.document);
+      // fd.append("showStatus", "Pending");
+      // fd.append("status", "Pending");
+      // fd.append("ids", JSON.stringify(selectedApplication));
+
+
       dispatch(SetloaderData(true));
       const data = await API({
         url: `${apiURl.applications}`,
         method: "PUT",
-        body: fd,
+        body: payload,
       });
 
       if (data?.status || data?.status === "true") {
-        const awsUrls = data?.awsUrl;
-        const newObj = data?.data?.[0];
-        const updatedObj = {
-          ...obj,
-          document: newObj?.document || awsUrls?.[0],
-          ...newObj?.newRecords,
-        };
-        const updatedDocuments = [...documents];
-        updatedDocuments[0] = updatedObj;
-        dispatch(
-          SetpopupReducerData({
-            ...PopupReducer?.modal,
-            documents: updatedDocuments,
-          })
-        );
+        // const awsUrls = data?.awsUrl;
+        // const newObj = data?.data?.[0];
+        // const updatedObj = {
+        //   ...obj,
+        //   document: newObj?.document || awsUrls?.[0],
+        //   ...newObj?.newRecords,
+        // };
+        // const updatedDocuments = [...documents];
+        // updatedDocuments[0] = updatedObj;
+        // dispatch(
+        //   SetpopupReducerData({
+        //     ...PopupReducer?.modal,
+        //     documents: updatedDocuments,
+        //   })
+        // );
 
         setIsUploaded(true);
       } else {
@@ -177,7 +185,7 @@ function ExceptionModal() {
                     </svg>
                   </div>
                 </div> */}
-                <ConfirmFileList setIsUploaded={setIsUploaded} />
+                <ConfirmFileList setIsUploaded={setIsUploaded} isUploaded={isUploaded} />
               </div>
             </>
           )}
