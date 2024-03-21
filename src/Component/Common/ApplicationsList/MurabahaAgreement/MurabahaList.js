@@ -2,13 +2,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SetpopupReducerData } from "../../../../store/reducer";
+import { SetloaderData, SetpopupReducerData } from "../../../../store/reducer";
 import { useNavigate } from "react-router-dom";
 import ProceedModal from "../../../PopupModal/ProceedModal";
 import MurabahaSuccessfully from "./MurabahaSuccessfully";
 import { fetchApplicationList } from "../../../../Config/FetchListingData";
 import moment from "moment";
 import DatePicker from "react-datepicker";
+import { API } from "../../../../apiwrapper";
+import { apiURl } from "../../../../store/actions";
 
 function MurabahaList() {
   const dispatch = useDispatch();
@@ -76,20 +78,42 @@ function MurabahaList() {
       date: new Date(),
     },
   ]);
+  const handleProcess = async () => {
+    try {
+      let payload = {
+        ids: selectedApplication,
+        status: "AWAITING_DIGITAL_SINGNATURE",
+      };
+      dispatch(SetloaderData(true));
+      const data = await API({
+        url: `${apiURl.applications}`,
+        method: "PUT",
+        body: payload,
+      });
 
+      if (data?.status || data?.status === "true") {
+        dispatch(
+          SetpopupReducerData({
+            modalType: "MURABAHASUCCESS",
+            murabahaSuccessModal: true,
+          })
+        );
+      } else {
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch(SetloaderData(false));
+    }
+  };
   // navigate to agreement
-  const navigateToAgreement = () => {
+  const navigateToAgreement = async () => {
     // navigate("/admin/application/sent");
     if (selectedApplication?.length === 0) {
       alert("Please select application to proceed.");
       return;
     }
-    dispatch(
-      SetpopupReducerData({
-        modalType: "MURABAHASUCCESS",
-        murabahaSuccessModal: true,
-      })
-    );
+    await handleProcess();
   };
   const [arrList, setArrList] = useState([]);
   const [selectedApplication, setSelectedApplication] = useState([]);

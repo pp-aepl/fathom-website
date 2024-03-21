@@ -309,12 +309,12 @@ function SentList() {
                         <span
                           style={{
                             color:
-                              item?.status === "Digital Signature"
-                                ? "#8282FF"
-                                : "#0099FF",
+                              item?.showStatus === "Pending"
+                                ?"#0099FF" 
+                                :"#8282FF" ,
                           }}
                         >
-                          {item?.status}
+                          {item?.showStatus}
                         </span>
                       </td>
 
