@@ -76,7 +76,7 @@ function ExceptionModal() {
       console.log(obj);
       fd.append("file", obj?.document);
       fd.append("showStatus", "Pending");
-      fd.append("newStatus", "Pending");
+      fd.append("status", "Pending");
       fd.append("ids", JSON.stringify(selectedApplication));
       dispatch(SetloaderData(true));
       const data = await API({
