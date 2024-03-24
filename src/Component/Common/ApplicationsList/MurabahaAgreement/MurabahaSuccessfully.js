@@ -1,30 +1,23 @@
-import React, { useState } from "react";
+/* eslint-disable jsx-a11y/alt-text */
+import React from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { SetpopupReducerData } from "../../../../store/reducer";
+import { reSetPopupReducerData } from "../../../../store/reducer";
 import { useNavigate } from "react-router-dom";
 
 function MurabahaSuccessfully() {
   const dispatch = useDispatch();
   const { PopupReducer } = useSelector((state) => state);
-  const { murabahaSuccessModal = false } = PopupReducer?.modal;
+  const { showModal = false, action = "" } = PopupReducer?.modal;
   const navigate = useNavigate();
 
   const handleClosePopup = () => {
-    dispatch(
-      SetpopupReducerData({
-        modalType: "GENRATEFILES",
-        murabahaSuccessModal: false,
-      })
-    );
+    dispatch(reSetPopupReducerData());
   };
 
-  // update create api
-  const onSubmit = async (e, typeSubmit) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    // dispatch(
-    //   SetpopupReducerData({ modalType: "FILESCONFIRM", showConfirmModal: true })
-    // );
+    handleClosePopup();
     navigate("/admin/application/sent");
   };
 
@@ -32,35 +25,65 @@ function MurabahaSuccessfully() {
     <>
       <Modal
         className={"publishModal"}
-        show={murabahaSuccessModal}
+        show={showModal}
         size="md"
         centered
         onHide={handleClosePopup}
         backdrop="static"
         keyboard={false}
       >
+        {" "}
+        <Modal.Header closeButton></Modal.Header>
         <Modal.Body className="p-5">
-          <div className="">
-            <img
-              src="../../images/icon2.png"
-              style={{ height: "100px", paddingLeft: "19rem" }}
-            />
+          <div className="my-5 text-center">
+            <img src="../../images/success.png" style={{ height: "120px" }} />
           </div>
-          <div>
-            <h3 style={{ textAlign: "center" }}>
-              Murabaha Agreements have been sent to selected channels
-            </h3>
-          </div>
+
+          <h4 className="card-title1 text-center">
+            {action === "UPDATE" ? (
+              <>
+                Murabaha Agreement
+                <br />
+                Successfully updated
+              </>
+            ) : (
+              <>
+                Murabaha Agreements have
+                <br />
+                been sent to{" "}
+                {action === "ALL" ? (
+                  <>
+                    all customers <br />
+                    and relevant channels
+                  </>
+                ) : action === "CHANNEL" ? (
+                  <>selected channels</>
+                ) : (
+                  <>the customers</>
+                )}
+              </>
+            )}
+          </h4>
 
           <div
             className={`d-flex align-items-center justify-content-around pt-4 ${"saveBtn"}`}
+            style={{ marginTop: "100px" }}
           >
-            <button
-              style={{ minWidth: "-webkit-fill-available" }}
-              onClick={(e) => onSubmit(e, "create")}
-            >
-              Okay
-            </button>
+            {action === "UPDATE" ? (
+              <button
+                style={{ minWidth: "-webkit-fill-available" }}
+                onClick={(e) => handleClosePopup(e)}
+              >
+                Great
+              </button>
+            ) : (
+              <button
+                style={{ minWidth: "-webkit-fill-available" }}
+                onClick={(e) => onSubmit(e)}
+              >
+                Okay
+              </button>
+            )}
           </div>
         </Modal.Body>
       </Modal>

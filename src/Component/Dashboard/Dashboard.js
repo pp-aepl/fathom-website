@@ -4,8 +4,11 @@ import Chart from "chart.js/auto";
 
 import { Line } from "react-chartjs-2";
 import CommonHeader from "../Sidebar/Nabvar/CommonHeader";
+import { useSelector } from "react-redux";
 
 function Dashboard() {
+  const { ConfigData } = useSelector((state) => state);
+  let details = ConfigData?.data;
   const data = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"], // game name
     datasets: [
@@ -45,14 +48,13 @@ function Dashboard() {
   };
 
   return (
-
     <section className="">
-      <CommonHeader></CommonHeader>
       <div className="main_dashboar">
-        <h2 className="fs-4 fw-bold"> Onboarding Performance – Murabaha Personal Finance</h2>
-          <div className="voucherFormMain">
-         
-
+        <h2 className="fs-4 fw-bold">
+          {" "}
+          Onboarding Performance – Murabaha Personal Finance
+        </h2>
+        <div className="voucherFormMain">
           <div className="">
             <div className=" row pt-4">
               <div className="col-md-3">
@@ -65,11 +67,11 @@ function Dashboard() {
               </div>
               <div className="col-md-3">&nbsp;</div>
               <div className="col-md-3">
-              <label className="fs-7 pb-4">Date from</label>
+                <label className="fs-7 pb-4">Date from</label>
                 <input className="form-control" type="date" />
               </div>
               <div className="col-md-3">
-              <label className="fs-7 pb-4">Date to</label>
+                <label className="fs-7 pb-4">Date to</label>
                 <input className="form-control" type="date" />
               </div>
             </div>
@@ -77,67 +79,78 @@ function Dashboard() {
               <div class="col-sm-4 pb-3">
                 <div class="card dash_card w-100">
                   <div class="card-body">
-                  <h5 class="label d-block w-100 pb-2">
-                    New Cases</h5>
-                    <span class="card-title">7,846</span>
+                    <h5 class="label d-block w-100 pb-2">New Cases</h5>
+                    <span class="card-title">
+                      {details?.totalNewCases || 0}
+                    </span>
                   </div>
                 </div>
               </div>
               <div class="col-sm-4">
                 <div class="card dash_card w-100">
                   <div class="card-body">
-                  <h5 class="label d-block w-100 pb-2">
-                      Awaiting Commodity Purchase</h5>
-                    <span class="card-title">2,945</span>
+                    <h5 class="label d-block w-100 pb-2">
+                      Awaiting Commodity Purchase
+                    </h5>
+                    <span class="card-title">
+                      {" "}
+                      {details?.awaitingCommodityPurcjhase || 0}
+                    </span>
                   </div>
                 </div>
               </div>
               <div class="col-sm-4">
                 <div class="card dash_card w-100">
                   <div class="card-body">
-                  <h5 class="label d-block w-100 pb-2">
+                    <h5 class="label d-block w-100 pb-2">
                       Awaiting Customer Acceptance: Digital
                     </h5>
-                    <span class="card-title">#37</span>
+                    <span class="card-title">
+                      {" "}
+                      {details?.totalawaitingdigitalSign || 0}
+                    </span>
                   </div>
                 </div>
               </div>
               <div class="col-sm-4 pb-3">
                 <div class="card dash_card w-100">
                   <div class="card-body">
-                  <h5 class="label d-block w-100 pb-2">
+                    <h5 class="label d-block w-100 pb-2">
                       Awaiting Customer Acceptance:Physica
                     </h5>
-                    <span class="card-title">7,846</span>
+                    <span class="card-title">
+                      {details?.totalawaitingdigitalSign || 0}
+                    </span>
                   </div>
                 </div>
               </div>
               <div class="col-sm-4">
                 <div class="card dash_card w-100">
                   <div class="card-body">
-                  <h5 class="label d-block w-100 pb-2">
-                    Agent appointment and response</h5>
-                    <p class="card-title">2,945</p>
+                    <h5 class="label d-block w-100 pb-2">
+                      Agent appointment and response
+                    </h5>
+                    <p class="card-title">{details?.totalCountAgent || 0} </p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-4">
                 <div class="card dash_card w-100">
                   <div class="card-body">
-                  <h5 class="label d-block w-100 pb-2">
+                    <h5 class="label d-block w-100 pb-2">
                       Completed – Welcome Letter issued
                     </h5>
-                    <p class="card-title">#50</p>
+                    <p class="card-title">{details?.totalCompleted || 0}</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-4">
                 <div class="card dash_card w-100">
                   <div class="card-body">
-                  <h5 class="label d-block w-100 pb-2">
+                    <h5 class="label d-block w-100 pb-2">
                       Rejected: Pending Channel Correction
                     </h5>
-                    <p class="card-title">7,846</p>
+                    <p class="card-title">{details?.totalRejected || 0}</p>
                   </div>
                 </div>
               </div>
@@ -150,12 +163,17 @@ function Dashboard() {
                         <div
                           class="progress-bar skill-bar desh_progress-bar"
                           role="progressbar"
-                          aria-valuenow="76"
+                          aria-valuenow={details?.successRatio}
+                          style={{
+                            width: `${details?.successRatio}%`,
+                          }}
                           aria-valuemin="0"
                           aria-valuemax="100"
                         ></div>
                       </div>
-                      <span class="p-1">25%</span>
+                      <span class="p-1">{`${
+                        parseInt(details?.successRatio)?.toFixed(3) || 0
+                      }%`}</span>
                     </div>
                   </div>
                 </div>
@@ -163,13 +181,16 @@ function Dashboard() {
               <div class="col-sm-4 pb-3">
                 <div class="card dash_card w-100">
                   <div class="card-body">
-                    <h5 class="label d-block w-100 pb-2">Average Portfolio Productivity</h5>
+                    <h5 class="label d-block w-100 pb-2">
+                      Average Portfolio Productivity
+                    </h5>
                     <div class="d-flex align-items-center p-2">
                       <div class="progress dashboard-progess bar-wrapper w-100 ">
                         <div
                           class="progress-bar skill-bar desh_progress-bar"
                           role="progressbar"
-                          aria-valuenow="76"
+                          aria-valuenow={details?.successRatio}
+                          style={{ width: `${details?.successRatio}%` }}
                           aria-valuemin="0"
                           aria-valuemax="100"
                         ></div>
@@ -216,91 +237,89 @@ function Dashboard() {
               </div>
 
               <div className="col-md-3">
-              <div className="card p-4 py-4 card-right">
-              <h5 class="card-title1">Productivity Stage wise</h5>
-                    <p className="label pb-0">Import to Commodity Purchase</p>
-                    <div class="d-flex align-items-center p-2 border-bottom">
+                <div className="card p-4 py-4 card-right">
+                  <h5 class="card-title1">Productivity Stage wise</h5>
+                  <p className="label pb-0">Import to Commodity Purchase</p>
+                  <div class="d-flex align-items-center p-2 border-bottom">
                     <div class="progress dashboard-progess bar-wrapper w-80 me-3">
-                        <div
-                          class="progress-bar skill-bar desh_progress-bar"
-                          role="progressbar"
-                          aria-valuenow="76"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-                      <span class="p-1">25min</span>
+                      <div
+                        class="progress-bar skill-bar desh_progress-bar"
+                        role="progressbar"
+                        aria-valuenow="76"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      ></div>
                     </div>
+                    <span class="p-1">25min</span>
+                  </div>
 
-                    <p className="label pb-0 mt-4">Murabaha Agreement Generation to 
-Customer Acceptance: Digital</p>
-                    <div class="d-flex align-items-center p-2 border-bottom">
+                  <p className="label pb-0 mt-4">
+                    Murabaha Agreement Generation to Customer Acceptance:
+                    Digital
+                  </p>
+                  <div class="d-flex align-items-center p-2 border-bottom">
                     <div class="progress dashboard-progess bar-wrapper w-80 me-3">
-                        <div
-                          class="progress-bar skill-bar desh_progress-bar"
-                          role="progressbar"
-                          aria-valuenow="76"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-                      <span class="p-1">25 min</span>
+                      <div
+                        class="progress-bar skill-bar desh_progress-bar"
+                        role="progressbar"
+                        aria-valuenow="76"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      ></div>
                     </div>
+                    <span class="p-1">25 min</span>
+                  </div>
 
-                    <p className="label pb-0 mt-4 w-75">Murabaha Agreement Generation to
-Customer Acceptance:- Physical</p>
-                    <div class="d-flex align-items-center p-2 border-bottom">
+                  <p className="label pb-0 mt-4 w-75">
+                    Murabaha Agreement Generation to Customer Acceptance:-
+                    Physical
+                  </p>
+                  <div class="d-flex align-items-center p-2 border-bottom">
                     <div class="progress dashboard-progess bar-wrapper w-80 me-3">
-                        <div
-                          class="progress-bar skill-bar desh_progress-bar"
-                          role="progressbar"
-                          aria-valuenow="76"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-                      <span class="p-1 w-50px">10 min</span>
+                      <div
+                        class="progress-bar skill-bar desh_progress-bar"
+                        role="progressbar"
+                        aria-valuenow="76"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      ></div>
                     </div>
+                    <span class="p-1 w-50px">10 min</span>
+                  </div>
 
-
-                    <p className="label pb-0 mt-4 w-75">Customer Acceptance to 
-Agent response</p>
-                    <div class="d-flex align-items-center p-2 border-bottom">
+                  <p className="label pb-0 mt-4 w-75">
+                    Customer Acceptance to Agent response
+                  </p>
+                  <div class="d-flex align-items-center p-2 border-bottom">
                     <div class="progress dashboard-progess bar-wrapper w-80 me-3">
-                        <div
-                          class="progress-bar skill-bar desh_progress-bar"
-                          role="progressbar"
-                          aria-valuenow="76"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-                      <span class="p-1 w-50px">5 min</span>
+                      <div
+                        class="progress-bar skill-bar desh_progress-bar"
+                        role="progressbar"
+                        aria-valuenow="76"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      ></div>
                     </div>
+                    <span class="p-1 w-50px">5 min</span>
+                  </div>
 
-                    <p className="label pb-0 mt-4 w-75">Agent response to funding 
-and Letter issuance</p>
-                    <div class="d-flex align-items-center p-2">
+                  <p className="label pb-0 mt-4 w-75">
+                    Agent response to funding and Letter issuance
+                  </p>
+                  <div class="d-flex align-items-center p-2">
                     <div class="progress dashboard-progess bar-wrapper w-80 me-3">
-                        <div
-                          class="progress-bar skill-bar desh_progress-bar"
-                          role="progressbar"
-                          aria-valuenow="76"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-                      <span class="p-1 w-50px">5 min</span>
+                      <div
+                        class="progress-bar skill-bar desh_progress-bar"
+                        role="progressbar"
+                        aria-valuenow="76"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      ></div>
                     </div>
-
-
-
-
-
+                    <span class="p-1 w-50px">5 min</span>
+                  </div>
+                </div>
               </div>
-
-              </div>
-              
             </div>
           </div>
         </div>

@@ -131,6 +131,7 @@ function ExceptionModal() {
         onHide={handleClosePopup}
         backdrop="static"
         keyboard={false}
+        style={{ backdropFilter: "blur(5px)" }}
       >
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body className="p-5">
@@ -183,7 +184,10 @@ function ExceptionModal() {
                     </svg>
                   </div>
                 </div> */}
-                <ConfirmFileList setIsUploaded={setIsUploaded} isUploaded={isUploaded} />
+                <ConfirmFileList
+                  setIsUploaded={setIsUploaded}
+                  isUploaded={isUploaded}
+                />
               </div>
             </>
           )}

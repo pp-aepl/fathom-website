@@ -11,7 +11,7 @@ import UploadToFile from "../Common/CustomeUploadToFile/UploadToFile";
 import ConfirmFileList from "../Common/CustomeUploadToFile/ConfirmFileList";
 import ConfirmFiles from "../Common/CustomeUploadToFile/ConfirmFiles";
 import DuplicateModal from "./DuplicateModal";
-import { API } from "../../apiwrapper";
+import { API, getAwsImageUrl } from "../../apiwrapper";
 import { apiURl } from "../../store/actions";
 
 function ImportApplication() {
@@ -29,9 +29,15 @@ function ImportApplication() {
     dispatch(reSetPopupReducerData());
     dispatch(SetloaderData(false));
   };
+  const getUrlsArray = async (arr) =>
+    Promise.all(
+      arr?.map(async (ele) => {
+        let obj = await getAwsImageUrl(ele?.document);
+        return { ...ele, document: obj?.Location, ...obj };
+      })
+    );
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
+  const handleUploadFiles = async (e) => {
     try {
       if (!formId) {
         alert("Please select application category.");
@@ -42,38 +48,51 @@ function ImportApplication() {
         return;
       }
 
-      const fd = new FormData();
-      const obj = documents?.[0];
-      console.log(obj);
-      fd.append("file", obj?.document);
-      fd.append("formId", formId);
-      fd.append("showStatus", "Pending");
       dispatch(SetloaderData(true));
+      let awsUrls = await getUrlsArray(documents);
+      console.log(awsUrls, "awsUrls");
+      dispatch(
+        SetpopupReducerData({
+          ...PopupReducer?.modal,
+          documents: awsUrls,
+        })
+      );
+      setIsUploaded(true);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch(SetloaderData(true));
+    }
+  };
 
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      let payload = {
+        formId: formId,
+        showStatus: "Pending",
+        awsUrls: documents,
+        status: "IMPORTED",
+      };
+      dispatch(SetloaderData(true));
       const data = await API({
         url: `${apiURl.applications}`,
         method: "POST",
-        body: fd,
+        body: payload,
       });
 
       if (data?.status || data?.status === "true") {
-        const awsUrls = data?.awsUrl;
-        const newObj = data?.data?.[0];
-        const updatedObj = {
-          ...obj,
-          document: newObj?.document || awsUrls?.[0],
-          ...newObj?.newRecords,
-        };
-        const updatedDocuments = [...documents];
-        updatedDocuments[0] = updatedObj;
+        let arr = data?.data?.map((ele) => {
+          return { ...ele?.awsUrl, ...ele?.document };
+        });
         dispatch(
           SetpopupReducerData({
             ...PopupReducer?.modal,
-            documents: updatedDocuments,
+            documents: arr,
+            modalType: "APP_SCAN",
+            showModal: true,
           })
         );
-
-        setIsUploaded(true);
       } else {
         setIsUploaded(false);
       }
@@ -131,6 +150,7 @@ function ImportApplication() {
         onHide={handleClosePopup}
         backdrop="static"
         keyboard={false}
+        style={{ backdropFilter: "blur(5px)" }}
       >
         <Modal.Header closeButton>
           <Modal.Title>
@@ -200,14 +220,14 @@ function ImportApplication() {
             {isUploaded ? (
               <button
                 className="login100-form-btn"
-                onClick={(e) => onSubmitContinue(e)}
+                onClick={(e) => onSubmit(e)}
               >
                 Continue
               </button>
             ) : (
               <button
                 className="login100-form-btn"
-                onClick={(e) => onSubmit(e)}
+                onClick={(e) => handleUploadFiles(e)}
                 disabled={Loader?.data || false}
               >
                 {Loader?.data ? <Spinner /> : "Continue"}

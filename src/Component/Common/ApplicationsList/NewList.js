@@ -383,67 +383,6 @@ function NewList() {
               listingData={arrList}
               handleChangeCheckBox={handleChangeCheckBox}
             />
-            {/* <div className=" row my-5" id="table-contexual">
-              <div className="col-12">
-                <table class="table">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col"> </th>
-                      <th scope="col">S.No. </th>
-                      <th scope="col">Date</th>
-                      <th scope="col">Application no.</th>
-                      {arrList?.[0]?.rules?.map((ele, index) => (
-                        <th scope="col">Rule {index + 1}</th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {arrList?.length > 0
-                      ? arrList?.map((ele, index) => (
-                          <tr key={index}>
-                            <td>
-                              <div class="form-check">
-                                <input
-                                  class="form-check-input"
-                                  type="checkbox"
-                                  value=""
-                                  id={ele._id}
-                                  checked={selectedApplication?.includes(
-                                    ele?._id
-                                  )}
-                                  onChange={(e) =>
-                                    handleChangeCheckBox(e, ele._id)
-                                  }
-                                />
-                              </div>
-                            </td>
-                            <td>{index + 1}</td>
-                            <td>
-                              {moment(ele?.createdAt)
-                                .local()
-                                .format("DD/MM/YYYY hh:mm a")}
-                            </td>
-                            <td>{ele?.serial_number}</td>
-                            {ele?.rules?.map((item) => (
-                              <>
-                                <td title={item?.ruleId?.rule_name}>
-                                  <img
-                                    src={
-                                      item?.status
-                                        ? "../../images/icon2.png"
-                                        : "../../images/icon1.png"
-                                    }
-                                  />
-                                </td>
-                              </>
-                            ))}
-                          </tr>
-                        ))
-                      : ""}
-                  </tbody>
-                </table>
-              </div>
-            </div> */}
           </div>
         </div>
       </section>

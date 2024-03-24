@@ -19,6 +19,7 @@ const apiURl = {
   forms: `${config.version}/${config.common_microservice}/forms`,
   rules: `${config.version}/${config.admin}/rules`,
   signDocument: `${config.version}/${config.common_microservice}/signDocument`,
+  dashboard: `${config.version}/${config.common_microservice}/dashboard`,
 };
 
 export const NotificationMsg = {

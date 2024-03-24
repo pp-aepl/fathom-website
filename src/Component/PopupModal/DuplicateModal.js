@@ -42,6 +42,7 @@ function DuplicateModal() {
         onHide={handleClosePopup}
         backdrop="static"
         keyboard={false}
+        style={{ backdropFilter: "blur(5px)" }}
       >
         <Modal.Body className="p-5">
           <div className="">

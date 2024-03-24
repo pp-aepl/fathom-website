@@ -35,7 +35,13 @@ function ApplicationScan() {
   };
   const navigateToList = async (e, typeSubmit) => {
     e.preventDefault();
-    dispatch(SetpopupReducerData({...PopupReducer?.modal, modalType: "APP_SCAN", showModal: false }));
+    dispatch(
+      SetpopupReducerData({
+        ...PopupReducer?.modal,
+        modalType: "APP_SCAN",
+        showModal: false,
+      })
+    );
     // navigate("/admin/application/list");
     setTimeout(() => {
       dispatch(
@@ -66,6 +72,7 @@ function ApplicationScan() {
         onHide={handleClosePopup}
         backdrop="static"
         keyboard={false}
+        style={{ backdropFilter: "blur(5px)" }}
       >
         {statusType?.success !== "SUCCESS" && (
           <Modal.Header closeButton onClick={onSubmit}></Modal.Header>

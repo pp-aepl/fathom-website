@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useEffect, useState } from "react";
@@ -5,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { SetloaderData, SetpopupReducerData } from "../../../../store/reducer";
 import { useNavigate } from "react-router-dom";
 import ProceedModal from "../../../PopupModal/ProceedModal";
-import MurabahaSuccessfully from "./MurabahaSuccessfully";
 import { fetchApplicationList } from "../../../../Config/FetchListingData";
 import moment from "moment";
 import DatePicker from "react-datepicker";
@@ -17,10 +17,11 @@ function MurabahaList() {
   const navigate = useNavigate();
 
   const { PopupReducer } = useSelector((state) => state);
-  const { murabahaModal = false } = PopupReducer?.modal;
-  const { genratedModal = false } = PopupReducer?.modal;
-  const { proceedModal = false } = PopupReducer?.modal;
-  const { murabahaSuccessModal = false } = PopupReducer?.modal;
+  const {
+    murabahaModal = false,
+    genratedModal = false,
+    proceedModal = false,
+  } = PopupReducer?.modal;
 
   const [dummyList, setDummyList] = useState([
     {
@@ -94,8 +95,9 @@ function MurabahaList() {
       if (data?.status || data?.status === "true") {
         dispatch(
           SetpopupReducerData({
-            modalType: "MURABAHASUCCESS",
-            murabahaSuccessModal: true,
+            modalType: "MURABAHA_SUCCESS",
+            showModal: true,
+            action: action,
           })
         );
       } else {
@@ -107,17 +109,10 @@ function MurabahaList() {
     }
   };
   // navigate to agreement
-  const navigateToAgreement = async () => {
-    // navigate("/admin/application/sent");
-    if (selectedApplication?.length === 0) {
-      alert("Please select application to proceed.");
-      return;
-    }
-    await handleProcess();
-  };
+
   const [arrList, setArrList] = useState([]);
   const [selectedApplication, setSelectedApplication] = useState([]);
-  const [action, setAction] = useState("");
+  const [action, setAction] = useState("ALL");
 
   const [filterKey, setFilterKey] = useState({
     serial_number: "",
@@ -149,7 +144,15 @@ function MurabahaList() {
     }
     setSelectedApplication(arr);
   };
+  const navigateToAgreement = async () => {
+    // navigate("/admin/application/sent");
+    if (selectedApplication?.length === 0) {
+      alert("Please select application to proceed.");
+      return;
+    }
 
+    await handleProcess();
+  };
   const fetchListingData = useCallback(async () => {
     try {
       let payload = {
@@ -175,7 +178,6 @@ function MurabahaList() {
   return (
     <>
       {proceedModal && <ProceedModal />}
-      {murabahaSuccessModal && <MurabahaSuccessfully />}
 
       <section className="">
         <div className="container">
@@ -201,14 +203,13 @@ function MurabahaList() {
 
                   <div className="row pt-4">
                     <div className="col-md-3">
-                      <label className="label">Filter</label>
+                      <label className="label">Filter Channel</label>
                       <select
                         class="form-select p-3"
                         name="action"
                         value={action}
                         onChange={handleSelectFilter}
                       >
-                        <option value={""}>Select</option>
                         <option value={"ALL"}>All</option>
                         <option value={"EMAIL"}>Email</option>
                         <option value={"CHANNEL"}>Channel</option>
@@ -312,7 +313,7 @@ function MurabahaList() {
                                   .format("DD/MM/YYYY hh:mm a")}
                               </td>
                               <td>{item?.serial_number}</td>
-                              <td>{item?.name}</td>
+                              <td>{item?.name_as_per_passport}</td>
 
                               {item?.channel ? (
                                 <td>
@@ -322,11 +323,16 @@ function MurabahaList() {
                                   </span>
                                 </td>
                               ) : (
-                                <td>{item?.email}</td>
+                                <td>{item?.email_id_1}</td>
                               )}
                               <td>
                                 {" "}
-                                <div className="view_btn">View</div>
+                                <a
+                                  href={item?.reject_exception_document}
+                                  target="_blank"
+                                >
+                                  <div className="view_btn">View</div>
+                                </a>
                               </td>
                             </tr>
                           ))}

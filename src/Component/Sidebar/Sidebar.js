@@ -220,7 +220,7 @@ function Sidebar({ showMenu, setShowMenu }) {
                             <FaAngleRight />
                           </Link>
                           <Link
-                            to="/admin/application/sent"
+                            to="/admin/application/murabaha"
                             className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
                           >
                             Physical – Awaiting Customer acceptance on
@@ -376,6 +376,7 @@ function Sidebar({ showMenu, setShowMenu }) {
                   </div>
                 </div>
               </div>
+              
             </div>
           </div>
         </nav>

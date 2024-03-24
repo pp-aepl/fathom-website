@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/alt-text */
 import moment from "moment";
 import React from "react";
@@ -24,6 +25,7 @@ function ListingWithRule({
                 {listingData?.[0]?.rules?.map((ele, index) => (
                   <th scope="col">Rule {index + 1}</th>
                 ))}
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -55,7 +57,7 @@ function ListingWithRule({
                         <td>
                           <span
                             className={
-                                ele?.showStatus === "Done" ? "green" : "orange"
+                              ele?.showStatus === "Done" ? "green" : "orange"
                             }
                           >
                             {ele?.showStatus}
@@ -76,6 +78,16 @@ function ListingWithRule({
                           </td>
                         </>
                       ))}
+                      <td>
+                        <a
+                          href={ele?.reject_exception_document}
+                          target="_blank"
+                        >
+                          <button className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills">
+                            View
+                          </button>
+                        </a>
+                      </td>
                     </tr>
                   ))
                 : ""}

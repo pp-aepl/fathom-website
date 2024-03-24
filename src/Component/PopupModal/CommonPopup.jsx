@@ -43,6 +43,7 @@ function CommonResponsePopup() {
         onHide={handleClosePopup}
         backdrop="static"
         keyboard={false}
+        style={{ backdropFilter: "blur(5px)" }}
       >
         <Modal.Header closeButton>
           <Modal.Title></Modal.Title>

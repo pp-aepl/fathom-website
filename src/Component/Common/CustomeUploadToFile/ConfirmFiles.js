@@ -5,7 +5,11 @@
 import React from "react";
 import { Modal, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { SetloaderData, SetpopupReducerData } from "../../../store/reducer";
+import {
+  SetloaderData,
+  SetpopupReducerData,
+  reSetPopupReducerData,
+} from "../../../store/reducer";
 import DataTable from "react-data-table-component";
 import SuccessfullyModal from "../../PopupModal/SuccessfullyModal";
 import { API } from "../../../apiwrapper";
@@ -19,20 +23,13 @@ function ConfirmFiles() {
   let obj = documents?.[0];
   console.log(obj, "confirm");
   const handleClosePopup = () => {
-    dispatch(
-      SetpopupReducerData({
-        modalType: "SUCCESSFULLY",
-        successModal: false,
-      })
-    );
+    dispatch(reSetPopupReducerData());
   };
   const onSubmitSignDocument = async () => {
     try {
       let payload = {
-        email: "",
-        murbaha_url: obj?.document,
-        id: obj?._id,
-        status: "IMPORTED",
+        awsUrls: documents,
+        status: "AWAITING_DIGITAL_SINGNATURE",
         showStatus: "Pending",
       };
       dispatch(SetloaderData(true));
@@ -59,19 +56,20 @@ function ConfirmFiles() {
     }
   };
   // update create api
-  const onSubmit = async (e, typeSubmit) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    if (
-      obj?.application &&
-      obj?.credit_limit_approval &&
-      obj?.promise_to_purchase
-    ) {
-      await onSubmitSignDocument();
-    } else if (
-      !obj?.application ||
-      !obj?.credit_limit_approval ||
-      !obj?.promise_to_purchase
-    ) {
+    const isInvalidDocument = documents.some((doc) => {
+      const allTrue =
+        doc.application && doc.credit_limit_approval && doc.promise_to_purchase;
+      const allFalse =
+        !doc.application &&
+        !doc.credit_limit_approval &&
+        !doc.promise_to_purchase;
+      return !(allTrue || allFalse);
+    });
+    console.log(isInvalidDocument, "isInvalidDocument...>>");
+
+    if (isInvalidDocument) {
       dispatch(
         SetpopupReducerData({
           ...PopupReducer?.modal,
@@ -79,6 +77,10 @@ function ConfirmFiles() {
           showModal: true,
         })
       );
+      return false;
+    } else {
+      await onSubmitSignDocument();
+      return true;
     }
   };
 
@@ -163,16 +165,24 @@ function ConfirmFiles() {
       cell: (row, indx) => (
         <>
           <div>
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value={row?.application}
-              name="application"
-              checked={row?.application}
-              disabled
-              onChange={(e) => handleChangeCheckbox(e, indx)}
-              id="flexCheckDefault"
-            />
+            {row?.application ? (
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value={row?.application}
+                name="application"
+                checked={row?.application}
+                disabled
+                onChange={(e) => handleChangeCheckbox(e, indx)}
+                id="flexCheckDefault"
+              />
+            ) : (
+              <img
+                src="../../images/close.png"
+                width={18}
+                className="   d-inline-block"
+              />
+            )}
           </div>
         </>
       ),
@@ -184,16 +194,24 @@ function ConfirmFiles() {
       cell: (row, indx) => (
         <>
           <div>
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value={row?.promise_to_purchase}
-              name="promise_to_purchase"
-              disabled
-              checked={row?.promise_to_purchase}
-              onChange={(e) => handleChangeCheckbox(e, indx)}
-              id="flexCheckDefault"
-            />
+            {row?.promise_to_purchase ? (
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value={row?.promise_to_purchase}
+                name="promise_to_purchase"
+                disabled
+                checked={row?.promise_to_purchase}
+                onChange={(e) => handleChangeCheckbox(e, indx)}
+                id="flexCheckDefault"
+              />
+            ) : (
+              <img
+                src="../../images/close.png"
+                width={18}
+                className="   d-inline-block"
+              />
+            )}
           </div>
         </>
       ),
@@ -204,16 +222,24 @@ function ConfirmFiles() {
       cell: (row, indx) => (
         <>
           <div>
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value={row?.credit_limit_approval}
-              name="credit_limit_approval"
-              disabled
-              checked={row?.credit_limit_approval}
-              onChange={(e) => handleChangeCheckbox(e, indx)}
-              id="flexCheckDefault"
-            />
+            {row?.credit_limit_approval ? (
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value={row?.credit_limit_approval}
+                name="credit_limit_approval"
+                disabled
+                checked={row?.credit_limit_approval}
+                onChange={(e) => handleChangeCheckbox(e, indx)}
+                id="flexCheckDefault"
+              />
+            ) : (
+              <img
+                src="../../images/close.png"
+                width={18}
+                className="   d-inline-block"
+              />
+            )}
           </div>
         </>
       ),
@@ -243,7 +269,7 @@ function ConfirmFiles() {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body className="p-5">
-            <DataTable columns={columns} data={documents || data} />
+            <DataTable columns={columns} data={documents} />
             {documents?.length === 0 ? (
               <p className="card-text pb-10">Do you want to re-import again?</p>
             ) : (
