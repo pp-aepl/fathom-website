@@ -74,6 +74,7 @@ function ExceptionModal() {
       const fd = new FormData();
       const obj = documents?.[0];
       console.log(obj);
+
       let payload = {
         status: "Pending",
         showStatus: "Pending",
@@ -83,6 +84,7 @@ function ExceptionModal() {
       // fd.append("showStatus", "Pending");
       // fd.append("status", "Pending");
       // fd.append("ids", JSON.stringify(selectedApplication));
+
 
       dispatch(SetloaderData(true));
       const data = await API({
