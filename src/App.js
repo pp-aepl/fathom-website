@@ -45,7 +45,7 @@ function App() {
     } catch (error) {
       console.log(error, "error");
     }
-  }, [dispatch]);
+  }, [authUser?.data,dispatch]);
   useEffect(() => {
     if (authUser?.data?._id) {
       fetchListingData();
