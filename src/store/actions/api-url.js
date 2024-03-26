@@ -12,13 +12,14 @@ const config = {
   admin: "admin",
 };
 const apiURl = {
-  login: `${config.version}/${config.common_microservice}/auth/login`,
-  forgot: `${config.version}/${config.common_microservice}/forgot`,
-  reset: `${config.version}/${config.common_microservice}/change-password`,
-  applications: `${config.version}/${config.common_microservice}/applications`,
-  forms: `${config.version}/${config.common_microservice}/forms`,
-  rules: `${config.version}/${config.admin}/rules`,
-  signDocument: `${config.version}/${config.common_microservice}/signDocument`,
+  login: `/${config.version}/${config.common_microservice}/auth/login`,
+  forgot: `/${config.version}/${config.common_microservice}/forgot`,
+  reset: `/${config.version}/${config.common_microservice}/change-password`,
+  applications: `/${config.version}/${config.common_microservice}/applications`,
+  forms: `/${config.version}/${config.common_microservice}/forms`,
+  rules: `/${config.version}/${config.admin}/rules`,
+  signDocument: `/${config.version}/${config.common_microservice}/signDocument`,
+  dashboard: `/${config.version}/${config.common_microservice}/dashboard`,
 };
 
 export const NotificationMsg = {

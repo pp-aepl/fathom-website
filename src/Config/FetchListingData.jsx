@@ -1,7 +1,7 @@
 import { API } from "../apiwrapper";
 import { apiURl } from "../store/actions";
 import { SetloaderData } from "../store/reducer";
-import { SetCategories, SetRules } from "../store/reducer/ConfigData";
+import { SetCategories, SetConfigData, SetRules } from "../store/reducer/ConfigData";
 
 export const makeSearchString = (filter) => {
   const searchParams = new URLSearchParams();
@@ -79,6 +79,31 @@ export const fetchAllCategories =
       });
       console.log(data);
       dispatch(SetCategories(data?.results));
+      return data;
+    } catch (error) {
+      throw error;
+    } finally {
+      dispatch(SetloaderData(false));
+    }
+  };
+
+export const getDashboardData =
+  (body = {}, query = {}) =>
+  async (dispatch) => {
+    try {
+      dispatch(SetloaderData(true));
+      let url = `${apiURl.dashboard}`;
+      if (query) {
+        const searchString = makeSearchString(query);
+        url = searchString ? `${url}?${searchString}` : url;
+      }
+      const data = await API({
+        url: url,
+        method: "POST",
+        body: { ...body },
+      });
+      console.log(data);
+      dispatch(SetConfigData(data));
       return data;
     } catch (error) {
       throw error;

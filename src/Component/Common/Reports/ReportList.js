@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useCallback, useEffect, useState } from "react";
@@ -16,64 +17,64 @@ function ReportList() {
   const [dummyList, setDummyList] = useState([
     {
       date: new Date(),
-      app_name: "220872-00",
-      customer_name: "Nolan Levin",
+      serial_number: "220872-00",
+      name_as_per_passport: "Nolan Levin",
       mobileNo: "+1 4785 4587 451",
       status: "Error",
     },
     {
       date: new Date(),
-      app_name: "220873-00",
-      customer_name: "Aaeesha Mohamed ",
+      serial_number: "220873-00",
+      name_as_per_passport: "Aaeesha Mohamed ",
       mobileNo: "+1 4785 4587 451",
       status: "Pending",
     },
     {
-      app_name: "220874-00",
-      customer_name: "Jaydon Calzoni",
+      serial_number: "220874-00",
+      name_as_per_passport: "Jaydon Calzoni",
       email: "jaydon@yahoo.com",
       date: new Date(),
       mobileNo: "+1 4785 4587 451",
       status: "Pending",
     },
     {
-      app_name: "220875-00",
-      customer_name: "Maadhav Nazar ",
+      serial_number: "220875-00",
+      name_as_per_passport: "Maadhav Nazar ",
       mobileNo: "+1 4785 4587 451",
       date: new Date(),
       status: "Error",
     },
     {
-      app_name: "220876-00",
-      customer_name: "Emerson Vetrovs",
+      serial_number: "220876-00",
+      name_as_per_passport: "Emerson Vetrovs",
       mobileNo: "+1 4785 4587 451",
       date: new Date(),
       status: "Error",
     },
     {
-      app_name: "220877-00",
-      customer_name: "Haajar Rahman",
+      serial_number: "220877-00",
+      name_as_per_passport: "Haajar Rahman",
       mobileNo: "+1 4785 4587 451",
       date: new Date(),
       status: "Pending",
     },
     {
-      app_name: "220878-00",
-      customer_name: "Marcus Lipshutz",
+      serial_number: "220878-00",
+      name_as_per_passport: "Marcus Lipshutz",
       mobileNo: "+1 4785 4587 451",
       date: new Date(),
       status: "Pending",
     },
     {
-      app_name: "220879-00",
-      customer_name: "Zaire Culhane",
+      serial_number: "220879-00",
+      name_as_per_passport: "Zaire Culhane",
       mobileNo: "+1 4785 4587 451",
       date: new Date(),
       status: "Pending",
     },
     {
-      app_name: "220880-00",
-      customer_name: "Saadiq Yousuf ",
+      serial_number: "220880-00",
+      name_as_per_passport: "Saadiq Yousuf ",
       mobileNo: "+1 4785 4587 451",
       date: new Date(),
       status: "Error",
@@ -165,7 +166,7 @@ function ReportList() {
               <div className="col-md-3 px-4">
                 <label className="">Filter</label>
                 <select
-                  class="form-select p-3"
+                  className="form-select p-3"
                   name="period"
                   // value={filterKey?.period}
                   onChange={handleChangePeriod}
@@ -182,7 +183,7 @@ function ReportList() {
                   <>
                     <span>Status filter</span>
                     <select
-                      class="form-select p-3"
+                      className="form-select p-3"
                       name="status"
                       value={filterKey?.status}
                       onChange={(e) => {
@@ -290,8 +291,8 @@ function ReportList() {
                             .local()
                             .format("DD/MM/YYYY hh:mm a")}
                         </td>
-                        <td>{item?.customer_name}</td>
-                        <td>{item?.app_name}</td>
+                        <td>{item?.name_as_per_passport}</td>
+                        <td>{item?.serial_number}</td>
                         <td>{item?.mobileNo}</td>
                         {fetchParams === "error" ? (
                           <td>
@@ -309,7 +310,16 @@ function ReportList() {
                         ) : (
                           <td style={{ color: "#29CC6A" }}>Disbursed</td>
                         )}
-                        <td>View</td>
+                        <td>
+                          <a
+                            href={item?.reject_exception_document}
+                            target="_blank"
+                          >
+                            <button className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills">
+                              View
+                            </button>
+                          </a>
+                        </td>
                       </tr>
                     ))}
                   </tbody>

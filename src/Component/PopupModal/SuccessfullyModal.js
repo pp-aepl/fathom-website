@@ -9,7 +9,6 @@ import {
 } from "../../store/reducer";
 import ApplicationScan from "./ApplicationScan";
 import ProceedModal from "./ProceedModal";
-import AgentModal from "./AgentModal";
 import DisbursedModal from "./DisbursedModal";
 import { useNavigate } from "react-router-dom";
 function SuccessfullyModal() {
@@ -19,7 +18,6 @@ function SuccessfullyModal() {
   const { successModal = false } = PopupReducer?.modal;
   const { scanModal = false } = PopupReducer?.modal;
   const { proceedModal = false } = PopupReducer?.modal;
-  const { agentModal = false } = PopupReducer?.modal;
   const { disbursedModal = false } = PopupReducer?.modal;
   const successType = PopupReducer?.modal?.type;
   console.log({ successType });
@@ -43,7 +41,12 @@ function SuccessfullyModal() {
       dispatch(reSetPopupReducerData());
       navigate("/admin/application/status");
     } else if (successType === "CHANNELLIST") {
-      dispatch(SetpopupReducerData({ modalType: "AGENT", agentModal: true }));
+      dispatch(
+        SetpopupReducerData({
+          modalType: "AGENT",
+          showModal: true,
+        })
+      );
     } else if (successType === "COMIDITYAGENT") {
       handleClosePopup();
       // dispatch(
@@ -60,7 +63,6 @@ function SuccessfullyModal() {
     <>
       {/* {scanModal && <ApplicationScan />} */}
       {proceedModal && <ProceedModal />}
-      {agentModal && <AgentModal />}
       {disbursedModal && <DisbursedModal />}
 
       <Modal
@@ -71,13 +73,15 @@ function SuccessfullyModal() {
         onHide={handleClosePopup}
         backdrop="static"
         keyboard={false}
+        style={{ backdropFilter: "blur(5px)" }}
       >
-        {/* <Modal.Header onClick={() => handleClosePopup(false)}> */}
-        <Modal.Title>
-          <img className="success-pic" src="../../images/success.png" />
-        </Modal.Title>
-        {/* </Modal.Header> */}
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
         <Modal.Body className="p-5">
+          <div className="my-5 text-center">
+            <img src="../../images/success.png" style={{ height: "120px" }} />
+          </div>
           <div className="">
             {successType === "SUCCESSFULLY" ? (
               <h3 className="card-title">Application Processed</h3>
@@ -116,12 +120,15 @@ function SuccessfullyModal() {
                 </>
               )}
             {successType === "COMIDITYAGENT" && (
-              <p style={{ textAlign: "center" }}>
+              <p className="card-text" style={{ textAlign: "center" }}>
                 Proceed with disbursal of funds
               </p>
             )}
           </div>
-          <div className={`d-flex justify-content-center buttons ${"saveBtn"}`}>
+          <div
+            className={`d-flex justify-content-center buttons ${"saveBtn"}`}
+            style={{ marginTop: "100px" }}
+          >
             {successType !== "COMIDITYAGENT" && (
               <>
                 {successType === "SUCCESSFULLY" ||
@@ -153,11 +160,14 @@ function SuccessfullyModal() {
 
             {successType === "COMIDITYAGENT" && (
               <>
-                <button onClick={(e) => handleClosePopup()}>
+                <button
+                  className="w-50 me-4"
+                  onClick={(e) => handleClosePopup()}
+                >
                   Proceed later
                 </button>
                 <button
-                  style={{ width: "196px" }}
+                  className="w-50 "
                   onClick={(e) => onSubmit(e, "COMIDITYAGENT")}
                 >
                   Proceed with funding

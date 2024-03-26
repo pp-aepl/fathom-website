@@ -170,13 +170,13 @@ function NewList() {
         <>
           {row?.status === "CONFIRM" ? (
             <i
-              class="fa fa-check-circle"
+              className="fa fa-check-circle"
               aria-hidden="true"
               style={{ color: "green", fontSize: "18px" }}
             />
           ) : (
             <i
-              class="fa fa-times-circle"
+              className="fa fa-times-circle"
               aria-hidden="true"
               style={{ color: "red", fontSize: "18px" }}
             />
@@ -191,13 +191,13 @@ function NewList() {
         <>
           {row?.status === "CONFIRM" ? (
             <i
-              class="fa fa-check-circle"
+              className="fa fa-check-circle"
               aria-hidden="true"
               style={{ color: "green", fontSize: "18px" }}
             />
           ) : (
             <i
-              class="fa fa-times-circle"
+              className="fa fa-times-circle"
               aria-hidden="true"
               style={{ color: "red", fontSize: "18px" }}
             />
@@ -212,13 +212,13 @@ function NewList() {
         <>
           {row?.status === "CONFIRM" ? (
             <i
-              class="fa fa-check-circle"
+              className="fa fa-check-circle"
               aria-hidden="true"
               style={{ color: "green", fontSize: "18px" }}
             />
           ) : (
             <i
-              class="fa fa-times-circle"
+              className="fa fa-times-circle"
               aria-hidden="true"
               style={{ color: "red", fontSize: "18px" }}
             />
@@ -342,7 +342,7 @@ function NewList() {
               <div className="col-3">
                 <label className="label">&nbsp;</label>
                 <select
-                  class="form-select p-3"
+                  className="form-select p-3"
                   onChange={fetchModal}
                   value={action}
                   name="action"
@@ -360,20 +360,20 @@ function NewList() {
             </div>
           </div>
 
-          <div class="input-group p-4">
+          <div className="input-group p-4">
             <label className="d-block label py-3 w-100">
               Search Applications
             </label>
             <button
               type="button"
-              class="btn border-end-0 rounded border bg-white"
+              className="btn border-end-0 rounded border bg-white"
               data-mdb-ripple-init=""
             >
-              <i class="fas fa-search fs-4 text-secondary"></i>
+              <i className="fas fa-search fs-4 text-secondary"></i>
             </button>
             <input
               type="text"
-              class="form-control p-2 border-start-0"
+              className="form-control p-2 border-start-0"
               placeholder="Search"
             ></input>
           </div>
@@ -383,67 +383,6 @@ function NewList() {
               listingData={arrList}
               handleChangeCheckBox={handleChangeCheckBox}
             />
-            {/* <div className=" row my-5" id="table-contexual">
-              <div className="col-12">
-                <table class="table">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col"> </th>
-                      <th scope="col">S.No. </th>
-                      <th scope="col">Date</th>
-                      <th scope="col">Application no.</th>
-                      {arrList?.[0]?.rules?.map((ele, index) => (
-                        <th scope="col">Rule {index + 1}</th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {arrList?.length > 0
-                      ? arrList?.map((ele, index) => (
-                          <tr key={index}>
-                            <td>
-                              <div class="form-check">
-                                <input
-                                  class="form-check-input"
-                                  type="checkbox"
-                                  value=""
-                                  id={ele._id}
-                                  checked={selectedApplication?.includes(
-                                    ele?._id
-                                  )}
-                                  onChange={(e) =>
-                                    handleChangeCheckBox(e, ele._id)
-                                  }
-                                />
-                              </div>
-                            </td>
-                            <td>{index + 1}</td>
-                            <td>
-                              {moment(ele?.createdAt)
-                                .local()
-                                .format("DD/MM/YYYY hh:mm a")}
-                            </td>
-                            <td>{ele?.serial_number}</td>
-                            {ele?.rules?.map((item) => (
-                              <>
-                                <td title={item?.ruleId?.rule_name}>
-                                  <img
-                                    src={
-                                      item?.status
-                                        ? "../../images/icon2.png"
-                                        : "../../images/icon1.png"
-                                    }
-                                  />
-                                </td>
-                              </>
-                            ))}
-                          </tr>
-                        ))
-                      : ""}
-                  </tbody>
-                </table>
-              </div>
-            </div> */}
           </div>
         </div>
       </section>

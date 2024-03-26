@@ -35,7 +35,13 @@ function ApplicationScan() {
   };
   const navigateToList = async (e, typeSubmit) => {
     e.preventDefault();
-    dispatch(SetpopupReducerData({...PopupReducer?.modal, modalType: "APP_SCAN", showModal: false }));
+    dispatch(
+      SetpopupReducerData({
+        ...PopupReducer?.modal,
+        modalType: "APP_SCAN",
+        showModal: false,
+      })
+    );
     // navigate("/admin/application/list");
     setTimeout(() => {
       dispatch(
@@ -66,6 +72,7 @@ function ApplicationScan() {
         onHide={handleClosePopup}
         backdrop="static"
         keyboard={false}
+        style={{ backdropFilter: "blur(5px)" }}
       >
         {statusType?.success !== "SUCCESS" && (
           <Modal.Header closeButton onClick={onSubmit}></Modal.Header>
@@ -73,16 +80,16 @@ function ApplicationScan() {
 
         <Modal.Body className="full-cover">
           {statusType?.success !== "SUCCESS" && (
-            <div class="row">
-              <div class="col-md-12 text-center">
-                <div class="progressChart yellow">
-                  <span class="progressChart-left">
-                    <span class="progressChart-bar"></span>
+            <div className="row">
+              <div className="col-md-12 text-center">
+                <div className="progressChart yellow">
+                  <span className="progressChart-left">
+                    <span className="progressChart-bar"></span>
                   </span>
-                  <span class="progressChart-right">
-                    <span class="progressChart-bar"></span>
+                  <span className="progressChart-right">
+                    <span className="progressChart-bar"></span>
                   </span>
-                  <div class="progressChart-value">75%</div>
+                  <div className="progressChart-value">75%</div>
                 </div>
               </div>
             </div>

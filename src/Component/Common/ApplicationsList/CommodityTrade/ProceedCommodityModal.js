@@ -45,21 +45,26 @@ function ProceedCommodityModal() {
           <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-5">
-          <div className="">
+          <div className="mb-5">
             <div className="text-center mb-2">
-              <img src="../../images/icon2.png" style={{ height: "100px" }} />
+              <img src="../../images/icon2.png" style={{ height: "120px" }} />
             </div>
-            <span style={{ paddingLeft: "9rem", fontWeight: "600" }}>
-              Commodity purchase has been completed
-            </span>
-            <p style={{ textAlign: "center", paddingLeft: "4rem" }}>
-              Continue with Murabaha Agreement Generation
+            <h3 className="card-title">
+              Commodity purchase <br /> has been completed
+            </h3>
+            <p className="card-text">
+              Continue with Murabaha
+              <br /> Agreement Generation
             </p>
           </div>
           <div
-            className={`d-flex align-items-center justify-content-around pt-4 ${"saveBtn"}`}
+            className={`d-flex align-items-center justify-content-around pt-4 `}
+            style={{ marginTop: "100px" }}
           >
-            <button onClick={(e) => navigateToAgreement(e, "commodity")}>
+            <button
+              onClick={(e) => navigateToAgreement(e, "commodity")}
+              className="login100-form-btn"
+            >
               Continue
             </button>
           </div>

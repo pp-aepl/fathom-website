@@ -59,7 +59,7 @@ function Sidebar({ showMenu, setShowMenu }) {
                     <img
                       alt="logo"
                       src="../../../images/fathom_logo.png"
-                      class="header_logo"
+                      className="header_logo"
                     ></img>
                   </div>
                   <span className="logo-content">Fathom</span>
@@ -220,7 +220,7 @@ function Sidebar({ showMenu, setShowMenu }) {
                             <FaAngleRight />
                           </Link>
                           <Link
-                            to="/admin/application/sent"
+                            to="/admin/application/murabaha"
                             className={`${"nav__dropdown_item multiline"} d-flex justify-content-between align-items-center`}
                           >
                             Physical – Awaiting Customer acceptance on
@@ -376,6 +376,7 @@ function Sidebar({ showMenu, setShowMenu }) {
                   </div>
                 </div>
               </div>
+              
             </div>
           </div>
         </nav>

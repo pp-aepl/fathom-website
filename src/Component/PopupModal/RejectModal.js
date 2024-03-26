@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React  from "react";
+import React from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { SetpopupReducerData } from "../../store/reducer";
@@ -54,6 +54,7 @@ function RejectModal() {
         onHide={handleClosePopup}
         backdrop="static"
         keyboard={false}
+        style={{ backdropFilter: "blur(5px)" }}
       >
         <Modal.Header onClick={() => handleClosePopup(false)} closeButton>
           <Modal.Title></Modal.Title>

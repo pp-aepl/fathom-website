@@ -2,7 +2,11 @@
 import React from "react";
 import { Modal, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { SetloaderData, SetpopupReducerData, reSetPopupReducerData } from "../../store/reducer";
+import {
+  SetloaderData,
+  SetpopupReducerData,
+  reSetPopupReducerData,
+} from "../../store/reducer";
 import { API } from "../../apiwrapper";
 import { apiURl } from "../../store/actions";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +16,10 @@ function CheckedApplications() {
   const { PopupReducer, Loader } = useSelector((state) => state);
   const { documents = [], showModal = false } = PopupReducer?.modal;
   const navigate = useNavigate();
-  let obj = documents?.[0];
+  let isInvalidDocument = documents?.filter(
+    (doc) =>
+      !doc.application || !doc.credit_limit_approval || !doc.promise_to_purchase
+  );
 
   const handleClosePopup = async () => {
     setTimeout(() => {
@@ -29,22 +36,20 @@ function CheckedApplications() {
     e.preventDefault();
     try {
       let payload = {
-        email: "",
-        murbaha_url: obj?.document,
-        id: obj?._id,
+        awsUrls: documents,
         status: "IMPORTED",
         showStatus: "Pending",
       };
       dispatch(SetloaderData(true));
       const data = await API({
-        url: `${apiURl.signDocument}`,
+        url: `${apiURl.applications}`,
         method: "POST",
         body: payload,
       });
 
       if (data?.status || data?.status === "true") {
-        dispatch(reSetPopupReducerData())
-        navigate("/admin/application/status");
+        dispatch(reSetPopupReducerData());
+        navigate("/admin/application/list");
       } else {
       }
     } catch (error) {
@@ -63,6 +68,7 @@ function CheckedApplications() {
         onHide={handleClosePopup}
         backdrop="static"
         keyboard={false}
+        style={{ backdropFilter: "blur(5px)" }}
       >
         <Modal.Header onClick={() => handleClosePopup()} closeButton>
           <Modal.Title></Modal.Title>
@@ -79,7 +85,11 @@ function CheckedApplications() {
                 Application No./CRN.No
               </p>
               <div>
-                <button className="btn border">{obj?.name}</button>
+                {isInvalidDocument?.length > 0
+                  ? isInvalidDocument?.map((doc) => (
+                      <button className="btn border">{doc?.name}</button>
+                    ))
+                  : ""}
               </div>
             </>
           </div>

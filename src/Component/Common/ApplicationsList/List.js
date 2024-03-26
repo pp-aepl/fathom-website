@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useRef, useEffect, useCallback } from "react";
@@ -110,8 +111,8 @@ function List({ id }) {
                     ) : arrList?.length > 0 ? (
                       <div className=" row my-5" id="table-contexual">
                         <div className="col-12">
-                          <table class="table">
-                            <thead class="thead-light">
+                          <table className="table">
+                            <thead className="thead-light">
                               <tr>
                                 <th scope="col" className="ps-4">
                                   S.No.{" "}
@@ -154,7 +155,16 @@ function List({ id }) {
                                       {item?.showStatus}
                                     </span>
                                   </td>
-                                  <td>View</td>
+                                  <td>
+                                    <a
+                                      href={item?.reject_exception_document}
+                                      target="_blank"
+                                    >
+                                      <button className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills">
+                                        View
+                                      </button>
+                                    </a>
+                                  </td>
                                 </tr>
                               ))}
                             </tbody>

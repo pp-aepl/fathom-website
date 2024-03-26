@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useEffect, useState } from "react";
@@ -5,7 +6,6 @@ import { SetpopupReducerData } from "../../../../store/reducer";
 import { useDispatch, useSelector } from "react-redux";
 import ExceptionModal from "../../../PopupModal/ExceptionModal";
 import SuccessfullyModal from "../../../PopupModal/SuccessfullyModal";
-import AgentModal from "../../../PopupModal/AgentModal";
 import { fetchApplicationList } from "../../../../Config/FetchListingData";
 import DatePicker from "react-datepicker";
 import moment from "moment";
@@ -13,11 +13,7 @@ import moment from "moment";
 function SentList() {
   const dispatch = useDispatch();
   const { PopupReducer } = useSelector((state) => state);
-  const {
-    exceptionModal = false,
-    successModal = false,
-    agentModal = false,
-  } = PopupReducer?.modal;
+  const { exceptionModal = false, successModal = false } = PopupReducer?.modal;
 
   const [dummyList, setDummyList] = useState([
     {
@@ -86,24 +82,10 @@ function SentList() {
   ]);
 
   // update create api
-  const onUpdate = async (e, typeSubmit) => {
-    e.preventDefault();
-    dispatch(
-      SetpopupReducerData({
-        modalType: "CHANNELLIST",
-        successModal: true,
-        type: typeSubmit,
-      })
-    );
-  };
-  const onSubmit = async (e, typeSubmit) => {
-    e.preventDefault();
-    dispatch(SetpopupReducerData({ modalType: "AGENT", agentModal: true }));
-  };
 
   const [arrList, setArrList] = useState([]);
   const [selectedApplication, setSelectedApplication] = useState([]);
-  const [action, setAction] = useState("");
+  const [action, setAction] = useState("ALL");
 
   const [filterKey, setFilterKey] = useState({
     serial_number: "",
@@ -113,6 +95,7 @@ function SentList() {
     endDate: "",
     periodFrom: "",
   });
+
   const handleChangeCheckBox = (e, id) => {
     let arr = [...selectedApplication];
     if (e.target.checked) {
@@ -134,6 +117,36 @@ function SentList() {
       arr = arrList?.filter((ele) => ele?.channel)?.map((e) => e?._id);
     }
     setSelectedApplication(arr);
+  };
+  const handleProceed = async (e) => {
+    e.preventDefault();
+    if (selectedApplication?.length === 0) {
+      alert("Please select application to proceed.");
+      return;
+    }
+    dispatch(
+      SetpopupReducerData({
+        selectedApplication: selectedApplication,
+        modalType: "AGENT",
+        showModal: true,
+        action: action,
+      })
+    );
+  };
+
+  const onUpdate = async (e) => {
+    e.preventDefault();
+    if (selectedApplication?.length === 0) {
+      alert("Please select application to proceed.");
+      return;
+    }
+    dispatch(
+      SetpopupReducerData({
+        modalType: "MURABAHA_SUCCESS",
+        showModal: true,
+        action: "UPDATE",
+      })
+    );
   };
 
   const fetchListingData = useCallback(async () => {
@@ -161,7 +174,6 @@ function SentList() {
     <>
       {exceptionModal && <ExceptionModal />}
       {successModal && <SuccessfullyModal />}
-      {agentModal && <AgentModal />}
 
       <section className="px-3">
         <div className="upload_new_application">
@@ -169,24 +181,23 @@ function SentList() {
           <div className="top_list">
             <div className="row pt-4">
               <div className="col-md-2">
-                <label>Filter</label>
+                <label>Filter Channel</label>
                 <div className="border rounded ">
-                  {/* <div class="form-check d-inline-block verticle">
+                  {/* <div className="form-check d-inline-block verticle">
                     <input
                       type="checkbox"
-                      class="form-check-input"
+                      className="form-check-input"
                       id="check2"
                       name="option2"
                       value="something"
                     ></input>
                   </div> */}
                   <select
-                    class="form-select p-3"
+                    className="form-select p-3"
                     name="action"
                     value={action}
                     onChange={handleSelectFilter}
                   >
-                    <option value={""}>Select</option>
                     <option value={"ALL"}>All</option>
                     <option value="Signature">Digital Signature</option>
                     <option value="Print">Paper Print</option>
@@ -256,7 +267,7 @@ function SentList() {
                   </button>
                   <button
                     style={{ width: "274px" }}
-                    onClick={(e) => onSubmit(e, "CHANNELLIST")}
+                    onClick={(e) => handleProceed(e)}
                   >
                     Proceed
                   </button>
@@ -267,8 +278,8 @@ function SentList() {
 
           <div className=" row my-5" id="table-contexual">
             <div className="col-12">
-              <table class="table">
-                <thead class="thead-light">
+              <table className="table">
+                <thead className="thead-light">
                   <tr>
                     <th scope="col"> </th>
                     <th scope="col">S.No. </th>
@@ -285,9 +296,9 @@ function SentList() {
                   {arrList?.map((item, index) => (
                     <tr>
                       <td>
-                        <div class="form-check">
+                        <div className="form-check">
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="checkbox"
                             value=""
                             id={item._id}
@@ -310,8 +321,8 @@ function SentList() {
                           style={{
                             color:
                               item?.showStatus === "Pending"
-                                ?"#0099FF" 
-                                :"#8282FF" ,
+                                ? "#0099FF"
+                                : "#8282FF",
                           }}
                         >
                           {item?.showStatus}
@@ -319,7 +330,14 @@ function SentList() {
                       </td>
 
                       <td>
-                        <span className="channel_border">View</span>
+                        <a
+                          href={item?.reject_exception_document}
+                          target="_blank"
+                        >
+                          <button className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills">
+                            View
+                          </button>
+                        </a>
                       </td>
                     </tr>
                   ))}

@@ -23,7 +23,7 @@ function Filter({ filterKey, setFilterKey }) {
       <div className="col-md-3 px-4">
         <label className="label">Filter</label>
         <select
-          class="form-select p-3"
+          className="form-select p-3"
           name="period"
           // value={filterKey?.period}
           onChange={handleChangePeriod}

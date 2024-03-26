@@ -16,9 +16,7 @@ function LogoutModal() {
     console.log(type, "17");
     localStorage.clear();
     window.location.href = "/";
-  
   };
-
 
   return (
     <>
@@ -30,15 +28,16 @@ function LogoutModal() {
         onHide={handleClosePopup}
         backdrop="static"
         keyboard={false}
+        style={{ backdropFilter: "blur(5px)" }}
       >
-        <Modal.Header closeButton>
-        
-        </Modal.Header>
-        <Modal.Body className="p-5" >
+        <Modal.Header closeButton></Modal.Header>
+        <Modal.Body className="p-5">
           <div className="">
-            <h3>LOGOUT <i class="fa fa-lock"></i></h3>
+            <h3>
+              LOGOUT <i className="fa fa-lock"></i>
+            </h3>
             <p style={{ textAlign: "center" }}>
-            Are you sure you want to log-off?
+              Are you sure you want to log-off?
             </p>
           </div>
           <div
@@ -48,7 +47,7 @@ function LogoutModal() {
               style={{ minWidth: "-webkit-fill-available" }}
               onClick={(e) => onSubmit(e, "create")}
             >
-             Logout
+              Logout
             </button>
           </div>
         </Modal.Body>

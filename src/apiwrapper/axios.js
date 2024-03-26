@@ -1,7 +1,7 @@
 import axios from "axios";
-import { BASECONFIG } from "../Config";
+import { BASE_CONFIG } from "../Config";
 
-const BLOG_URL = BASECONFIG.BASE_URL;
+const BLOG_URL = BASE_CONFIG.BASE_URL;
 
 export const getDataApi = async (URL, data = {}) => {
   const headers = {};
@@ -37,7 +37,7 @@ export const DeleteDataApi = async (URL, data = {}) => {
 };
 
 
-const BASE_URL = BASECONFIG.BASE_URL;
+const BASE_URL = BASE_CONFIG.BASE_URL;
 
 export const getuserDataApi = async (URL, data = {}) => {
   const headers = {};

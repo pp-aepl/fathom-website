@@ -62,23 +62,15 @@ function MurabahaModal() {
         backdrop="static"
         keyboard={false}
       >
+        <Modal.Header closeButton></Modal.Header>
         <Modal.Body className="p-3 pb-5">
-          <div className="d-block text-end">
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-              onClick={handleClosePopup}
-            ></button>
-          </div>
-          <div className="notepad">
+          <div className="my-5 text-center">
             <img
               src={
                 isGenerated
                   ? "../../images/success.png"
                   : "../../images/murabaha_circle.png"
-              }
+              } style={{ height: "120px" }}
             />
           </div>
           <div className="">
@@ -98,6 +90,7 @@ function MurabahaModal() {
           </div>
           <div
             className={`d-flex align-items-center justify-content-around px-5 buttons pb-4 ${"saveBtn"}`}
+            style={{ marginTop: "100px" }}
           >
             <button
               className="w-100"

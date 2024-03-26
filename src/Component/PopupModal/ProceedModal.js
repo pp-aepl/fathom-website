@@ -110,7 +110,7 @@ function ProceedModal() {
       //     showModal: false,
       //   })
       // );
-     await handleProcess()
+      await handleProcess();
     }
   };
 
@@ -126,32 +126,34 @@ function ProceedModal() {
         onHide={handleClosePopup}
         backdrop="static"
         keyboard={false}
+        style={{ backdropFilter: "blur(5px)" }}
       >
-        {/* <Modal.Header onClick={() => handleClosePopup(false)}> */}
-        <Modal.Title>
-          <div className="exclaim">
-            <img src="../../images/exclaim.png" />
-          </div>
-        </Modal.Title>
-        {/* </Modal.Header> */}
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
         <Modal.Body className="p-5">
           <div className="">
+            <div className="text-center">
+              <img src="../../images/exclaim.png" style={{ height: "120px" }} />
+            </div>
             {commodityModal || commodityType === "APP_PROCEED" ? (
               <>
                 <h3 className="card-title">Proceed Commodity</h3>
                 <p className="card-text">
-                  Commodity purchase will be executed now for all the approved
-                  cases.
+                  Commodity purchase will be executed
+                  <br /> now for all the approved cases.
                 </p>
               </>
             ) : (
-              <p className="card-text">
-                Are you sure ? Proceeding with commodity sale
-              </p>
+              <h3 className="h2 card-title mb-2">
+                Are you sure you want <br />
+                to Proceed?
+              </h3>
             )}
           </div>
           <div
-            className={`d-flex align-items-center justify-content-around buttons py-4 mb-4 ${"saveBtn"}`}
+            style={{ marginTop: "100px" }}
+            className={`d-flex align-items-center justify-content-around buttons py-4   saveBtn`}
           >
             <button className="w-50 me-4" onClick={handleClosePopup}>
               No
