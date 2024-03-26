@@ -58,12 +58,11 @@ function Login() {
               setApiErrors({ message: validationMessages.unableToLogin });
               return;
             }
+            dispatch(SetAuthUserData(data?.data));
+            setShowQRcode(true);
             localStorage.clear();
             localStorage.setItem("token", token);
             localStorage.setItem("cred", JSON.stringify(inpData));
-            toast.success(data?.message);
-            dispatch(SetAuthUserData(data?.data));
-            setShowQRcode(true);
 
             // dispatch(
             //   // SetpopupReducerData({ modalType: "NEWPASSWORD", showModal: true })
@@ -182,8 +181,8 @@ function Login() {
                           <br />
 
                           <Link to={"/otp"}>
-                            <div class="form-group mt-lg-4 mt-3">
-                              <button class="login100-form-btn">Next</button>
+                            <div className="form-group mt-lg-4 mt-3">
+                              <button className="login100-form-btn">Next</button>
                             </div>
                           </Link>
                         </>

@@ -13,8 +13,8 @@ function ListingWithRule({
     <>
       <div className=" row my-5 px-3" id="table-contexual">
         <div className="col-12">
-          <table class="table">
-            <thead class="thead-light">
+          <table className="table">
+            <thead className="thead-light">
               <tr>
                 {!inProcess && <th scope="col"> </th>}
                 <th scope="col">S.No. </th>
@@ -34,9 +34,9 @@ function ListingWithRule({
                     <tr key={index}>
                       {!inProcess && (
                         <td>
-                          <div class="form-check">
+                          <div className="form-check">
                             <input
-                              class="form-check-input"
+                              className="form-check-input"
                               type="checkbox"
                               value=""
                               id={ele._id}

@@ -183,17 +183,17 @@ function SentList() {
               <div className="col-md-2">
                 <label>Filter Channel</label>
                 <div className="border rounded ">
-                  {/* <div class="form-check d-inline-block verticle">
+                  {/* <div className="form-check d-inline-block verticle">
                     <input
                       type="checkbox"
-                      class="form-check-input"
+                      className="form-check-input"
                       id="check2"
                       name="option2"
                       value="something"
                     ></input>
                   </div> */}
                   <select
-                    class="form-select p-3"
+                    className="form-select p-3"
                     name="action"
                     value={action}
                     onChange={handleSelectFilter}
@@ -278,8 +278,8 @@ function SentList() {
 
           <div className=" row my-5" id="table-contexual">
             <div className="col-12">
-              <table class="table">
-                <thead class="thead-light">
+              <table className="table">
+                <thead className="thead-light">
                   <tr>
                     <th scope="col"> </th>
                     <th scope="col">S.No. </th>
@@ -296,9 +296,9 @@ function SentList() {
                   {arrList?.map((item, index) => (
                     <tr>
                       <td>
-                        <div class="form-check">
+                        <div className="form-check">
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="checkbox"
                             value=""
                             id={item._id}

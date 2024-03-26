@@ -167,7 +167,7 @@ function ConfirmFiles() {
           <div>
             {row?.application ? (
               <input
-                class="form-check-input"
+                className="form-check-input"
                 type="checkbox"
                 value={row?.application}
                 name="application"
@@ -196,7 +196,7 @@ function ConfirmFiles() {
           <div>
             {row?.promise_to_purchase ? (
               <input
-                class="form-check-input"
+                className="form-check-input"
                 type="checkbox"
                 value={row?.promise_to_purchase}
                 name="promise_to_purchase"
@@ -224,7 +224,7 @@ function ConfirmFiles() {
           <div>
             {row?.credit_limit_approval ? (
               <input
-                class="form-check-input"
+                className="form-check-input"
                 type="checkbox"
                 value={row?.credit_limit_approval}
                 name="credit_limit_approval"

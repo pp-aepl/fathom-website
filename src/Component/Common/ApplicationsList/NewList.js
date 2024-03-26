@@ -170,13 +170,13 @@ function NewList() {
         <>
           {row?.status === "CONFIRM" ? (
             <i
-              class="fa fa-check-circle"
+              className="fa fa-check-circle"
               aria-hidden="true"
               style={{ color: "green", fontSize: "18px" }}
             />
           ) : (
             <i
-              class="fa fa-times-circle"
+              className="fa fa-times-circle"
               aria-hidden="true"
               style={{ color: "red", fontSize: "18px" }}
             />
@@ -191,13 +191,13 @@ function NewList() {
         <>
           {row?.status === "CONFIRM" ? (
             <i
-              class="fa fa-check-circle"
+              className="fa fa-check-circle"
               aria-hidden="true"
               style={{ color: "green", fontSize: "18px" }}
             />
           ) : (
             <i
-              class="fa fa-times-circle"
+              className="fa fa-times-circle"
               aria-hidden="true"
               style={{ color: "red", fontSize: "18px" }}
             />
@@ -212,13 +212,13 @@ function NewList() {
         <>
           {row?.status === "CONFIRM" ? (
             <i
-              class="fa fa-check-circle"
+              className="fa fa-check-circle"
               aria-hidden="true"
               style={{ color: "green", fontSize: "18px" }}
             />
           ) : (
             <i
-              class="fa fa-times-circle"
+              className="fa fa-times-circle"
               aria-hidden="true"
               style={{ color: "red", fontSize: "18px" }}
             />
@@ -342,7 +342,7 @@ function NewList() {
               <div className="col-3">
                 <label className="label">&nbsp;</label>
                 <select
-                  class="form-select p-3"
+                  className="form-select p-3"
                   onChange={fetchModal}
                   value={action}
                   name="action"
@@ -360,20 +360,20 @@ function NewList() {
             </div>
           </div>
 
-          <div class="input-group p-4">
+          <div className="input-group p-4">
             <label className="d-block label py-3 w-100">
               Search Applications
             </label>
             <button
               type="button"
-              class="btn border-end-0 rounded border bg-white"
+              className="btn border-end-0 rounded border bg-white"
               data-mdb-ripple-init=""
             >
-              <i class="fas fa-search fs-4 text-secondary"></i>
+              <i className="fas fa-search fs-4 text-secondary"></i>
             </button>
             <input
               type="text"
-              class="form-control p-2 border-start-0"
+              className="form-control p-2 border-start-0"
               placeholder="Search"
             ></input>
           </div>

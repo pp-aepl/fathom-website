@@ -37,20 +37,18 @@ function LoginValidationModal() {
         keyboard={false}
         style={{ backdropFilter: "blur(5px)" }}
       >
-        <Modal.Header>
-          <Modal.Title>
-            {loginAccess ? (
-              <img className="success-pic" src="../../images/success.png" />
-            ) : (
-              <img
-                src="../../images/icon1.png"
-                style={{ height: "100px", paddingLeft: "19rem" }}
-              />
-            )}
-          </Modal.Title>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-5">
-          <div className="">
+          <div className="text-center my-3">
+            {loginAccess ? ( 
+              <img className="success-pic" src="../../images/success.png" />
+            ) : (
+              <img src="../../images/icon1.png" height={100} />
+            )}
+          </div>
+          <div className="my-3">
             <h3 style={{ textAlign: "center" }}>
               {
                 messageType

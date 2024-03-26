@@ -47,7 +47,7 @@ function DuplicateModal() {
         <Modal.Body className="p-5">
           <div className="">
             <i
-              class="fa fa-exclamation-circle"
+              className="fa fa-exclamation-circle"
               aria-hidden="true"
               style={{
                 paddingLeft: "19rem",

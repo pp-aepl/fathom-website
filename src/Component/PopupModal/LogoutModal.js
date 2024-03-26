@@ -34,7 +34,7 @@ function LogoutModal() {
         <Modal.Body className="p-5">
           <div className="">
             <h3>
-              LOGOUT <i class="fa fa-lock"></i>
+              LOGOUT <i className="fa fa-lock"></i>
             </h3>
             <p style={{ textAlign: "center" }}>
               Are you sure you want to log-off?

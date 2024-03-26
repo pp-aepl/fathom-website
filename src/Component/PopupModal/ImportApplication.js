@@ -161,7 +161,7 @@ function ImportApplication() {
           <div className="">
             <p>Select application category</p>
             <select
-              class="form-select mt-3 p-3 fs-5"
+              className="form-select mt-3 p-3 fs-5"
               name="formId"
               value={formId}
               onChange={(e) =>
@@ -179,7 +179,7 @@ function ImportApplication() {
               ))}
             </select>
             <select
-              class="form-select mt-3 p-3"
+              className="form-select mt-3 p-3"
               aria-label="Default select example"
             >
               <option selected>

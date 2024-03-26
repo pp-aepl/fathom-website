@@ -33,14 +33,14 @@ function ConfirmFileList({ setIsUploaded = () => {}, isUploaded = false }) {
     <>
       {/* Uploaded/duplicate  files */}
       {/* {fileType === "FILEUPLOADED" && (
-        <div class="form-check">
+        <div className="form-check">
           <input
-            class="form-check-input"
+            className="form-check-input"
             type="checkbox"
             value=""
             id="flexCheckDefault"
           />
-          <label class="label" for="flexCheckDefault">
+          <label className="label" for="flexCheckDefault">
             Select All
           </label>
         </div>
@@ -65,17 +65,17 @@ function ConfirmFileList({ setIsUploaded = () => {}, isUploaded = false }) {
                 </a>
               </div>
 
-              <div class="col-sm-8">
-                <div class=" align-items-center p-1">
+              <div className="col-sm-8">
+                <div className=" align-items-center p-1">
                   <p className="card-text1 fw-bold">{ele.name}</p>
                   {isUploaded || typeof ele?.document === "string" ? (
                     <span className="text-success card-text1 fw-bold">
                       UPLOADED
                     </span>
                   ) : (
-                    <div class="progress bar-wrapper w-100 h-5px">
+                    <div className="progress bar-wrapper w-100 h-5px">
                       <div
-                        class="progress-bar skill-bar desh_progress-bar"
+                        className="progress-bar skill-bar desh_progress-bar"
                         role="progressbar"
                         aria-valuenow="76"
                         aria-valuemin="0"
@@ -96,7 +96,7 @@ function ConfirmFileList({ setIsUploaded = () => {}, isUploaded = false }) {
                   width="35"
                   height="35"
                   fill="currentColor"
-                  class="bi bi-trash"
+                  className="bi bi-trash"
                   viewBox="0 0 16 16"
                 >
                   <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"></path>

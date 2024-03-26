@@ -161,8 +161,8 @@ function CommodityList() {
           <div className="">
             <div className=" row my-5" id="table-contexual">
               <div className="col-12">
-                <table class="table">
-                  <thead class="thead-light">
+                <table className="table">
+                  <thead className="thead-light">
                     <tr>
                       <th scope="col"> </th>
                       <th scope="col" className="ps-4">
@@ -177,9 +177,9 @@ function CommodityList() {
                     {arrList?.map((item, index) => (
                       <tr className="pointer">
                         <td>
-                          <div class="form-check">
+                          <div className="form-check">
                             <input
-                              class="form-check-input"
+                              className="form-check-input"
                               type="checkbox"
                               value=""
                               id={item._id}

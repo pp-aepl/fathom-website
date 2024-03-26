@@ -157,10 +157,10 @@ function InprocessList() {
           <h3 className="card-title1 ps-4">Application in process </h3>
           {!isCompleted && (
             <div className="top_list ps-4">
-              <div class=" align-items-center p-1">
-                <div class="progress common-progess bar-wrapper w-100">
+              <div className=" align-items-center p-1">
+                <div className="progress common-progess bar-wrapper w-100">
                   <div
-                    class="progress-bar skill-bar desh_progress-bar"
+                    className="progress-bar skill-bar desh_progress-bar"
                     role="progressbar"
                     aria-valuenow="76"
                     aria-valuemin="0"

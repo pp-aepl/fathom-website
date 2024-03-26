@@ -80,16 +80,16 @@ function ApplicationScan() {
 
         <Modal.Body className="full-cover">
           {statusType?.success !== "SUCCESS" && (
-            <div class="row">
-              <div class="col-md-12 text-center">
-                <div class="progressChart yellow">
-                  <span class="progressChart-left">
-                    <span class="progressChart-bar"></span>
+            <div className="row">
+              <div className="col-md-12 text-center">
+                <div className="progressChart yellow">
+                  <span className="progressChart-left">
+                    <span className="progressChart-bar"></span>
                   </span>
-                  <span class="progressChart-right">
-                    <span class="progressChart-bar"></span>
+                  <span className="progressChart-right">
+                    <span className="progressChart-bar"></span>
                   </span>
-                  <div class="progressChart-value">75%</div>
+                  <div className="progressChart-value">75%</div>
                 </div>
               </div>
             </div>

@@ -59,7 +59,7 @@ function Sidebar({ showMenu, setShowMenu }) {
                     <img
                       alt="logo"
                       src="../../../images/fathom_logo.png"
-                      class="header_logo"
+                      className="header_logo"
                     ></img>
                   </div>
                   <span className="logo-content">Fathom</span>

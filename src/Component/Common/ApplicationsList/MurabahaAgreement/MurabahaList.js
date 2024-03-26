@@ -205,7 +205,7 @@ function MurabahaList() {
                     <div className="col-md-3">
                       <label className="label">Filter Channel</label>
                       <select
-                        class="form-select p-3"
+                        className="form-select p-3"
                         name="action"
                         value={action}
                         onChange={handleSelectFilter}
@@ -274,8 +274,8 @@ function MurabahaList() {
                 <div className="">
                   <div className=" row my-5" id="table-contexual">
                     <div className="col-12">
-                      <table class="table muraba">
-                        <thead class="thead-light">
+                      <table className="table muraba">
+                        <thead className="thead-light">
                           <tr>
                             <th scope="col"> </th>
                             <th scope="col">S.No. </th>
@@ -290,9 +290,9 @@ function MurabahaList() {
                           {arrList?.map((item, index) => (
                             <tr key={item?._id}>
                               <td>
-                                <div class="form-check">
+                                <div className="form-check">
                                   <input
-                                    class="form-check-input"
+                                    className="form-check-input"
                                     type="checkbox"
                                     value=""
                                     id={item._id}

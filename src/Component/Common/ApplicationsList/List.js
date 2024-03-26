@@ -111,8 +111,8 @@ function List({ id }) {
                     ) : arrList?.length > 0 ? (
                       <div className=" row my-5" id="table-contexual">
                         <div className="col-12">
-                          <table class="table">
-                            <thead class="thead-light">
+                          <table className="table">
+                            <thead className="thead-light">
                               <tr>
                                 <th scope="col" className="ps-4">
                                   S.No.{" "}

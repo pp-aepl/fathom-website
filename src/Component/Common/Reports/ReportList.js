@@ -166,7 +166,7 @@ function ReportList() {
               <div className="col-md-3 px-4">
                 <label className="">Filter</label>
                 <select
-                  class="form-select p-3"
+                  className="form-select p-3"
                   name="period"
                   // value={filterKey?.period}
                   onChange={handleChangePeriod}
@@ -183,7 +183,7 @@ function ReportList() {
                   <>
                     <span>Status filter</span>
                     <select
-                      class="form-select p-3"
+                      className="form-select p-3"
                       name="status"
                       value={filterKey?.status}
                       onChange={(e) => {

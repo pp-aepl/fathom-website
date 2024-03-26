@@ -130,16 +130,13 @@ function TwoFactor() {
 
   return (
     <>
-      <section className="adminLogin my-5">
+      <section className="adminLogin">
         <div className="container">
-          <div
-            className="row justify-content-center"
-            style={{ marginTop: "90px" }}
-          >
+          <div className="row justify-content-center">
             <div className="">
               <div className="">
                 <div className="row">
-                  <div className="col-md-4">
+                  <div className="col-md-4" style={{ marginTop: "20vh" }}>
                     <div className="py-5 my-5 ps-4 pe-3">
                       <h3 className="auth-title">Two-Factor authentication</h3>
                       <p className="auth-subtitle mb-5">
@@ -189,7 +186,7 @@ function TwoFactor() {
                         <p className="">
                           Didn't receive code?
                           <Link
-                            style={{ "text-decoration": "underline" }}
+                            style={{ textDecoration: "underline" }}
                             href="/admin/signup"
                           >
                             Resend the code
