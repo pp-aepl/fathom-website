@@ -1,10 +1,8 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  SetpopupReducerData,
-  reSetPopupReducerData,
-} from "../../store/reducer";
+import { reSetPopupReducerData } from "../../store/reducer";
 import { Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 

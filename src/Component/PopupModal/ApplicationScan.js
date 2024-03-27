@@ -9,6 +9,7 @@ import {
   reSetPopupReducerData,
 } from "../../store/reducer";
 import { useNavigate } from "react-router-dom";
+import ChartComponent from "../../Config/CircleChart";
 function ApplicationScan() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,7 +25,50 @@ function ApplicationScan() {
   const handleClosePopup = () => {
     dispatch(reSetPopupReducerData());
   };
+  const chartData1 = {
+    options: {
+      chart: {
+        height: 200,
+        type: "radialBar",
+      },
+      series: [100],
+      colors: ["#04275b"],
+      plotOptions: {
+        radialBar: {
+          hollow: {
+            size: "70%",
+          },
+        },
+        dataLabels: {
+          name: {
+            show: false,
+          },
+          value: {
+            fontSize: "20px",
+            show: true,
+            offsetY: 70,
+            formatter: function (val) {
+              return val||100;
+            },
+          },
+        },
+      },
 
+      fill: {
+        type: "gradient",
+        gradient: {
+          shade: "#85b2f5",
+          type: "horizontal",
+          gradientToColors: ["#357fed", "#739aff"],
+          stops: [0, 100],
+        },
+      },
+      stroke: {
+        lineCap: "butt",
+      },
+      labels: ["Completed"],
+    },
+  };
   const onSubmit = async (e, typeSubmit) => {
     e.preventDefault();
     dispatch(SetpopupReducerData({ modalType: "APP_SCAN", showModal: true }));
@@ -79,8 +123,10 @@ function ApplicationScan() {
         )}
 
         <Modal.Body className="full-cover">
-          {statusType?.success !== "SUCCESS" && (
-            <div className="row">
+          <div className="text-center">
+            {statusType?.success !== "SUCCESS" && (
+              <>
+                {/* <div className="row">
               <div className="col-md-12 text-center">
                 <div className="progressChart yellow">
                   <span className="progressChart-left">
@@ -92,15 +138,15 @@ function ApplicationScan() {
                   <div className="progressChart-value">75%</div>
                 </div>
               </div>
-            </div>
-          )}
+            </div> */}
+                <ChartComponent chartData={chartData1} />
+              </>
+            )}
 
-          {statusType?.success === "SUCCESS" && (
-            <img
-              src="../../images/success.png"
-              style={{ height: "100px", paddingLeft: "18rem" }}
-            />
-          )}
+            {statusType?.success === "SUCCESS" && (
+              <img src="../../images/success.png" style={{ height: "10vw" }} />
+            )}
+          </div>
           <div className="application_san">
             <h3 className="card-title text-center">
               Application scanning{" "}
