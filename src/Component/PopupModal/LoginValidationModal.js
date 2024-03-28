@@ -2,34 +2,27 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { SetpopupReducerData } from "../../store/reducer";
+import {
+  SetpopupReducerData,
+  reSetPopupReducerData,
+} from "../../store/reducer";
 
 function LoginValidationModal() {
   const dispatch = useDispatch();
   const { PopupReducer } = useSelector((state) => state);
-  const { loginValidationModal = false } = PopupReducer?.modal;
-  const messageType = PopupReducer?.modal?.type;
-  console.log({ messageType });
-  let loginAccess = localStorage.getItem("accessToken");
+  const { showModal = false, message = "" } = PopupReducer?.modal;
+  console.log({ message });
+  let loginAccess = localStorage.getItem("token");
 
   const handleClosePopup = () => {
-    dispatch(
-      SetpopupReducerData({ modalType: "LOGIN", loginValidationModal: false })
-    );
-  };
-
-  const onSubmit = async (type) => {
-    console.log(type, "17");
-    dispatch(
-      SetpopupReducerData({ modalType: "LOGIN", loginValidationModal: false })
-    );
+    dispatch(reSetPopupReducerData({ modalType: "LOGIN", showModal: false }));
   };
 
   return (
     <>
       <Modal
         className={"publishModal"}
-        show={loginValidationModal}
+        show={showModal}
         size="md"
         centered
         onHide={handleClosePopup}
@@ -42,28 +35,28 @@ function LoginValidationModal() {
         </Modal.Header>
         <Modal.Body className="p-5">
           <div className="text-center my-3">
-            {loginAccess ? ( 
-              <img className="success-pic" src="../../images/success.png" />
-            ) : (
-              <img src="../../images/icon1.png" height={100} />
-            )}
-          </div>
-          <div className="my-3">
-            <h3 style={{ textAlign: "center" }}>
-              {
-                messageType
-                //  <span dangerouslySetInnerHTML={{ __html: 'User name or <br>Password Invalid' }} />
+            <img
+              className="my-5 "
+              src={
+                loginAccess
+                  ? "../../images/success.png"
+                  : "../../images/icon1.png"
               }
-            </h3>
+             style={{width:"10vw"}}
+            />
+          </div>
+          <div className="my-3 text-center">
+            <h4 className="card-title1 text-center"> {message}</h4>
           </div>
           <div
-            className={`d-flex align-items-center justify-content-around pt-4 ${"saveBtn"}`}
+            className={`d-flex align-items-center justify-content-around px-5 buttons pb-4 ${"saveBtn"}`}
+            style={{ marginTop: "100px" }}
           >
             <button
               style={{ minWidth: "-webkit-fill-available" }}
-              onClick={(e) => onSubmit(e, "create")}
+              onClick={handleClosePopup}
             >
-              {loginAccess ? "Okey" : "Try again"}
+              {loginAccess ? "Okay" : "Try again"}
             </button>
           </div>
         </Modal.Body>

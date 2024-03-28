@@ -292,7 +292,7 @@ function NewList() {
   const fetchListingData = useCallback(async () => {
     try {
       let payload = {
-        status: "IMPORTED",
+        status: "AWAITING_COMMODITY_PURCHASE",
         ...filterKey,
       };
       const data = await dispatch(fetchApplicationList(payload, filterKey));

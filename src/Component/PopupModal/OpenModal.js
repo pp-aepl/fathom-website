@@ -10,6 +10,7 @@ import ApplicationScan from "./ApplicationScan";
 import CheckedApplications from "./CheckedApplications";
 import MurabahaSuccessfully from "../Common/ApplicationsList/MurabahaAgreement/MurabahaSuccessfully";
 import AgentModal from "./AgentModal";
+import LoginValidationModal from "./LoginValidationModal";
 
 function OpenModal() {
   const { PopupReducer } = useSelector((state) => state);
@@ -19,6 +20,7 @@ function OpenModal() {
     <>
       {showModal ? (
         <>
+          {modalType === "LOGIN" && <LoginValidationModal />}
           {modalType === "COMMON" && <CommonResponsePopup />}
           {modalType === "UPLOAD_FILE" && <ImportApplication />}
           {modalType === "DUPLICATE_FILES" && <DuplicateModal />}

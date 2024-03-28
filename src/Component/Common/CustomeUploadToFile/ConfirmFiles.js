@@ -29,7 +29,7 @@ function ConfirmFiles() {
     try {
       let payload = {
         awsUrls: documents,
-        status: "AWAITING_DIGITAL_SINGNATURE",
+        status: "AWAITING_COMMODITY_PURCHASE",
         showStatus: "Pending",
       };
       dispatch(SetloaderData(true));
