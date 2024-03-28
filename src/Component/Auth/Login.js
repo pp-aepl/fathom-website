@@ -9,11 +9,7 @@ import { toast } from "react-toastify";
 import { isValid, validateEmail } from "../Common/Validation/Validation";
 import { SetloaderData, SetpopupReducerData } from "../../store/reducer";
 import { validationMessages } from "../../store/actions/api-url";
-import LoginValidationModal from "../PopupModal/LoginValidationModal";
 import { SetAuthUserData } from "../../store/reducer/authUser";
-
-// import { SetpopupReducerData } from "../../store/reducer";
-// import LogoutModal from "../PopupModal/LogoutModal";
 
 function Login() {
   const [password, setPassword] = useState("");
@@ -23,8 +19,6 @@ function Login() {
   const [showQRcode, setShowQRcode] = useState(false);
 
   const { PopupReducer } = useSelector((state) => state);
-  // const { logoutModal = false } = PopupReducer?.modal;
-  const { loginValidationModal = false } = PopupReducer?.modal;
 
   const dispatch = useDispatch();
 
@@ -37,10 +31,7 @@ function Login() {
   // console.log(AuthAdmin,"AuthAdminUser")
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // dispatch(SetpopupReducerData({ modalType: "LOGOUT", logoutModal: true }));
-    // setShowQRcode(true); // for two factor
-    //  navigate("/admin/dashboard");
-    //  handleLogin({  ...inpData});
+
     try {
       let err = validateAll();
       if (isValid(err)) {
@@ -63,33 +54,27 @@ function Login() {
             localStorage.clear();
             localStorage.setItem("token", token);
             localStorage.setItem("cred", JSON.stringify(inpData));
-
-            // dispatch(
-            //   // SetpopupReducerData({ modalType: "NEWPASSWORD", showModal: true })
-            // );
           } else {
             toast.error(data?.message);
             setApiErrors({ message: data?.message });
             dispatch(
               SetpopupReducerData({
+                message: data?.message,
                 modalType: "LOGIN",
-                loginValidationModal: true,
-                type: data?.message,
+                showModal: true,
               })
             );
-
-            // dispatch(SetAuthUserData({}));
+            localStorage.clear();
+            dispatch(SetAuthUserData({}));
           }
         });
-
-        dispatch(SetloaderData(false));
       } else {
         setErrors(err);
         dispatch(
           SetpopupReducerData({
+            message: "User name or Password Invalid",
             modalType: "LOGIN",
-            loginValidationModal: true,
-            type: "User name or Password Invalid",
+            showModal: true,
           })
         );
       }
@@ -99,11 +84,11 @@ function Login() {
       dispatch(
         SetpopupReducerData({
           modalType: "LOGIN",
-          loginValidationModal: true,
-          type: error?.response?.data?.message,
+          showModal: true,
+          message: error?.response?.data?.message,
         })
       );
-
+    } finally {
       dispatch(SetloaderData(false));
     }
   };
@@ -145,7 +130,6 @@ function Login() {
 
   return (
     <>
-      {loginValidationModal && <LoginValidationModal />}
       <section className="adminLogin">
         <div className="container">
           <div className="row justify-content-center">
@@ -183,7 +167,9 @@ function Login() {
 
                           <Link to={"/otp"}>
                             <div className="form-group mt-lg-4 mt-3">
-                              <button className="login100-form-btn">Next</button>
+                              <button className="login100-form-btn">
+                                Next
+                              </button>
                             </div>
                           </Link>
                         </>
@@ -199,7 +185,7 @@ function Login() {
                               <label>Your email address</label>
 
                               <input
-                                className="p-2 mb-4 rounded w-100 border"
+                                className="p-3 mb-4 rounded w-100 border"
                                 type="email"
                                 name="email"
                                 placeholder="example@gmail.com"
@@ -227,7 +213,7 @@ function Login() {
                               <input
                                 type={showPassword ? "text" : "password"}
                                 //type="password"
-                                className="p-2 mb-2 rounded w-100 pr-4 border"
+                                className="p-3 mb-2 rounded w-100 pr-4 border"
                                 name="password"
                                 placeholder=""
                                 autoComplete={false}

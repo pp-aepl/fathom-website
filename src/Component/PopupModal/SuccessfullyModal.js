@@ -134,7 +134,7 @@ function SuccessfullyModal() {
                 {successType === "SUCCESSFULLY" ||
                 successType === "CHANNELLIST" ? (
                   <button
-                    className="btn"
+                    className="btn w-100"
                     onClick={(e) => onSubmit(e, "create")}
                   >
                     Great

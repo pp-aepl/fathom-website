@@ -41,27 +41,28 @@ function ImportApplication() {
     try {
       if (!formId) {
         alert("Please select application category.");
-        return;
+        return false;
       }
       if (!documents?.length) {
         alert("Please import application, Only PDF files are allowed.");
-        return;
+        return false;
       }
-
-      dispatch(SetloaderData(true));
-      let awsUrls = await getUrlsArray(documents);
-      console.log(awsUrls, "awsUrls");
-      dispatch(
-        SetpopupReducerData({
-          ...PopupReducer?.modal,
-          documents: awsUrls,
-        })
-      );
-      setIsUploaded(true);
+      if (formId && documents?.length > 0) {
+        dispatch(SetloaderData(true));
+        let awsUrls = await getUrlsArray(documents);
+        console.log(awsUrls, "awsUrls");
+        dispatch(
+          SetpopupReducerData({
+            ...PopupReducer?.modal,
+            documents: awsUrls,
+          })
+        );
+        setIsUploaded(true);
+      }
     } catch (error) {
       console.log(error);
     } finally {
-      dispatch(SetloaderData(true));
+      dispatch(SetloaderData(false));
     }
   };
 
