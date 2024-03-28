@@ -175,8 +175,9 @@ function Login() {
                         <>
                           <img
                             className="scanQr_code"
-                            src="../../images/HelloTech-qr-code.webp"
+                            src="../../images/qrImage.png"
                             alt=""
+                            width={90}
                           />
                           <br />
 
