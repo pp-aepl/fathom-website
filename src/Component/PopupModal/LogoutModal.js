@@ -1,28 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { SetpopupReducerData } from "../../store/reducer";
+import { reSetPopupReducerData } from "../../store/reducer";
+import { handleLogOut } from "../../Config/CommonFunction";
+import { useNavigate } from "react-router-dom";
 
 function LogoutModal() {
   const dispatch = useDispatch();
   const { PopupReducer } = useSelector((state) => state);
-  const { logoutModal = false } = PopupReducer?.modal;
-
+  const { showModal = false } = PopupReducer?.modal;
+  const navigate = useNavigate();
   const handleClosePopup = () => {
-    dispatch(SetpopupReducerData({ modalType: "LOGOUT", logoutModal: false }));
+    dispatch(reSetPopupReducerData());
   };
 
-  const onSubmit = async (type) => {
-    console.log(type, "17");
-    localStorage.clear();
-    window.location.href = "/";
+  const onSubmit = async () => {
+    dispatch(handleLogOut());
+    navigate("/login");
   };
 
   return (
     <>
       <Modal
         className={"publishModal"}
-        show={logoutModal}
+        show={showModal}
         size="md"
         centered
         onHide={handleClosePopup}
@@ -32,20 +33,19 @@ function LogoutModal() {
       >
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body className="p-5">
-          <div className="">
-            <h3>
+          <div className="text-center ">
+            <h3 className="card-title">
               LOGOUT <i className="fa fa-lock"></i>
             </h3>
-            <p style={{ textAlign: "center" }}>
-              Are you sure you want to log-off?
-            </p>
+            <p className="card-text">Are you sure you want to log-off?</p>
           </div>
           <div
             className={`d-flex align-items-center justify-content-around pt-4 ${"saveBtn"}`}
+            style={{ marginTop: "100px" }}
           >
             <button
               style={{ minWidth: "-webkit-fill-available" }}
-              onClick={(e) => onSubmit(e, "create")}
+              onClick={(e) => onSubmit(e)}
             >
               Logout
             </button>
