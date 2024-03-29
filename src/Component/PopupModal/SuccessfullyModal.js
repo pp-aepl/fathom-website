@@ -7,7 +7,6 @@ import {
   SetpopupReducerData,
   reSetPopupReducerData,
 } from "../../store/reducer";
-import ApplicationScan from "./ApplicationScan";
 import ProceedModal from "./ProceedModal";
 import DisbursedModal from "./DisbursedModal";
 import { useNavigate } from "react-router-dom";
@@ -20,11 +19,10 @@ function SuccessfullyModal() {
   const { proceedModal = false } = PopupReducer?.modal;
   const { disbursedModal = false } = PopupReducer?.modal;
   const successType = PopupReducer?.modal?.type;
+
   console.log({ successType });
   const handleClosePopup = () => {
-    dispatch(
-      SetpopupReducerData({ modalType: "SUCCESSFULLY", successModal: false })
-    );
+    dispatch(reSetPopupReducerData());
   };
 
   // update create api
@@ -98,10 +96,7 @@ function SuccessfullyModal() {
               successType !== "COMIDITYAGENT" && (
                 <>
                   {successType === "SUCCESSFULLY" ? (
-                    {/* <p className="card-text">
-                      Your applications has passed all rules and those are added
-                      to passed/completed app.
-                    </p> */}
+                    ""
                   ) : (
                     <>
                       <p className="card-text">
