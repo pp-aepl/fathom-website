@@ -98,10 +98,10 @@ function SuccessfullyModal() {
               successType !== "COMIDITYAGENT" && (
                 <>
                   {successType === "SUCCESSFULLY" ? (
-                    <p className="card-text">
+                    {/* <p className="card-text">
                       Your applications has passed all rules and those are added
                       to passed/completed app.
-                    </p>
+                    </p> */}
                   ) : (
                     <>
                       <p className="card-text">
