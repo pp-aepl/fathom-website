@@ -2169,6 +2169,11 @@ input:-moz-placeholder {
     padding-left: 84px;
   }
 }
+@media screen and (max-width: 1200px) {
+  #main {
+    margin-left: 5px;
+  }
+}
 @media screen and (min-width: 1200px) {
   /* .header__toggle {
     display: none;
@@ -2446,7 +2451,7 @@ input:-moz-placeholder {
 }
 .login_sec p {
   padding-bottom: 30px;
-  margin-bottom: 0 !important;
+  /* margin-bottom: 0 !important; */
   font-size: 15px;
   line-height: 25px;
   font-family: "Inter Tight", sans-serif;
@@ -2912,4 +2917,15 @@ input:-moz-placeholder {
   top: 42px;
   gap: 0px;
   opacity: 0px;
+}
+.logout-div {
+  margin-top: 30px;
+  background-color: #e2e2e2;
+  color: #0a0a0a;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 5px;
+}
+.logout-div > div:nth-child(2) {
+  margin-left: auto;
 }

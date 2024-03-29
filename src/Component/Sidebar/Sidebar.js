@@ -7,7 +7,9 @@ import {
   FaChevronRight,
   FaXmark,
 } from "react-icons/fa6";
+import { useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import { SetpopupReducerData } from "../../store/reducer";
 
 function Sidebar({ showMenu, setShowMenu }) {
   // console.log(Style)
@@ -16,6 +18,7 @@ function Sidebar({ showMenu, setShowMenu }) {
   const [openProcess, setOpenProcess] = useState(-1);
   const location = useLocation();
   const pathname = location?.pathname?.split("/");
+  const dispatch = useDispatch();
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
@@ -29,7 +32,14 @@ function Sidebar({ showMenu, setShowMenu }) {
       setShowActive(index);
     }
   };
-
+  const handleOpenLogOut = () => {
+    dispatch(
+      SetpopupReducerData({
+        modalType: "LOGOUT",
+        showModal: true,
+      })
+    );
+  };
   return (
     <>
       <div className="header__toggle">
@@ -512,6 +522,30 @@ function Sidebar({ showMenu, setShowMenu }) {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="logout-div  row">
+            <div className={`col-6`}>
+              <img
+                src="../../images/profile.jpg"
+                style={{ width: "25px" }}
+                className="mx-2 rounded-circle"
+              />
+              <span className="mx-2 ">Admin User </span>
+            </div>
+            <div className="col-6 text-end">
+              <img
+                src="../../images/setting.png"
+                style={{ width: "25px", cursor: "pointer" }}
+                className="mx-2"
+              />
+
+              <img
+                src="../../images/logOut.png"
+                style={{ width: "25px", cursor: "pointer" }}
+                className="mx-2"
+                onClick={handleOpenLogOut}
+              />
             </div>
           </div>
         </nav>

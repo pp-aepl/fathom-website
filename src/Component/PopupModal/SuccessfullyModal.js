@@ -39,7 +39,7 @@ function SuccessfullyModal() {
       //   })
       // );
       dispatch(reSetPopupReducerData());
-      navigate("/admin/application/status");
+      navigate("/admin/application/list");
     } else if (successType === "CHANNELLIST") {
       dispatch(
         SetpopupReducerData({

@@ -150,9 +150,8 @@ function Login() {
                         </p>
                       ) : (
                         <p className="auth-subtitle mb-5">
-                          To access your online banking, you'll need to log{" "}
-                          <br></br>
-                          in securely using your unique credentials.
+                          To access your online banking, you'll need to log in
+                          securely using your unique credentials.
                         </p>
                       )}
                       {showQRcode ? (
