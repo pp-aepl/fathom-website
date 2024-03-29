@@ -2,12 +2,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { SetpopupReducerData } from "../../../store/reducer";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function CommonHeader() {
   const dispatch = useDispatch();
-  let location=useLocation()
-  let path=location?.pathname?.split("/")
+  let location = useLocation();
+  let path = location?.pathname?.split("/");
+  const navigate = useNavigate();
   const handleUpload = async (e) => {
     e.preventDefault();
     dispatch(
@@ -16,10 +17,13 @@ function CommonHeader() {
         showModal: true,
       })
     );
+    navigate("/admin/application/upload");
   };
   return (
     <div className="commonHeader d-flex justify-content-between">
-      <h1>{path?.includes("dashboard")? "Dashboard - Smart Onboard 360":""}</h1>
+      <h1>
+        {path?.includes("dashboard") ? "Dashboard - Smart Onboard 360" : ""}
+      </h1>
 
       <div className="right-side">
         <div className="border px-2 p-1 rounded-2 d-inline-block me-3 notification">

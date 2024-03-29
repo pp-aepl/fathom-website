@@ -1,14 +1,23 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Chart from "chart.js/auto";
 
 import { Line } from "react-chartjs-2";
-import CommonHeader from "../Sidebar/Nabvar/CommonHeader";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getDashboardData } from "../../Config/FetchListingData";
+import DatePicker from "react-datepicker";
 
 function Dashboard() {
   const { ConfigData } = useSelector((state) => state);
+  const dispatch = useDispatch();
   let details = ConfigData?.data;
+  const [filterKey, setFilterKey] = useState({
+    startDate: "",
+    endDate: "",
+    periodFrom: new Date().toLocaleDateString(),
+    period: "",
+  });
   const data = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"], // game name
     datasets: [
@@ -46,6 +55,32 @@ function Dashboard() {
       },
     ],
   };
+  const handleChangePeriod = (e) => {
+    const val = e.target.value;
+    let date = new Date()
+
+    if (val === "day") {
+      date.setDate(date.getDate() - 1); // Subtract 1 day
+    } else if (val === "week") {
+      date.setDate(date.getDate() - 7); // Subtract 7 days (1 week)
+    } else if (val === "month") {
+      date.setMonth(date.getMonth() - 1); // Subtract 1 month
+    } else if (val === "") {
+      date = ""; // Reset date
+    }
+
+    // Reset time part to set it to 00:00:00
+    if (date) {
+      date.setHours(0, 0, 0, 0);
+      date = date?.toLocaleDateString();
+    }
+
+    setFilterKey({ ...filterKey, periodFrom: date, period: val });
+  };
+
+  useEffect(() => {
+    dispatch(getDashboardData({ ...filterKey }));
+  }, [filterKey]);
 
   return (
     <section className="">
@@ -57,22 +92,56 @@ function Dashboard() {
         <div className="voucherFormMain">
           <div className="">
             <div className=" row pt-4">
-              <div className="col-md-3">
-                <label className="fs-7 pb-4">Filter</label>
-                <select className="form-select" aria-label="Default select example">
-                  <option selected>Last week</option>
-                  <option value="1">Last day</option>
-                  <option value="2">Last Month</option>
+              <div className="col-md-3 px-4">
+                <label className="label">Filter</label>
+                <select
+                  className="form-select p-3"
+                  name="period"
+                  value={filterKey?.period}
+                  onChange={handleChangePeriod}
+                >
+                  <option value={""}>Select</option>
+                  <option value="day">Last day</option>
+                  <option value="week">Last week</option>
+                  <option value="month">Last month</option>
                 </select>
               </div>
               <div className="col-md-3">&nbsp;</div>
-              <div className="col-md-3">
-                <label className="fs-7 pb-4">Date from</label>
-                <input className="form-control" type="date" />
+              <div className="col-3 ">
+                <label className="label">Date from</label>
+                <DatePicker
+                  selected={filterKey.startDate}
+                  onChange={(date) => {
+                    setFilterKey({
+                      ...filterKey,
+                      startDate: date?.toLocaleDateString(),
+                      periodFrom: "",
+                    });
+                  }}
+                  className="form-control p-3"
+                  isClearable={filterKey.startDate}
+                  placeholderText="Select start date"
+                  showTimeSelect={false}
+                />
               </div>
-              <div className="col-md-3">
-                <label className="fs-7 pb-4">Date to</label>
-                <input className="form-control" type="date" />
+              <div className="col-3 ">
+                <label className="label">Date to</label>
+                <DatePicker
+                  minDate={filterKey.startDate}
+                  maxDate={new Date()}
+                  selected={filterKey.endDate}
+                  onChange={(date) => {
+                    setFilterKey({
+                      ...filterKey,
+                      endDate: date?.toLocaleDateString(),
+                      periodFrom: "",
+                    });
+                  }}
+                  className="form-control p-3"
+                  isClearable={filterKey.endDate}
+                  placeholderText="Select end date"
+                  showTimeSelect={false}
+                />
               </div>
             </div>
             <div className="row pt-4">
@@ -94,7 +163,7 @@ function Dashboard() {
                     </h5>
                     <span className="card-title">
                       {" "}
-                      {details?.awaitingCommodityPurcjhase || 0}
+                      {details?.awaitingCommodityPurchase || 0}
                     </span>
                   </div>
                 </div>
@@ -130,7 +199,9 @@ function Dashboard() {
                     <h5 className="label d-block w-100 pb-2">
                       Agent appointment and response
                     </h5>
-                    <p className="card-title">{details?.totalCountAgent || 0} </p>
+                    <p className="card-title">
+                      {details?.totalCountAgent || 0}{" "}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -163,16 +234,16 @@ function Dashboard() {
                         <div
                           className="progress-bar skill-bar desh_progress-bar"
                           role="progressbar"
-                          aria-valuenow={details?.successRatio}
+                          aria-valuenow={details?.successRatio || 0}
                           style={{
-                            width: `${details?.successRatio}%`,
+                            width: `${details?.successRatio || 0}%`,
                           }}
                           aria-valuemin="0"
                           aria-valuemax="100"
                         ></div>
                       </div>
                       <span className="p-1">{`${
-                        parseInt(details?.successRatio)?.toFixed(3) || 0
+                        parseInt(details?.successRatio || 0)?.toFixed(3) || 0
                       }%`}</span>
                     </div>
                   </div>

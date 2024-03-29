@@ -13,9 +13,15 @@ function Filter({ filterKey, setFilterKey }) {
     } else if (val === "month") {
       date.setMonth(date.getMonth() - 1); // Subtract 1 month
     } else if (val === "") {
-      date = "";
+      date = ""; // Reset date
     }
-    setFilterKey({ ...filterKey, periodFrom: date, pageNo: 1 });
+
+    if (date) {
+      date?.setHours(0, 0, 0, 0);
+      date = date?.toLocaleDateString();
+    }
+
+    setFilterKey({ ...filterKey, periodFrom: date, period: val });
   };
 
   return (
@@ -61,7 +67,7 @@ function Filter({ filterKey, setFilterKey }) {
           onChange={(date) => {
             setFilterKey({
               ...filterKey,
-              startDate: date,
+              startDate: date?.toLocaleDateString(),
             });
           }}
           className="form-control p-3"
@@ -78,7 +84,7 @@ function Filter({ filterKey, setFilterKey }) {
           onChange={(date) => {
             setFilterKey({
               ...filterKey,
-              endDate: date,
+              endDate: date?.toLocaleDateString(),
             });
           }}
           className="form-control p-3"
