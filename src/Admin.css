@@ -1396,9 +1396,12 @@ input:-moz-placeholder {
 }
 .nav__list .active,
 .nav__link:hover {
-  background: #fff;
+  background: #68b2ef;
   color: #000;
   border-radius: 8px;
+}
+.nav__list .activeLink .nav__name {
+  color: #5dabeb;
 }
 .nav__list .active,
 .nav__link:hover span {
@@ -2173,7 +2176,7 @@ input:-moz-placeholder {
 
   .nav_2 {
     padding: 1.2rem 13px !important;
-    width: 310px; /* Reduced navbar */
+    width: 300px; /* Reduced navbar */
     box-shadow: 0 6px 26px rgba(34, 55, 113, 0.1);
   }
   .nav__items {
@@ -2746,7 +2749,7 @@ input:-moz-placeholder {
   font-weight: bold !important;
   font-family: "Inter Tight", sans-serif;
 }
- .auth-subtitle {
+.auth-subtitle {
   font-size: 14px !important;
   line-height: 24px;
   color: rgba(117, 117, 117, 1);
