@@ -1,18 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import Chart from "chart.js/auto";
-
-import { Line } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
 import { getDashboardData } from "../../Config/FetchListingData";
 import DatePicker from "react-datepicker";
+import Graph from "./Graph";
 import moment from "moment";
 
 function Dashboard() {
   const { ConfigData } = useSelector((state) => state);
+  const { data = {} } = ConfigData;
   const dispatch = useDispatch();
-  let details = ConfigData?.data;
+
   const [dateFrom, setDateFrom] = useState();
   const [dateTo, setDateTo] = useState();
   const [filterKey, setFilterKey] = useState({
@@ -20,43 +19,44 @@ function Dashboard() {
     endDate: "",
     period: "",
   });
-  const data = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"], // game name
-    datasets: [
-      {
-        label: "Ready to be import",
-        fill: false,
-        lineTension: 0.1,
-        backgroundColor: "#8282FF",
-        borderColor: "#8282FF",
-        data: [0, 50, 90, 165, 210, 250, 300, 380, 400], // like count
-      },
-      {
-        label: "Under Process",
-        fill: false,
-        lineTension: 0.1,
-        backgroundColor: "#FFCD82",
-        borderColor: "#FFCD82",
-        data: [45, 56, 70, 45, 78, 87, 178, 300, 320],
-      },
-      {
-        label: "Completed",
-        fill: false,
-        lineTension: 0.1,
-        backgroundColor: "#68DA92",
-        borderColor: "#68DA92",
-        data: [5, 46, 50, 60, 78, 87, 198, 300, 310],
-      },
-      {
-        label: "Rejected",
-        fill: false,
-        lineTension: 0.1,
-        backgroundColor: "#FF8282",
-        borderColor: "#FF8282",
-        data: [15, 76, 80, 45, 98, 77, 176, 70, 20],
-      },
-    ],
-  };
+
+  // const data = {
+  //   labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"], // game name
+  //   datasets: [
+  //     {
+  //       label: "Ready to be import",
+  //       fill: false,
+  //       lineTension: 0.1,
+  //       backgroundColor: "#8282FF",
+  //       borderColor: "#8282FF",
+  //       data: [200, 350, 290, 165, 50, 250, 300, 380, 400], // like count
+  //     },
+  //     {
+  //       label: "Under Process",
+  //       fill: false,
+  //       lineTension: 0.1,
+  //       backgroundColor: "#FFCD82",
+  //       borderColor: "#FFCD82",
+  //       data: [45, 156, 70, 245, 78, 387, 178, 200, 120],
+  //     },
+  //     {
+  //       label: "Completed",
+  //       fill: false,
+  //       lineTension: 0.1,
+  //       backgroundColor: "#68DA92",
+  //       borderColor: "#68DA92",
+  //       data: [5, 26, 250, 120, 150, 187, 198, 300, 310],
+  //     },
+  //     {
+  //       label: "Rejected",
+  //       fill: false,
+  //       lineTension: 0.1,
+  //       backgroundColor: "#FF8282",
+  //       borderColor: "#FF8282",
+  //       data: [15, 100, 50, 345, 98, 77, 176, 270, 400],
+  //     },
+  //   ],
+  // };
   const handleChangePeriod = (e) => {
     const val = e.target.value;
     let date = new Date();
@@ -163,7 +163,7 @@ function Dashboard() {
                   <div className="card-body">
                     <h5 className="label d-block w-100 pb-2">New Cases</h5>
                     <span className="card-title">
-                      {details?.totalNewCases || 0}
+                      {data?.totalNewCases || 0}
                     </span>
                   </div>
                 </div>
@@ -176,7 +176,7 @@ function Dashboard() {
                     </h5>
                     <span className="card-title">
                       {" "}
-                      {details?.awaitingCommodityPurchase || 0}
+                      {data?.awaitingCommodityPurchase || 0}
                     </span>
                   </div>
                 </div>
@@ -189,7 +189,7 @@ function Dashboard() {
                     </h5>
                     <span className="card-title">
                       {" "}
-                      {details?.totalawaitingdigitalSign || 0}
+                      {data?.totalawaitingdigitalSign || 0}
                     </span>
                   </div>
                 </div>
@@ -201,7 +201,7 @@ function Dashboard() {
                       Awaiting Customer Acceptance:Physica
                     </h5>
                     <span className="card-title">
-                      {details?.totalawaitingdigitalSign || 0}
+                      {data?.totalawaitingdigitalSign || 0}
                     </span>
                   </div>
                 </div>
@@ -212,9 +212,7 @@ function Dashboard() {
                     <h5 className="label d-block w-100 pb-2">
                       Agent appointment and response
                     </h5>
-                    <p className="card-title">
-                      {details?.totalCountAgent || 0}{" "}
-                    </p>
+                    <p className="card-title">{data?.totalCountAgent || 0} </p>
                   </div>
                 </div>
               </div>
@@ -224,7 +222,7 @@ function Dashboard() {
                     <h5 className="label d-block w-100 pb-2">
                       Completed – Welcome Letter issued
                     </h5>
-                    <p className="card-title">{details?.totalCompleted || 0}</p>
+                    <p className="card-title">{data?.totalCompleted || 0}</p>
                   </div>
                 </div>
               </div>
@@ -234,7 +232,7 @@ function Dashboard() {
                     <h5 className="label d-block w-100 pb-2">
                       Rejected: Pending Channel Correction
                     </h5>
-                    <p className="card-title">{details?.totalRejected || 0}</p>
+                    <p className="card-title">{data?.totalRejected || 0}</p>
                   </div>
                 </div>
               </div>
@@ -247,16 +245,16 @@ function Dashboard() {
                         <div
                           className="progress-bar skill-bar desh_progress-bar"
                           role="progressbar"
-                          aria-valuenow={details?.successRatio || 0}
+                          aria-valuenow={data?.successRatio || 0}
                           style={{
-                            width: `${details?.successRatio || 0}%`,
+                            width: `${data?.successRatio || 0}%`,
                           }}
                           aria-valuemin="0"
                           aria-valuemax="100"
                         ></div>
                       </div>
                       <span className="p-1">{`${
-                        parseInt(details?.successRatio || 0)?.toFixed(3) || 0
+                        parseInt(data?.successRatio || 0)?.toFixed(3) || 0
                       }%`}</span>
                     </div>
                   </div>
@@ -273,8 +271,8 @@ function Dashboard() {
                         <div
                           className="progress-bar skill-bar desh_progress-bar"
                           role="progressbar"
-                          aria-valuenow={details?.successRatio}
-                          style={{ width: `${details?.successRatio}%` }}
+                          aria-valuenow={data?.successRatio}
+                          style={{ width: `${data?.successRatio}%` }}
                           aria-valuemin="0"
                           aria-valuemax="100"
                         ></div>
@@ -287,37 +285,7 @@ function Dashboard() {
             </div>
             <div className="row pt-4">
               <div className="col-sm-9">
-                <div className="card">
-                  <div className="card-body">
-                    <div className=" row col-md-12 pt-4">
-                      <div className="col-md-3">
-                        <select
-                          className="form-select"
-                          aria-label="Default select example"
-                        >
-                          <option selected>All Statuses</option>
-                          <option value="1">Last day</option>
-                          <option value="2">Last Month</option>
-                        </select>
-                      </div>
-                      <div className="col-md-3"></div>
-                      <div className="col-md-3"></div>
-                      <div className="col-md-3">
-                        <select
-                          className="form-select"
-                          aria-label="Default select example"
-                        >
-                          <option selected>Months</option>
-                          <option value="1">Last day</option>
-                          <option value="2">Last week</option>
-                          <option value="2">Last month</option>
-                        </select>
-                      </div>
-
-                      <Line data={data} />
-                    </div>
-                  </div>
-                </div>
+                <Graph />
               </div>
 
               <div className="col-md-3">
