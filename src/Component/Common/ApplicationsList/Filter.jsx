@@ -1,29 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 
 function Filter({ filterKey, setFilterKey }) {
+  const [dateFrom, setDateFrom] = useState();
+  const [dateTo, setDateTo] = useState();
+
   const handleChangePeriod = (e) => {
     const val = e.target.value;
     let date = new Date(); // Current date
 
     if (val === "day") {
-      date.setDate(date.getDate() - 1); // Subtract 1 day
+      date.setDate(date.getDate() - 1);
     } else if (val === "week") {
-      date.setDate(date.getDate() - 7); // Subtract 7 days (1 week)
+      date.setDate(date.getDate() - 7);
     } else if (val === "month") {
-      date.setMonth(date.getMonth() - 1); // Subtract 1 month
+      date.setMonth(date.getMonth() - 1);
     } else if (val === "") {
-      date = ""; // Reset date
+      date = "";
     }
 
     if (date) {
-      date?.setHours(0, 0, 0, 0);
-      date = date?.toLocaleDateString();
+      date = date?.toISOString().split("T")[0] + "T00:00:00";
     }
 
     setFilterKey({ ...filterKey, periodFrom: date, period: val });
+    setDateFrom("")
+    setDateTo("")
   };
-
+  const handleChangeDate = (e) => {
+    let { name, value } = e;
+    if (value) {
+      let date = new Date(value);
+      date.setDate(date.getDate() + 1);
+      value = date.toISOString().split("T")[0] + "T00:00:00";
+    }
+    setFilterKey({ ...filterKey, [name]: value ,period: ""});
+  };
   return (
     <>
       <div className="col-md-3 px-4">
@@ -63,12 +75,11 @@ function Filter({ filterKey, setFilterKey }) {
       <div className="col-3 ">
         <label className="label">Date from</label>
         <DatePicker
-          selected={filterKey.startDate}
+          selected={dateFrom}
           onChange={(date) => {
-            setFilterKey({
-              ...filterKey,
-              startDate: date?.toLocaleDateString(),
-            });
+            let event = { name: "startDate", value: date };
+            handleChangeDate(event);
+            setDateFrom(date);
           }}
           className="form-control p-3"
           isClearable={filterKey.startDate}
@@ -78,14 +89,13 @@ function Filter({ filterKey, setFilterKey }) {
       <div className="col-3 ">
         <label className="label">Date to</label>
         <DatePicker
-          minDate={filterKey.startDate}
+          minDate={dateFrom}
           maxDate={new Date()}
-          selected={filterKey.endDate}
+          selected={dateTo}
           onChange={(date) => {
-            setFilterKey({
-              ...filterKey,
-              endDate: date?.toLocaleDateString(),
-            });
+            let event = { name: "endDate", value: date };
+            handleChangeDate(event);
+            setDateTo(date);
           }}
           className="form-control p-3"
           isClearable={filterKey.endDate}
