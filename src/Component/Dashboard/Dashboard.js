@@ -7,6 +7,7 @@ import { Line } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
 import { getDashboardData } from "../../Config/FetchListingData";
 import DatePicker from "react-datepicker";
+import moment from "moment";
 
 function Dashboard() {
   const { ConfigData } = useSelector((state) => state);
@@ -87,9 +88,12 @@ function Dashboard() {
   const handleChangeDate = (e) => {
     let { name, value } = e;
     if (value) {
-      let date = new Date(value);
-      date.setDate(date.getDate() + 1);
-      value = date.toISOString().split("T")[0] + "T00:00:00";
+      let date =
+        name === "startDate"
+          ? moment(value).startOf("day").valueOf()
+          : moment(value).endOf("day").valueOf();
+      date = new Date(date);
+      value = date;
     }
     setFilterKey({ ...filterKey, [name]: value, period: "" });
   };
