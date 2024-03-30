@@ -133,10 +133,10 @@ export const getDashboardGraphData =
       });
       console.log(data);
       let obj = data?.data;
-      let arr = data?.data?.datasets?.map((ele) => {
+      let arr = data?.data?.datasets?.map((ele, index) => {
         let label =
           ele?.label === "AWAITING_COMMODITY_PURCHASE"
-            ? "Ready to be import"
+            ? "Imported"
             : ele?.label === "AWAITING_DIGITAL_SIGNATURE"
             ? "Under Process"
             : ele?.label === "WELCOME_LETTER_ISSUED"
@@ -144,7 +144,7 @@ export const getDashboardGraphData =
             : ele?.label === "REJECTED"
             ? "Rejected"
             : ele?.label;
-        return { ...ele, label };
+        return { ...ele, label: label, id: index+1 };
       });
       let updatedData = { ...obj, datasets: arr };
       dispatch(SetGraphData(updatedData));

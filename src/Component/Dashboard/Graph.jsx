@@ -1,7 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
+
 import moment from "moment";
 import { getDashboardGraphData } from "../../Config/FetchListingData";
 
@@ -9,6 +11,7 @@ function Graph() {
   const dispatch = useDispatch();
   const { ConfigData } = useSelector((state) => state);
   const { graphData = {} } = ConfigData;
+  const lineRef = useRef();
   const [filterGraph, setFilterGraph] = useState({
     month: moment().format("MMM"),
     year: moment().format("yyyy"),
@@ -37,9 +40,24 @@ function Graph() {
     "2029",
     "2030",
   ];
+  const options = {
+    scales: {
+      y: {
+        type: "linear", // Define y-axis as linear scale
+        position: "left", // Position y-axis on the left
+        min: 0, // Set minimum value on y-axis to 20
+        // max: 100, // Set maximum value on y-axis to 100
+        ticks: {
+          stepSize: 10, // Set step size to 10 units
+        },
+      },
+    },
+  };
+
   useEffect(() => {
     dispatch(getDashboardGraphData({ ...filterGraph }));
   }, [filterGraph]);
+
   return (
     <>
       <div className="card">
@@ -82,7 +100,12 @@ function Graph() {
               </select>
             </div>
             {Object.keys(graphData || {}).length > 0 ? (
-              <Line data={graphData} />
+              <Line
+                data={graphData}
+                ref={lineRef}
+                // datasetIdKey={`${new Date()}`}
+                options={options}
+              />
             ) : (
               ""
             )}
