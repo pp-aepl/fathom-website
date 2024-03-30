@@ -1,7 +1,12 @@
 import { API } from "../apiwrapper";
 import { apiURl } from "../store/actions";
 import { SetloaderData } from "../store/reducer";
-import { SetCategories, SetConfigData, SetRules } from "../store/reducer/ConfigData";
+import {
+  SetCategories,
+  SetConfigData,
+  SetGraphData,
+  SetRules,
+} from "../store/reducer/ConfigData";
 
 export const makeSearchString = (filter) => {
   const searchParams = new URLSearchParams();
@@ -104,6 +109,45 @@ export const getDashboardData =
       });
       console.log(data);
       dispatch(SetConfigData(data));
+      return data;
+    } catch (error) {
+      throw error;
+    } finally {
+      dispatch(SetloaderData(false));
+    }
+  };
+export const getDashboardGraphData =
+  (body = {}, query = {}) =>
+  async (dispatch) => {
+    try {
+      dispatch(SetloaderData(true));
+      let url = `${apiURl.dashboard}/graph`;
+      if (query) {
+        const searchString = makeSearchString(query);
+        url = searchString ? `${url}?${searchString}` : url;
+      }
+      const data = await API({
+        url: url,
+        method: "POST",
+        body: { ...body },
+      });
+      console.log(data);
+      let obj = data?.data;
+      let arr = data?.data?.datasets?.map((ele) => {
+        let label =
+          ele?.label === "AWAITING_COMMODITY_PURCHASE"
+            ? "Ready to be import"
+            : ele?.label === "AWAITING_DIGITAL_SIGNATURE"
+            ? "Under Process"
+            : ele?.label === "WELCOME_LETTER_ISSUED"
+            ? "Completed"
+            : ele?.label === "REJECTED"
+            ? "Rejected"
+            : ele?.label;
+        return { ...ele, label };
+      });
+      let updatedData = { ...obj, datasets: arr };
+      dispatch(SetGraphData(updatedData));
       return data;
     } catch (error) {
       throw error;

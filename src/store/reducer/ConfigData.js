@@ -4,6 +4,7 @@ export const sliceConfigData = createSlice({
   name: "configData",
   initialState: {
     data: {},
+    graphData: {},
     rules: [],
     categories: [],
   },
@@ -14,6 +15,9 @@ export const sliceConfigData = createSlice({
     setRules: (state, { payload }) => {
       state.rules = payload.rules;
     },
+    setGraphData: (state, { payload }) => {
+      state.graphData = payload.data;
+    },
     setCategories: (state, { payload }) => {
       state.categories = payload.categories;
     },
@@ -23,7 +27,7 @@ export const sliceConfigData = createSlice({
   },
 });
 
-const { fetched, setRules, setCategories, reSetConfigData } =
+const { fetched, setRules, setCategories, reSetConfigData, setGraphData } =
   sliceConfigData.actions;
 
 export const SetConfigData = (data) => async (dispatch) => {
@@ -37,7 +41,9 @@ export const SetRules = (rules) => async (dispatch) => {
 export const SetCategories = (categories) => async (dispatch) => {
   dispatch(setCategories({ categories }));
 };
-
+export const SetGraphData = (data) => async (dispatch) => {
+  dispatch(setGraphData({ data }));
+};
 export const ReSetConfigData = () => async (dispatch) => {
   dispatch(reSetConfigData());
 };
