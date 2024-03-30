@@ -1,3 +1,4 @@
+import moment from "moment";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 
@@ -30,11 +31,14 @@ function Filter({ filterKey, setFilterKey }) {
   const handleChangeDate = (e) => {
     let { name, value } = e;
     if (value) {
-      let date = new Date(value);
-      date.setDate(date.getDate() + 1);
-      value = date.toISOString().split("T")[0] + "T00:00:00";
+      let date =
+        name === "startDate"
+          ? moment(value).startOf("day").valueOf()
+          : moment(value).endOf("day").valueOf();
+      date = new Date(date);
+      value = date;
     }
-    setFilterKey({ ...filterKey, [name]: value ,period: ""});
+    setFilterKey({ ...filterKey, [name]: value, period: "" });
   };
   return (
     <>
