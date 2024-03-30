@@ -20,43 +20,43 @@ function Dashboard() {
     period: "",
   });
 
-  // const data = {
-  //   labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"], // game name
-  //   datasets: [
-  //     {
-  //       label: "Ready to be import",
-  //       fill: false,
-  //       lineTension: 0.1,
-  //       backgroundColor: "#8282FF",
-  //       borderColor: "#8282FF",
-  //       data: [200, 350, 290, 165, 50, 250, 300, 380, 400], // like count
-  //     },
-  //     {
-  //       label: "Under Process",
-  //       fill: false,
-  //       lineTension: 0.1,
-  //       backgroundColor: "#FFCD82",
-  //       borderColor: "#FFCD82",
-  //       data: [45, 156, 70, 245, 78, 387, 178, 200, 120],
-  //     },
-  //     {
-  //       label: "Completed",
-  //       fill: false,
-  //       lineTension: 0.1,
-  //       backgroundColor: "#68DA92",
-  //       borderColor: "#68DA92",
-  //       data: [5, 26, 250, 120, 150, 187, 198, 300, 310],
-  //     },
-  //     {
-  //       label: "Rejected",
-  //       fill: false,
-  //       lineTension: 0.1,
-  //       backgroundColor: "#FF8282",
-  //       borderColor: "#FF8282",
-  //       data: [15, 100, 50, 345, 98, 77, 176, 270, 400],
-  //     },
-  //   ],
-  // };
+  const lineData = {
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"], // game name
+    datasets: [
+      {
+        label: "Ready to be import",
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: "#8282FF",
+        borderColor: "#8282FF",
+        data: [200, 350, 290, 165, 50, 250, 300, 380, 400], // like count
+      },
+      {
+        label: "Under Process",
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: "#FFCD82",
+        borderColor: "#FFCD82",
+        data: [45, 156, 70, 245, 78, 387, 178, 200, 120],
+      },
+      {
+        label: "Completed",
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: "#68DA92",
+        borderColor: "#68DA92",
+        data: [5, 26, 250, 120, 150, 187, 198, 300, 310],
+      },
+      {
+        label: "Rejected",
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: "#FF8282",
+        borderColor: "#FF8282",
+        data: [15, 100, 50, 345, 98, 77, 176, 270, 400],
+      },
+    ],
+  };
   const handleChangePeriod = (e) => {
     const val = e.target.value;
     let date = new Date();
@@ -285,6 +285,7 @@ function Dashboard() {
             </div>
             <div className="row pt-4">
               <div className="col-sm-9">
+                {/* <Line data={lineData} /> */}
                 <Graph />
               </div>
 
