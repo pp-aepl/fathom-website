@@ -6,6 +6,7 @@ import { Line } from "react-chartjs-2";
 
 import moment from "moment";
 import { getDashboardGraphData } from "../../Config/FetchListingData";
+import { SetGraphData } from "../../store/reducer";
 
 function Graph() {
   const dispatch = useDispatch();
@@ -30,32 +31,35 @@ function Graph() {
     "Nov",
     "Dec",
   ];
-  const yearArr = [
-    "2023",
-    "2024",
-    "2025",
-    "2026",
-    "2027",
-    "2028",
-    "2029",
-    "2030",
-  ];
+  //   const yearArr = [
+  //     "2023",
+  //     "2024",
+  //     "2025",
+  //     "2026",
+  //     "2027",
+  //     "2028",
+  //     "2029",
+  //     "2030",
+  //   ];
   const options = {
     scales: {
       y: {
         type: "linear", // Define y-axis as linear scale
         position: "left", // Position y-axis on the left
-        // min: 0, 
+        min: 0,
         // max: 100,
-        // ticks: {
-        //   stepSize: 10, // Set step size to 10 units
-        // },
+        ticks: {
+          stepSize: 10, // Set step size to 10 units
+        },
       },
     },
   };
 
   useEffect(() => {
     dispatch(getDashboardGraphData({ ...filterGraph }));
+    return () => {
+      dispatch(SetGraphData({}));
+    };
   }, [filterGraph]);
 
   return (
@@ -64,6 +68,7 @@ function Graph() {
         <div className="card-body">
           <div className=" row col-md-12 pt-4">
             <div className="col-md-3">
+              {/* 
               <select
                 className="form-select"
                 name="year"
@@ -79,6 +84,7 @@ function Graph() {
                   </option>
                 ))}
               </select>
+               */}
             </div>
             <div className="col-md-3"></div>
             <div className="col-md-3"></div>

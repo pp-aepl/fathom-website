@@ -1,18 +1,13 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
-import {
-  FaAngleDown,
-  FaAngleRight,
-  FaChevronRight,
-  FaXmark,
-} from "react-icons/fa6";
-import { useDispatch } from "react-redux";
+import { FaAngleDown, FaChevronRight, FaXmark } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { SetpopupReducerData } from "../../store/reducer";
 
 function Sidebar({ showMenu, setShowMenu }) {
-  // console.log(Style)
+  const { authUser } = useSelector((state) => state);
   const [showActive, setShowActive] = useState(-1);
   const [openDropdown, setOpenDropdown] = useState(-1);
   const [openProcess, setOpenProcess] = useState(-1);
@@ -408,7 +403,7 @@ function Sidebar({ showMenu, setShowMenu }) {
                     className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
                   >
                     <img
-                      src="../../../images/doneCircle.png"
+                      src="../../../images/crossCircle.png"
                       width={25}
                       alt=""
                     />
@@ -531,7 +526,9 @@ function Sidebar({ showMenu, setShowMenu }) {
                 style={{ width: "25px" }}
                 className="mx-2 rounded-circle"
               />
-              <span className="mx-2 ">Admin User </span>
+              <span className="mx-2 ">
+                {`${authUser?.data?.first_name} ${authUser?.data?.last_name} `}{" "}
+              </span>
             </div>
             <div className="col-6 text-end">
               <img

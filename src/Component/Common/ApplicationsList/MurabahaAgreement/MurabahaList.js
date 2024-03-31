@@ -328,7 +328,7 @@ function MurabahaList() {
                               <td>
                                 {" "}
                                 <a
-                                  href={item?.reject_exception_document}
+                                  href={item?.murbaha_url}
                                   target="_blank"
                                 >
                                   <div className="view_btn">View</div>
