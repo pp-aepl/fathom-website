@@ -37,7 +37,7 @@ function CheckedApplications() {
     try {
       let payload = {
         awsUrls: documents,
-        status: "IMPORTED",
+        status: "AWAITING_COMMODITY_PURCHASE",
         showStatus: "Pending",
       };
       dispatch(SetloaderData(true));
