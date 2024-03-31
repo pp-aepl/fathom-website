@@ -45,11 +45,11 @@ function Graph() {
       y: {
         type: "linear", // Define y-axis as linear scale
         position: "left", // Position y-axis on the left
-        min: 0, // Set minimum value on y-axis to 20
-        // max: 100, // Set maximum value on y-axis to 100
-        ticks: {
-          stepSize: 10, // Set step size to 10 units
-        },
+        // min: 0, 
+        // max: 100,
+        // ticks: {
+        //   stepSize: 10, // Set step size to 10 units
+        // },
       },
     },
   };

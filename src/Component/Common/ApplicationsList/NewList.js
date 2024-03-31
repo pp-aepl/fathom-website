@@ -240,7 +240,7 @@ function NewList() {
     startDate: "",
     endDate: "",
     periodFrom: "",
-    rule:""
+    rule: "",
   });
   const handleChangeCheckBox = (e, id) => {
     let arr = [...selectedApplication];
@@ -344,14 +344,18 @@ function NewList() {
                   onChange={(e) =>
                     setFilterKey({
                       ...filterKey,
-                      rule: e.target.value,
+                      rule: !e.target.value
+                        ? ""
+                        : e.target.value === "true"
+                        ? true
+                        : false,
                       pageNo: 1,
                     })
                   }
                 >
                   <option value={""}>Select</option>
-                  <option value="pass">Pass</option>
-                  <option value="fail">Fail</option>
+                  <option value={true}>Pass</option>
+                  <option value={false}>Fail</option>
                 </select>
               </div>
               <div className="col-7">

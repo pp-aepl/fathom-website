@@ -86,7 +86,7 @@ function Filter({ filterKey, setFilterKey }) {
             setDateFrom(date);
           }}
           className="form-control p-3"
-          isClearable={filterKey.startDate}
+          isClearable={dateFrom}
           placeholderText="Select start date"
         />
       </div>
@@ -102,7 +102,7 @@ function Filter({ filterKey, setFilterKey }) {
             setDateTo(date);
           }}
           className="form-control p-3"
-          isClearable={filterKey.endDate}
+          isClearable={dateTo}
           placeholderText="Select end date"
         />
       </div>
