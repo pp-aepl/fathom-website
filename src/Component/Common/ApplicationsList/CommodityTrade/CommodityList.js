@@ -101,7 +101,7 @@ function CommodityList() {
   const fetchListingData = useCallback(async () => {
     try {
       let payload = {
-        status: "COMPLETED",
+        status: "AWAITING_WELCOME_LETTER_ISSUE",
         ...filterKey,
       };
       const data = await dispatch(fetchApplicationList(payload, filterKey));

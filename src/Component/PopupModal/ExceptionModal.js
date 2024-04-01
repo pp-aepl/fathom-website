@@ -10,7 +10,7 @@ import {
 import UploadToFile from "../Common/CustomeUploadToFile/UploadToFile";
 import SuccessfullyModal from "./SuccessfullyModal";
 import ConfirmFileList from "../Common/CustomeUploadToFile/ConfirmFileList";
-import { API } from "../../apiwrapper";
+import { API, getAwsImageUrl } from "../../apiwrapper";
 import { apiURl } from "../../store/actions";
 
 function ExceptionModal() {
@@ -30,21 +30,49 @@ function ExceptionModal() {
   const [isUploaded, setIsUploaded] = useState(false);
 
   // update create api
+  const getUrlsArray = async (arr) =>
+    Promise.all(
+      arr?.map(async (ele) => {
+        let obj = await getAwsImageUrl(ele?.document);
+        return { ...ele, document: obj?.Location, ...obj };
+      })
+    );
+
+  const handleUploadFiles = async (e) => {
+    try {
+      if (!documents?.length) {
+        alert("Please import application, Only PDF files are allowed.");
+        return false;
+      }
+      if (selectedApplication?.length > 0 && documents?.length > 0) {
+        dispatch(SetloaderData(true));
+        let awsUrls = await getUrlsArray(documents);
+        console.log(awsUrls, "awsUrls");
+        dispatch(
+          SetpopupReducerData({
+            ...PopupReducer?.modal,
+            documents: awsUrls,
+          })
+        );
+        setIsUploaded(true);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch(SetloaderData(false));
+    }
+  };
+
   const onSubmit = async (e, typeSubmit) => {
     console.log({ typeSubmit });
     e.preventDefault();
     if (isUploaded) {
-      dispatch(
-        SetpopupReducerData({
-          modalType: "SUCCESSFULLY",
-          successModal: true,
-          type: typeSubmit,
-        })
-      );
-    } else {
       await proceedWithException(e);
+    } else {
+      handleUploadFiles();
     }
   };
+
   const handleFileChange = (e) => {
     let files = e.target.files;
 
@@ -72,20 +100,12 @@ function ExceptionModal() {
         return;
       }
 
-      const fd = new FormData();
-      const obj = documents?.[0];
-      console.log(obj);
-
       let payload = {
-        status: "Pending",
-        showStatus: "Pending",
+        status: "APPROVED_WITH_EXCEPTION",
+        showStatus: "Approved with exception",
         ids: selectedApplication,
+        awsUrls: documents,
       };
-      // fd.append("file", obj?.document);
-      // fd.append("showStatus", "Pending");
-      // fd.append("status", "Pending");
-      // fd.append("ids", JSON.stringify(selectedApplication));
-
 
       dispatch(SetloaderData(true));
       const data = await API({
@@ -95,23 +115,13 @@ function ExceptionModal() {
       });
 
       if (data?.status || data?.status === "true") {
-        // const awsUrls = data?.awsUrl;
-        // const newObj = data?.data?.[0];
-        // const updatedObj = {
-        //   ...obj,
-        //   document: newObj?.document || awsUrls?.[0],
-        //   ...newObj?.newRecords,
-        // };
-        // const updatedDocuments = [...documents];
-        // updatedDocuments[0] = updatedObj;
-        // dispatch(
-        //   SetpopupReducerData({
-        //     ...PopupReducer?.modal,
-        //     documents: updatedDocuments,
-        //   })
-        // );
-
-        setIsUploaded(true);
+        dispatch(
+          SetpopupReducerData({
+            modalType: "SUCCESSFULLY",
+            successModal: true,
+            type: exceptionType,
+          })
+        );
       } else {
         setIsUploaded(false);
       }
@@ -150,48 +160,17 @@ function ExceptionModal() {
           </div>
           {exceptionType !== "CHANNELLIST" && (
             <>
-              <div>
-                <p className="pb-4">Files Uploaded</p>
-                {/* <div className="row">
-                  <div className="col-md-1 pt-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="50"
-                      height="50"
-                      fill="currentColor"
-                      className="bi bi-file-text"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5M5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1z" />
-                      <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1" />
-                    </svg>
-                  </div>
-                  <div className="col-sm-9 pb-3">
-                    <div className=" align-items-center p-1">
-                      <p style={{ fontWeight: "bold" }}>
-                        Approval email/Exception document
-                      </p>
-                    </div>
-                  </div>
-                  <div className="col-md-2 pt-2" style={{ color: "red" }}>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="35"
-                      height="35"
-                      fill="currentColor"
-                      className="bi bi-trash"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"></path>
-                      <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"></path>
-                    </svg>
-                  </div>
-                </div> */}
-                <ConfirmFileList
-                  setIsUploaded={setIsUploaded}
-                  isUploaded={isUploaded}
-                />
-              </div>
+              {documents?.length > 0 ? (
+                <div>
+                  <p className="pb-4">Files Uploaded</p>
+                  <ConfirmFileList
+                    setIsUploaded={setIsUploaded}
+                    isUploaded={isUploaded}
+                  />
+                </div>
+              ) : (
+                ""
+              )}
             </>
           )}
 
@@ -200,7 +179,7 @@ function ExceptionModal() {
           >
             <button
               style={{ minWidth: "-webkit-fill-available" }}
-              onClick={(e) => onSubmit(e, exceptionType)}
+              onClick={(e) => onSubmit(e)}
             >
               {exceptionType === "CHANNELLIST"
                 ? "Continue"
