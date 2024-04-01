@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
@@ -111,10 +112,16 @@ function SentList() {
     setAction(value);
     if (value === "ALL") {
       arr = arrList?.map((ele) => ele._id);
-    } else if (value === "Signature") {
-      arr = arrList?.filter((ele) => !ele?.channel)?.map((e) => e?._id);
-    } else if (value === "Print") {
-      arr = arrList?.filter((ele) => ele?.channel)?.map((e) => e?._id);
+    } else if (value === "Digital Signature") {
+      arr = arrList
+        ?.filter((ele) => ele?.channel === "Digital Signature")
+        ?.map((e) => e?._id);
+    } else if (value === "Paper Print") {
+      arr = arrList
+        ?.filter((ele) => ele?.channel === "Paper Print")
+        ?.map((e) => e?._id);
+    } else {
+      arr = [];
     }
     setSelectedApplication(arr);
   };
@@ -152,7 +159,7 @@ function SentList() {
   const fetchListingData = useCallback(async () => {
     try {
       let payload = {
-        status: "AWAITING_DIGITAL_SINGNATURE",
+        status: "AWAITING_AGENT_APPOINTMENT",
         ...filterKey,
       };
       const data = await dispatch(fetchApplicationList(payload, filterKey));
@@ -198,9 +205,10 @@ function SentList() {
                     value={action}
                     onChange={handleSelectFilter}
                   >
+                    <option value={""}>Select</option>
                     <option value={"ALL"}>All</option>
-                    <option value="Signature">Digital Signature</option>
-                    <option value="Print">Paper Print</option>
+                    <option value="Digital Signature">Digital Signature</option>
+                    <option value="Paper Print">Paper Print</option>
                   </select>
                 </div>
               </div>
@@ -315,13 +323,36 @@ function SentList() {
                           .format("DD/MM/YYYY hh:mm a")}
                       </td>
                       <td>{item?.serial_number}</td>
-                      <td>{item?.channel && <span>Received</span>}</td>
+                      <td>
+                        {item?.channel && (
+                          <span
+                            className="channel"
+                            style={{
+                              background:
+                                item?.channel === "Digital Signature"
+                                  ? "#8282FF"
+                                  : "#0099FF33",
+                            }}
+                          >
+                            <img
+                              src={
+                                item?.channel === "Digital Signature"
+                                  ? "../../images/edit.png"
+                                  : "../../images/application_icon.svg"
+                              }
+                              width={18}
+                              className=" me-2 notepad  d-inline-block"
+                            />
+                            {item?.channel}
+                          </span>
+                        )}
+                      </td>
                       <td>
                         <span
                           style={{
                             color:
                               item?.showStatus === "Pending"
-                                ? "#0099FF"
+                                ? "#EAB308"
                                 : "#8282FF",
                           }}
                         >
@@ -330,10 +361,7 @@ function SentList() {
                       </td>
 
                       <td>
-                        <a
-                          href={item?.murbaha_url}
-                          target="_blank"
-                        >
+                        <a href={item?.murbaha_url} target="_blank">
                           <button className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills">
                             View
                           </button>

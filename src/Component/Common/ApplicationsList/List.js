@@ -46,7 +46,7 @@ function List({ id }) {
         fetchParams === "status"
           ? ""
           : fetchParams === "completed"
-          ? "APPROVED"
+          ? "COMPLETED"
           : fetchParams === "rejected"
           ? "REJECTED"
           : "";

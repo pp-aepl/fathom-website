@@ -5696,3 +5696,18 @@ input[type="checkbox"]:before {
 .nav li .nav-submenu li:nth-child(1n) span:after {
   background: none;
 }
+.channel {
+  width: 132px;
+  height: 30px;
+  top: 436px;
+  left: 861px;
+  gap: 0px;
+  border-radius: 500px;
+  opacity: 0px;
+  padding: 7px;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  text-align: left;
+}
