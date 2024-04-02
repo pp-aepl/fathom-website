@@ -3,21 +3,14 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SetpopupReducerData } from "../../../store/reducer";
-import ImportApplication from "../../PopupModal/ImportApplication";
 import ConfirmFiles from "../CustomeUploadToFile/ConfirmFiles";
 import SuccessfullyModal from "../../PopupModal/SuccessfullyModal";
-import ApplicationScan from "../../PopupModal/ApplicationScan";
-import DuplicateModal from "../../PopupModal/DuplicateModal";
 
 function UploadApplication() {
   const dispatch = useDispatch();
   const { PopupReducer } = useSelector((state) => state);
-  const {
-    showConfirmModal = false,
-    successModal = false,
-    scanModal = false,
-    showModal = false,
-  } = PopupReducer?.modal;
+  const { showConfirmModal = false, successModal = false } =
+    PopupReducer?.modal;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

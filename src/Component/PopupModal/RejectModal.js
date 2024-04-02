@@ -61,29 +61,26 @@ function RejectModal() {
         </Modal.Header>
         <Modal.Body className="p-5">
           <div className="">
-            <div>
-              <img
-                src="../../images/icon1.png"
-                style={{ height: "100px", paddingLeft: "19rem" }}
-              />
+            <div className="text-center">
+              <img src="../../images/icon1.png" style={{ height: "10vw" }} />
             </div>
             {rejectType === "REASONREJECT" ? (
               <>
-                <p style={{ textAlign: "center", fontWeight: "600" }}>
-                  Application Rejected
-                </p>
-                <p style={{ textAlign: "center" }}>
+                <h3 className="card-title text-center mt-2">Application Rejected</h3>
+                <p className="card-text text-center">
                   Your applications has been rejected because those could not
                   pass all rules. Upload again to re-scan applications.
                 </p>
               </>
             ) : (
-              <p style={{ textAlign: "center" }}>
-                Reject and Send back for correction
-              </p>
+              <h3 className="card-title text-center mt-2">
+                Reject and Send
+                <br /> back for correction
+              </h3>
             )}
           </div>
           <div
+            style={{ marginTop: "100px" }}
             className={`d-flex align-items-center justify-content-around pt-4 ${"saveBtn"}`}
           >
             <button

@@ -34,7 +34,7 @@ function ConfirmFiles() {
       };
       dispatch(SetloaderData(true));
       const data = await API({
-        url: `${apiURl.signDocument}`,
+        url: `${apiURl.applications}`,
         method: "POST",
         body: payload,
       });

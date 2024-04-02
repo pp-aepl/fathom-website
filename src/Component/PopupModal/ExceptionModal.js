@@ -149,11 +149,11 @@ function ExceptionModal() {
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body className="p-5">
           <div className="">
-            <p style={{ textAlign: "center", fontWeight: "600" }}>
+            <h3 className="card-title text-center my-2">
               {exceptionType === "CHANNELLIST"
                 ? "Import Completed Murabaha Agreement "
                 : "Upload Exception document"}
-            </p>
+            </h3>
           </div>
           <div>
             <UploadToFile handleFileChange={handleFileChange} />
@@ -175,6 +175,7 @@ function ExceptionModal() {
           )}
 
           <div
+            style={{ marginTop: "100px" }}
             className={`d-flex align-items-center justify-content-around pt-4 ${"saveBtn"}`}
           >
             <button

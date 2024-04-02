@@ -320,7 +320,7 @@ function Dashboard() {
                         aria-valuemax="100"
                       ></div>
                     </div>
-                    <span className="p-1">25 min</span>
+                    <span className="p-1">25min</span>
                   </div>
 
                   <p className="label pb-0 mt-4 w-75">
@@ -337,7 +337,7 @@ function Dashboard() {
                         aria-valuemax="100"
                       ></div>
                     </div>
-                    <span className="p-1 w-50px">10 min</span>
+                    <span className="p-1 w-50px">10min</span>
                   </div>
 
                   <p className="label pb-0 mt-4 w-75">
@@ -353,7 +353,7 @@ function Dashboard() {
                         aria-valuemax="100"
                       ></div>
                     </div>
-                    <span className="p-1 w-50px">5 min</span>
+                    <span className="p-1 w-50px">5min</span>
                   </div>
 
                   <p className="label pb-0 mt-4 w-75">
@@ -369,7 +369,7 @@ function Dashboard() {
                         aria-valuemax="100"
                       ></div>
                     </div>
-                    <span className="p-1 w-50px">5 min</span>
+                    <span className="p-1 w-50px">5min</span>
                   </div>
                 </div>
               </div>

@@ -32,6 +32,7 @@ function AgentModal() {
       let payload = {
         ids: selectedApplication,
         status: "COMPLETED",
+        showStatus: "Completed",
       };
       dispatch(SetloaderData(true));
       const data = await API({
