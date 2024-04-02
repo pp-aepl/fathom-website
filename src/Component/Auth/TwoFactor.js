@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import permissions from "../../Config/Config.json";
 import { useDispatch } from "react-redux";
@@ -70,7 +70,21 @@ function TwoFactor() {
       handleSubmit(event);
     }
   };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (second > 0) {
+        setSecond(second - 1);
+      }
 
+      if (second === 0) {
+        clearInterval(interval);
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [second]);
   return (
     <>
       <section className="adminLogin">
@@ -122,7 +136,9 @@ function TwoFactor() {
                         >
                           {second > 0 ? (
                             <>
-                              <p className="remainingTime ">{`${second}`} </p>
+                              <p className="remainingTime ">
+                                {`${second < 10 ? "0" + second : second}`}{" "}
+                              </p>
                               <p className="remainingText auth-subtitle mx-2">
                                 {`Seconds left`}{" "}
                               </p>

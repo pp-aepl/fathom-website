@@ -69,6 +69,7 @@ function ApplicationScan() {
       labels: ["Completed"],
     },
   };
+
   const onSubmit = async (e, typeSubmit) => {
     e.preventDefault();
     dispatch(SetpopupReducerData({ modalType: "APP_SCAN", showModal: true }));
@@ -104,7 +105,7 @@ function ApplicationScan() {
         failed: "",
         default: "DEFAULT",
       });
-    }, 5000);
+    }, 500);
   }, []);
   return (
     <>

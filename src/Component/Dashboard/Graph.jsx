@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { memo, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

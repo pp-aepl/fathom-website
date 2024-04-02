@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { SetloaderData, SetpopupReducerData } from "../../store/reducer";
+import {
+  SetloaderData,
+  SetpopupReducerData,
+  reSetPopupReducerData,
+} from "../../store/reducer";
 import RejectModal from "./RejectModal";
 import { useNavigate } from "react-router-dom";
 import { API } from "../../apiwrapper";
@@ -14,7 +18,7 @@ function ReasonModal() {
   const navigate = useNavigate();
   const [reason, setReason] = useState();
   const handleClosePopup = () => {
-    dispatch(SetpopupReducerData({ modalType: "REASON", reasonModal: false }));
+    dispatch(reSetPopupReducerData());
   };
   const handleProcess = async () => {
     try {
@@ -70,12 +74,20 @@ function ReasonModal() {
         keyboard={false}
         style={{ backdropFilter: "blur(5px)" }}
       >
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
         <Modal.Body className="p-5">
-          <div className="">
-            <p style={{ paddingLeft: "11rem", fontWeight: "600" }}>
+          <div className="my-3">
+            <h3
+              className="card-title text-center"
+              // style={{ paddingLeft: "11rem", fontWeight: "600" }}
+            >
               Please fill the reason of rejection
+            </h3>
+            <p className="card-text text-center">
+              Please write your reason in the field below
             </p>
-            <p>Please write your reason in the field below</p>
           </div>
           <div>
             <textarea
@@ -89,6 +101,7 @@ function ReasonModal() {
             />
           </div>
           <div
+            style={{ marginTop: "100px" }}
             className={`d-flex align-items-center justify-content-around pt-4 ${"saveBtn"}`}
           >
             <button onClick={handleClosePopup}>Cancel</button>

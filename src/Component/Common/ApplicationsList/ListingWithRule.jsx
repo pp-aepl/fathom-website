@@ -25,7 +25,7 @@ function ListingWithRule({
                 {listingData?.[0]?.rules?.map((ele, index) => (
                   <th scope="col">Rule {index + 1}</th>
                 ))}
-                <th>Action</th>
+                {/* <th>Action</th> */}
               </tr>
             </thead>
             <tbody>
@@ -78,7 +78,7 @@ function ListingWithRule({
                           </td>
                         </>
                       ))}
-                      <td>
+                      {/* <td>
                         <a
                           href={ele?.murbaha_url}
                           target="_blank"
@@ -87,7 +87,7 @@ function ListingWithRule({
                             View
                           </button>
                         </a>
-                      </td>
+                      </td> */}
                     </tr>
                   ))
                 : ""}

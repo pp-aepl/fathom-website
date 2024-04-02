@@ -2,10 +2,7 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  SetpopupReducerData,
-  reSetPopupReducerData,
-} from "../../store/reducer";
+import { reSetPopupReducerData } from "../../store/reducer";
 
 function LoginValidationModal() {
   const dispatch = useDispatch();
@@ -42,7 +39,7 @@ function LoginValidationModal() {
                   ? "../../images/success.png"
                   : "../../images/icon1.png"
               }
-             style={{width:"10vw"}}
+              style={{ width: "10vw" }}
             />
           </div>
           <div className="my-3 text-center">
