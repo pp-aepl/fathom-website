@@ -52,7 +52,6 @@ function ProceedModal() {
         //     })
         //   );
         // }, 2000);
-        navigate("/admin/application/inProcess");
         dispatch(
           SetpopupReducerData({
             ...PopupReducer?.modal,
@@ -60,6 +59,7 @@ function ProceedModal() {
             showModal: false,
           })
         );
+        navigate("/admin/application/inProcess");
       } else {
       }
     } catch (error) {

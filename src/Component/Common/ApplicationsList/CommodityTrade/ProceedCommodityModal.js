@@ -19,8 +19,7 @@ function ProceedCommodityModal() {
     dispatch(reSetPopupReducerData());
   };
 
-  const navigateToAgreement = (item) => {
-    navigate("/admin/application/murabaha");
+  const navigateToAgreement = () => {
     dispatch(
       SetpopupReducerData({
         ...PopupReducer?.modal,
@@ -62,7 +61,7 @@ function ProceedCommodityModal() {
             style={{ marginTop: "100px" }}
           >
             <button
-              onClick={(e) => navigateToAgreement(e, "commodity")}
+              onClick={(e) => navigateToAgreement(e)}
               className="login100-form-btn"
             >
               Continue

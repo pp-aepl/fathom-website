@@ -95,6 +95,7 @@ function SentList() {
     startDate: "",
     endDate: "",
     periodFrom: "",
+    channel: "",
   });
 
   const handleChangeCheckBox = (e, id) => {
@@ -164,7 +165,6 @@ function SentList() {
       };
       const data = await dispatch(fetchApplicationList(payload, filterKey));
       if (data?.status || data?.status === "true") {
-        console.log(data, "dattt");
         setArrList(data?.results);
       } else {
         setArrList([...dummyList]);
@@ -201,12 +201,16 @@ function SentList() {
                   </div> */}
                   <select
                     className="form-select p-3"
-                    name="action"
-                    value={action}
-                    onChange={handleSelectFilter}
+                    name="channel"
+                    value={filterKey?.channel}
+                    onChange={(e) =>
+                      setFilterKey({
+                        ...filterKey,
+                        channel: e.target.value,
+                      })
+                    }
                   >
-                    <option value={""}>Select</option>
-                    <option value={"ALL"}>All</option>
+                    <option value={""}>All</option>
                     <option value="Digital Signature">Digital Signature</option>
                     <option value="Paper Print">Paper Print</option>
                   </select>
@@ -294,15 +298,13 @@ function SentList() {
                     <th scope="col">Date</th>
                     <th scope="col">Application no.</th>
                     <th scope="col">Channel</th>
-
                     <th scope="col">Status</th>
-
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {arrList?.map((item, index) => (
-                    <tr>
+                    <tr key={item._id}>
                       <td>
                         <div className="form-check">
                           <input

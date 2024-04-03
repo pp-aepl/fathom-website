@@ -1310,6 +1310,7 @@ input:-moz-placeholder {
   color: #363b46;
   font-weight: normal;
   font-family: "Inter Tight", sans-serif;
+  padding: 5px;
 }
 .nav__logout {
   margin-top: 5rem;

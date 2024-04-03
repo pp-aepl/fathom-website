@@ -158,7 +158,7 @@ function Login() {
                         <>
                           <img
                             className="scanQr_code"
-                            src="../../images/qrImage.png"
+                            src="../../../images/qrImage.png"
                             alt=""
                             width={90}
                           />

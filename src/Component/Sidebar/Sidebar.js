@@ -307,9 +307,9 @@ function Sidebar({ showMenu, setShowMenu }) {
                           />
                         </svg>
                         <Link
-                          to="/admin/application/sent"
+                          to="/admin/application/sent/response"
                           className={`nav__link mx-2 ${
-                            pathname?.includes("sent") ? "activeLink" : ""
+                            pathname?.includes("response") ? "activeLink" : ""
                           }`}
                         >
                           <span className={"nav__name"}>

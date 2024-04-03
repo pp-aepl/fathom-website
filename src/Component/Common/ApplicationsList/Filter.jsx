@@ -2,7 +2,7 @@ import moment from "moment";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 
-function Filter({ filterKey, setFilterKey }) {
+function Filter({ filterKey, setFilterKey, hideSearch = false }) {
   const [dateFrom, setDateFrom] = useState();
   const [dateTo, setDateTo] = useState();
 
@@ -25,8 +25,8 @@ function Filter({ filterKey, setFilterKey }) {
     }
 
     setFilterKey({ ...filterKey, periodFrom: date, period: val });
-    setDateFrom("")
-    setDateTo("")
+    setDateFrom("");
+    setDateTo("");
   };
   const handleChangeDate = (e) => {
     let { name, value } = e;
@@ -42,7 +42,7 @@ function Filter({ filterKey, setFilterKey }) {
   };
   return (
     <>
-      <div className="col-md-3 px-4">
+      <div className={`${hideSearch ? "col-md-4" : "col-md-3"} px-4`}>
         <label className="label">Filter</label>
         <select
           className="form-select p-3"
@@ -56,27 +56,31 @@ function Filter({ filterKey, setFilterKey }) {
           <option value="month">Last month</option>
         </select>
       </div>
-      <div className="col-3">
-        <label className="label">Search Applications</label>
-        <div className="form-group has-search">
-          {/* <span className="fa fa-search form-control-feedback"></span> */}
-          <input
-            type="text"
-            className="form-control p-3"
-            name="serial_number"
-            value={filterKey.serial_number}
-            inputMode="numeric"
-            placeholder="Search..."
-            onChange={(e) =>
-              setFilterKey({
-                ...filterKey,
-                serial_number: e.target.value,
-              })
-            }
-          />
+      {hideSearch ? (
+        ""
+      ) : (
+        <div className="col-3">
+          <label className="label">Search Applications</label>
+          <div className="form-group has-search">
+            {/* <span className="fa fa-search form-control-feedback"></span> */}
+            <input
+              type="text"
+              className="form-control p-3"
+              name="serial_number"
+              value={filterKey.serial_number}
+              inputMode="numeric"
+              placeholder="Search..."
+              onChange={(e) =>
+                setFilterKey({
+                  ...filterKey,
+                  serial_number: e.target.value,
+                })
+              }
+            />
+          </div>
         </div>
-      </div>
-      <div className="col-3 ">
+      )}
+      <div className={`${hideSearch ? "col-md-4" : "col-md-3"} px-4`}>
         <label className="label">Date from</label>
         <DatePicker
           selected={dateFrom}
@@ -90,7 +94,7 @@ function Filter({ filterKey, setFilterKey }) {
           placeholderText="Select start date"
         />
       </div>
-      <div className="col-3 ">
+      <div className={`${hideSearch ? "col-md-4" : "col-md-3"} px-4`}>
         <label className="label">Date to</label>
         <DatePicker
           minDate={dateFrom}
