@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/alt-text */
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   SetloaderData,
@@ -11,10 +12,12 @@ import { useNavigate } from "react-router-dom";
 import ProceedModal from "./ProceedModal";
 import { API } from "../../apiwrapper";
 import { apiURl } from "../../store/actions";
+import { fetchAgentData } from "../../Config/FetchListingData";
 
 function AgentModal() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [agentData, setAgentData] = useState({});
 
   const { PopupReducer } = useSelector((state) => state);
   const {
@@ -67,6 +70,24 @@ function AgentModal() {
     await handleProcess();
   };
 
+  const fetchDetails = useCallback(async () => {
+    try {
+      const data = await dispatch(fetchAgentData());
+      // if (data?.status || data?.status === "true") {
+        let obj=data?.results?.[0]
+        console.log(obj,"obj");
+        setAgentData(obj);
+      // } else {
+      //   setAgentData({});
+      // }
+    } catch (error) {
+      console.log(error, "error");
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchDetails();
+  }, [fetchDetails]);
   return (
     <>
       {proceedModal && <ProceedModal />}
@@ -93,10 +114,10 @@ function AgentModal() {
           <div className="mt-5">
             <img
               className="agent_avatar rounded-circle mt-5"
-              src="../../images/agent.jpeg"
+              src={agentData?.profilePic ?? "../../images/agent.jpeg"}
             />
             <h4 className="mt-3 text-center" style={{ fontWeight: "600" }}>
-              Anbin Lukman
+              {agentData?.agent_name ?? "User"}
             </h4>
             <p className="mt-2 card-text text-center">Agent</p>
           </div>

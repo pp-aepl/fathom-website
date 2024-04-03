@@ -45,7 +45,7 @@ function App() {
     } catch (error) {
       console.log(error, "error");
     }
-  }, [authUser?.data,dispatch]);
+  }, [authUser?.data, dispatch]);
   useEffect(() => {
     if (authUser?.data?._id) {
       fetchListingData();
@@ -76,6 +76,7 @@ function App() {
             <Route path="application/inProcess" element={<InprocessList />} />
             <Route path="application/murabaha" element={<MurabahaList />} />
             <Route path="application/sent" element={<SentList />} />
+            <Route path="application/sent/response" element={<SentList />} />
             <Route path="application/commodity" element={<CommodityList />} />
             <Route path="reports/:reportList" element={<ReportList />} />
             <Route index element={<Navigate to="dashboard" replace />} />

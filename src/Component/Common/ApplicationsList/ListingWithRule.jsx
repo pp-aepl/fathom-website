@@ -80,7 +80,7 @@ function ListingWithRule({
                       ))}
                       {/* <td>
                         <a
-                          href={ele?.murbaha_url}
+                          href={ele?.imported_url}
                           target="_blank"
                         >
                           <button className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills">

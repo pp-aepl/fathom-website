@@ -360,7 +360,11 @@ function NewList() {
               </div>
               <div className="col-7">
                 <div className="row ">
-                  <Filter filterKey={filterKey} setFilterKey={setFilterKey} />
+                  <Filter
+                    filterKey={filterKey}
+                    setFilterKey={setFilterKey}
+                    hideSearch={true}
+                  />
                 </div>
               </div>
 
@@ -400,6 +404,15 @@ function NewList() {
               type="text"
               className="form-control p-2 border-start-0"
               placeholder="Search"
+              name="serial_number"
+              value={filterKey.serial_number}
+              inputMode="numeric"
+              onChange={(e) =>
+                setFilterKey({
+                  ...filterKey,
+                  serial_number: e.target.value,
+                })
+              }
             ></input>
           </div>
           <div className="">

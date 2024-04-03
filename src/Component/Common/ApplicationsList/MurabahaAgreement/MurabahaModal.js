@@ -8,10 +8,13 @@ import {
 } from "../../../../store/reducer";
 import { API } from "../../../../apiwrapper";
 import { apiURl } from "../../../../store/actions";
+import { useNavigate } from "react-router-dom";
+
 function MurabahaModal() {
   const dispatch = useDispatch();
   const { PopupReducer, Loader } = useSelector((state) => state);
   const { showModal = false, selectedApplication = [] } = PopupReducer?.modal;
+  const navigate = useNavigate();
 
   const [isGenerated, setIsGenerated] = useState(false);
 
@@ -34,6 +37,7 @@ function MurabahaModal() {
 
       if (data?.status || data?.status === "true") {
         setIsGenerated(true);
+        navigate("/admin/application/murabaha");
       } else {
       }
     } catch (error) {
@@ -70,7 +74,8 @@ function MurabahaModal() {
                 isGenerated
                   ? "../../images/success.png"
                   : "../../images/murabaha_circle.png"
-              } style={{ height: "120px" }}
+              }
+              style={{ height: "120px" }}
             />
           </div>
           <div className="">
