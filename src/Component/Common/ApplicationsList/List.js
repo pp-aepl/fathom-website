@@ -141,7 +141,8 @@ function List({ id }) {
                                       style={{
                                         color:
                                           item?.showStatus === "APPROVED" ||
-                                          (fetchParams === "completed" &&
+                                          ((fetchParams === "completed" ||
+                                            item?.showStatus === "Completed") &&
                                             fetchParams !== "rejected")
                                             ? "#29CC6A"
                                             : item?.showStatus === "Reject" ||

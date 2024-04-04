@@ -23,67 +23,12 @@ function MurabahaList() {
     proceedModal = false,
   } = PopupReducer?.modal;
 
-  const [dummyList, setDummyList] = useState([
-    {
-      date: new Date(),
-      app_name: "220872-00",
-      name: "Nolan Levin",
-      email: "nolan@gmail.com",
-    },
-    {
-      date: new Date(),
-      app_name: "220873-00",
-      name: "Aaeesha Mohamed ",
-      channel: true,
-    },
-    {
-      app_name: "220874-00",
-      name: "Jaydon Calzoni",
-      email: "jaydon@yahoo.com",
-      date: new Date(),
-    },
-    {
-      app_name: "220875-00",
-      name: "Maadhav Nazar ",
-      channel: true,
-      date: new Date(),
-    },
-    {
-      app_name: "220876-00",
-      name: "Emerson Vetrovs",
-      email: "emerson@gmail.com",
-      date: new Date(),
-    },
-    {
-      app_name: "220877-00",
-      name: "Haajar Rahman",
-      channel: true,
-      date: new Date(),
-    },
-    {
-      app_name: "220878-00",
-      name: "Marcus Lipshutz",
-      email: "marcus@yahoo.com",
-      date: new Date(),
-    },
-    {
-      app_name: "220879-00",
-      name: "Zaire Culhane",
-      channel: true,
-      date: new Date(),
-    },
-    {
-      app_name: "220880-00",
-      name: "Saadiq Yousuf ",
-      email: "saadiq@gmail.com",
-      date: new Date(),
-    },
-  ]);
+ 
   const handleProcess = async () => {
     try {
       let payload = {
         ids: selectedApplication,
-        status: "AWAITING_DIGITAL_SINGNATURE",
+        status: "AWAITING_DIGITAL_SIGNATURE",
       };
       dispatch(SetloaderData(true));
       const data = await API({
@@ -164,7 +109,7 @@ function MurabahaList() {
         console.log(data, "dattt");
         setArrList(data?.results);
       } else {
-        setArrList([...dummyList]);
+        setArrList([]);
       }
     } catch (error) {
       console.log(error, "error");

@@ -15,9 +15,12 @@ function CommodityList() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { PopupReducer } = useSelector((state) => state);
-  const { proceedModal = false } = PopupReducer?.modal;
-  const { successModal = false } = PopupReducer?.modal;
-  const { disbursedModal = false } = PopupReducer?.modal;
+  const {
+    proceedModal = false,
+    successModal = false,
+    disbursedModal = false,
+  } = PopupReducer?.modal;
+
   const commodityType = PopupReducer?.modal?.type; // COMIDITYAGENT
 
   // const [arrList, setArrList] = useState([
@@ -62,17 +65,6 @@ function CommodityList() {
   // ]);
 
   // navigate to agreement
-  const navigateToAgreement = (e) => {
-    e.preventDefault();
-    // dispatch(SetpopupReducerData({ modalType: "PROCEED", proceedModal: true,type:'COMIDITYAGENT'}));
-    if (selectedApplication?.length === 0) {
-      alert("Please select application to proceed.");
-      return;
-    }
-    dispatch(
-      SetpopupReducerData({ modalType: "DISBURSED", disbursedModal: true })
-    );
-  };
 
   const [arrList, setArrList] = useState([]);
   const [selectedApplication, setSelectedApplication] = useState([]);
@@ -98,10 +90,29 @@ function CommodityList() {
     }
     setSelectedApplication(arr);
   };
+
+  const navigateToAgreement = (e) => {
+    e.preventDefault();
+    // dispatch(SetpopupReducerData({ modalType: "PROCEED", proceedModal: true,type:'COMIDITYAGENT'}));
+    if (arrList?.length === 0) {
+      alert("There are no application to proceed.");
+      return;
+    }
+    let arr = arrList?.map((ele) => ele._id);
+    setSelectedApplication(arr);
+    dispatch(
+      SetpopupReducerData({
+        selectedApplication: arr,
+        modalType: "DISBURSED",
+        disbursedModal: true,
+      })
+    );
+  };
+
   const fetchListingData = useCallback(async () => {
     try {
       let payload = {
-        status: "AWAITING_WELCOME_LETTER_ISSUE",
+        status: "AWAITING_WELCOME_LETTER",
         ...filterKey,
       };
       const data = await dispatch(fetchApplicationList(payload, filterKey));
@@ -166,7 +177,7 @@ function CommodityList() {
                 <table className="table">
                   <thead className="thead-light">
                     <tr>
-                      <th scope="col"> </th>
+                      {/* <th scope="col"> </th> */}
                       <th scope="col" className="ps-4">
                         S.No.{" "}
                       </th>
@@ -178,7 +189,7 @@ function CommodityList() {
                   <tbody>
                     {arrList?.map((item, index) => (
                       <tr className="pointer">
-                        <td>
+                        {/* <td>
                           <div className="form-check">
                             <input
                               className="form-check-input"
@@ -191,7 +202,7 @@ function CommodityList() {
                               }
                             />
                           </div>
-                        </td>
+                        </td> */}
                         <td className="ps-4">{index + 1}</td>
                         <td>{item?.name_as_per_passport}</td>
                         <td>{item?.serial_number}</td>

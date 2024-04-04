@@ -14,72 +14,6 @@ function ReportList() {
   const fetchParams = params?.reportList;
   console.log(fetchParams, "====>7");
 
-  const [dummyList, setDummyList] = useState([
-    {
-      date: new Date(),
-      serial_number: "220872-00",
-      name_as_per_passport: "Nolan Levin",
-      mobileNo: "+1 4785 4587 451",
-      status: "Error",
-    },
-    {
-      date: new Date(),
-      serial_number: "220873-00",
-      name_as_per_passport: "Aaeesha Mohamed ",
-      mobileNo: "+1 4785 4587 451",
-      status: "Pending",
-    },
-    {
-      serial_number: "220874-00",
-      name_as_per_passport: "Jaydon Calzoni",
-      email: "jaydon@yahoo.com",
-      date: new Date(),
-      mobileNo: "+1 4785 4587 451",
-      status: "Pending",
-    },
-    {
-      serial_number: "220875-00",
-      name_as_per_passport: "Maadhav Nazar ",
-      mobileNo: "+1 4785 4587 451",
-      date: new Date(),
-      status: "Error",
-    },
-    {
-      serial_number: "220876-00",
-      name_as_per_passport: "Emerson Vetrovs",
-      mobileNo: "+1 4785 4587 451",
-      date: new Date(),
-      status: "Error",
-    },
-    {
-      serial_number: "220877-00",
-      name_as_per_passport: "Haajar Rahman",
-      mobileNo: "+1 4785 4587 451",
-      date: new Date(),
-      status: "Pending",
-    },
-    {
-      serial_number: "220878-00",
-      name_as_per_passport: "Marcus Lipshutz",
-      mobileNo: "+1 4785 4587 451",
-      date: new Date(),
-      status: "Pending",
-    },
-    {
-      serial_number: "220879-00",
-      name_as_per_passport: "Zaire Culhane",
-      mobileNo: "+1 4785 4587 451",
-      date: new Date(),
-      status: "Pending",
-    },
-    {
-      serial_number: "220880-00",
-      name_as_per_passport: "Saadiq Yousuf ",
-      mobileNo: "+1 4785 4587 451",
-      date: new Date(),
-      status: "Error",
-    },
-  ]);
   const [arrList, setArrList] = useState([]);
   const [selectedApplication, setSelectedApplication] = useState([]);
   const [action, setAction] = useState("");
@@ -140,7 +74,7 @@ function ReportList() {
         console.log(data, "dattt");
         setArrList(data?.results);
       } else {
-        setArrList([...dummyList]);
+        setArrList([]);
       }
     } catch (error) {
       console.log(error, "error");
@@ -311,10 +245,7 @@ function ReportList() {
                           <td style={{ color: "#29CC6A" }}>Disbursed</td>
                         )}
                         <td>
-                          <a
-                            href={item?.murbaha_url}
-                            target="_blank"
-                          >
+                          <a href={item?.murbaha_url} target="_blank">
                             <button className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills">
                               View
                             </button>
