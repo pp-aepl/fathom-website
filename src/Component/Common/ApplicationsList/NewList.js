@@ -1,14 +1,12 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState, useRef, useCallback, useEffect } from "react";
-import DatePicker from "react-datepicker";
+import React, { useState, useCallback, useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
-import DataTable from "react-data-table-component";
-import { useNavigate, useParams } from "react-router-dom";
+
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { SetpopupReducerData, createType } from "../../../store/reducer/index";
-import ProceedModal from "../../PopupModal/ProceedModal";
+import { SetpopupReducerData } from "../../../store/reducer/index";
 import RejectModal from "../../PopupModal/RejectModal";
 import ReasonModal from "../../PopupModal/ReasonModal";
 import ExceptionModal from "../../PopupModal/ExceptionModal";
@@ -16,76 +14,24 @@ import SuccessfullyModal from "../../PopupModal/SuccessfullyModal";
 import Rules from "./Rules";
 import Filter from "./Filter";
 import { fetchApplicationList } from "../../../Config/FetchListingData";
-import moment from "moment";
 import ListingWithRule from "./ListingWithRule";
 
 function NewList() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [showAddMore, setShowAddMore] = useState(false);
-  const [gatewayid, setGatewayid] = useState(null);
-  const [gatedata, setGatedata] = useState({});
+
   const [currentPage, setCurrentPage] = useState(1); //page
   const [perPage, setPerPage] = useState(30); //limit
-  const [totalRows, setTotalRows] = useState(0);
-  const [selectedStartdate, setSelectedStartdate] = useState("");
-  const [selectedEnddate, setSelectedEnddate] = useState("");
+
   const { PopupReducer } = useSelector((state) => state);
-  const { proceedModal = false } = PopupReducer?.modal;
-  const { rejectModal = false } = PopupReducer?.modal;
-  const { reasonModal = false } = PopupReducer?.modal;
-  const { exceptionModal = false } = PopupReducer?.modal;
-  const { successModal = false } = PopupReducer?.modal;
+  const {
+    rejectModal = false,
+    reasonModal = false,
+    exceptionModal = false,
+    successModal = false,
+  } = PopupReducer?.modal;
+
   const [showRules, setShowRules] = useState(false);
-
-  const [transactionDetails, setTransactionDetails] = useState({});
-  const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
-  //for download file
-  const [dateRange, setDateRange] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: "selection",
-    },
-  ]);
-
-  const [Transactions, setTransactions] = useState([]);
-
-  // filter
-  const startDateFilter = (event) => {
-    setSelectedStartdate(event);
-    // fetchTransactionListing(event, "startDate");
-  };
-  const endDateFilter = (event) => {
-    setSelectedEnddate(event);
-    // fetchTransactionListing(event, "endDate");
-  };
-
-  const showModalInter = (id) => {
-    setGatewayid(id);
-    setShowAddMore(true);
-  };
-
-  //pagination
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-  const handlePerRowsChange = async (perPage, page) => {
-    setPerPage(perPage);
-    setCurrentPage(page);
-  };
-
-  // transaction details
-  // const handelTransaction = (row) => {
-  //   dispatch(createType(fetchParams));
-  //   navigate("/admin/add");
-  //   setTransactionDetails(row);
-  // };
-
-  // filter functionality
 
   const statuses = ["active", "inactive"];
 
@@ -289,7 +235,21 @@ function NewList() {
       );
     }
   };
+  const setRuleApplication = (data) => {
+    let arr = [];
+    if (filterKey?.rule !== "") {
+      arr = data?.map((ele) => ele?._id);
+    }
+    setSelectedApplication(arr);
+  };
 
+  const handleChangeRule = (e) => {
+    setFilterKey({
+      ...filterKey,
+      rule: !e.target.value ? "" : e.target.value === "true" ? true : false,
+      pageNo: 1,
+    });
+  };
   const fetchListingData = useCallback(async () => {
     try {
       let payload = {
@@ -298,7 +258,8 @@ function NewList() {
       };
       const data = await dispatch(fetchApplicationList(payload, filterKey));
       if (data?.status || data?.status === "true") {
-        console.log(data, "dattt");
+        setRuleApplication(data?.results);
+
         setArrList(data?.results);
       } else {
         setArrList([]);
@@ -341,17 +302,7 @@ function NewList() {
                   className="form-select p-3"
                   name="period"
                   value={filterKey?.rule}
-                  onChange={(e) =>
-                    setFilterKey({
-                      ...filterKey,
-                      rule: !e.target.value
-                        ? ""
-                        : e.target.value === "true"
-                        ? true
-                        : false,
-                      pageNo: 1,
-                    })
-                  }
+                  onChange={handleChangeRule}
                 >
                   <option value={""}>Select</option>
                   <option value={true}>Pass</option>

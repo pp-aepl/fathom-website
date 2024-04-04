@@ -8,7 +8,7 @@ import {
   reSetPopupReducerData,
 } from "../../store/reducer";
 import { Modal } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ProceedModal from "./ProceedModal";
 import { API } from "../../apiwrapper";
 import { apiURl } from "../../store/actions";
@@ -18,7 +18,8 @@ function AgentModal() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [agentData, setAgentData] = useState({});
-
+  const location = useLocation();
+  const pathArr = location.pathname.split("/");
   const { PopupReducer } = useSelector((state) => state);
   const {
     showModal = false,
@@ -34,8 +35,11 @@ function AgentModal() {
     try {
       let payload = {
         ids: selectedApplication,
-        status: "COMPLETED",
-        showStatus: "Completed",
+        status:
+          pathArr?.[pathArr?.length - 1] === "sent"
+            ? "AWAITING_AGENT_RESPONSE"
+            : "AWAITING_WELCOME_LETTER",
+        showStatus: "",
       };
       dispatch(SetloaderData(true));
       const data = await API({
@@ -46,7 +50,11 @@ function AgentModal() {
 
       if (data?.status || data?.status === "true") {
         setTimeout(() => {
-          navigate("/admin/application/commodity");
+          let path =
+            pathArr?.[pathArr?.length - 1] === "sent"
+              ? "/admin/application/sent/response"
+              : "/admin/application/commodity";
+          navigate(path);
           dispatch(
             SetpopupReducerData({
               ...PopupReducer?.modal,
@@ -74,9 +82,9 @@ function AgentModal() {
     try {
       const data = await dispatch(fetchAgentData());
       // if (data?.status || data?.status === "true") {
-        let obj=data?.results?.[0]
-        console.log(obj,"obj");
-        setAgentData(obj);
+      let obj = data?.results?.[0];
+      console.log(obj, "obj");
+      setAgentData(obj);
       // } else {
       //   setAgentData({});
       // }

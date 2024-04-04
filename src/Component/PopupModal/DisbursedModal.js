@@ -2,29 +2,58 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { reSetPopupReducerData } from "../../store/reducer";
-import { Modal } from "react-bootstrap";
+import { SetloaderData, reSetPopupReducerData } from "../../store/reducer";
+import { Modal, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { API } from "../../apiwrapper";
+import { apiURl } from "../../store/actions";
 
 function DisbursedModal() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { PopupReducer } = useSelector((state) => state);
-  const { disbursedModal = false } = PopupReducer?.modal;
+  const { PopupReducer, Loader } = useSelector((state) => state);
+  const { disbursedModal = false, selectedApplication = [] } =
+    PopupReducer?.modal;
   const [sendSuccessfully, setSendSuccessfully] = useState(false);
+  const [channel, setChannel] = useState("");
 
   const handleClosePopup = () => {
     dispatch(reSetPopupReducerData());
   };
 
-  // update create api
+  const handleProcess = async () => {
+    try {
+      let payload = {
+        ids: selectedApplication,
+        status: "WELCOME_LETTER_ISSUED",
+        channel: channel,
+        showStatus: "Completed",
+      };
+      dispatch(SetloaderData(true));
+      const data = await API({
+        url: `${apiURl.applications}`,
+        method: "PUT",
+        body: payload,
+      });
+
+      if (data?.status || data?.status === "true") {
+        setSendSuccessfully(true);
+      } else {
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch(SetloaderData(false));
+    }
+  };
   const onSubmit = async (e, typeSubmit) => {
     e.preventDefault();
     if (typeSubmit === "HOME") {
       handleClosePopup();
+      navigate("/admin/application/completed");
     } else {
-      setSendSuccessfully(true);
+      handleProcess();
     }
   };
 
@@ -72,11 +101,13 @@ function DisbursedModal() {
                     <input
                       className="form-check-input"
                       type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio1"
-                      value="option1"
+                      id="Email"
+                      name="channel"
+                      value="Email"
+                      checked={channel === "Email"}
+                      onChange={(e) => setChannel(e.target.value)}
                     />
-                    <label className="form-check-label" for="inlineRadio1">
+                    <label className="form-check-label" htmlFor="Email">
                       Through Email
                     </label>
                   </div>
@@ -86,11 +117,13 @@ function DisbursedModal() {
                     <input
                       className="form-check-input"
                       type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio2"
-                      value="option1"
+                      id="Vendor"
+                      name="channel"
+                      value="Vendor"
+                      checked={channel === "Vendor"}
+                      onChange={(e) => setChannel(e.target.value)}
                     />
-                    <label className="form-check-label" for="inlineRadio2">
+                    <label className="form-check-label" htmlFor="Vendor">
                       Send to the vendor for printing and courier
                     </label>
                   </div>
@@ -115,8 +148,9 @@ function DisbursedModal() {
             <button
               style={{ minWidth: "-webkit-fill-available" }}
               onClick={(e) => onSubmit(e, "SEND")}
+              disabled={Loader?.data || false}
             >
-              Send
+              {Loader?.data ? <Spinner /> : "Send"}
             </button>
           )}
         </div>

@@ -10,78 +10,15 @@ import SuccessfullyModal from "../../../PopupModal/SuccessfullyModal";
 import { fetchApplicationList } from "../../../../Config/FetchListingData";
 import DatePicker from "react-datepicker";
 import moment from "moment";
+import { useLocation } from "react-router-dom";
 
 function SentList() {
   const dispatch = useDispatch();
   const { PopupReducer } = useSelector((state) => state);
   const { exceptionModal = false, successModal = false } = PopupReducer?.modal;
-
-  const [dummyList, setDummyList] = useState([
-    {
-      CRN_NO: "220872-00",
-      currentDate: new Date(),
-      channel: true,
-      rules: "5 / 7",
-      status: "Digital Signature",
-    },
-    {
-      CRN_NO: "220873-00",
-      currentDate: new Date(),
-      channel: true,
-      rules: "5 / 7",
-      status: "Paper Print",
-    },
-    {
-      CRN_NO: "220874-00",
-      currentDate: new Date(),
-      channel: true,
-      rules: "5 / 7",
-      status: "Digital Signature",
-    },
-    {
-      CRN_NO: "220875-00",
-      currentDate: new Date(),
-      channel: true,
-      rules: "5 / 7",
-      status: "Digital Signature",
-    },
-    {
-      CRN_NO: "220876-00",
-      currentDate: new Date(),
-      channel: true,
-      rules: "5 / 7",
-      status: "Paper Print",
-    },
-    {
-      CRN_NO: "220877-00",
-      currentDate: new Date(),
-      channel: true,
-      rules: "5 / 7",
-      status: "Paper Print",
-    },
-    {
-      CRN_NO: "220878-00",
-      currentDate: new Date(),
-      channel: true,
-      rules: "5 / 7",
-      status: "Paper Print",
-    },
-    {
-      CRN_NO: "220879-00",
-      currentDate: new Date(),
-      channel: true,
-      rules: "5 / 7",
-      status: "Digital Signature",
-    },
-    {
-      CRN_NO: "220880-00",
-      currentDate: new Date(),
-      channel: true,
-      rules: "5 / 7",
-      status: "Digital Signature",
-    },
-  ]);
-
+  const location = useLocation();
+  const pathArr = location.pathname.split("/");
+ 
   // update create api
 
   const [arrList, setArrList] = useState([]);
@@ -160,14 +97,17 @@ function SentList() {
   const fetchListingData = useCallback(async () => {
     try {
       let payload = {
-        status: "AWAITING_AGENT_APPOINTMENT",
+        status:
+          pathArr[pathArr?.length - 1] === "sent"
+            ? "AWAITING_DIGITAL_SIGNATURE"
+            : "AWAITING_AGENT_RESPONSE",
         ...filterKey,
       };
       const data = await dispatch(fetchApplicationList(payload, filterKey));
       if (data?.status || data?.status === "true") {
         setArrList(data?.results);
       } else {
-        setArrList([...dummyList]);
+        setArrList([]);
       }
     } catch (error) {
       console.log(error, "error");

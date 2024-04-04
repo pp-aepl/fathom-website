@@ -235,7 +235,9 @@ function Sidebar({ showMenu, setShowMenu }) {
                         <Link
                           to="/admin/application/sent"
                           className={`nav__link mx-2 ${
-                            pathname?.includes("sent") ? "activeLink" : ""
+                            pathname?.[pathname?.length - 1] === "sent"
+                              ? "activeLink"
+                              : ""
                           }`}
                         >
                           <span className={"nav__name"}>
@@ -309,7 +311,9 @@ function Sidebar({ showMenu, setShowMenu }) {
                         <Link
                           to="/admin/application/sent/response"
                           className={`nav__link mx-2 ${
-                            pathname?.includes("response") ? "activeLink" : ""
+                            pathname?.[pathname?.length - 1] === "response"
+                              ? "activeLink"
+                              : ""
                           }`}
                         >
                           <span className={"nav__name"}>
