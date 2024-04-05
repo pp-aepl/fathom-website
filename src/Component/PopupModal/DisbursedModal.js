@@ -17,12 +17,17 @@ function DisbursedModal() {
     PopupReducer?.modal;
   const [sendSuccessfully, setSendSuccessfully] = useState(false);
   const [channel, setChannel] = useState("");
+  const [error, setError] = useState("");
 
   const handleClosePopup = () => {
     dispatch(reSetPopupReducerData());
   };
 
   const handleProcess = async () => {
+    if (!channel) {
+      setError("Please select channel");
+      return;
+    }
     try {
       let payload = {
         ids: selectedApplication,
@@ -128,6 +133,7 @@ function DisbursedModal() {
                     </label>
                   </div>
                 </div>
+                {error ? <span className="text-danger">{error}</span> : ""}
               </div>
             </div>
           )}
