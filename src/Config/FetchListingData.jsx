@@ -155,12 +155,38 @@ export const getDashboardGraphData =
       dispatch(SetloaderData(false));
     }
   };
+
   export const fetchAgentData =
   (body = {}, query = {}) =>
   async (dispatch) => {
     try {
       dispatch(SetloaderData(true));
       let url = `/v1/admin/agent/list`;
+      if (query) {
+        const searchString = makeSearchString(query);
+        url = searchString ? `${url}?${searchString}` : url;
+      }
+      const data = await API({
+        url: url,
+        method: "POST",
+        body: { ...body },
+      });
+      console.log(data);
+      return data;
+    } catch (error) {
+      throw error;
+    } finally {
+      dispatch(SetloaderData(false));
+    }
+  };
+
+  
+  export const fetchUpdate =
+  (body = {}, query = {}) =>
+  async (dispatch) => {
+    try {
+      dispatch(SetloaderData(true));
+      let url = `/v1/common/checkupdate`;
       if (query) {
         const searchString = makeSearchString(query);
         url = searchString ? `${url}?${searchString}` : url;

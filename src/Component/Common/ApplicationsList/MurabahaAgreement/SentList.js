@@ -7,7 +7,10 @@ import { SetpopupReducerData } from "../../../../store/reducer";
 import { useDispatch, useSelector } from "react-redux";
 import ExceptionModal from "../../../PopupModal/ExceptionModal";
 import SuccessfullyModal from "../../../PopupModal/SuccessfullyModal";
-import { fetchApplicationList } from "../../../../Config/FetchListingData";
+import {
+  fetchApplicationList,
+  fetchUpdate,
+} from "../../../../Config/FetchListingData";
 import DatePicker from "react-datepicker";
 import moment from "moment";
 import { useLocation } from "react-router-dom";
@@ -18,7 +21,7 @@ function SentList() {
   const { exceptionModal = false, successModal = false } = PopupReducer?.modal;
   const location = useLocation();
   const pathArr = location.pathname.split("/");
- 
+
   // update create api
 
   const [arrList, setArrList] = useState([]);
@@ -78,6 +81,14 @@ function SentList() {
       })
     );
   };
+  const callUpdateApi = async (arr) =>
+    Promise.all(
+      arr?.map(async (ele) => {
+        let payload = { contractId: "33e3c3b6-a7e1-4b3d-9bd9-7ee2d123cfc2" };
+        let resp = await dispatch(fetchUpdate(payload));
+        return resp;
+      })
+    );
 
   const onUpdate = async (e) => {
     e.preventDefault();
@@ -85,15 +96,30 @@ function SentList() {
       alert("Please select application to proceed.");
       return;
     }
+    let resp = await callUpdateApi(selectedApplication);
+    console.log(resp, "resp");
+    let falseIndex = resp?.findIndex((ele) => ele.status === false);
+    if (falseIndex >= 0) {
+      alert(resp[falseIndex].data);
+    } else {
+      dispatch(
+        SetpopupReducerData({
+          modalType: "MURABAHA_SUCCESS",
+          showModal: true,
+          action: "UPDATE",
+        })
+      );
+    }
+  };
+  const handleView = (url) => {
     dispatch(
       SetpopupReducerData({
-        modalType: "MURABAHA_SUCCESS",
+        modalType: "OPEN_DOC",
         showModal: true,
-        action: "UPDATE",
+        docPdf: url,
       })
     );
   };
-
   const fetchListingData = useCallback(async () => {
     try {
       let payload = {
@@ -103,6 +129,7 @@ function SentList() {
             : "AWAITING_AGENT_RESPONSE",
         ...filterKey,
       };
+
       const data = await dispatch(fetchApplicationList(payload, filterKey));
       if (data?.status || data?.status === "true") {
         setArrList(data?.results);
@@ -213,7 +240,7 @@ function SentList() {
                 <div className={`d-flex align-items-center  pt-4 ${"saveBtn"}`}>
                   <button
                     style={{ width: "274px", marginRight: "9px" }}
-                    onClick={(e) => onUpdate(e, "CHANNELLIST")}
+                    onClick={(e) => onUpdate(e)}
                   >
                     Check for update
                   </button>
@@ -279,8 +306,8 @@ function SentList() {
                             <img
                               src={
                                 item?.channel === "Digital Signature"
-                                  ? "../../images/edit.png"
-                                  : "../../images/application_icon.svg"
+                                  ? "../../../images/edit.png"
+                                  : "../../../images/application_icon.svg"
                               }
                               width={18}
                               className=" me-2 notepad  d-inline-block"
@@ -303,11 +330,14 @@ function SentList() {
                       </td>
 
                       <td>
-                        <a href={item?.murbaha_url} target="_blank">
-                          <button className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills">
+                        {/* <a href={item?.murbaha_url} target="_blank"> */}
+                          <button
+                            className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
+                            onClick={() => handleView(item?.murbaha_url)}
+                          >
                             View
                           </button>
-                        </a>
+                        {/* </a> */}
                       </td>
                     </tr>
                   ))}

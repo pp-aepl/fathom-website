@@ -434,7 +434,7 @@ function Sidebar({ showMenu, setShowMenu }) {
                     <div
                       className={` ${"icon_cmn"} ${"bx_home"} ${"nav__icon"}`}
                     >
-                      <img src="../../images/report_icon.svg"></img>
+                      <img src="../../../images/report_icon.svg"></img>
                     </div>
                     <span className={"nav__name"}>Reports</span>
                     <i
@@ -526,7 +526,7 @@ function Sidebar({ showMenu, setShowMenu }) {
           <div className="logout-div  row">
             <div className={`col-6`}>
               <img
-                src="../../images/profile.jpg"
+                src="../../../images/profile.jpg"
                 style={{ width: "25px" }}
                 className="mx-2 rounded-circle"
               />
@@ -536,13 +536,13 @@ function Sidebar({ showMenu, setShowMenu }) {
             </div>
             <div className="col-6 text-end">
               <img
-                src="../../images/setting.png"
+                src="../../../images/setting.png"
                 style={{ width: "25px", cursor: "pointer" }}
                 className="mx-2"
               />
 
               <img
-                src="../../images/logOut.png"
+                src="../../../images/logOut.png"
                 style={{ width: "25px", cursor: "pointer" }}
                 className="mx-2"
                 onClick={handleOpenLogOut}

@@ -26,18 +26,20 @@ function MurabahaModal() {
     try {
       let payload = {
         ids: selectedApplication,
-        status: "AWAITING_AGENT_APPOINTMENT",
+        status: "AWAITING_DIGITAL_SIGNATURE",
       };
       dispatch(SetloaderData(true));
       const data = await API({
-        url: `${apiURl.applications}`,
-        method: "PUT",
+        url: `${apiURl.signDocument}`,
+        method: "POST",
         body: payload,
       });
 
       if (data?.status || data?.status === "true") {
         setIsGenerated(true);
-        navigate("/admin/application/murabaha");
+        setTimeout(() => {
+          navigate("/admin/application/sent");
+        }, 200);
       } else {
       }
     } catch (error) {

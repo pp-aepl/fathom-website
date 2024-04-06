@@ -16,45 +16,7 @@ function InprocessList() {
   const { PopupReducer } = useSelector((state) => state);
   const { selectedApplication = [], status = "" } = PopupReducer?.modal;
   const [isCompleted, setIsCompleted] = useState(false);
-  const [dummyArr, setDummyList] = useState([
-    {
-      serial_number: "220872-00",
-      status: "Done",
-    },
-    {
-      serial_number: "220873-00",
-      status: "In Progress",
-    },
-    {
-      serial_number: "220874-00",
-      status: "Done",
-    },
-    {
-      serial_number: "220875-00",
-      status: "Done",
-    },
-    {
-      serial_number: "220876-00",
-      status: "In Progress",
-    },
-    {
-      serial_number: "220877-00",
-      status: "In Progress",
-    },
-    {
-      serial_number: "220878-00",
-      status: "In Progress",
-    },
-    {
-      serial_number: "220879-00",
-      status: "Done",
-    },
-    {
-      serial_number: "220880-00",
-      status: "Done",
-    },
-  ]);
-
+ 
   // navigate to agreement
   const navigateToAgreement = (item) => {
     navigate("/admin/application/murabaha");
@@ -139,7 +101,7 @@ function InprocessList() {
         console.log(data);
         setArrList(data?.results);
       } else {
-        setArrList(dummyArr);
+        setArrList([]);
       }
     } catch (error) {
       console.log(error, "error");

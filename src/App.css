@@ -5711,3 +5711,16 @@ input[type="checkbox"]:before {
   line-height: 22px;
   text-align: left;
 }
+.pdfIframe  {
+  /* width: 140px; */
+  height: 624px;
+  /* top: -16461px;
+  left: 24873px; */
+  gap: 0px;
+  border-radius: 20px 0px 0px 0px;
+  opacity: 0px;
+}
+.pdfIframe iframe {
+  height: 624px;
+  
+}
