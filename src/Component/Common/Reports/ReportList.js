@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { fetchApplicationList } from "../../../Config/FetchListingData";
 import moment from "moment";
 import DatePicker from "react-datepicker";
+import { SetpopupReducerData } from "../../../store/reducer";
 
 function ReportList() {
   const params = useParams();
@@ -86,7 +87,15 @@ function ReportList() {
       fetchListingData();
     }
   }, [fetchListingData]);
-  console.log(selectedApplication, "list");
+  const handleView = (url) => {
+    dispatch(
+      SetpopupReducerData({
+        modalType: "OPEN_DOC",
+        showModal: true,
+        docPdf: url,
+      })
+    );
+  };
   return (
     <>
       <section className="px-3">
@@ -245,11 +254,14 @@ function ReportList() {
                           <td style={{ color: "#29CC6A" }}>Disbursed</td>
                         )}
                         <td>
-                          <a href={item?.murbaha_url} target="_blank">
-                            <button className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills">
-                              View
-                            </button>
-                          </a>
+                          {/* <a href={item?.murbaha_url} target="_blank"> */}
+                          <button
+                            className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
+                            onClick={() => handleView(item?.murbaha_url)}
+                          >
+                            View
+                          </button>
+                          {/* </a> */}
                         </td>
                       </tr>
                     ))}

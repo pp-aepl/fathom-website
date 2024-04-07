@@ -12,6 +12,7 @@ import MurabahaSuccessfully from "../Common/ApplicationsList/MurabahaAgreement/M
 import AgentModal from "./AgentModal";
 import LoginValidationModal from "./LoginValidationModal";
 import LogoutModal from "./LogoutModal";
+import OpenDocument from "./OpenDocument";
 
 function OpenModal() {
   const { PopupReducer } = useSelector((state) => state);
@@ -33,6 +34,7 @@ function OpenModal() {
           {modalType === "CHECKED_APPLICATION" && <CheckedApplications />}
           {modalType === "MURABAHA_SUCCESS" && <MurabahaSuccessfully />}
           {modalType === "AGENT" && <AgentModal />}
+          {modalType === "OPEN_DOC" && <OpenDocument />}
         </>
       ) : (
         ""

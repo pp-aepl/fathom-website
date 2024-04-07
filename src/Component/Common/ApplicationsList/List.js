@@ -10,6 +10,7 @@ import UploadApplication from "./UploadApplication";
 import { fetchApplicationList } from "../../../Config/FetchListingData";
 import moment from "moment";
 import Filter from "./Filter";
+import { SetpopupReducerData } from "../../../store/reducer";
 
 function List({ id }) {
   const tableRef = useRef();
@@ -39,7 +40,15 @@ function List({ id }) {
   const handleFilterChange = (e) => {
     setFilterKey({ ...filterKey, [e.target.name]: e.target.value, pageNo: 1 });
   };
-
+  const handleView = (url) => {
+    dispatch(
+      SetpopupReducerData({
+        modalType: "OPEN_DOC",
+        showModal: true,
+        docPdf: url,
+      })
+    );
+  };
   const fetchListingData = useCallback(async () => {
     try {
       let checkStatus =
@@ -157,14 +166,19 @@ function List({ id }) {
                                     </span>
                                   </td>
                                   <td>
-                                    <a
+                                    {/* <a
                                       href={item?.imported_url}
                                       target="_blank"
-                                    >
-                                      <button className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills">
+                                    > */}
+                                      <button
+                                        className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
+                                        onClick={() =>
+                                          handleView(item?.imported_url)
+                                        }
+                                      >
                                         View
                                       </button>
-                                    </a>
+                                    {/* </a> */}
                                   </td>
                                 </tr>
                               ))}
