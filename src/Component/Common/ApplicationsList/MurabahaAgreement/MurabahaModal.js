@@ -27,6 +27,7 @@ function MurabahaModal() {
       let payload = {
         ids: selectedApplication,
         status: "AWAITING_DIGITAL_SIGNATURE",
+        showStatus:"Pending"
       };
       dispatch(SetloaderData(true));
       const data = await API({

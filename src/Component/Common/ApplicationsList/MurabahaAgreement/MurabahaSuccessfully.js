@@ -8,7 +8,11 @@ import { useNavigate } from "react-router-dom";
 function MurabahaSuccessfully() {
   const dispatch = useDispatch();
   const { PopupReducer } = useSelector((state) => state);
-  const { showModal = false, action = "" } = PopupReducer?.modal;
+  const {
+    showModal = false,
+    action = "",
+    callBackFunction = () => {},
+  } = PopupReducer?.modal;
   const navigate = useNavigate();
 
   const handleClosePopup = () => {
@@ -72,7 +76,10 @@ function MurabahaSuccessfully() {
             {action === "UPDATE" ? (
               <button
                 style={{ minWidth: "-webkit-fill-available" }}
-                onClick={(e) => handleClosePopup(e)}
+                onClick={(e) => {
+                  handleClosePopup(e);
+                  callBackFunction();
+                }}
               >
                 Great
               </button>

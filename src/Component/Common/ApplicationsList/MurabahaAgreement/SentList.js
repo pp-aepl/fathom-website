@@ -21,7 +21,7 @@ function SentList() {
   const { exceptionModal = false, successModal = false } = PopupReducer?.modal;
   const location = useLocation();
   const pathArr = location.pathname.split("/");
-
+  let last_Path = pathArr?.[pathArr?.length - 1];
   // update create api
 
   const [arrList, setArrList] = useState([]);
@@ -84,7 +84,7 @@ function SentList() {
   const callUpdateApi = async (arr) =>
     Promise.all(
       arr?.map(async (ele) => {
-        let payload = { contractId: "33e3c3b6-a7e1-4b3d-9bd9-7ee2d123cfc2" };
+        let payload = { contractId: ele?.contractId, id: ele?._id };
         let resp = await dispatch(fetchUpdate(payload));
         return resp;
       })
@@ -96,7 +96,15 @@ function SentList() {
       alert("Please select application to proceed.");
       return;
     }
-    let resp = await callUpdateApi(selectedApplication);
+    let contractIdArr = arrList
+      .filter(
+        (ele) =>
+          selectedApplication?.includes(ele?._id) && !ele?.isAgreementSigned
+      )
+      ?.map((cId) => {
+        return { contractId: cId?.contractSign?.contractId, _id: cId?._id };
+      });
+    let resp = await callUpdateApi(contractIdArr);
     console.log(resp, "resp");
     let falseIndex = resp?.findIndex((ele) => ele.status === false);
     if (falseIndex >= 0) {
@@ -107,6 +115,10 @@ function SentList() {
           modalType: "MURABAHA_SUCCESS",
           showModal: true,
           action: "UPDATE",
+          callBackFunction: () => {
+            fetchListingData();
+            setSelectedApplication([]);
+          },
         })
       );
     }
@@ -124,7 +136,7 @@ function SentList() {
     try {
       let payload = {
         status:
-          pathArr[pathArr?.length - 1] === "sent"
+          last_Path === "sent"
             ? "AWAITING_DIGITAL_SIGNATURE"
             : "AWAITING_AGENT_RESPONSE",
         ...filterKey,
@@ -139,7 +151,7 @@ function SentList() {
     } catch (error) {
       console.log(error, "error");
     }
-  }, [filterKey]);
+  }, [filterKey, last_Path]);
 
   useEffect(() => {
     fetchListingData();
@@ -155,7 +167,7 @@ function SentList() {
           <div className="top_list">
             <div className="row pt-4">
               <div className="col-md-2">
-                <label>Filter Channel</label>
+                <label htmlFor="channel">Filter Channel</label>
                 <div className="border rounded ">
                   {/* <div className="form-check d-inline-block verticle">
                     <input
@@ -169,6 +181,7 @@ function SentList() {
                   <select
                     className="form-select p-3"
                     name="channel"
+                    id="channel"
                     value={filterKey?.channel}
                     onChange={(e) =>
                       setFilterKey({
@@ -184,11 +197,14 @@ function SentList() {
                 </div>
               </div>
               <div className="col-2">
-                <label className="">Search Application</label>
+                <label htmlFor="serial_number" className="">
+                  Search Application
+                </label>
                 <input
                   type="text"
                   className="form-control p-3"
                   name="serial_number"
+                  id="serial_number"
                   value={filterKey.serial_number}
                   inputMode="numeric"
                   placeholder="Search..."
@@ -211,6 +227,7 @@ function SentList() {
                         startDate: date,
                       });
                     }}
+                    id="startDate"
                     className="form-control p-3"
                     isClearable={filterKey.startDate}
                     placeholderText="Select start date"
@@ -230,6 +247,7 @@ function SentList() {
                         endDate: date,
                       });
                     }}
+                    id="endDate"
                     className="form-control p-3"
                     isClearable={filterKey.endDate}
                     placeholderText="Select end date"
@@ -331,12 +349,12 @@ function SentList() {
 
                       <td>
                         {/* <a href={item?.murbaha_url} target="_blank"> */}
-                          <button
-                            className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
-                            onClick={() => handleView(item?.murbaha_url)}
-                          >
-                            View
-                          </button>
+                        <button
+                          className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
+                          onClick={() => handleView(item?.murbaha_url)}
+                        >
+                          View
+                        </button>
                         {/* </a> */}
                       </td>
                     </tr>
