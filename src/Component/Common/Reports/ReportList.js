@@ -67,12 +67,13 @@ function ReportList() {
   const fetchListingData = useCallback(async () => {
     try {
       let payload = {
-        status: fetchParams === "error" ? "PENDING" : "DISBURSAL",
+        // status: fetchParams === "error" ? "PENDING" : "DISBURSAL",
+        status: "",
+        showStatus: fetchParams === "error" ? "Pending" : "Completed",
         ...filterKey,
       };
       const data = await dispatch(fetchApplicationList(payload, filterKey));
       if (data?.status || data?.status === "true") {
-        console.log(data, "dattt");
         setArrList(data?.results);
       } else {
         setArrList([]);
@@ -215,11 +216,9 @@ function ReportList() {
                       <th scope="col">Import Date</th>
                       <th scope="col">Customer name</th>
                       <th scope="col">Application no.</th>
-                      <th scope="col">Mobile No.</th>
+                      {/* <th scope="col">Mobile No.</th> */}
                       <th scope="col">Status</th>
-                      <th scope="col">
-                        {fetchParams === "error" ? "Reason" : "Action"}
-                      </th>
+                      <th scope="col">Reason</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -236,32 +235,25 @@ function ReportList() {
                         </td>
                         <td>{item?.name_as_per_passport}</td>
                         <td>{item?.serial_number}</td>
-                        <td>{item?.mobileNo}</td>
-                        {fetchParams === "error" ? (
-                          <td>
-                            <span
-                              style={{
-                                color:
-                                  item?.status === "Error"
-                                    ? "#EF4444"
-                                    : "#EAB308",
-                              }}
-                            >
-                              {item?.status}
-                            </span>
-                          </td>
-                        ) : (
-                          <td style={{ color: "#29CC6A" }}>Disbursed</td>
-                        )}
+                        {/* <td>{item?.mobileNo}</td> */}
+
                         <td>
-                          {/* <a href={item?.murbaha_url} target="_blank"> */}
-                          <button
-                            className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
-                            onClick={() => handleView(item?.murbaha_url)}
+                          <span
+                            style={{
+                              color:
+                                item?.showStatus === "Pending"
+                                  ? "#EF4444"
+                                  : "#EAB308",
+                            }}
                           >
-                            View
-                          </button>
-                          {/* </a> */}
+                            {item?.showStatus}
+                          </span>
+                        </td>
+
+                        <td>
+                          <span className="text-lowercase">
+                            {item?.status?.split("_")?.join(" ")}
+                          </span>
                         </td>
                       </tr>
                     ))}

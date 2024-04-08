@@ -1361,13 +1361,16 @@
   background: #fff;
   font-size: 16px;
   font-weight: 600;
+  font-family: "Inter Tight", sans-serif;
 }
 .saveBtn button:first-child {
   color: #1877f2;
+  font-family: "Inter Tight", sans-serif;
 }
 .saveBtn button:last-child {
   background: #1877f2;
   color: #fff;
+  font-family: "Inter Tight", sans-serif;
 }
 .dashbaorIn {
   background: #f7f7f7;

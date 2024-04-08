@@ -27,7 +27,7 @@ function MurabahaModal() {
       let payload = {
         ids: selectedApplication,
         status: "AWAITING_DIGITAL_SIGNATURE",
-        showStatus:"Pending"
+        showStatus: "Pending",
       };
       dispatch(SetloaderData(true));
       const data = await API({
@@ -38,9 +38,6 @@ function MurabahaModal() {
 
       if (data?.status || data?.status === "true") {
         setIsGenerated(true);
-        setTimeout(() => {
-          navigate("/admin/application/sent");
-        }, 200);
       } else {
       }
     } catch (error) {
@@ -53,6 +50,9 @@ function MurabahaModal() {
     e.preventDefault();
     if (isGenerated) {
       handleClosePopup();
+      setTimeout(() => {
+        navigate("/admin/application/sent");
+      }, 200);
     } else {
       await handleProcess();
     }

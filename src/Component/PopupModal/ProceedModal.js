@@ -134,7 +134,7 @@ function ProceedModal() {
         <Modal.Body className="p-5">
           <div className="">
             <div className="text-center">
-              <img src="../../images/exclaim.png" style={{ height: "120px" }} />
+              <img src="../../../images/exclaim.png" style={{ height: "120px" }} />
             </div>
             {commodityModal || commodityType === "APP_PROCEED" ? (
               <>

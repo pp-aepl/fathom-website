@@ -160,7 +160,7 @@ function ImportApplication() {
         </Modal.Header>
         <Modal.Body className="p-5">
           <div className="">
-            <p>Select application category</p>
+            <p className="card-text">Select application category</p>
             <select
               className="form-select mt-3 p-3 fs-5"
               name="formId"
@@ -205,17 +205,17 @@ function ImportApplication() {
                 <div
                   className={`d-flex align-items-center justify-content-around pb-4 ${"saveBtn"}`}
                 >
-                  <button className="w-50 me-3">Files Uploaded</button>
+                  <p className="card-text">Files Uploaded</p>
                   {/* <button className="w-50">Duplicated files</button> */}
                 </div>
               )}
-
+              <hr />
               <ConfirmFileList setIsUploaded={setIsUploaded} />
             </div>
           </div>
 
           <div
-            className={`d-flex align-items-center justify-content-around pt-4 `}
+            className={`d-flex align-items-center justify-content-around pt-4 saveBtn `}
           >
             {/* continue for Uploaded files */}
             {isUploaded ? (

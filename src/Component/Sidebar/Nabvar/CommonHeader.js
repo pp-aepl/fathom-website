@@ -43,7 +43,7 @@ function CommonHeader() {
           onClick={handleUpload}
         >
           <img
-            src="../../images/upload_icon.svg"
+            src="../../../images/upload_icon.svg"
             className="d-inline-block me-2"
           ></img>
           <span className="d-inline-block">Upload</span>

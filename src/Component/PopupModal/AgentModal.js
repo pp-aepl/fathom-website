@@ -119,10 +119,10 @@ function AgentModal() {
               Sending information to agent <br /> for selling commodity.
             </p>
           </div>
-          <div className="mt-5">
+          <div className="mt-5 text-center">
             <img
-              className="agent_avatar rounded-circle mt-5"
-              src={agentData?.profilePic ?? "../../images/agent.jpeg"}
+              className="agent_avatar rounded-circle mt-5 img-fluid"
+              src={agentData?.profilePic ?? "../../images/profile.jpeg"}
             />
             <h4 className="mt-3 text-center" style={{ fontWeight: "600" }}>
               {agentData?.agent_name ?? "User"}
