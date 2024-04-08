@@ -78,7 +78,7 @@ function SuccessfullyModal() {
         </Modal.Header>
         <Modal.Body className="p-5">
           <div className="my-5 text-center">
-            <img src="../../images/success.png" style={{ height: "120px" }} />
+            <img src="../../../images/success.png" style={{ height: "120px" }} />
           </div>
           <div className="">
             {successType === "SUCCESSFULLY" ? (

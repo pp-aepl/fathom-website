@@ -72,6 +72,16 @@ function SentList() {
       alert("Please select application to proceed.");
       return;
     }
+    if (selectedApplication?.length) {
+      let signedIndex = arrList.findIndex(
+        (ele) =>
+          selectedApplication?.includes(ele?._id) && !ele?.isAgreementSigned
+      );
+      if (signedIndex >= 0) {
+        alert("Please select only signed application to proceed.");
+        return;
+      }
+    }
     dispatch(
       SetpopupReducerData({
         selectedApplication: selectedApplication,
@@ -92,9 +102,22 @@ function SentList() {
 
   const onUpdate = async (e) => {
     e.preventDefault();
+    if (last_Path === "response") {
+      return;
+    }
     if (selectedApplication?.length === 0) {
       alert("Please select application to proceed.");
       return;
+    }
+    if (selectedApplication?.length) {
+      let signedIndex = arrList.findIndex(
+        (ele) =>
+          selectedApplication?.includes(ele?._id) && ele?.isAgreementSigned
+      );
+      if (signedIndex >= 0) {
+        alert("Please select only unsigned application to check update.");
+        return;
+      }
     }
     let contractIdArr = arrList
       .filter(
@@ -338,12 +361,20 @@ function SentList() {
                         <span
                           style={{
                             color:
-                              item?.showStatus === "Pending"
+                              last_Path === "sent"
+                                ? item?.isAgreementSigned
+                                  ? "#8282FF"
+                                  : "#EAB308"
+                                : item?.showStatus === "Pending"
                                 ? "#EAB308"
                                 : "#8282FF",
                           }}
                         >
-                          {item?.showStatus}
+                          {last_Path === "sent"
+                            ? item?.isAgreementSigned
+                              ? "Signed"
+                              : "Pending"
+                            : item?.showStatus}
                         </span>
                       </td>
 
