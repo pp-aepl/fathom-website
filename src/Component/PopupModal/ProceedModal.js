@@ -8,7 +8,7 @@ import {
   SetpopupReducerData,
   reSetPopupReducerData,
 } from "../../store/reducer";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import SuccessfullyModal from "./SuccessfullyModal";
 import { API } from "../../apiwrapper";
 import { apiURl } from "../../store/actions";
@@ -24,6 +24,8 @@ function ProceedModal() {
   const [commodityModal, setCommodityModal] = useState(false);
   const commodityType = PopupReducer?.modal?.type; // COMIDITYAGENT
   const navigate = useNavigate();
+  const location = useLocation();
+  const pathArr = location.pathname.split("/");
   console.log(commodityType, "");
   const handleClosePopup = () => {
     dispatch(reSetPopupReducerData());
@@ -94,6 +96,11 @@ function ProceedModal() {
     e.preventDefault();
 
     if (typeSubmit === "COMIDITYAGENT") {
+      let path ="/admin/application/commodity"
+        // pathArr?.[pathArr?.length - 1] === "sent"
+        //   ? "/admin/application/sent/response"
+        //   : "/admin/application/commodity";
+      navigate(path);
       dispatch(
         SetpopupReducerData({
           modalType: "SUCCESSFULLY",
@@ -134,7 +141,10 @@ function ProceedModal() {
         <Modal.Body className="p-5">
           <div className="">
             <div className="text-center">
-              <img src="../../../images/exclaim.png" style={{ height: "120px" }} />
+              <img
+                src="../../../images/exclaim.png"
+                style={{ height: "120px" }}
+              />
             </div>
             {commodityModal || commodityType === "APP_PROCEED" ? (
               <>

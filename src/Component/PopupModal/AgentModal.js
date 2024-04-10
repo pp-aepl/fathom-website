@@ -16,8 +16,8 @@ import { fetchAgentData } from "../../Config/FetchListingData";
 
 function AgentModal() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [agentData, setAgentData] = useState({});
+  const navigate = useNavigate();
   const location = useLocation();
   const pathArr = location.pathname.split("/");
   const { PopupReducer } = useSelector((state) => state);
@@ -35,10 +35,10 @@ function AgentModal() {
     try {
       let payload = {
         ids: selectedApplication,
-        status:
-          pathArr?.[pathArr?.length - 1] === "sent"
-            ? "AWAITING_AGENT_RESPONSE"
-            : "AWAITING_WELCOME_LETTER",
+        status: "AWAITING_WELCOME_LETTER",
+        // pathArr?.[pathArr?.length - 1] === "sent"
+        //   ? "AWAITING_AGENT_RESPONSE"
+        //   : "AWAITING_WELCOME_LETTER",
         showStatus: "",
       };
       dispatch(SetloaderData(true));
@@ -50,11 +50,6 @@ function AgentModal() {
 
       if (data?.status || data?.status === "true") {
         setTimeout(() => {
-          let path =
-            pathArr?.[pathArr?.length - 1] === "sent"
-              ? "/admin/application/sent/response"
-              : "/admin/application/commodity";
-          navigate(path);
           dispatch(
             SetpopupReducerData({
               ...PopupReducer?.modal,
