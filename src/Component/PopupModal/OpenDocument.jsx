@@ -29,24 +29,19 @@ function OpenDocument() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-5 pdfIframe">
-          <div className=" ">
+          <div className="">
             {docPdf ? (
-              <>
-                <div className="embed-responsive embed-responsive-16by9">
-                  <div className="ratio ratio-16x9 text-center mt-4 mb-4">
-                    <iframe
-                      className="embed-responsive-item"
-                      src={`${docPdf}#toolbar=0`}
-                      style={{ maxWidth: "100%", height: "100%" }}
-                      allowfullscreen
-                    >
-                      This browser does not support PDFs. Please download the
-                      PDF to view it:
-                      <a href={docPdf}>View Agreement Document</a>
-                    </iframe>
-                  </div>
+              <div className="embed-responsive embed-responsive-16by9">
+                <div className="ratio ratio-16x9 text-center mt-4 mb-4">
+                  <iframe
+                    className="embed-responsive-item"
+                    src={`${docPdf}#toolbar=0`}
+                    style={{ maxWidth: "100%", height: "100%" }}
+                    allowFullScreen={true}
+                    title="PDF Viewer"
+                  ></iframe>
                 </div>
-              </>
+              </div>
             ) : (
               <p>No document available.</p>
             )}
