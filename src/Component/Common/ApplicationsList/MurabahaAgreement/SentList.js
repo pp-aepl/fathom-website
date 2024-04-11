@@ -14,6 +14,7 @@ import {
 import DatePicker from "react-datepicker";
 import moment from "moment";
 import { useLocation } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
 
 function SentList() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function SentList() {
   const [arrList, setArrList] = useState([]);
   const [selectedApplication, setSelectedApplication] = useState([]);
   const [action, setAction] = useState("ALL");
+  const [unSignedArr, setUnSignedArr] = useState([]);
 
   const [filterKey, setFilterKey] = useState({
     serial_number: "",
@@ -93,9 +95,21 @@ function SentList() {
   };
   const callUpdateApi = async (arr) =>
     Promise.all(
-      arr?.map(async (ele) => {
+      arr?.map(async (ele, index) => {
+        let arr2 = [...unSignedArr];
+        let obj = { ...arr2?.[index] };
         let payload = { contractId: ele?.contractId, id: ele?._id };
         let resp = await dispatch(fetchUpdate(payload));
+        if (resp) {
+          if (resp?.status) {
+            obj.isCompleted = resp?.data?.isCompleted;
+          } else {
+            obj.isCompleted = false;
+          }
+          obj.isChecking = false;
+        }
+        arr2[index] = obj;
+        setUnSignedArr(arr2);
         return resp;
       })
     );
@@ -105,29 +119,19 @@ function SentList() {
     if (last_Path === "response") {
       return;
     }
-    if (selectedApplication?.length === 0) {
-      alert("Please select application to proceed.");
-      return;
-    }
-    if (selectedApplication?.length) {
-      let signedIndex = arrList.findIndex(
-        (ele) =>
-          selectedApplication?.includes(ele?._id) && ele?.isAgreementSigned
-      );
-      if (signedIndex >= 0) {
-        alert("Please select only unsigned application to check update.");
-        return;
-      }
-    }
-    let contractIdArr = arrList
-      .filter(
-        (ele) =>
-          selectedApplication?.includes(ele?._id) && !ele?.isAgreementSigned
-      )
+
+    let unsignedApplicationArr = arrList
+      .filter((ele) => !ele?.isAgreementSigned)
       ?.map((cId) => {
-        return { contractId: cId?.contractSign?.contractId, _id: cId?._id };
+        return {
+          contractId: cId?.contractSign?.contractId,
+          _id: cId?._id,
+          isCompleted: false,
+          isChecking: true,
+        };
       });
-    let resp = await callUpdateApi(contractIdArr);
+    setUnSignedArr(unsignedApplicationArr);
+    let resp = await callUpdateApi(unsignedApplicationArr);
     console.log(resp, "resp");
     let falseIndex = resp?.findIndex((ele) => ele.status === false);
     if (falseIndex >= 0) {
@@ -141,6 +145,7 @@ function SentList() {
           callBackFunction: () => {
             fetchListingData();
             setSelectedApplication([]);
+            setUnSignedArr([]);
           },
         })
       );
@@ -179,6 +184,7 @@ function SentList() {
   useEffect(() => {
     fetchListingData();
   }, [fetchListingData]);
+  console.log(unSignedArr, "unsigned");
   return (
     <>
       {exceptionModal && <ExceptionModal />}
@@ -370,11 +376,25 @@ function SentList() {
                                 : "#8282FF",
                           }}
                         >
-                          {last_Path === "sent"
-                            ? item?.isAgreementSigned
-                              ? "Signed"
-                              : "Pending"
-                            : item?.showStatus}
+                          {last_Path === "sent" ? (
+                            item?.isAgreementSigned ? (
+                              "Signed"
+                            ) : unSignedArr?.find(
+                                (ele) => ele?._id === item?._id
+                              )?.isChecking ? (
+                              <>
+                                <Spinner color="red" /> Checking...
+                              </>
+                            ) : unSignedArr?.find(
+                                (ele) => ele?._id === item?._id
+                              )?.isCompleted ? (
+                              "Signed"
+                            ) : (
+                              "Pending"
+                            )
+                          ) : (
+                            item?.showStatus
+                          )}
                         </span>
                       </td>
 

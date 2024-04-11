@@ -57,7 +57,7 @@ function ForgotPassword() {
         setErrors(err);
       }
     } catch (error) {
-      setApiErrors({ message: error.message });
+      setApiErrors({ message: error?.response?.data?.message });
     } finally {
       dispatch(SetloaderData(false));
     }

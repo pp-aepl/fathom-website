@@ -49,19 +49,24 @@ function CommonResponsePopup() {
           <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-5">
-          <div className="">
+          <div className="my-3">
             <div className="text-center">
               <img
-                className="success-pic"
+                className="success-pic my-5"
                 src={
                   status ? "../../images/success.png" : "../../images/icon1.png"
                 }
               />
             </div>
-            <h1 style={{ textAlign: "center" }}>{title}</h1>
-            <h3 style={{ textAlign: "center" }}>{message}</h3>
+            <h1 className="card-title" style={{ textAlign: "center" }}>
+              {title}
+            </h1>
+            <p className="card-text" style={{ textAlign: "center" }}>
+              {message}
+            </p>
           </div>
           <div
+            style={{ marginTop: "100px" }}
             className={`d-flex align-items-center justify-content-around pt-4 ${"saveBtn"}`}
           >
             <button
