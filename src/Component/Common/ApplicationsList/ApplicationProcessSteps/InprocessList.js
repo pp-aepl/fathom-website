@@ -16,7 +16,7 @@ function InprocessList() {
   const { PopupReducer } = useSelector((state) => state);
   const { selectedApplication = [], status = "" } = PopupReducer?.modal;
   const [isCompleted, setIsCompleted] = useState(false);
- 
+
   // navigate to agreement
   const navigateToAgreement = (item) => {
     navigate("/admin/application/murabaha");
@@ -62,21 +62,6 @@ function InprocessList() {
       dispatch(SetloaderData(false));
     }
   };
-  useEffect(() => {
-    // if (selectedApplication?.length > 0) {
-    //   handleProcess();
-    // }
-    setTimeout(() => {
-      dispatch(
-        SetpopupReducerData({
-          ...PopupReducer?.modal,
-          modalType: "ProceedCommodity",
-          showModal: true,
-        })
-      );
-      setIsCompleted(true);
-    }, 5000);
-  }, []);
 
   const [arrList, setArrList] = useState([]);
 
@@ -111,6 +96,21 @@ function InprocessList() {
   useEffect(() => {
     fetchListingData();
   }, [fetchListingData]);
+  useEffect(() => {
+    // if (selectedApplication?.length > 0) {
+    //   handleProcess();
+    // }
+    setTimeout(() => {
+      dispatch(
+        SetpopupReducerData({
+          ...PopupReducer?.modal,
+          modalType: "ProceedCommodity",
+          showModal: true,
+        })
+      );
+      setIsCompleted(true);
+    }, 5000);
+  }, []);
 
   return (
     <>
