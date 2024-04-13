@@ -13,6 +13,8 @@ const config = {
 };
 const apiURl = {
   login: `/${config.version}/${config.common_microservice}/auth/login`,
+  verifyOtp: `/${config.version}/${config.common_microservice}/verifyFa`,
+
   forgot: `/${config.version}/${config.common_microservice}/forgot`,
   reset: `/${config.version}/${config.common_microservice}/change-password`,
   applications: `/${config.version}/${config.common_microservice}/applications`,

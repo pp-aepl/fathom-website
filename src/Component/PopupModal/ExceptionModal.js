@@ -20,6 +20,7 @@ function ExceptionModal() {
     exceptionModal = false,
     documents = [],
     selectedApplication,
+    value
   } = PopupReducer?.modal;
   const { successModal = false } = PopupReducer?.modal;
   const exceptionType = PopupReducer?.modal?.type;
@@ -115,11 +116,19 @@ function ExceptionModal() {
       });
 
       if (data?.status || data?.status === "true") {
+        // dispatch(
+        //   SetpopupReducerData({
+        //     modalType: "SUCCESSFULLY",
+        //     successModal: true,
+        //     type: exceptionType,
+        //   })
+        // );
         dispatch(
           SetpopupReducerData({
-            modalType: "SUCCESSFULLY",
-            successModal: true,
-            type: exceptionType,
+            modalType: "PROCEED",
+            showModal: true,
+            selectedApplication: selectedApplication,
+            status: value,
           })
         );
       } else {
