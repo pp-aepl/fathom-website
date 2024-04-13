@@ -29,13 +29,14 @@ function ConfirmFiles() {
     try {
       let payload = {
         awsUrls: documents,
+        ids:documents?.map(ele=>ele?._id),
         status: "AWAITING_COMMODITY_PURCHASE",
         showStatus: "Pending",
       };
       dispatch(SetloaderData(true));
       const data = await API({
         url: `${apiURl.applications}`,
-        method: "POST",
+        method: "PUT",
         body: payload,
       });
 

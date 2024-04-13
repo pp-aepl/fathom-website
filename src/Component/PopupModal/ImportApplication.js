@@ -222,8 +222,9 @@ function ImportApplication() {
               <button
                 className="login100-form-btn"
                 onClick={(e) => onSubmit(e)}
+                disabled={Loader?.data || false}
               >
-                Continue
+                {Loader?.data ? <Spinner /> : "Continue"}
               </button>
             ) : (
               <button

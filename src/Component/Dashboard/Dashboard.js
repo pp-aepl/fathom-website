@@ -189,7 +189,7 @@ function Dashboard() {
                     </h5>
                     <span className="card-title">
                       {" "}
-                      {data?.totalawaitingdigitalSign || 0}
+                      {data?.totalAwaitingDigitalSign || 0}
                     </span>
                   </div>
                 </div>
@@ -198,10 +198,10 @@ function Dashboard() {
                 <div className="card dash_card w-100">
                   <div className="card-body">
                     <h5 className="label d-block w-100 pb-2">
-                      Awaiting Customer Acceptance:Physica
+                      Awaiting Customer Acceptance:Physical
                     </h5>
                     <span className="card-title">
-                      {data?.totalawaitingdigitalSign || 0}
+                      {data?.awaitingPhysicalSign || 0}
                     </span>
                   </div>
                 </div>
