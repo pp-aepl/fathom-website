@@ -22,9 +22,11 @@ function ListingWithRule({
                 <th scope="col">Application no.</th>
                 {inProcess && <th scope="col">Status </th>}
 
-                {listingData?.[0]?.rules?.map((ele, index) => (
-                  <th scope="col">Rule {index + 1}</th>
-                ))}
+                {listingData
+                  ?.find((el) => el?.rules?.length)
+                  ?.rules?.map((ele, index) => (
+                    <th scope="col">Rule {index + 1}</th>
+                  ))}
                 {/* <th>Action</th> */}
               </tr>
             </thead>
