@@ -1,68 +1,105 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import permissions from "../../Config/Config.json";
-import { useDispatch } from "react-redux";
-import { SetpopupReducerData } from "../../store/reducer";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { SetAuthUserData, SetpopupReducerData } from "../../store/reducer";
+import { toast } from "react-toastify";
+import apiURl, { validationMessages } from "../../store/actions/api-url";
+import { isValid, validateOTP } from "../Common/Validation/Validation";
+import { API } from "../../apiwrapper";
+import { Spinner } from "react-bootstrap";
 function TwoFactor() {
-  console.log({ permissions });
   const [second, setSecond] = useState(30);
-  const [showPassword, setShowPassword] = useState(false);
+  const { authUser } = useSelector((state) => state);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  let secretKey = searchParams.get("secretKey") ?? "";
+
   const [apiErrors, setApiErrors] = useState({ message: "", response: "" });
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [inpData, setInpData] = useState({
-    email: "",
-    password: "",
-  });
+  const [inpData, setInpData] = useState({ otp: "" });
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // console.log(AuthAdmin,"AuthAdminUser")
+  const validateAll = () => {
+    let err1 = {};
+    err1.otp = validateOTP(inpData.otp);
+    return err1;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let payload = { ...inpData };
-    localStorage.setItem("cred", JSON.stringify(payload));
-    dispatch(
-      SetpopupReducerData({
-        message: "Verification Successful",
-        modalType: "LOGIN",
-        showModal: true,
-      })
-    );
-    navigate("/admin/dashboard");
+
+    try {
+      let err = validateAll();
+      if (isValid(err)) {
+        setIsLoading(true);
+        let payload = {
+          ...inpData,
+          secretKey: secretKey,
+          IsEnable: true,
+        };
+        await API({
+          url: `${apiURl.verifyOtp}/${authUser?.data?._id}`,
+          method: "POST",
+          body: { ...payload },
+        }).then(async (data) => {
+          console.log(data, "loginData");
+          if (data?.status || data?.status === true) {
+            const token = data?.data?.token;
+            if (!token) {
+              setApiErrors({ message: validationMessages.unableToLogin });
+              return;
+            }
+
+            dispatch(SetAuthUserData(data?.data));
+
+            localStorage.clear();
+            localStorage.setItem("token", token);
+
+            dispatch(
+              SetpopupReducerData({
+                message: "Verification Successful",
+                modalType: "LOGIN",
+                showModal: true,
+              })
+            );
+            navigate("/admin/dashboard");
+          } else {
+            toast.error(data?.message);
+            setApiErrors({ message: data?.message || data?.error });
+          }
+        });
+      } else {
+        setErrors(err);
+      }
+    } catch (error) {
+      toast.error(error);
+      setApiErrors({ message: error.message });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
   const handleChange = (e) => {
     setInpData({ ...inpData, [e.target.name]: e.target.value });
-    // handleValidate(e);
-    // setApiErrors({ message: "" });
-    //setPassword();  //update here need to ask
+    handleValidate(e);
+    setApiErrors({ message: "" });
   };
 
-  // const handleValidate = (e) => {
-  //   const errors1 = {};
-  //   switch (e.target.name) {
-  //     case "email":
-  //       errors1.email = validateEmail(e.target.value);
-  //       break;
-  //     case "password":
-  //       errors1.password = validateRequirePass(e.target.value);
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  //   setErrors(errors1);
-  // };
-  // const validateAll = () => {
-  //   let err1 = {};
-  //   err1.email = validateEmail(inpData.email);
-  //   err1.password = validateRequirePass(inpData.password);
-  //   return err1;
-  // };
+  const handleValidate = (e) => {
+    const errors1 = {};
+    switch (e.target.name) {
+      case "otp":
+        errors1.otp = validateOTP(e.target.value);
+        break;
+
+      default:
+        break;
+    }
+    setErrors(errors1);
+  };
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
@@ -109,27 +146,38 @@ function TwoFactor() {
                       >
                         <div className="form-group">
                           <input
-                            type="email"
+                            type="number"
                             className="form-control p-3 rounded border"
-                            name="email"
+                            name="otp"
                             placeholder="Enter OTP"
                             autoComplete={false}
                             required
-                            value={inpData.email}
+                            inputMode="numeric"
+                            value={inpData.otp}
                             onChange={handleChange}
-                            // onBlur={handleValidate}
+                            onBlur={handleValidate}
                           />
                         </div>
-                        {/* {errors.email ? (
-                        <span
-                          className="text-danger"
-                          style={{ fontSize: "14px" }}
-                        >
-                          {errors.email}
-                        </span>
-                      ) : (
-                        ""
-                      )} */}
+                        {errors.otp ? (
+                          <span
+                            className="text-danger"
+                            style={{ fontSize: "14px" }}
+                          >
+                            {errors.otp}
+                          </span>
+                        ) : (
+                          ""
+                        )}
+                        {apiErrors.message ? (
+                          <span
+                            className="text-danger"
+                            style={{ fontSize: "14px" }}
+                          >
+                            {apiErrors.message}
+                          </span>
+                        ) : (
+                          ""
+                        )}
                         <div
                           className="resend-time my-4 d-flex"
                           style={{ maxHeight: "25px" }}
@@ -178,8 +226,9 @@ function TwoFactor() {
                           <button
                             className="login100-form-btn"
                             onClick={handleSubmit}
+                            disabled={isLoading}
                           >
-                            Verify
+                            {isLoading ? <Spinner /> : "Verify"}
                           </button>
                         </div>
                       </form>

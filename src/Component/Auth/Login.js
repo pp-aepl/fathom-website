@@ -17,6 +17,7 @@ function Login() {
   const [apiErrors, setApiErrors] = useState({ message: "", response: "" });
   const [errors, setErrors] = useState({});
   const [showQRcode, setShowQRcode] = useState(false);
+  const [qrData, setQRData] = useState({ secretKey: "", qrCodeDataURL: "" });
 
   const { PopupReducer } = useSelector((state) => state);
 
@@ -27,7 +28,29 @@ function Login() {
     password: "",
   });
   const navigate = useNavigate();
-
+  const fetchQRCode = async (userId) => {
+    try {
+      let url = `/v1/common/enable/${userId}`;
+      await API({
+        url: url,
+        method: "GET",
+      }).then((data) => {
+        // console.log("f2a", data);
+        if (data?.status || data?.status === true) {
+          let obj = {
+            secretKey: data?.secretKey,
+            qrCodeDataURL: data?.qrCodeDataURL,
+          };
+          setQRData(obj);
+          setShowQRcode(true);
+        } else {
+          setQRData({});
+        }
+      });
+    } catch (error) {
+      toast(error, { type: "error" });
+    }
+  };
   // console.log(AuthAdmin,"AuthAdminUser")
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +64,7 @@ function Login() {
           url: apiURl.login,
           method: "POST",
           body: { ...inpData },
-        }).then((data) => {
+        }).then( (data) => {
           console.log(data, "loginData");
           if (data?.status || data?.status === true) {
             const token = data?.token;
@@ -50,10 +73,15 @@ function Login() {
               return;
             }
             dispatch(SetAuthUserData(data?.data));
-            setShowQRcode(true);
-            localStorage.clear();
-            localStorage.setItem("token", token);
-            localStorage.setItem("cred", JSON.stringify(inpData));
+            if (data?.data?.IsEnable) {
+              navigate("/otp");
+            } else {
+               fetchQRCode(data?.data?._id);
+            }
+            // setShowQRcode(true);
+            // localStorage.clear();
+            // localStorage.setItem("token", token);
+            // localStorage.setItem("cred", JSON.stringify(inpData));
           } else {
             toast.error(data?.message);
             setApiErrors({ message: data?.message });
@@ -158,13 +186,19 @@ function Login() {
                         <>
                           <img
                             className="scanQr_code"
-                            src="../../../images/qrImage.png"
+                            src={qrData?.qrCodeDataURL}
                             alt=""
                             width={90}
                           />
                           <br />
 
-                          <Link to={"/otp"}>
+                          <Link
+                            to={
+                              qrData?.secretKey
+                                ? `/otp?secretKey=${qrData?.secretKey}`
+                                : `/otp`
+                            }
+                          >
                             <div className="form-group mt-lg-4 mt-3">
                               <button className="login100-form-btn">
                                 Next

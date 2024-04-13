@@ -26,7 +26,7 @@ function ReasonModal() {
         ids: selectedApplication,
         status: "REJECTED",
         showStatus: "Rejected",
-        rejectReason: reason,
+        reject_reason: reason,
       };
       dispatch(SetloaderData(true));
       const data = await API({
