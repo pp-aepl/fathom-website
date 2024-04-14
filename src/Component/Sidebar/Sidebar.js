@@ -8,9 +8,7 @@ import { SetpopupReducerData } from "../../store/reducer";
 
 function Sidebar({ showMenu, setShowMenu }) {
   const { authUser } = useSelector((state) => state);
-  const [showActive, setShowActive] = useState(-1);
   const [openDropdown, setOpenDropdown] = useState(-1);
-  const [openProcess, setOpenProcess] = useState(-1);
   const location = useLocation();
   const pathname = location?.pathname?.split("/");
   const dispatch = useDispatch();
@@ -21,10 +19,8 @@ function Sidebar({ showMenu, setShowMenu }) {
   const toggleDropdown = (index) => {
     if (openDropdown === index) {
       setOpenDropdown(-1);
-      setShowActive(-1);
     } else {
       setOpenDropdown(index);
-      setShowActive(index);
     }
   };
   const handleOpenLogOut = () => {
@@ -33,6 +29,22 @@ function Sidebar({ showMenu, setShowMenu }) {
         modalType: "LOGOUT",
         showModal: true,
       })
+    );
+  };
+  const getCircleSvg = () => {
+    return (
+      <>
+        <svg
+          width="12"
+          height="12"
+          viewBox="0 0 12 12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="mt-2"
+        >
+          <circle cx="6" cy="6" r="5.25" stroke="#151517" stroke-width="1.5" />
+        </svg>
+      </>
     );
   };
   return (
@@ -54,11 +66,7 @@ function Sidebar({ showMenu, setShowMenu }) {
         <nav className={"nav__container"}>
           <div>
             <div className={"nav__list"}>
-              <div
-                className={`${"nav__items"}  ${
-                  showActive === 1 ? "active" : ""
-                } `}
-              >
+              <div className={`${"nav__items"} `}>
                 <Link to="/admin/dashboard" className={"nav__link"}>
                   <div
                     className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"}  `}
@@ -72,30 +80,87 @@ function Sidebar({ showMenu, setShowMenu }) {
                   <span className="logo-content">Fathom</span>
                 </Link>
               </div>
-
-              <div
-                className={`${"nav__items"}  ${
-                  pathname?.includes("dashboard") === 1 ? "active" : ""
-                } `}
-              >
-                <Link
-                  to="/admin/dashboard"
-                  className={`nav__link ${
-                    pathname?.includes("dashboard") ? "activeLink" : ""
-                  }`}
+              <div className={"nav__items"}>
+                <div
+                  className={`${"nav__dropdown"} ${
+                    openDropdown === 1 ? "open" : ""
+                  }  `}
                 >
-                  <div
-                    className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
+                  <a
+                    to="#"
+                    className={"nav__link"}
+                    onClick={() => toggleDropdown(1)}
                   >
-                    <img src="../../../images/dashboard_icon.svg" alt="" />
+                    <div
+                      className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
+                    >
+                      <img src="../../../images/dashboard_icon.svg" alt="" />
+                    </div>
+                    <span className={"nav__name"}>Dashboard</span>
+                    <i
+                      className={` ${"ms_auto"} ${"bx_chevron_down"} ${"nav__icon"} ${
+                        openDropdown === 1 ? "open" : ""
+                      } `}
+                    >
+                      <FaAngleDown />
+                    </i>
+                  </a>
+                  <div
+                    className={`${"nav__dropdown_collapse"} ${
+                      openDropdown === 1 ? "open" : ""
+                    }`}
+                  >
+                    <div className={"nav__dropdown_content"}>
+                      <div
+                        className="ml-5 my-2 d-flex "
+                        style={{
+                          wordWrap: "break-word",
+                          overflowWrap: "break-word",
+                          marginLeft: "20px",
+                        }}
+                      >
+                        {getCircleSvg()}
+
+                        <Link
+                          to="/admin/dashboard"
+                          className={`nav__link ${
+                            pathname?.includes("dashboard") ? "activeLink" : ""
+                          }`}
+                        >
+                          <span className={"nav__name"}> Dashboard 360</span>
+                        </Link>
+                      </div>
+                      <div
+                        className="ml-5 my-2 d-flex "
+                        style={{
+                          wordWrap: "break-word",
+                          overflowWrap: "break-word",
+                          marginLeft: "20px",
+                        }}
+                      >
+                        {getCircleSvg()}
+
+                        <Link
+                          to="/admin/intelliscan-dashboard"
+                          className={`nav__link ${
+                            pathname?.includes("intelliscan-dashboard")
+                              ? "activeLink"
+                              : ""
+                          }`}
+                        >
+                          <span className={"nav__name"}>
+                            Dashboard Intelliscan
+                          </span>
+                        </Link>
+                      </div>
+                    </div>
                   </div>
-                  <span className={"nav__name"}>Dashboard</span>
-                </Link>
+                </div>
               </div>
 
               <div
                 className={`${"nav__items"}  ${
-                  showActive === 1 ? "active" : ""
+                  pathname?.includes("status") ? "active" : ""
                 } `}
               >
                 <Link
@@ -115,7 +180,7 @@ function Sidebar({ showMenu, setShowMenu }) {
 
               <div
                 className={`${"nav__items"}  ${
-                  showActive === 1 ? "active" : ""
+                  pathname?.includes("upload") ? "active" : ""
                 } `}
               >
                 <Link
@@ -140,13 +205,13 @@ function Sidebar({ showMenu, setShowMenu }) {
               <div className={"nav__items"}>
                 <div
                   className={`${"nav__dropdown"} ${
-                    openProcess === 1 ? "open" : ""
+                    openDropdown === 2 ? "open" : ""
                   }  `}
                 >
                   <a
                     to="#"
                     className={"nav__link"}
-                    onClick={() => setOpenProcess(openProcess === 1 ? -1 : 1)}
+                    onClick={() => toggleDropdown(2)}
                   >
                     <div
                       className={` ${"icon_cmn"} ${"bx_home"} ${"nav__icon"}`}
@@ -160,7 +225,7 @@ function Sidebar({ showMenu, setShowMenu }) {
                     <span className={"nav__name"}>Under Process</span>
                     <i
                       className={` ${"ms_auto"} ${"bx_chevron_down"} ${"nav__icon"} ${
-                        openProcess === 1 ? "open" : ""
+                        openDropdown === 2 ? "open" : ""
                       } `}
                     >
                       <FaAngleDown />
@@ -168,7 +233,7 @@ function Sidebar({ showMenu, setShowMenu }) {
                   </a>
                   <div
                     className={`${"nav__dropdown_collapse"} ${
-                      openProcess === 1 ? "open" : ""
+                      openDropdown === 2 ? "open" : ""
                     }`}
                   >
                     <div className={"nav__dropdown_content"}>
@@ -180,22 +245,7 @@ function Sidebar({ showMenu, setShowMenu }) {
                           marginLeft: "20px",
                         }}
                       >
-                        <svg
-                          width="12"
-                          height="12"
-                          viewBox="0 0 12 12"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="mt-2"
-                        >
-                          <circle
-                            cx="6"
-                            cy="6"
-                            r="5.25"
-                            stroke="#151517"
-                            stroke-width="1.5"
-                          />
-                        </svg>
+                        {getCircleSvg()}
                         <Link
                           to="/admin/application/list"
                           className={`nav__link mx-2 ${
@@ -216,22 +266,7 @@ function Sidebar({ showMenu, setShowMenu }) {
                           marginLeft: "20px",
                         }}
                       >
-                        <svg
-                          width="12"
-                          height="12"
-                          viewBox="0 0 12 12"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="mt-2"
-                        >
-                          <circle
-                            cx="6"
-                            cy="6"
-                            r="5.25"
-                            stroke="#151517"
-                            stroke-width="1.5"
-                          />
-                        </svg>
+                        {getCircleSvg()}
                         <Link
                           to="/admin/application/sent"
                           className={`nav__link mx-2 ${
@@ -255,22 +290,7 @@ function Sidebar({ showMenu, setShowMenu }) {
                           marginLeft: "20px",
                         }}
                       >
-                        <svg
-                          width="12"
-                          height="12"
-                          viewBox="0 0 12 12"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="mt-2"
-                        >
-                          <circle
-                            cx="6"
-                            cy="6"
-                            r="5.25"
-                            stroke="#151517"
-                            stroke-width="1.5"
-                          />
-                        </svg>
+                        {getCircleSvg()}
                         <Link
                           to="/admin/application/murabaha"
                           className={`nav__link mx-2 ${
@@ -292,22 +312,7 @@ function Sidebar({ showMenu, setShowMenu }) {
                           marginLeft: "20px",
                         }}
                       >
-                        <svg
-                          width="12"
-                          height="12"
-                          viewBox="0 0 12 12"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="mt-2"
-                        >
-                          <circle
-                            cx="6"
-                            cy="6"
-                            r="5.25"
-                            stroke="#151517"
-                            stroke-width="1.5"
-                          />
-                        </svg>
+                        {getCircleSvg()}
                         <Link
                           to="/admin/application/sent/response"
                           className={`nav__link mx-2 ${
@@ -331,22 +336,8 @@ function Sidebar({ showMenu, setShowMenu }) {
                           marginLeft: "20px",
                         }}
                       >
-                        <svg
-                          width="12"
-                          height="12"
-                          viewBox="0 0 12 12"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="mt-2"
-                        >
-                          <circle
-                            cx="6"
-                            cy="6"
-                            r="5.25"
-                            stroke="#151517"
-                            stroke-width="1.5"
-                          />
-                        </svg>
+                        {getCircleSvg()}
+
                         <Link
                           to="/admin/application/commodity"
                           className={`nav__link mx-2 ${
@@ -366,7 +357,7 @@ function Sidebar({ showMenu, setShowMenu }) {
 
               <div
                 className={`${"nav__items"}  ${
-                  showActive === 1 ? "active" : ""
+                  pathname?.includes("completed") ? "active" : ""
                 } `}
               >
                 <Link
@@ -394,7 +385,7 @@ function Sidebar({ showMenu, setShowMenu }) {
 
               <div
                 className={`${"nav__items"}  ${
-                  showActive === 1 ? "active" : ""
+                  pathname?.includes("rejected") ? "active" : ""
                 } `}
               >
                 <Link
@@ -434,9 +425,13 @@ function Sidebar({ showMenu, setShowMenu }) {
                     <div
                       className={` ${"icon_cmn"} ${"bx_home"} ${"nav__icon"}`}
                     >
-                      <img src="../../../images/report_icon.svg"></img>
+                      <img
+                        src="../../../images/intelli-scan.png"
+                        width={25}
+                        alt=""
+                      />
                     </div>
-                    <span className={"nav__name"}>Reports</span>
+                    <span className={"nav__name"}>Intelliscan</span>
                     <i
                       className={` ${"ms_auto"} ${"bx_chevron_down"} ${"nav__icon"} ${
                         openDropdown === 3 ? "open" : ""
@@ -452,6 +447,121 @@ function Sidebar({ showMenu, setShowMenu }) {
                   >
                     <div className={"nav__dropdown_content"}>
                       <div
+                        className="ml-5  d-flex "
+                        style={{
+                          wordWrap: "break-word",
+                          overflowWrap: "break-word",
+                          marginLeft: "20px",
+                        }}
+                      >
+                        <div className={`mx-2`}>
+                          <img
+                            src="../../../images/doneCircle.png"
+                            width={20}
+                            alt=""
+                          />
+                        </div>
+
+                        <Link
+                          to="/admin/intelliscan?status=pass"
+                          className={`nav__link  ${
+                            pathname?.includes("list") ? "activeLink" : ""
+                          }`}
+                        >
+                          <span className={"nav__name"}> Pass</span>
+                        </Link>
+                      </div>
+
+                      <div
+                        className="ml-5  d-flex "
+                        style={{
+                          wordWrap: "break-word",
+                          overflowWrap: "break-word",
+                          marginLeft: "20px",
+                        }}
+                      >
+                        <div className={`mx-2`}>
+                          <img
+                            src="../../../images/crossCircle.png"
+                            width={20}
+                            alt=""
+                          />
+                        </div>
+
+                        <Link
+                          to="/admin/intelliscan?status=fail"
+                          className={`nav__link ${
+                            pathname?.[pathname?.length - 1] === "sent"
+                              ? "activeLink"
+                              : ""
+                          }`}
+                        >
+                          <span className={"nav__name"}> Fail</span>
+                        </Link>
+                      </div>
+
+                      <div
+                        className="ml-5  d-flex "
+                        style={{
+                          wordWrap: "break-word",
+                          overflowWrap: "break-word",
+                          marginLeft: "20px",
+                        }}
+                      >
+                        <div className={`mx-2`}>
+                          <img
+                            src="../../../images/closeCircle.png"
+                            width={20}
+                            alt=""
+                          />
+                        </div>
+
+                        <Link
+                          to="/admin/intelliscan?status=pending"
+                          className={`nav__link  ${
+                            pathname?.includes("murabaha") ? "activeLink" : ""
+                          }`}
+                        >
+                          <span className={"nav__name"}>Pending</span>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className={"nav__items"}>
+                <div
+                  className={`${"nav__dropdown"} ${
+                    openDropdown === 4 ? "open" : ""
+                  }  `}
+                >
+                  <a
+                    to="#"
+                    className={"nav__link"}
+                    onClick={() => toggleDropdown(4)}
+                  >
+                    <div
+                      className={` ${"icon_cmn"} ${"bx_home"} ${"nav__icon"}`}
+                    >
+                      <img src="../../../images/report_icon.svg"></img>
+                    </div>
+                    <span className={"nav__name"}>Reports</span>
+                    <i
+                      className={` ${"ms_auto"} ${"bx_chevron_down"} ${"nav__icon"} ${
+                        openDropdown === 4 ? "open" : ""
+                      } `}
+                    >
+                      <FaAngleDown />
+                    </i>
+                  </a>
+                  <div
+                    className={`${"nav__dropdown_collapse"} ${
+                      openDropdown === 4 ? "open" : ""
+                    }`}
+                  >
+                    <div className={"nav__dropdown_content"}>
+                      <div
                         className="ml-5 my-2 d-flex "
                         style={{
                           wordWrap: "break-word",
@@ -459,22 +569,8 @@ function Sidebar({ showMenu, setShowMenu }) {
                           marginLeft: "20px",
                         }}
                       >
-                        <svg
-                          width="12"
-                          height="12"
-                          viewBox="0 0 12 12"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="mt-2"
-                        >
-                          <circle
-                            cx="6"
-                            cy="6"
-                            r="5.25"
-                            stroke="#151517"
-                            stroke-width="1.5"
-                          />
-                        </svg>
+                        {getCircleSvg()}
+
                         <Link
                           to="/admin/reports/disbursal"
                           className={`nav__link mx-2  ${
@@ -482,6 +578,26 @@ function Sidebar({ showMenu, setShowMenu }) {
                           }`}
                         >
                           <span className={"nav__name"}> Disbursal Report</span>
+                        </Link>
+                      </div>
+
+                      <div
+                        className="ml-5 my-2 d-flex "
+                        style={{
+                          wordWrap: "break-word",
+                          overflowWrap: "break-word",
+                          marginLeft: "20px",
+                        }}
+                      >
+                        {getCircleSvg()}
+
+                        <Link
+                          to="/admin/reports/error"
+                          className={`nav__link mx-2  ${
+                            pathname?.includes("error") ? "activeLink" : ""
+                          }`}
+                        >
+                          <span className={"nav__name"}>Pending / Error</span>
                         </Link>
                       </div>
                       <div
@@ -492,29 +608,19 @@ function Sidebar({ showMenu, setShowMenu }) {
                           marginLeft: "20px",
                         }}
                       >
-                        <svg
-                          width="12"
-                          height="12"
-                          viewBox="0 0 12 12"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="mt-2"
-                        >
-                          <circle
-                            cx="6"
-                            cy="6"
-                            r="5.25"
-                            stroke="#151517"
-                            stroke-width="1.5"
-                          />
-                        </svg>
+                        {getCircleSvg()}
+
                         <Link
-                          to="/admin/reports/error"
+                          to="/admin/intelliscan-reports-dashboard"
                           className={`nav__link mx-2  ${
-                            pathname?.includes("error") ? "activeLink" : ""
+                            pathname?.includes("intelliscan-reports-dashboard")
+                              ? "activeLink"
+                              : ""
                           }`}
                         >
-                          <span className={"nav__name"}>Pending / Error</span>
+                          <span className={"nav__name"}>
+                            Intelliscan Reports
+                          </span>
                         </Link>
                       </div>
                     </div>
@@ -523,6 +629,7 @@ function Sidebar({ showMenu, setShowMenu }) {
               </div>
             </div>
           </div>
+
           <div className="logout-div  row">
             <div className={`col-6`}>
               <img

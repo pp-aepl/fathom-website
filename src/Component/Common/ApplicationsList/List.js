@@ -2,8 +2,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import UploadApplication from "./UploadApplication";
@@ -12,26 +10,20 @@ import moment from "moment";
 import Filter from "./Filter";
 import { SetpopupReducerData } from "../../../store/reducer";
 
-function List({ id }) {
+function List() {
   const tableRef = useRef();
+  const navigate = useNavigate();
   const params = useParams();
   const fetchParams = params.status;
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const [currentPage, setCurrentPage] = useState(1); //page
-  const [perPage, setPerPage] = useState(30); //limit
-  const [selectedStartdate, setSelectedStartdate] = useState("");
-  const [selectedEnddate, setSelectedEnddate] = useState("");
-  const [listName, setListName] = useState("");
-
+ 
   const [arrList, setArrList] = useState([]);
 
   const [filterKey, setFilterKey] = useState({
     serial_number: "",
-    pageNo: currentPage,
-    limit: perPage,
+    pageNo: 1,
+    limit: 30,
     startDate: "",
     endDate: "",
     periodFrom: "",
