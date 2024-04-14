@@ -4,6 +4,7 @@ import "./index.css";
 import "./App.css";
 import "./Style.css";
 import "./Admin.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";

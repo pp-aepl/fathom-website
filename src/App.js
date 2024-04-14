@@ -30,6 +30,10 @@ import {
 } from "./Config/FetchListingData";
 import IsAlreadyLoggedIn from "./Component/Auth/IsAlreadyLoggedIn";
 import AlreadyLoggedIn from "./Component/Auth/AlreadyLoggedIn";
+import IntelliscanDashboard from "./Component/Dashboard/IntelliscanDashboard";
+import IntelliscanList from "./Component/Common/IntelliScan/IntelliscanList";
+import ReportsDashboard from "./Component/Common/IntelliScan/IntelliScanReport/ReportsDashboard";
+import IntelliScanReportList from "./Component/Common/IntelliScan/IntelliScanReport/ReportList";
 
 function App() {
   const userToken = localStorage.getItem("token");
@@ -71,6 +75,20 @@ function App() {
         <Route element={<RequireAuth authorized={userToken ? true : false} />}>
           <Route path="/admin" element={<AdminLayout />}>
             <Route path="dashboard" element={<Dashboard />} />
+            <Route
+              path="intelliscan-dashboard"
+              element={<IntelliscanDashboard />}
+            />
+            <Route
+              path="intelliscan-reports-dashboard"
+              element={<ReportsDashboard />}
+            />
+             <Route
+              path="intelliscan-reports-details"
+              element={<IntelliScanReportList />}
+            />
+            <Route path="intelliscan" element={<IntelliscanList />} />
+
             <Route path="application/:status?" element={<List />} />
             <Route path="application/list" element={<NewList />} />
             <Route path="application/inProcess" element={<InprocessList />} />
