@@ -8,12 +8,15 @@ import apiURl, { validationMessages } from "../../store/actions/api-url";
 import { isValid, validateOTP } from "../Common/Validation/Validation";
 import { API } from "../../apiwrapper";
 import { Spinner } from "react-bootstrap";
+import { BASE_CONFIG } from "../../Config";
+
 function TwoFactor() {
   const [second, setSecond] = useState(30);
   const { authUser } = useSelector((state) => state);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   let secretKey = searchParams.get("secretKey") ?? "";
+  const APP_PLATFORM = BASE_CONFIG.APP_PLATFORM;
 
   const [apiErrors, setApiErrors] = useState({ message: "", response: "" });
   const [errors, setErrors] = useState({});
@@ -65,7 +68,11 @@ function TwoFactor() {
                 showModal: true,
               })
             );
-            navigate("/admin/dashboard");
+            const navUrl =
+              APP_PLATFORM === "INTELLISCAN"
+                ? "/admin/intelliscan-dashboard"
+                : "/admin/dashboard";
+            navigate(navUrl);
           } else {
             toast.error(data?.message);
             setApiErrors({ message: data?.message || data?.error });

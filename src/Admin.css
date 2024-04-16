@@ -2623,6 +2623,14 @@ input:-moz-placeholder {
   color: #000;
   font-weight: bold;
 }
+.confirmation h2 {
+  display: block;
+  width: 100%;
+  font-size: 24px;
+  line-height: 30px;
+  color: #000;
+  font-weight: bold;
+}
 .confirmation .modal-title {
   width: 100%;
 }
