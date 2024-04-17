@@ -280,14 +280,14 @@ function MurabahaList() {
                                 <td>{item?.email_id_1}</td>
                               )}
                               <td>
-                        {/* <a href={item?.murbaha_url} target="_blank"> */}
+                        <a href={item?.murbaha_url} target="_blank">
                           <button
                             className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
-                            onClick={() => handleView(item?.murbaha_url)}
+                            // onClick={() => handleView(item?.murbaha_url)}
                           >
                             View
                           </button>
-                        {/* </a> */}
+                        </a>
                       </td>
                             </tr>
                           ))}

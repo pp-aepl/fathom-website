@@ -113,14 +113,19 @@ function IntelliscanList() {
                                     <span>{item?.showStatus}</span>
                                   </td>
                                   <td>
-                                    <button
-                                      className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
-                                      onClick={() =>
-                                        handleView(item?.imported_url)
-                                      }
+                                    <a
+                                      href={item?.imported_url}
+                                      target="_blank"
                                     >
-                                      View
-                                    </button>
+                                      <button
+                                        className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
+                                        // onClick={() =>
+                                        //   handleView(item?.imported_url)
+                                        // }
+                                      >
+                                        View
+                                      </button>
+                                    </a>
                                   </td>
                                 </tr>
                               ))}
