@@ -31,6 +31,7 @@ import IntelliscanDashboard from "./Component/Dashboard/IntelliscanDashboard";
 import IntelliscanList from "./Component/Common/IntelliScan/IntelliscanList";
 import ReportsDashboard from "./Component/Common/IntelliScan/IntelliScanReport/ReportsDashboard";
 import IntelliScanReportList from "./Component/Common/IntelliScan/IntelliScanReport/ReportList";
+import IntelliScanRuleList from "./Component/Common/IntelliScan/IntelliScanRuleList";
 
 function App() {
   const userToken = localStorage.getItem("token");
@@ -80,6 +81,11 @@ function App() {
               path="intelliscan-reports-dashboard"
               element={<ReportsDashboard />}
             />
+            <Route
+              path="intelliscan-personal-finance-murbaha-details"
+              element={<IntelliScanRuleList />}
+            />
+
             <Route
               path="intelliscan-reports-details"
               element={<IntelliScanReportList />}

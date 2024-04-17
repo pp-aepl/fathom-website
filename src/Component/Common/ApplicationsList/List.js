@@ -158,19 +158,19 @@ function List() {
                                     </span>
                                   </td>
                                   <td>
-                                    {/* <a
+                                    <a
                                       href={item?.imported_url}
                                       target="_blank"
-                                    > */}
+                                    >
                                       <button
                                         className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
-                                        onClick={() =>
-                                          handleView(item?.imported_url)
-                                        }
+                                        // onClick={() =>
+                                        //   handleView(item?.imported_url)
+                                        // }
                                       >
                                         View
                                       </button>
-                                    {/* </a> */}
+                                    </a>
                                   </td>
                                 </tr>
                               ))}

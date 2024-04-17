@@ -2790,6 +2790,14 @@ input:-moz-placeholder {
   text-align: left;
   font-family: "Inter Tight", sans-serif;
 }
+.checked-rule {
+  font-size: 18px !important;
+  line-height: 24px;
+  color: rgb(0 108 173);
+  text-align: left;
+  font-family: "Inter Tight", sans-serif;
+  margin-left: 5px;
+}
 .buttons {
   padding-top: 70px;
   font-family: "Inter Tight", sans-serif;
