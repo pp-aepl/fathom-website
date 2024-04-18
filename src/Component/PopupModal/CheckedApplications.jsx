@@ -38,8 +38,8 @@ function CheckedApplications() {
       let payload = {
         awsUrls: documents,
         ids:documents?.map(ele=>ele?._id),
-        status: "AWAITING_COMMODITY_PURCHASE",
-        showStatus: "Pending",
+        status: "REJECTED",
+        showStatus: "Rejected",
       };
       dispatch(SetloaderData(true));
       const data = await API({
@@ -50,7 +50,7 @@ function CheckedApplications() {
 
       if (data?.status || data?.status === "true") {
         dispatch(reSetPopupReducerData());
-        navigate("/admin/application/list");
+        navigate("/admin/application/rejected");
       } else {
       }
     } catch (error) {

@@ -29,7 +29,7 @@ function ConfirmFiles() {
     try {
       let payload = {
         awsUrls: documents,
-        ids:documents?.map(ele=>ele?._id),
+        ids: documents?.map((ele) => ele?._id),
         status: "AWAITING_COMMODITY_PURCHASE",
         showStatus: "Pending",
       };
@@ -59,14 +59,21 @@ function ConfirmFiles() {
   // update create api
   const onSubmit = async (e) => {
     e.preventDefault();
-    const isInvalidDocument = documents.some((doc) => {
-      const allTrue =
-        doc.application && doc.credit_limit_approval && doc.promise_to_purchase;
-      const allFalse =
-        !doc.application &&
-        !doc.credit_limit_approval &&
+    // const isInvalidDocument = documents?.some((doc) => {
+    //   const allTrue =
+    //     doc.application && doc.credit_limit_approval && doc.promise_to_purchase;
+    //   const allFalse =
+    //     !doc.application &&
+    //     !doc.credit_limit_approval &&
+    //     !doc.promise_to_purchase;
+    //   return !(allTrue || allFalse);
+    // });
+    const isInvalidDocument = documents?.some((doc) => {
+      const isFalse =
+        !doc.application ||
+        !doc.credit_limit_approval ||
         !doc.promise_to_purchase;
-      return !(allTrue || allFalse);
+      return isFalse;
     });
     console.log(isInvalidDocument, "isInvalidDocument...>>");
 
