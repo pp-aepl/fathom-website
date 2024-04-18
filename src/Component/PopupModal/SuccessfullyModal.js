@@ -10,7 +10,10 @@ import {
 import ProceedModal from "./ProceedModal";
 import DisbursedModal from "./DisbursedModal";
 import { useNavigate } from "react-router-dom";
+import { BASE_CONFIG } from "../../Config";
 function SuccessfullyModal() {
+  const APP_PLATFORM = BASE_CONFIG.APP_PLATFORM;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { PopupReducer } = useSelector((state) => state);
@@ -37,7 +40,11 @@ function SuccessfullyModal() {
       //   })
       // );
       dispatch(reSetPopupReducerData());
-      navigate("/admin/application/list");
+      let nvUrl =
+      APP_PLATFORM === "INTELLISCAN"
+        ? "/admin/intelliscan-personal-finance-murbaha-details"
+        : "/admin/application/list";
+    navigate(nvUrl);
     } else if (successType === "CHANNELLIST") {
       dispatch(
         SetpopupReducerData({

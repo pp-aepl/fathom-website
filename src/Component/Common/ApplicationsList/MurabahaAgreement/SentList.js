@@ -19,7 +19,7 @@ import { Spinner } from "react-bootstrap";
 function SentList() {
   const dispatch = useDispatch();
   const { PopupReducer } = useSelector((state) => state);
-  const { exceptionModal = false, successModal = false } = PopupReducer?.modal;
+  const { successModal = false } = PopupReducer?.modal;
   const location = useLocation();
   const pathArr = location.pathname.split("/");
   let last_Path = pathArr?.[pathArr?.length - 1];
@@ -187,7 +187,6 @@ function SentList() {
   console.log(unSignedArr, "unsigned");
   return (
     <>
-      {exceptionModal && <ExceptionModal />}
       {successModal && <SuccessfullyModal />}
 
       <section className="px-3">
@@ -400,12 +399,12 @@ function SentList() {
 
                       <td>
                         <a href={item?.murbaha_url} target="_blank">
-                        <button
-                          className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
-                          // onClick={() => handleView(item?.murbaha_url)}
-                        >
-                          View
-                        </button>
+                          <button
+                            className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
+                            // onClick={() => handleView(item?.murbaha_url)}
+                          >
+                            View
+                          </button>
                         </a>
                       </td>
                     </tr>

@@ -10,8 +10,11 @@ import {
 import { API } from "../../apiwrapper";
 import { apiURl } from "../../store/actions";
 import { useNavigate } from "react-router-dom";
+import { BASE_CONFIG } from "../../Config";
 
 function CheckedApplications() {
+  const APP_PLATFORM = BASE_CONFIG.APP_PLATFORM;
+
   const dispatch = useDispatch();
   const { PopupReducer, Loader } = useSelector((state) => state);
   const { documents = [], showModal = false } = PopupReducer?.modal;
@@ -50,7 +53,11 @@ function CheckedApplications() {
 
       if (data?.status || data?.status === "true") {
         dispatch(reSetPopupReducerData());
-        navigate("/admin/application/list");
+        let nvUrl =
+            APP_PLATFORM === "INTELLISCAN"
+              ? "/admin/intelliscan-personal-finance-murbaha-details"
+              : "/admin/application/list";
+          navigate(nvUrl);
       } else {
       }
     } catch (error) {

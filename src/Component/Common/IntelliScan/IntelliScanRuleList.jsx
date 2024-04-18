@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import ListingWithRule from "../ApplicationsList/ListingWithRule";
 import Filter from "../ApplicationsList/Filter";
-
+import { CiCircleInfo } from "react-icons/ci";
+import { useDispatch } from "react-redux";
+import { SetpopupReducerData } from "../../../store/reducer";
 function IntelliScanRuleList() {
   const [arrList, setArrList] = useState([]);
   const [selectedApplication, setSelectedApplication] = useState([]);
   const [action, setAction] = useState("");
+  const dispatch = useDispatch();
 
   const [filterKey, setFilterKey] = useState({
     serial_number: "",
@@ -31,6 +34,43 @@ function IntelliScanRuleList() {
       rule: !e.target.value ? "" : e.target.value === "true" ? true : false,
       pageNo: 1,
     });
+  };
+  const fetchModal = (e) => {
+    // if (selectedApplication?.length === 0) {
+    //   alert("Please select application to proceed.");
+    //   return;
+    // }
+    let value = e.target.value;
+    setAction(value);
+    if (value === "PROCEED_ALL_CASE") {
+      dispatch(
+        SetpopupReducerData({
+          modalType: "PROCEED_ALL_CASE",
+          showModal: true,
+          selectedApplication: selectedApplication,
+          status: value,
+        })
+      );
+    } else if (value === "DOWNLOAD") {
+      dispatch(
+        SetpopupReducerData({
+          modalType: "DOWNLOAD",
+          showModal: true,
+          selectedApplication: selectedApplication,
+          status: value,
+        })
+      );
+    } else if (value === "PROCEED&EXCEPTION") {
+      dispatch(
+        SetpopupReducerData({
+          modalType: "EXCEPTION",
+          showModal: true,
+          type: "SUCCESSFULLY",
+          selectedApplication: selectedApplication,
+          status: value,
+        })
+      );
+    }
   };
   return (
     <>
@@ -76,16 +116,16 @@ function IntelliScanRuleList() {
                 <label className="label">&nbsp;</label>
                 <select
                   className="form-select p-3"
-                  //   onChange={fetchModal}
+                    onChange={fetchModal}
                   value={action}
                   name="action"
                 >
                   <option value={""}>Select</option>
-                  <option value={"APPROVED"}>Proceed all cases</option>
+                  <option value={"PROCEED_ALL_CASE"}>Proceed all cases</option>
                   <option value={"PROCEED&EXCEPTION"}>
                     Proceed with exception
                   </option>
-                  <option value={"REJECTED"}>Download</option>
+                  <option value={"DOWNLOAD"}>Download</option>
                 </select>
               </div>
             </div>
@@ -116,12 +156,577 @@ function IntelliScanRuleList() {
               }
             ></input>
           </div>
-          <div className="">
+          {/* <div className="">
             <ListingWithRule
               selectedApplication={selectedApplication}
               listingData={arrList}
               handleChangeCheckBox={handleChangeCheckBox}
             />
+          </div> */}
+
+          <div className=" row my-5" id="table-contexual">
+            <div className="col-12">
+              <table class="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col"> </th>
+                    <th scope="col">S.No. </th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Application no.</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">
+                      Rule 1{" "}
+                      <CiCircleInfo title="Rule 1:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                    </th>
+                    <th scope="col">
+                      Rule 2{" "}
+                      <CiCircleInfo title="Rule 2:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                    </th>
+                    <th scope="col">
+                      Rule 3{" "}
+                      <CiCircleInfo title="Rule 3:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                    </th>
+                    <th scope="col">
+                      Rule 4{" "}
+                      <CiCircleInfo title="Rule 4:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                    </th>
+                    <th scope="col">
+                      Rule 5{" "}
+                      <CiCircleInfo title="Rule 5:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                    </th>
+                    <th scope="col">
+                      Rule 6
+                      <CiCircleInfo title="Rule 6:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                    </th>
+                    <th scope="col">
+                      Rule 7
+                      <CiCircleInfo title="Rule 7:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                    </th>
+                    <th scope="col">
+                      Rule 8{" "}
+                      <CiCircleInfo title="Rule 8:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                    </th>
+                    <th scope="col">
+                      Rule 9{" "}
+                      <CiCircleInfo title="Rule 9:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                    </th>
+                    <th scope="col">
+                      Rule 10
+                      <CiCircleInfo title="Rule 10:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                    </th>
+                    <th scope="col">
+                      Rule 11
+                      <CiCircleInfo title="Rule 11:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                    </th>
+                    <th scope="col">
+                      Rule 12
+                      <CiCircleInfo title="Rule 12:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                    </th>
+                    <th scope="col">
+                      Rule 13
+                      <CiCircleInfo title="Rule 13:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                    </th>
+                    <th scope="col">
+                      Rule 14{" "}
+                      <CiCircleInfo title="Rule 14:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                    </th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="check1"
+                          name="option1"
+                          value="something"
+                        ></input>
+                      </div>
+                    </td>
+                    <td>1</td>
+                    <td>13/05/2023</td>
+                    <td>1220872-00</td>
+                    <td className="text-danger">Fail</td>
+
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <a href={"#"} target="_blank">
+                        <button
+                          className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
+                          // onClick={() => handleView(item?.murbaha_url)}
+                        >
+                          View
+                        </button>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="check1"
+                          name="option1"
+                          value="something"
+                        ></input>
+                      </div>
+                    </td>
+                    <td>1</td>
+                    <td>13/05/2023</td>
+                    <td>1220872-00</td>
+                    <td className="text-success">Pass</td>
+
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <a href={"#"} target="_blank">
+                        <button
+                          className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
+                          // onClick={() => handleView(item?.murbaha_url)}
+                        >
+                          View
+                        </button>
+                      </a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="check1"
+                          name="option1"
+                          value="something"
+                        ></input>
+                      </div>
+                    </td>
+                    <td>1</td>
+                    <td>13/05/2023</td>
+                    <td>1220872-00</td>
+                    <td className="text-danger">Fail</td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>{" "}
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>{" "}
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>{" "}
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <a href={"#"} target="_blank">
+                        <button
+                          className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
+                          // onClick={() => handleView(item?.murbaha_url)}
+                        >
+                          View
+                        </button>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="check1"
+                          name="option1"
+                          value="something"
+                        ></input>
+                      </div>
+                    </td>
+                    <td>1</td>
+                    <td>13/05/2023</td>
+                    <td>1220872-00</td>
+                    <td className="text-danger">Fail</td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>{" "}
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <a href={"#"} target="_blank">
+                        <button
+                          className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
+                          // onClick={() => handleView(item?.murbaha_url)}
+                        >
+                          View
+                        </button>
+                      </a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="check1"
+                          name="option1"
+                          value="something"
+                        ></input>
+                      </div>
+                    </td>
+                    <td>1</td>
+                    <td>13/05/2023</td>
+                    <td>1220872-00</td>
+                    <td className="text-success">Pass</td>
+
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <a href={"#"} target="_blank">
+                        <button
+                          className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
+                          // onClick={() => handleView(item?.murbaha_url)}
+                        >
+                          View
+                        </button>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="check1"
+                          name="option1"
+                          value="something"
+                        ></input>
+                      </div>
+                    </td>
+                    <td>1</td>
+                    <td>13/05/2023</td>
+                    <td>1220872-00</td>
+                    <td className="text-success">Pass</td>
+
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <a href={"#"} target="_blank">
+                        <button
+                          className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
+                          // onClick={() => handleView(item?.murbaha_url)}
+                        >
+                          View
+                        </button>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="check1"
+                          name="option1"
+                          value="something"
+                        ></input>
+                      </div>
+                    </td>
+                    <td>1</td>
+                    <td>13/05/2023</td>
+                    <td>1220872-00</td>
+                    <td className="text-danger">Fail</td>
+
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon2.png"></img>
+                    </td>
+                    <td>
+                      <img src="../../images/icon1.png"></img>
+                    </td>
+                    <td>
+                      <a href={"#"} target="_blank">
+                        <button
+                          className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
+                          // onClick={() => handleView(item?.murbaha_url)}
+                        >
+                          View
+                        </button>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </section>

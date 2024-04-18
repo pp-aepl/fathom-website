@@ -10,7 +10,10 @@ import RejectModal from "./RejectModal";
 import { useNavigate } from "react-router-dom";
 import { API } from "../../apiwrapper";
 import { apiURl } from "../../store/actions";
+import { BASE_CONFIG } from "../../Config";
 function ReasonModal() {
+  const APP_PLATFORM = BASE_CONFIG.APP_PLATFORM;
+
   const dispatch = useDispatch();
   const { PopupReducer } = useSelector((state) => state);
   const { reasonModal = false, selectedApplication = [] } = PopupReducer?.modal;
@@ -37,7 +40,11 @@ function ReasonModal() {
 
       if (data?.status || data?.status === "true") {
         setTimeout(() => {
-          navigate("/admin/application/list");
+          let nvUrl =
+            APP_PLATFORM === "INTELLISCAN"
+              ? "/admin/intelliscan-personal-finance-murbaha-details"
+              : "/admin/application/list";
+          navigate(nvUrl);
           dispatch(
             SetpopupReducerData({
               modalType: "REJECTED",
