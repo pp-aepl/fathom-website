@@ -41,7 +41,7 @@ function CheckedApplications() {
       let payload = {
         awsUrls: documents,
         ids:documents?.map(ele=>ele?._id),
-        status: "AWAITING_COMMODITY_PURCHASE",
+        status: "REJECTED",
         showStatus: "Pending",
       };
       dispatch(SetloaderData(true));
