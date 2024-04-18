@@ -2947,3 +2947,8 @@ input:-moz-placeholder {
 .logout-div > div:nth-child(2) {
   margin-left: auto;
 }
+.table_scroll {
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
