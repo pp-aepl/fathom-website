@@ -3,6 +3,7 @@ import ListingWithRule from "../ApplicationsList/ListingWithRule";
 import Filter from "../ApplicationsList/Filter";
 import { CiCircleInfo } from "react-icons/ci";
 import { useDispatch } from "react-redux";
+import { CiCircleCheck } from "react-icons/ci";
 import { SetpopupReducerData } from "../../../store/reducer";
 function IntelliScanRuleList() {
   const [arrList, setArrList] = useState([]);
@@ -84,6 +85,7 @@ function IntelliScanRuleList() {
                 style={{ backgroundColor: "aliceblue" }}
               >
                 <img src="../../../images/doneCircle.png" width={25} alt="" />{" "}
+                <CiCircleCheck />
                 <span className="checked-rule">
                   {" "}
                   All documents are checked as per defined rules
@@ -170,68 +172,109 @@ function IntelliScanRuleList() {
                 <table class="table ">
                   <thead class="thead-light">
                     <tr>
-                      <th scope="col" className="px-2 mx-4"> </th>
-                      <th scope="col" className="px-2 mx-4">S.No. </th>
-                      <th scope="col" className="px-2 mx-4">Date</th>
-                      <th scope="col" className="px-2 mx-4">Application no.</th>
-                      <th scope="col" className="px-2 mx-4">Status</th>
                       <th scope="col" className="px-2 mx-4">
-                        Rule 1{" "}
-                        <CiCircleInfo title="Rule 1:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        {" "}
                       </th>
                       <th scope="col" className="px-2 mx-4">
-                        Rule 2{" "}
-                        <CiCircleInfo title="Rule 2:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        <span className="m-5">S.No.</span>{" "}
                       </th>
                       <th scope="col" className="px-2 mx-4">
-                        Rule 3{" "}
-                        <CiCircleInfo title="Rule 3:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        <span className="m-5">Date</span>
                       </th>
                       <th scope="col" className="px-2 mx-4">
-                        Rule 4{" "}
-                        <CiCircleInfo title="Rule 4:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        <span className="m-5">Application no.</span>
                       </th>
                       <th scope="col" className="px-2 mx-4">
-                        Rule 5{" "}
-                        <CiCircleInfo title="Rule 5:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        <span className="m-5">Status</span>
                       </th>
                       <th scope="col" className="px-2 mx-4">
-                        Rule 6
-                        <CiCircleInfo title="Rule 6:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        <span className="m-5">
+                          {" "}
+                          Rule 1{" "}
+                          <CiCircleInfo title="Rule 1:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        </span>{" "}
                       </th>
                       <th scope="col" className="px-2 mx-4">
-                        Rule 7
-                        <CiCircleInfo title="Rule 7:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        <span className="m-5">
+                          Rule 2{" "}
+                          <CiCircleInfo title="Rule 2:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        </span>
                       </th>
                       <th scope="col" className="px-2 mx-4">
-                        Rule 8{" "}
-                        <CiCircleInfo title="Rule 8:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        <span className="m-5">
+                          Rule 3{" "}
+                          <CiCircleInfo title="Rule 3:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        </span>
                       </th>
                       <th scope="col" className="px-2 mx-4">
-                        Rule 9{" "}
-                        <CiCircleInfo title="Rule 9:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        <span className="m-5">
+                          Rule 4{" "}
+                          <CiCircleInfo title="Rule 4:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        </span>
                       </th>
                       <th scope="col" className="px-2 mx-4">
-                        Rule 10
-                        <CiCircleInfo title="Rule 10:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        <span className="m-5">
+                          Rule 5{" "}
+                          <CiCircleInfo title="Rule 5:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        </span>
                       </th>
                       <th scope="col" className="px-2 mx-4">
-                        Rule 11
-                        <CiCircleInfo title="Rule 11:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        <span className="m-5">
+                          Rule 6
+                          <CiCircleInfo title="Rule 6:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        </span>
                       </th>
                       <th scope="col" className="px-2 mx-4">
-                        Rule 12
-                        <CiCircleInfo title="Rule 12:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        <span className="m-5">
+                          Rule 7
+                          <CiCircleInfo title="Rule 7:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        </span>
                       </th>
                       <th scope="col" className="px-2 mx-4">
-                        Rule 13
-                        <CiCircleInfo title="Rule 13:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        <span className="m-5">
+                          Rule 8{" "}
+                          <CiCircleInfo title="Rule 8:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        </span>
                       </th>
                       <th scope="col" className="px-2 mx-4">
-                        Rule 14{" "}
-                        <CiCircleInfo title="Rule 14:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        <span className="m-5">
+                          Rule 9{" "}
+                          <CiCircleInfo title="Rule 9:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        </span>
                       </th>
-                      <th scope="col" className="px-2 mx-4">Action</th>
+                      <th scope="col" className="px-2 mx-4">
+                        <span className="m-5">
+                          Rule 10
+                          <CiCircleInfo title="Rule 10:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        </span>
+                      </th>
+                      <th scope="col" className="px-2 mx-4">
+                        <span className="m-5">
+                          Rule 11
+                          <CiCircleInfo title="Rule 11:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        </span>
+                      </th>
+                      <th scope="col" className="px-2 mx-4">
+                        <span className="m-5">
+                          Rule 12
+                          <CiCircleInfo title="Rule 12:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        </span>
+                      </th>
+                      <th scope="col" className="px-2 mx-4">
+                        <span className="m-5">
+                          Rule 13
+                          <CiCircleInfo title="Rule 13:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        </span>
+                      </th>
+                      <th scope="col" className="px-2 mx-4">
+                        <span className="m-5">
+                          Rule 14{" "}
+                          <CiCircleInfo title="Rule 14:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
+                        </span>
+                      </th>
+                      <th scope="col" className="px-2 mx-4">
+                        Action
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -247,58 +290,98 @@ function IntelliScanRuleList() {
                           ></input>
                         </div>
                       </td>
-                      <td className="px-2 mx-4">1</td>
-                      <td className="px-2 mx-4">13/05/2023</td>
-                      <td className="px-2 mx-4">1220872-00</td>
-                      <td
-                        className="text-danger mx-4 px-2"
-                        // style={{ backgroundColor: "#fcdada" }}
-                      >
-                        Fail
+                      <td className="px-2 mx-4">
+                        <span className="m-5">1</span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">13/05/2023</span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">1220872-00</span>
+                      </td>
+                      <td className="text-danger mx-4 px-2">
+                        <span
+                          className="text-danger m-5 p-2"
+                          style={{
+                            backgroundColor: "#fcdada",
+                            borderRadius: "12px",
+                          }}
+                        >
+                          Fail
+                        </span>
                       </td>
 
                       <td className="px-2 mx-4">
-                        <img src="../../images/icon2.png"></img>
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
                       <td className="px-2 mx-4">
-                        <img src="../../images/icon2.png"></img>
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
                       <td className="px-2 mx-4">
-                        <img src="../../images/icon2.png"></img>
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
                       <td className="px-2 mx-4">
-                        <img src="../../images/icon2.png"></img>
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
                       <td className="px-2 mx-4">
-                        <img src="../../images/icon2.png"></img>
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
                       <td className="px-2 mx-4">
-                        <img src="../../images/icon2.png"></img>
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
                       <td className="px-2 mx-4">
-                        <img src="../../images/icon2.png"></img>
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
                       <td className="px-2 mx-4">
-                        <img src="../../images/icon1.png"></img>
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
                       <td className="px-2 mx-4">
-                        <img src="../../images/icon2.png"></img>
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
                       <td className="px-2 mx-4">
-                        <img src="../../images/icon2.png"></img>
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
                       <td className="px-2 mx-4">
-                        <img src="../../images/icon2.png"></img>
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
                       <td className="px-2 mx-4">
-                        <img src="../../images/icon1.png"></img>
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
                       <td className="px-2 mx-4">
-                        <img src="../../images/icon2.png"></img>
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
                       <td className="px-2 mx-4">
-                        <img src="../../images/icon1.png"></img>
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
+
                       <td className="px-2 mx-4">
                         <a href={"#"} target="_blank">
                           <button
@@ -310,8 +393,9 @@ function IntelliScanRuleList() {
                         </a>
                       </td>
                     </tr>
+                  
                     <tr>
-                      <td>
+                      <td className="px-2 mx-4">
                         <div class="form-check">
                           <input
                             class="form-check-input"
@@ -322,193 +406,99 @@ function IntelliScanRuleList() {
                           ></input>
                         </div>
                       </td>
-                      <td>1</td>
-                      <td>13/05/2023</td>
-                      <td>1220872-00</td>
-                      <td className="text-success">Pass</td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">1</span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">13/05/2023</span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">1220872-00</span>
+                      </td>
+                      <td className="text-success mx-4 px-2">
+                        <span
+                          className="text-success m-5 p-2"
+                          style={{
+                            backgroundColor: "#d4f5e1",
+                            borderRadius: "12px",
+                          }}
+                        >
+                          Pass
+                        </span>
+                      </td>
 
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <a href={"#"} target="_blank">
-                          <button
-                            className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
-                            // onClick={() => handleView(item?.murbaha_url)}
-                          >
-                            View
-                          </button>
-                        </a>
-                      </td>
-                    </tr>
 
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="check1"
-                            name="option1"
-                            value="something"
-                          ></input>
-                        </div>
-                      </td>
-                      <td>1</td>
-                      <td>13/05/2023</td>
-                      <td>1220872-00</td>
-                      <td className="text-danger">Fail</td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
-                      </td>{" "}
-                      <td>
-                        <img src="../../images/icon1.png"></img>
-                      </td>{" "}
-                      <td>
-                        <img src="../../images/icon1.png"></img>
-                      </td>{" "}
-                      <td>
-                        <img src="../../images/icon1.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
-                      </td>
-                      <td>
-                        <a href={"#"} target="_blank">
-                          <button
-                            className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
-                            // onClick={() => handleView(item?.murbaha_url)}
-                          >
-                            View
-                          </button>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="check1"
-                            name="option1"
-                            value="something"
-                          ></input>
-                        </div>
-                      </td>
-                      <td>1</td>
-                      <td>13/05/2023</td>
-                      <td>1220872-00</td>
-                      <td className="text-danger">Fail</td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
-                      </td>{" "}
-                      <td>
-                        <img src="../../images/icon2.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
-                      </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
-                      </td>
-                      <td>
+                      <td className="px-2 mx-4">
                         <a href={"#"} target="_blank">
                           <button
                             className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
@@ -521,7 +511,7 @@ function IntelliScanRuleList() {
                     </tr>
 
                     <tr>
-                      <td>
+                      <td className="px-2 mx-4">
                         <div class="form-check">
                           <input
                             class="form-check-input"
@@ -532,54 +522,99 @@ function IntelliScanRuleList() {
                           ></input>
                         </div>
                       </td>
-                      <td>1</td>
-                      <td>13/05/2023</td>
-                      <td>1220872-00</td>
-                      <td className="text-success">Pass</td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">1</span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">13/05/2023</span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">1220872-00</span>
+                      </td>
+                      <td className="text-danger mx-4 px-2">
+                        <span
+                          className="text-danger m-5 p-2"
+                          style={{
+                            backgroundColor: "#fcdada",
+                            borderRadius: "12px",
+                          }}
+                        >
+                          Fail
+                        </span>
+                      </td>
 
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
+
+                      <td className="px-2 mx-4">
                         <a href={"#"} target="_blank">
                           <button
                             className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
@@ -590,8 +625,9 @@ function IntelliScanRuleList() {
                         </a>
                       </td>
                     </tr>
+                 
                     <tr>
-                      <td>
+                      <td className="px-2 mx-4">
                         <div class="form-check">
                           <input
                             class="form-check-input"
@@ -602,54 +638,99 @@ function IntelliScanRuleList() {
                           ></input>
                         </div>
                       </td>
-                      <td>1</td>
-                      <td>13/05/2023</td>
-                      <td>1220872-00</td>
-                      <td className="text-success">Pass</td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">1</span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">13/05/2023</span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">1220872-00</span>
+                      </td>
+                      <td className="text-success mx-4 px-2">
+                        <span
+                          className="text-success m-5 p-2"
+                          style={{
+                            backgroundColor: "#d4f5e1",
+                            borderRadius: "12px",
+                          }}
+                        >
+                          Pass
+                        </span>
+                      </td>
 
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
+
+                      <td className="px-2 mx-4">
                         <a href={"#"} target="_blank">
                           <button
                             className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
@@ -660,8 +741,9 @@ function IntelliScanRuleList() {
                         </a>
                       </td>
                     </tr>
+
                     <tr>
-                      <td>
+                      <td className="px-2 mx-4">
                         <div class="form-check">
                           <input
                             class="form-check-input"
@@ -672,54 +754,447 @@ function IntelliScanRuleList() {
                           ></input>
                         </div>
                       </td>
-                      <td>1</td>
-                      <td>13/05/2023</td>
-                      <td>1220872-00</td>
-                      <td className="text-danger">Fail</td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">1</span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">13/05/2023</span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">1220872-00</span>
+                      </td>
+                      <td className="text-danger mx-4 px-2">
+                        <span
+                          className="text-danger m-5 p-2"
+                          style={{
+                            backgroundColor: "#fcdada",
+                            borderRadius: "12px",
+                          }}
+                        >
+                          Fail
+                        </span>
+                      </td>
 
-                      <td>
-                        <img src="../../images/icon1.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon2.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
-                        <img src="../../images/icon1.png"></img>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
                       </td>
-                      <td>
+
+                      <td className="px-2 mx-4">
+                        <a href={"#"} target="_blank">
+                          <button
+                            className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
+                            // onClick={() => handleView(item?.murbaha_url)}
+                          >
+                            View
+                          </button>
+                        </a>
+                      </td>
+                    </tr>
+                 
+                    <tr>
+                      <td className="px-2 mx-4">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="check1"
+                            name="option1"
+                            value="something"
+                          ></input>
+                        </div>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">1</span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">13/05/2023</span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">1220872-00</span>
+                      </td>
+                      <td className="text-success mx-4 px-2">
+                        <span
+                          className="text-success m-5 p-2"
+                          style={{
+                            backgroundColor: "#d4f5e1",
+                            borderRadius: "12px",
+                          }}
+                        >
+                          Pass
+                        </span>
+                      </td>
+
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+
+                      <td className="px-2 mx-4">
+                        <a href={"#"} target="_blank">
+                          <button
+                            className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
+                            // onClick={() => handleView(item?.murbaha_url)}
+                          >
+                            View
+                          </button>
+                        </a>
+                      </td>
+                    </tr>
+                  
+                    <tr>
+                      <td className="px-2 mx-4">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="check1"
+                            name="option1"
+                            value="something"
+                          ></input>
+                        </div>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">1</span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">13/05/2023</span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">1220872-00</span>
+                      </td>
+                      <td className="text-danger mx-4 px-2">
+                        <span
+                          className="text-danger m-5 p-2"
+                          style={{
+                            backgroundColor: "#fcdada",
+                            borderRadius: "12px",
+                          }}
+                        >
+                          Fail
+                        </span>
+                      </td>
+
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+
+                      <td className="px-2 mx-4">
+                        <a href={"#"} target="_blank">
+                          <button
+                            className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
+                            // onClick={() => handleView(item?.murbaha_url)}
+                          >
+                            View
+                          </button>
+                        </a>
+                      </td>
+                    </tr>
+                  
+                    <tr>
+                      <td className="px-2 mx-4">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="check1"
+                            name="option1"
+                            value="something"
+                          ></input>
+                        </div>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">1</span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">13/05/2023</span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">1220872-00</span>
+                      </td>
+                      <td className="text-success mx-4 px-2">
+                        <span
+                          className="text-success m-5 p-2"
+                          style={{
+                            backgroundColor: "#d4f5e1",
+                            borderRadius: "12px",
+                          }}
+                        >
+                          Pass
+                        </span>
+                      </td>
+
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon1.png" />
+                        </span>
+                      </td>
+                      <td className="px-2 mx-4">
+                        <span className="m-5">
+                          <img src="../../images/icon2.png" />
+                        </span>
+                      </td>
+
+                      <td className="px-2 mx-4">
                         <a href={"#"} target="_blank">
                           <button
                             className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
