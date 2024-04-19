@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import ListingWithRule from "../ApplicationsList/ListingWithRule";
 import Filter from "../ApplicationsList/Filter";
-import { CiCircleInfo } from "react-icons/ci";
+import { CiCircleInfo, CiCircleCheck } from "react-icons/ci";
 import { useDispatch } from "react-redux";
-import { CiCircleCheck } from "react-icons/ci";
 import { SetpopupReducerData } from "../../../store/reducer";
 function IntelliScanRuleList() {
   const [arrList, setArrList] = useState([]);
@@ -84,8 +83,8 @@ function IntelliScanRuleList() {
                 className="col-12  p-3 mb-2 "
                 style={{ backgroundColor: "aliceblue" }}
               >
-                <img src="../../../images/doneCircle.png" width={25} alt="" />{" "}
-                <CiCircleCheck />
+                <CiCircleCheck color="blue" size={30}/>
+               
                 <span className="checked-rule">
                   {" "}
                   All documents are checked as per defined rules
@@ -393,7 +392,7 @@ function IntelliScanRuleList() {
                         </a>
                       </td>
                     </tr>
-                  
+
                     <tr>
                       <td className="px-2 mx-4">
                         <div class="form-check">
@@ -625,7 +624,7 @@ function IntelliScanRuleList() {
                         </a>
                       </td>
                     </tr>
-                 
+
                     <tr>
                       <td className="px-2 mx-4">
                         <div class="form-check">
@@ -857,7 +856,7 @@ function IntelliScanRuleList() {
                         </a>
                       </td>
                     </tr>
-                 
+
                     <tr>
                       <td className="px-2 mx-4">
                         <div class="form-check">
@@ -973,7 +972,7 @@ function IntelliScanRuleList() {
                         </a>
                       </td>
                     </tr>
-                  
+
                     <tr>
                       <td className="px-2 mx-4">
                         <div class="form-check">
@@ -1089,7 +1088,7 @@ function IntelliScanRuleList() {
                         </a>
                       </td>
                     </tr>
-                  
+
                     <tr>
                       <td className="px-2 mx-4">
                         <div class="form-check">
