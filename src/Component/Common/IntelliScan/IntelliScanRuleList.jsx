@@ -170,73 +170,73 @@ function IntelliScanRuleList() {
                 <table class="table ">
                   <thead class="thead-light">
                     <tr>
-                      <th scope="col"> </th>
-                      <th scope="col">S.No. </th>
-                      <th scope="col">Date</th>
-                      <th scope="col">Application no.</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">
+                      <th scope="col" className="px-2 mx-4"> </th>
+                      <th scope="col" className="px-2 mx-4">S.No. </th>
+                      <th scope="col" className="px-2 mx-4">Date</th>
+                      <th scope="col" className="px-2 mx-4">Application no.</th>
+                      <th scope="col" className="px-2 mx-4">Status</th>
+                      <th scope="col" className="px-2 mx-4">
                         Rule 1{" "}
                         <CiCircleInfo title="Rule 1:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
                       </th>
-                      <th scope="col">
+                      <th scope="col" className="px-2 mx-4">
                         Rule 2{" "}
                         <CiCircleInfo title="Rule 2:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
                       </th>
-                      <th scope="col">
+                      <th scope="col" className="px-2 mx-4">
                         Rule 3{" "}
                         <CiCircleInfo title="Rule 3:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
                       </th>
-                      <th scope="col">
+                      <th scope="col" className="px-2 mx-4">
                         Rule 4{" "}
                         <CiCircleInfo title="Rule 4:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
                       </th>
-                      <th scope="col">
+                      <th scope="col" className="px-2 mx-4">
                         Rule 5{" "}
                         <CiCircleInfo title="Rule 5:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
                       </th>
-                      <th scope="col">
+                      <th scope="col" className="px-2 mx-4">
                         Rule 6
                         <CiCircleInfo title="Rule 6:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
                       </th>
-                      <th scope="col">
+                      <th scope="col" className="px-2 mx-4">
                         Rule 7
                         <CiCircleInfo title="Rule 7:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
                       </th>
-                      <th scope="col">
+                      <th scope="col" className="px-2 mx-4">
                         Rule 8{" "}
                         <CiCircleInfo title="Rule 8:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
                       </th>
-                      <th scope="col">
+                      <th scope="col" className="px-2 mx-4">
                         Rule 9{" "}
                         <CiCircleInfo title="Rule 9:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
                       </th>
-                      <th scope="col">
+                      <th scope="col" className="px-2 mx-4">
                         Rule 10
                         <CiCircleInfo title="Rule 10:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
                       </th>
-                      <th scope="col">
+                      <th scope="col" className="px-2 mx-4">
                         Rule 11
                         <CiCircleInfo title="Rule 11:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
                       </th>
-                      <th scope="col">
+                      <th scope="col" className="px-2 mx-4">
                         Rule 12
                         <CiCircleInfo title="Rule 12:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
                       </th>
-                      <th scope="col">
+                      <th scope="col" className="px-2 mx-4">
                         Rule 13
                         <CiCircleInfo title="Rule 13:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
                       </th>
-                      <th scope="col">
+                      <th scope="col" className="px-2 mx-4">
                         Rule 14{" "}
                         <CiCircleInfo title="Rule 14:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " />
                       </th>
-                      <th scope="col">Action</th>
+                      <th scope="col" className="px-2 mx-4">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>
+                      <td className="px-2 mx-4">
                         <div class="form-check">
                           <input
                             class="form-check-input"
@@ -247,54 +247,59 @@ function IntelliScanRuleList() {
                           ></input>
                         </div>
                       </td>
-                      <td>1</td>
-                      <td>13/05/2023</td>
-                      <td>1220872-00</td>
-                      <td className="text-danger">Fail</td>
+                      <td className="px-2 mx-4">1</td>
+                      <td className="px-2 mx-4">13/05/2023</td>
+                      <td className="px-2 mx-4">1220872-00</td>
+                      <td
+                        className="text-danger mx-4 px-2"
+                        // style={{ backgroundColor: "#fcdada" }}
+                      >
+                        Fail
+                      </td>
 
-                      <td>
+                      <td className="px-2 mx-4">
                         <img src="../../images/icon2.png"></img>
                       </td>
-                      <td>
+                      <td className="px-2 mx-4">
                         <img src="../../images/icon2.png"></img>
                       </td>
-                      <td>
+                      <td className="px-2 mx-4">
                         <img src="../../images/icon2.png"></img>
                       </td>
-                      <td>
+                      <td className="px-2 mx-4">
                         <img src="../../images/icon2.png"></img>
                       </td>
-                      <td>
+                      <td className="px-2 mx-4">
                         <img src="../../images/icon2.png"></img>
                       </td>
-                      <td>
+                      <td className="px-2 mx-4">
                         <img src="../../images/icon2.png"></img>
                       </td>
-                      <td>
+                      <td className="px-2 mx-4">
                         <img src="../../images/icon2.png"></img>
                       </td>
-                      <td>
+                      <td className="px-2 mx-4">
                         <img src="../../images/icon1.png"></img>
                       </td>
-                      <td>
+                      <td className="px-2 mx-4">
                         <img src="../../images/icon2.png"></img>
                       </td>
-                      <td>
+                      <td className="px-2 mx-4">
                         <img src="../../images/icon2.png"></img>
                       </td>
-                      <td>
+                      <td className="px-2 mx-4">
                         <img src="../../images/icon2.png"></img>
                       </td>
-                      <td>
+                      <td className="px-2 mx-4">
                         <img src="../../images/icon1.png"></img>
                       </td>
-                      <td>
+                      <td className="px-2 mx-4">
                         <img src="../../images/icon2.png"></img>
                       </td>
-                      <td>
+                      <td className="px-2 mx-4">
                         <img src="../../images/icon1.png"></img>
                       </td>
-                      <td>
+                      <td className="px-2 mx-4">
                         <a href={"#"} target="_blank">
                           <button
                             className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
