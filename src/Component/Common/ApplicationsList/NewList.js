@@ -206,14 +206,25 @@ function NewList() {
     let value = e.target.value;
     setAction(value);
     if (value === "APPROVED") {
-      dispatch(
-        SetpopupReducerData({
-          modalType: "PROCEED",
-          showModal: true,
-          selectedApplication: selectedApplication,
-          status: value,
-        })
-      );
+      const isFails =
+        arrList
+          ?.filter((ele) => selectedApplication?.includes(ele?._id))
+          ?.some((ele1) =>
+            ele1?.rules?.some((ele2) => ele2?.status === false)
+          ) ?? false;
+      if (isFails) {
+        alert("Please select all rule passed application to proceed.");
+        return;
+      } else {
+        dispatch(
+          SetpopupReducerData({
+            modalType: "PROCEED",
+            showModal: true,
+            selectedApplication: selectedApplication,
+            status: value,
+          })
+        );
+      }
     } else if (value === "REJECTED") {
       dispatch(
         SetpopupReducerData({
