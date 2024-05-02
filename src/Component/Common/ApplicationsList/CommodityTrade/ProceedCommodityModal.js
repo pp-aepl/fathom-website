@@ -1,32 +1,58 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import { Modal } from "react-bootstrap";
+import { Modal, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
+  SetloaderData,
   SetpopupReducerData,
   reSetPopupReducerData,
 } from "../../../../store/reducer";
+import { API } from "../../../../apiwrapper";
+import { apiURl } from "../../../../store/actions";
 
 function ProceedCommodityModal() {
   const dispatch = useDispatch();
-  const { PopupReducer } = useSelector((state) => state);
-  const { showModal = false } = PopupReducer?.modal;
+  const { PopupReducer,Loader } = useSelector((state) => state);
+  const { showModal = false, selectedApplication } = PopupReducer?.modal;
   const navigate = useNavigate();
 
   const handleClosePopup = () => {
     dispatch(reSetPopupReducerData());
   };
+  const handleProcess = async () => {
+    try {
+      let payload = {
+        ids: selectedApplication,
+        status: "COMMODITY_PURCHASE_CONFIRMED",
+      };
+      dispatch(SetloaderData(true));
+      const data = await API({
+        url: `${apiURl.applications}`,
+        method: "PUT",
+        body: payload,
+      });
 
-  const navigateToAgreement = () => {
-    dispatch(
-      SetpopupReducerData({
-        ...PopupReducer?.modal,
-        modalType: "MURABAHA",
-        showModal: true,
-      })
-    );
+      if (data?.status || data?.status === "true") {
+        dispatch(
+          SetpopupReducerData({
+            ...PopupReducer?.modal,
+            modalType: "MURABAHA",
+            showModal: true,
+          })
+        );
+      } else {
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch(SetloaderData(false));
+    }
+  };
+
+  const handleContinue = () => {
+    handleProcess();
   };
 
   return (
@@ -61,10 +87,12 @@ function ProceedCommodityModal() {
             style={{ marginTop: "100px" }}
           >
             <button
-              onClick={(e) => navigateToAgreement(e)}
+              onClick={(e) => handleContinue(e)}
               className="login100-form-btn"
+              disabled={Loader?.data || false}
             >
-              Continue
+              {Loader?.data ? <Spinner /> : "Continue"}
+              
             </button>
           </div>
         </Modal.Body>
