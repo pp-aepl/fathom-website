@@ -139,8 +139,8 @@ function IntelliScanRuleList() {
                 {showRules ? "Minimize" : "Show"} Rule{" "}
               </span>
             </div>
-            {/* <div className="row p-4 ps-4">
-              <div
+            <div className="row p-4 ps-4">
+              {/* <div
                 className="col-12  p-3 mb-2 "
                 style={{ backgroundColor: "aliceblue" }}
               >
@@ -150,7 +150,7 @@ function IntelliScanRuleList() {
                   {" "}
                   All documents are checked as per defined rules
                 </span>
-              </div>
+              </div> */}
               <div className="col-2">
                 <label className="label">Rule</label>
                 <select
@@ -190,7 +190,7 @@ function IntelliScanRuleList() {
                   <option value={"DOWNLOAD"}>Download</option>
                 </select>
               </div>
-            </div> */}
+            </div>
           </div>
           <div className="input-group p-4">
             <label className="d-block label py-3 w-100">
