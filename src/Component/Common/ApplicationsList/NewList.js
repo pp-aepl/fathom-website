@@ -27,7 +27,7 @@ function NewList() {
   const {
     rejectModal = false,
     reasonModal = false,
-    exceptionModal = false,
+    showModal = false,
     successModal = false,
   } = PopupReducer?.modal;
 
@@ -238,7 +238,7 @@ function NewList() {
       dispatch(
         SetpopupReducerData({
           modalType: "EXCEPTION",
-          exceptionModal: true,
+          showModal: true,
           type: "SUCCESSFULLY",
           selectedApplication: selectedApplication,
           status: value,
@@ -288,7 +288,6 @@ function NewList() {
     <>
       {rejectModal && <RejectModal />}
       {reasonModal && <ReasonModal />}
-      {exceptionModal && <ExceptionModal />}
       {successModal && <SuccessfullyModal />}
 
       <section className="">

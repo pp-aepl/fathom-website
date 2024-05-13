@@ -10,7 +10,9 @@ import {
 } from "../../store/reducer";
 import { useNavigate } from "react-router-dom";
 import ChartComponent from "../../Config/CircleChart";
+import { BASE_CONFIG } from "../../Config";
 function ApplicationScan() {
+  const APP_PLATFORM = BASE_CONFIG.APP_PLATFORM;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { PopupReducer } = useSelector((state) => state);
@@ -48,7 +50,7 @@ function ApplicationScan() {
             show: true,
             offsetY: 70,
             formatter: function (val) {
-              return val||100;
+              return val || 100;
             },
           },
         },
@@ -89,13 +91,21 @@ function ApplicationScan() {
     );
     // navigate("/admin/application/list");
     setTimeout(() => {
-      dispatch(
-        SetpopupReducerData({
-          ...PopupReducer?.modal,
-          modalType: "FILESCONFIRM",
-          showConfirmModal: true,
-        })
-      );
+      APP_PLATFORM === "INTELLISCAN"
+        ? dispatch(
+            SetpopupReducerData({
+              ...PopupReducer?.modal,
+              modalType: "INTELLI_SCAN_FILES_CONFIRM",
+              showModal: true,
+            })
+          )
+        : dispatch(
+            SetpopupReducerData({
+              ...PopupReducer?.modal,
+              modalType: "FILESCONFIRM",
+              showConfirmModal: true,
+            })
+          );
     }, 200);
   };
   useEffect(() => {
@@ -156,7 +166,7 @@ function ApplicationScan() {
 
             <p className="card-text text-center">
               {statusType?.success === "SUCCESS" &&
-                "85 Application passed and 5 Application failed"}
+                ""}
               {statusType?.success !== "SUCCESS" &&
                 "Application scanning is in process"}
             </p>

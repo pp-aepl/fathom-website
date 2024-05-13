@@ -13,6 +13,10 @@ import AgentModal from "./AgentModal";
 import LoginValidationModal from "./LoginValidationModal";
 import LogoutModal from "./LogoutModal";
 import OpenDocument from "./OpenDocument";
+import FileConfirmation from "../Common/IntelliScan/Popups/FileConfirmation";
+import Download from "../Common/IntelliScan/Popups/Download";
+import ProccedAllCasePopup from "../Common/IntelliScan/Popups/ProccedAllCasePopup";
+import ExceptionModal from "./ExceptionModal";
 
 function OpenModal() {
   const { PopupReducer } = useSelector((state) => state);
@@ -35,6 +39,10 @@ function OpenModal() {
           {modalType === "MURABAHA_SUCCESS" && <MurabahaSuccessfully />}
           {modalType === "AGENT" && <AgentModal />}
           {modalType === "OPEN_DOC" && <OpenDocument />}
+          {modalType === "INTELLI_SCAN_FILES_CONFIRM" && <FileConfirmation />}
+          {modalType === "DOWNLOAD" && <Download />}
+          {modalType === "PROCEED_ALL_CASE" && <ProccedAllCasePopup />}
+          {modalType==="EXCEPTION"&&<ExceptionModal/>}
         </>
       ) : (
         ""

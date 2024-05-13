@@ -1,11 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Routes, Route, Navigate, Outlet, Router } from "react-router-dom";
-import Navbar from "./Component/Sidebar/Nabvar/Navbar";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "./Component/Dashboard/Dashboard";
 import Login from "./Component/Auth/Login";
 import List from "./Component/Common/ApplicationsList/List";
-import Sidebar from "./Component/Sidebar/Sidebar";
 import TwoFactor from "./Component/Auth/TwoFactor";
 import NewList from "./Component/Common/ApplicationsList/NewList";
 import InprocessList from "./Component/Common/ApplicationsList/ApplicationProcessSteps/InprocessList";
@@ -13,8 +11,7 @@ import MurabahaList from "./Component/Common/ApplicationsList/MurabahaAgreement/
 import SentList from "./Component/Common/ApplicationsList/MurabahaAgreement/SentList";
 import CommodityList from "./Component/Common/ApplicationsList/CommodityTrade/CommodityList";
 import ReportList from "./Component/Common/Reports/ReportList";
-import React, { useCallback, useEffect, useState } from "react";
-import SidebarRoutes from "./Component/Sidebar/Nabvar/sidebar_new";
+import React, { useCallback, useEffect } from "react";
 import RequireAuth from "./Component/Auth/useAuth";
 import "./App.css";
 import UserLayout from "./Component/Layout/UserLayout";
@@ -35,6 +32,7 @@ import IntelliscanList from "./Component/Common/IntelliScan/IntelliscanList";
 import ReportsDashboard from "./Component/Common/IntelliScan/IntelliScanReport/ReportsDashboard";
 import IntelliScanReportList from "./Component/Common/IntelliScan/IntelliScanReport/ReportList";
 import ApplicationStatus from "./Component/Common/ApplicationsList/MurabahaAgreement/ApplicationStatus";
+import IntelliScanRuleList from "./Component/Common/IntelliScan/IntelliScanRuleList";
 
 function App() {
   const userToken = localStorage.getItem("token");
@@ -84,6 +82,11 @@ function App() {
               path="intelliscan-reports-dashboard"
               element={<ReportsDashboard />}
             />
+            <Route
+              path="intelliscan-personal-finance-murbaha-details"
+              element={<IntelliScanRuleList />}
+            />
+
             <Route
               path="intelliscan-reports-details"
               element={<IntelliScanReportList />}

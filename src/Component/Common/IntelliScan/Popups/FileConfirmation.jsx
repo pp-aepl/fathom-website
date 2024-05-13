@@ -5,22 +5,19 @@
 import React from "react";
 import { Modal, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import DataTable from "react-data-table-component";
 import {
   SetloaderData,
   SetpopupReducerData,
   reSetPopupReducerData,
-} from "../../../store/reducer";
-import DataTable from "react-data-table-component";
-import SuccessfullyModal from "../../PopupModal/SuccessfullyModal";
-import { API } from "../../../apiwrapper";
-import { apiURl } from "../../../store/actions";
+} from "../../../../store/reducer";
+import { API } from "../../../../apiwrapper";
+import { apiURl } from "../../../../store/actions";
 
-function ConfirmFiles() {
+function FileConfirmation() {
   const dispatch = useDispatch();
   const { PopupReducer, Loader } = useSelector((state) => state);
-  const { successModal = false, documents = [] } = PopupReducer?.modal;
-  const { showConfirmModal = false } = PopupReducer?.modal;
-  let obj = documents?.[0];
+  const { documents = [], showModal = false } = PopupReducer?.modal;
   const handleClosePopup = () => {
     dispatch(reSetPopupReducerData());
   };
@@ -57,15 +54,18 @@ function ConfirmFiles() {
   };
   // update create api
   const onSubmit = async (e) => {
-    e.preventDefault();   
-    const isInvalidDocument = documents?.some((doc) => {
-      const isFalse =
-        !doc.application ||
-        !doc.credit_limit_approval ||
+    e.preventDefault();
+    const isInvalidDocument = documents.some((doc) => {
+      const allTrue =
+        doc.application && doc.credit_limit_approval && doc.promise_to_purchase;
+      const allFalse =
+        !doc.application &&
+        !doc.credit_limit_approval &&
         !doc.promise_to_purchase;
-      return isFalse;
+      return !(allTrue || allFalse);
     });
-   
+    console.log(isInvalidDocument, "isInvalidDocument...>>");
+
     if (isInvalidDocument) {
       dispatch(
         SetpopupReducerData({
@@ -90,7 +90,7 @@ function ConfirmFiles() {
       })
     );
   };
- 
+
   const handleDelete = (idx) => {
     let arr = [...documents];
     arr.splice(idx, 1);
@@ -116,10 +116,11 @@ function ConfirmFiles() {
         documents: updatedDocuments,
       })
     );
+    console.log(obj, "ele");
   };
   const columns = [
     {
-      name: "",
+      name: "Agreement No.",
       selector: (row, index) => (
         <>
           <img
@@ -201,7 +202,63 @@ function ConfirmFiles() {
       sortable: true,
     },
     {
-      name: "Credit Limit Approval Report",
+      name: "CAM",
+      cell: (row, indx) => (
+        <>
+          <div>
+            {row?.credit_limit_approval ? (
+              <input
+                className="form-check-input"
+                type="checkbox"
+                value={row?.credit_limit_approval}
+                name="credit_limit_approval"
+                disabled
+                checked={row?.credit_limit_approval}
+                onChange={(e) => handleChangeCheckbox(e, indx)}
+                id="flexCheckDefault"
+              />
+            ) : (
+              <img
+                src="../../images/close.png"
+                width={18}
+                className="   d-inline-block"
+              />
+            )}
+          </div>
+        </>
+      ),
+      sortable: true,
+    },
+    {
+      name: "Murbaha Agreement",
+      cell: (row, indx) => (
+        <>
+          <div>
+            {row?.credit_limit_approval ? (
+              <input
+                className="form-check-input"
+                type="checkbox"
+                value={row?.credit_limit_approval}
+                name="credit_limit_approval"
+                disabled
+                checked={row?.credit_limit_approval}
+                onChange={(e) => handleChangeCheckbox(e, indx)}
+                id="flexCheckDefault"
+              />
+            ) : (
+              <img
+                src="../../images/close.png"
+                width={18}
+                className="   d-inline-block"
+              />
+            )}
+          </div>
+        </>
+      ),
+      sortable: true,
+    },
+    {
+      name: "Commodity trade",
       cell: (row, indx) => (
         <>
           <div>
@@ -232,11 +289,10 @@ function ConfirmFiles() {
 
   return (
     <>
-      {successModal && <SuccessfullyModal />}
       <Modal
         className={"publishModal"}
-        show={showConfirmModal}
-        size="lg"
+        show={showModal}
+        size="xl"
         centered
         onHide={handleClosePopup}
         backdrop="static"
@@ -244,14 +300,36 @@ function ConfirmFiles() {
       >
         <div className="confirmation">
           <Modal.Header closeButton>
-            <Modal.Title>
-              <h3 className="confirm_heading pb-0">Files Confirmation </h3>
-              <p className="card-text">
-                Please confirm your file include following
-              </p>
-            </Modal.Title>
+            <Modal.Title></Modal.Title>
           </Modal.Header>
           <Modal.Body className="p-5">
+            <div className="row mb-3">
+              <div className="col-6">
+                <h2 className=" pb-0">Files Confirmation </h2>
+                <p className="card-text1">
+                  Please confirm your file include following
+                </p>
+              </div>
+              <div className="col-6">
+                <div className="form-group has-search">
+                  {/* <span className="fa fa-search form-control-feedback"></span> */}
+                  <input
+                    type="text"
+                    className="form-control p-3"
+                    name="serial_number"
+                    // value={filterKey.serial_number}
+                    inputMode="numeric"
+                    placeholder="Search..."
+                    // onChange={(e) =>
+                    //   setFilterKey({
+                    //     ...filterKey,
+                    //     serial_number: e.target.value,
+                    //   })
+                    // }
+                  />
+                </div>
+              </div>
+            </div>
             <DataTable columns={columns} data={documents} />
             {documents?.length === 0 ? (
               <p className="card-text pb-10">Do you want to re-import again?</p>
@@ -285,4 +363,4 @@ function ConfirmFiles() {
   );
 }
 
-export default ConfirmFiles;
+export default FileConfirmation;

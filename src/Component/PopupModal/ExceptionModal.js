@@ -17,7 +17,7 @@ function ExceptionModal() {
   const dispatch = useDispatch();
   const { PopupReducer } = useSelector((state) => state);
   const {
-    exceptionModal = false,
+    showModal = false,
     documents = [],
     selectedApplication,
     value
@@ -147,7 +147,7 @@ function ExceptionModal() {
 
       <Modal
         className={"publishModal"}
-        show={exceptionModal}
+        show={showModal}
         size="md"
         centered
         onHide={handleClosePopup}

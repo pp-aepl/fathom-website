@@ -9,8 +9,10 @@ import { apiURl } from "../../../../store/actions";
 import { API } from "../../../../apiwrapper";
 import { fetchApplicationList } from "../../../../Config/FetchListingData";
 import ListingWithRule from "../ListingWithRule";
+import { BASE_CONFIG } from "../../../../Config";
 
 function InprocessList() {
+  const APP_PLATFORM = BASE_CONFIG.APP_PLATFORM;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { PopupReducer } = useSelector((state) => state);
@@ -45,7 +47,11 @@ function InprocessList() {
 
       if (data?.status || data?.status === "true") {
         setTimeout(() => {
-          navigate("/admin/application/list");
+          let nvUrl =
+            APP_PLATFORM === "INTELLISCAN"
+              ? "/admin/intelliscan-personal-finance-murbaha-details"
+              : "/admin/application/list";
+          navigate(nvUrl);
           dispatch(
             SetpopupReducerData({
               ...PopupReducer?.modal,
