@@ -441,8 +441,8 @@ function Sidebar({ showMenu, setShowMenu }) {
             </div>
           </div>
 
-          <div className="logout-div  row">
-            <div className={`col-6`}>
+          <div className="logout-div  row py-2">
+            <div className={`col-8 py-2`}>
               <img
                 src="../../../images/profile.jpg"
                 style={{ width: "25px" }}
@@ -452,7 +452,7 @@ function Sidebar({ showMenu, setShowMenu }) {
                 {`${authUser?.data?.first_name} ${authUser?.data?.last_name} `}{" "}
               </span>
             </div>
-            <div className="col-6 text-end">
+            <div className="col-4 py-2 text-end">
               <img
                 src="../../../images/setting.png"
                 style={{ width: "25px", cursor: "pointer" }}

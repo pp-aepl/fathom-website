@@ -21,7 +21,6 @@ function ConfirmFiles() {
   const { successModal = false, documents = [] } = PopupReducer?.modal;
   const { showConfirmModal = false } = PopupReducer?.modal;
   let obj = documents?.[0];
-  console.log(obj, "confirm");
   const handleClosePopup = () => {
     dispatch(reSetPopupReducerData());
   };
@@ -58,16 +57,7 @@ function ConfirmFiles() {
   };
   // update create api
   const onSubmit = async (e) => {
-    e.preventDefault();
-    // const isInvalidDocument = documents?.some((doc) => {
-    //   const allTrue =
-    //     doc.application && doc.credit_limit_approval && doc.promise_to_purchase;
-    //   const allFalse =
-    //     !doc.application &&
-    //     !doc.credit_limit_approval &&
-    //     !doc.promise_to_purchase;
-    //   return !(allTrue || allFalse);
-    // });
+    e.preventDefault();   
     const isInvalidDocument = documents?.some((doc) => {
       const isFalse =
         !doc.application ||
@@ -75,8 +65,7 @@ function ConfirmFiles() {
         !doc.promise_to_purchase;
       return isFalse;
     });
-    console.log(isInvalidDocument, "isInvalidDocument...>>");
-
+   
     if (isInvalidDocument) {
       dispatch(
         SetpopupReducerData({
@@ -140,7 +129,6 @@ function ConfirmFiles() {
         documents: updatedDocuments,
       })
     );
-    console.log(obj, "ele");
   };
   const columns = [
     {

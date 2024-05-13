@@ -57,7 +57,6 @@ function List() {
       };
       const data = await dispatch(fetchApplicationList(payload, filterKey));
       if (data?.status || data?.status === "true") {
-        console.log(data);
         setArrList(data?.results);
       } else {
         setArrList([]);

@@ -34,6 +34,7 @@ import IntelliscanDashboard from "./Component/Dashboard/IntelliscanDashboard";
 import IntelliscanList from "./Component/Common/IntelliScan/IntelliscanList";
 import ReportsDashboard from "./Component/Common/IntelliScan/IntelliScanReport/ReportsDashboard";
 import IntelliScanReportList from "./Component/Common/IntelliScan/IntelliScanReport/ReportList";
+import ApplicationStatus from "./Component/Common/ApplicationsList/MurabahaAgreement/ApplicationStatus";
 
 function App() {
   const userToken = localStorage.getItem("token");
@@ -83,11 +84,12 @@ function App() {
               path="intelliscan-reports-dashboard"
               element={<ReportsDashboard />}
             />
-             <Route
+            <Route
               path="intelliscan-reports-details"
               element={<IntelliScanReportList />}
             />
             <Route path="intelliscan" element={<IntelliscanList />} />
+            <Route path="application_status" element={<ApplicationStatus />} />
 
             <Route path="application/:status?" element={<List />} />
             <Route path="application/list" element={<NewList />} />
