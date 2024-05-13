@@ -115,32 +115,27 @@ function Sidebar({ showMenu, setShowMenu }) {
                   <span className={"nav__name"}>Dashboard</span>
                 </Link>
               </div>
-
+              <div
+                className={`${"nav__items"}  ${
+                  pathname?.includes("status") ? "active" : ""
+                } `}
+              >
+                <Link
+                  to="/admin/application_status"
+                  className={`nav__link ${
+                    pathname?.includes("status") ? "activeLink" : ""
+                  }`}
+                >
+                  <div
+                    className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
+                  >
+                    <img src="../../../images/application_icon.svg" alt="" />
+                  </div>
+                  <span className={"nav__name"}>Application status</span>
+                </Link>
+              </div>
               {APP_PLATFORM === "SO360" ? (
                 <>
-                  <div
-                    className={`${"nav__items"}  ${
-                      pathname?.includes("status") ? "active" : ""
-                    } `}
-                  >
-                    <Link
-                      to="/admin/application/status"
-                      className={`nav__link ${
-                        pathname?.includes("status") ? "activeLink" : ""
-                      }`}
-                    >
-                      <div
-                        className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
-                      >
-                        <img
-                          src="../../../images/application_icon.svg"
-                          alt=""
-                        />
-                      </div>
-                      <span className={"nav__name"}>Application status</span>
-                    </Link>
-                  </div>
-
                   <div
                     className={`${"nav__items"}  ${
                       pathname?.includes("upload") ? "active" : ""
@@ -462,6 +457,38 @@ function Sidebar({ showMenu, setShowMenu }) {
                 </>
               ) : APP_PLATFORM === "INTELLISCAN" ? (
                 <>
+                  <div
+                    className={`${"nav__items"}  ${
+                      pathname?.includes(
+                        "intelliscan-personal-finance-murbaha-details"
+                      )
+                        ? "active"
+                        : ""
+                    } `}
+                  >
+                    <Link
+                      to="/admin/intelliscan-personal-finance-murbaha-details"
+                      className={`nav__link ${
+                        pathname?.includes(
+                          "intelliscan-personal-finance-murbaha-details"
+                        )
+                          ? "activeLink"
+                          : ""
+                      }`}
+                    >
+                      <div
+                        className={` ${"icon_cmn"} ${"bx_compass"} ${"nav__icon"} `}
+                      >
+                        <img
+                          src="../../../images/closeCircle.png"
+                          width={25}
+                          alt=""
+                        />
+                      </div>
+                      <span className={"nav__name"}>Rule Engine</span>
+                    </Link>
+                  </div>
+
                   <div className={"nav__items"}>
                     <div
                       className={`${"nav__dropdown"} ${
@@ -482,7 +509,7 @@ function Sidebar({ showMenu, setShowMenu }) {
                             alt=""
                           />
                         </div>
-                        <span className={"nav__name"}>Intelliscan</span>
+                        <span className={"nav__name"}>Reports</span>
                         <i
                           className={` ${"ms_auto"} ${"bx_chevron_down"} ${"nav__icon"} ${
                             openDropdown === 1 ? "open" : ""
@@ -519,7 +546,9 @@ function Sidebar({ showMenu, setShowMenu }) {
                                 pathname?.includes("list") ? "activeLink" : ""
                               }`}
                             >
-                              <span className={"nav__name"}> Pass</span>
+                              <span className={"nav__name"}>
+                                Finance Completion
+                              </span>
                             </Link>
                           </div>
 
@@ -547,7 +576,7 @@ function Sidebar({ showMenu, setShowMenu }) {
                                   : ""
                               }`}
                             >
-                              <span className={"nav__name"}> Fail</span>
+                              <span className={"nav__name"}>Fail</span>
                             </Link>
                           </div>
 
@@ -600,7 +629,7 @@ function Sidebar({ showMenu, setShowMenu }) {
                       >
                         <img src="../../../images/report_icon.svg" alt="" />
                       </div>
-                      <span className={"nav__name"}>Reports</span>
+                      <span className={"nav__name"}>Analytics</span>
                     </Link>
                   </div>
                 </>

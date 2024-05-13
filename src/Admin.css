@@ -2831,6 +2831,13 @@ input:-moz-placeholder {
   color: rgba(117, 117, 117, 1);
   font-weight: normal;
 }
+.red {
+  padding: 2px 10px;
+  border-radius: 20px;
+  color: #f04040;
+  display: inline-block;
+  background: #fa3b2233;
+}
 .green {
   padding: 2px 10px;
   border-radius: 20px;

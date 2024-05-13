@@ -13,21 +13,30 @@ function ListingWithRule({
     <>
       <div className=" row my-5 px-3" id="table-contexual">
         <div className="col-12">
-          <table className="table">
+          <table className="table" id="exportTable">
             <thead className="thead-light">
               <tr>
                 {!inProcess && <th scope="col"> </th>}
                 <th scope="col">S.No. </th>
                 <th scope="col">Date</th>
                 <th scope="col">Application no.</th>
-                {inProcess && <th scope="col">Status </th>}
+                <th>Action</th>
+
+                <th scope="col">Status </th>
 
                 {listingData
                   ?.find((el) => el?.rules?.length)
                   ?.rules?.map((ele, index) => (
-                    <th scope="col">Rule {index + 1}</th>
+                    <th scope="col">
+                      Rule {index + 1}
+                      <i
+                        class="fas fa-info-circle pointer large-tooltip mx-2"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title={`Rule${index + 1}:${ele?.ruleId?.rule_name}`}
+                      ></i>
+                    </th>
                   ))}
-                {/* <th>Action</th> */}
               </tr>
             </thead>
             <tbody>
@@ -55,17 +64,22 @@ function ListingWithRule({
                           .format("DD/MM/YYYY hh:mm a")}
                       </td>
                       <td>{ele?.serial_number}</td>
-                      {inProcess && (
-                        <td>
-                          <span
-                            className={
-                              ele?.showStatus === "Done" ? "green" : "orange"
-                            }
-                          >
-                            {ele?.showStatus}
-                          </span>
-                        </td>
-                      )}
+                      <td>
+                        <a href={ele?.imported_url} target="_blank">
+                          <button className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills">
+                            View
+                          </button>
+                        </a>
+                      </td>
+                      <td>
+                        <span
+                          className={
+                            ele?.showStatus === "Done" ? "green" : "orange"
+                          }
+                        >
+                          {ele?.showStatus}
+                        </span>
+                      </td>
 
                       {ele?.rules?.map((item) => (
                         <>
@@ -76,20 +90,11 @@ function ListingWithRule({
                                   ? "../../images/icon2.png"
                                   : "../../images/icon1.png"
                               }
+                              alt={item?.status ? "Yes" : "No"}
                             />
                           </td>
                         </>
                       ))}
-                      {/* <td>
-                        <a
-                          href={ele?.imported_url}
-                          target="_blank"
-                        >
-                          <button className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills">
-                            View
-                          </button>
-                        </a>
-                      </td> */}
                     </tr>
                   ))
                 : ""}

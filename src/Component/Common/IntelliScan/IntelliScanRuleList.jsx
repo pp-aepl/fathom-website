@@ -245,6 +245,9 @@ function IntelliScanRuleList() {
                         <span className="m-5">Application no.</span>
                       </th>
                       <th scope="col" className="px-2 mx-4">
+                        Action
+                      </th>
+                      <th scope="col" className="px-2 mx-4">
                         <span className="m-5">Status</span>
                       </th>
                       {rulesColumnArr?.length > 0
@@ -255,7 +258,7 @@ function IntelliScanRuleList() {
                           {" "}
                           Rule {ruleIndex+1}
                           <i
-                            class="fas fa-info-circle pointer large-tooltip"
+                            class="fas fa-info-circle pointer large-tooltip mx-2"
                             data-toggle="tooltip"
                             data-placement="top"
                             title={`Rule${ruleIndex+1}:${item?.ruleId?.rule_name}`}
@@ -269,9 +272,7 @@ function IntelliScanRuleList() {
                     
                        ))
                        : ""}
-                      <th scope="col" className="px-2 mx-4">
-                        Action
-                      </th>
+                      
                     </tr>
                   </thead>
                   <tbody>
@@ -300,6 +301,16 @@ function IntelliScanRuleList() {
                       </td>
                             <td className="px-2 mx-4">
                               <span className="m-5">{ele?.serial_number}</span>
+                            </td>
+                            <td className="px-2 mx-4">
+                              <a href={"#"} target="_blank">
+                                <button
+                                  className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
+                                  // onClick={() => handleView(item?.murbaha_url)}
+                                >
+                                  View
+                                </button>
+                              </a>
                             </td>
                             {/* <td className="text-danger mx-4 px-2">
                               <span
@@ -339,16 +350,7 @@ function IntelliScanRuleList() {
                            
                             
                             
-                            <td className="px-2 mx-4">
-                              <a href={"#"} target="_blank">
-                                <button
-                                  className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
-                                  // onClick={() => handleView(item?.murbaha_url)}
-                                >
-                                  View
-                                </button>
-                              </a>
-                            </td>
+                           
                           </tr>
                         ))
                       : ""}

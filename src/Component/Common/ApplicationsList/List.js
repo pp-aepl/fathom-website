@@ -17,7 +17,7 @@ function List() {
   const fetchParams = params.status;
 
   const dispatch = useDispatch();
- 
+
   const [arrList, setArrList] = useState([]);
 
   const [filterKey, setFilterKey] = useState({
@@ -96,92 +96,95 @@ function List() {
           <div className="">
             <div className="row my-5" id="table-contexual">
               <div className="col-12">
-                <div className="">
+                {fetchParams === "upload" ? (
+                  <UploadApplication />
+                ) : (
                   <div className="">
-                    <div className="row align-items-center py-1 px-5">
-                      <Filter
-                        filterKey={filterKey}
-                        setFilterKey={setFilterKey}
-                      />
+                    <div className="">
+                      <div className="row align-items-center py-1 px-5">
+                        <Filter
+                          filterKey={filterKey}
+                          setFilterKey={setFilterKey}
+                        />
+                      </div>
+                    </div>
+                    <div className="">
+                      {arrList?.length > 0 ? (
+                        <div className=" row my-5" id="table-contexual">
+                          <div className="col-12">
+                            <table className="table">
+                              <thead className="thead-light">
+                                <tr>
+                                  <th scope="col" className="ps-4">
+                                    S.No.{" "}
+                                  </th>
+                                  <th scope="col">Import Date </th>
+                                  <th scope="col">Application no. </th>
+                                  <th scope="col">Status </th>
+                                  <th scope="col">Action </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {arrList?.map((item, index) => (
+                                  <tr
+                                    className="pointer"
+                                    //  onClick={() => navigateToAgreement(item)}
+                                  >
+                                    <td className="ps-4">{index + 1}</td>
+                                    <td>
+                                      {moment(item?.createdAt)
+                                        .local()
+                                        .format("DD/MM/YYYY hh:mm a")}
+                                    </td>
+                                    <td>{item?.serial_number}</td>
+                                    <td>
+                                      <span
+                                        style={{
+                                          color:
+                                            item?.showStatus === "APPROVED" ||
+                                            ((fetchParams === "completed" ||
+                                              item?.showStatus ===
+                                                "Completed") &&
+                                              fetchParams !== "rejected")
+                                              ? "#29CC6A"
+                                              : item?.showStatus === "Reject" ||
+                                                fetchParams === "rejected"
+                                              ? " #EF4444"
+                                              : item?.showStatus === "Pending"
+                                              ? "#EAB308"
+                                              : "",
+                                        }}
+                                      >
+                                        {item?.showStatus}
+                                      </span>
+                                    </td>
+                                    <td>
+                                      <a
+                                        href={item?.imported_url}
+                                        target="_blank"
+                                      >
+                                        <button
+                                          className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
+                                          // onClick={() =>
+                                          //   handleView(item?.imported_url)
+                                          // }
+                                        >
+                                          View
+                                        </button>
+                                      </a>
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      ) : (
+                        ""
+                      )}
                     </div>
                   </div>
-                  <div className="">
-                    {fetchParams === "upload" ? (
-                      <UploadApplication />
-                    ) : arrList?.length > 0 ? (
-                      <div className=" row my-5" id="table-contexual">
-                        <div className="col-12">
-                          <table className="table">
-                            <thead className="thead-light">
-                              <tr>
-                                <th scope="col" className="ps-4">
-                                  S.No.{" "}
-                                </th>
-                                <th scope="col">Import Date </th>
-                                <th scope="col">Application no. </th>
-                                <th scope="col">Status </th>
-                                <th scope="col">Action </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {arrList?.map((item, index) => (
-                                <tr
-                                  className="pointer"
-                                  //  onClick={() => navigateToAgreement(item)}
-                                >
-                                  <td className="ps-4">{index + 1}</td>
-                                  <td>
-                                    {moment(item?.createdAt)
-                                      .local()
-                                      .format("DD/MM/YYYY hh:mm a")}
-                                  </td>
-                                  <td>{item?.serial_number}</td>
-                                  <td>
-                                    <span
-                                      style={{
-                                        color:
-                                          item?.showStatus === "APPROVED" ||
-                                          ((fetchParams === "completed" ||
-                                            item?.showStatus === "Completed") &&
-                                            fetchParams !== "rejected")
-                                            ? "#29CC6A"
-                                            : item?.showStatus === "Reject" ||
-                                              fetchParams === "rejected"
-                                            ? " #EF4444"
-                                            : item?.showStatus === "Pending"
-                                            ? "#EAB308"
-                                            : "",
-                                      }}
-                                    >
-                                      {item?.showStatus}
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <a
-                                      href={item?.imported_url}
-                                      target="_blank"
-                                    >
-                                      <button
-                                        className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
-                                        // onClick={() =>
-                                        //   handleView(item?.imported_url)
-                                        // }
-                                      >
-                                        View
-                                      </button>
-                                    </a>
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           </div>

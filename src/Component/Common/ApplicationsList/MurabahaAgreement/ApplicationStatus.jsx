@@ -8,12 +8,14 @@ import firebaseData from "../../../../Config/Firebase";
 import "firebase/firestore";
 import { collection, onSnapshot } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { BASE_CONFIG } from "../../../../Config";
 
 function ApplicationStatus() {
   const firebase = firebaseData?.firebase;
   const firebaseDb = firebaseData?.firebaseDb;
   const [data, setData] = useState([]);
   const navigate = useNavigate();
+  const APP_PLATFORM = BASE_CONFIG.APP_PLATFORM;
 
   const applicationsCollectionRef = collection(firebaseDb, "applications");
   const getApplications = () => {
@@ -161,7 +163,13 @@ function ApplicationStatus() {
               >
                 <button
                   className="login100-form-btn"
-                  onClick={(e) => navigate("/admin/application/list")}
+                  onClick={() => {
+                    let nvUrl =
+                      APP_PLATFORM === "INTELLISCAN"
+                        ? "/admin/intelliscan-personal-finance-murbaha-details"
+                        : "/admin/application/list";
+                    navigate(nvUrl);
+                  }}
                 >
                   Continue
                 </button>

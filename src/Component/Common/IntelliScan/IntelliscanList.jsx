@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { SetpopupReducerData } from "../../../store/reducer";
 import moment from "moment";
 import Filter from "../ApplicationsList/Filter";
+import { fetchApplicationList } from "../../../Config/FetchListingData";
 
 function IntelliscanList() {
   const location = useLocation();
@@ -36,37 +37,37 @@ function IntelliscanList() {
       })
     );
   };
-  //   const fetchListingData = useCallback(async () => {
-  //     try {
-  //       let checkStatus =
-  //         status === ""
-  //           ? ""
-  //           : status === "pass"
-  //           ? "PASS"
-  //           : status === "fail"
-  //           ? "FAIL"
-  //           : status === "pending"
-  //           ? "PENDING"
-  //           : "";
-  //       let payload = {
-  //         status: checkStatus,
-  //         ...filterKey,
-  //       };
-  //       const data = await dispatch(fetchApplicationList(payload, filterKey));
-  //       if (data?.status || data?.status === "true") {
-  //         console.log(data);
-  //         setArrList(data?.results);
-  //       } else {
-  //         setArrList([]);
-  //       }
-  //     } catch (error) {
-  //       console.log(error, "error");
-  //     }
-  //   }, [status, filterKey]);
+  const fetchListingData = useCallback(async () => {
+    try {
+      let checkStatus =
+        status === ""
+          ? ""
+          : status === "pass"
+          ? "COMPLETED"
+          : status === "fail"
+          ? "REJECTED"
+          : status === "pending"
+          ? "PENDING"
+          : "";
+      let payload = {
+        status: checkStatus,
+        ...filterKey,
+      };
+      const data = await dispatch(fetchApplicationList(payload, filterKey));
+      if (data?.status || data?.status === "true") {
+        console.log(data);
+        setArrList(data?.results);
+      } else {
+        setArrList([]);
+      }
+    } catch (error) {
+      console.log(error, "error");
+    }
+  }, [status, filterKey]);
 
-  //   useEffect(() => {
-  //     fetchListingData();
-  //   }, [status, fetchListingData]);
+  useEffect(() => {
+    fetchListingData();
+  }, [status, fetchListingData]);
   return (
     <>
       <section className="">
@@ -110,7 +111,17 @@ function IntelliscanList() {
                                   </td>
                                   <td>{item?.serial_number}</td>
                                   <td>
-                                    <span>{item?.showStatus}</span>
+                                    <span
+                                      className={
+                                        item?.showStatus === "Completed"
+                                          ? "green"
+                                          : item?.showStatus === "Rejected"
+                                          ? "red"
+                                          : "orange"
+                                      }
+                                    >
+                                      {item?.showStatus}
+                                    </span>
                                   </td>
                                   <td>
                                     <a
