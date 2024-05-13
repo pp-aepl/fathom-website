@@ -67,7 +67,7 @@ function IntelliScanReportList() {
               </div>
               <div className=" row my-5" id="table-contexual">
                 <div className="col-12">
-                  <table className="table">
+                  <table className="table" id="exportTable">
                     <thead className="thead-light">
                       <tr>
                         <th className="ps-4   p-2" scope="col">

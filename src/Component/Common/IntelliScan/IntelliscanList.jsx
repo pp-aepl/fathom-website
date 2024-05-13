@@ -88,7 +88,7 @@ function IntelliscanList() {
                     {arrList?.length > 0 ? (
                       <div className=" row my-5" id="table-contexual">
                         <div className="col-12">
-                          <table className="table">
+                          <table className="table" id="exportTable">
                             <thead className="thead-light">
                               <tr>
                                 <th scope="col" className="ps-4">

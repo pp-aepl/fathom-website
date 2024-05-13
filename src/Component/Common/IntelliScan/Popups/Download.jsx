@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import { Modal, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { reSetPopupReducerData } from "../../../../store/reducer";
+import {
+  exportExcel,
+  handleExportPdf,
+} from "../../../../Config/CommonFunction";
 
 function Download() {
   const dispatch = useDispatch();
   const { PopupReducer, Loader } = useSelector((state) => state);
-  const { documents = [], showModal = false } = PopupReducer?.modal;
+  const { showModal = false, fileName = "" } = PopupReducer?.modal;
   const [format, setFormate] = useState("");
   const [error, setError] = useState("");
 
@@ -15,6 +19,19 @@ function Download() {
       dispatch(reSetPopupReducerData());
     }, 200);
   };
+  const handleExport = () => {
+    if (!format) {
+      setError("Please select format");
+    }
+    if (format === "pdf") {
+      handleExportPdf("exportTable", fileName);
+    } else if (format === "xlsx") {
+      exportExcel("exportTable", `${fileName}.xlsx`);
+    } else {
+      console.error("Unsupported export type.");
+    }
+  };
+
   return (
     <>
       <Modal
@@ -45,13 +62,17 @@ function Download() {
                     name="format"
                     value="pdf"
                     checked={format === "pdf"}
-                    onChange={(e) => setFormate(e.target.value)}
+                    onChange={(e) => {
+                      setFormate(e.target.value);
+                      setError("");
+                    }}
                   />
                   <label className="form-check-label" htmlFor="pdf">
                     PDF
                   </label>
                 </div>
               </div>
+
               <div className="col-12 border p-2 m-2">
                 <div className="form-check form-check-inline ">
                   <input
@@ -61,14 +82,18 @@ function Download() {
                     name="format"
                     value="xlsx"
                     checked={format === "xlsx"}
-                    onChange={(e) => setFormate(e.target.value)}
+                    onChange={(e) => {
+                      setFormate(e.target.value);
+                      setError("");
+                    }}
                   />
                   <label className="form-check-label" htmlFor="xlsx">
                     xlsx
                   </label>
                 </div>
               </div>
-              <div className="col-12 border p-2 m-2">
+
+              {/* <div className="col-12 border p-2 m-2">
                 <div className="form-check form-check-inline ">
                   <input
                     className="form-check-input"
@@ -83,7 +108,8 @@ function Download() {
                     Word document
                   </label>
                 </div>
-              </div>
+              </div> */}
+
               {error ? <span className="text-danger">{error}</span> : ""}
             </div>
 
@@ -93,7 +119,7 @@ function Download() {
             >
               <button
                 className="login100-form-btn"
-                //   onClick={(e) => onSubmit()}
+                onClick={(e) => handleExport()}
                 disabled={Loader?.data || false}
               >
                 {Loader?.data ? <Spinner /> : "Download"}

@@ -89,7 +89,7 @@ function Sidebar({ showMenu, setShowMenu }) {
                   <span className="logo-content">Fathom</span>
                 </Link>
               </div>
-
+              <h3 className="ps-4 my-3">{APP_PLATFORM}</h3>
               <div
                 className={`${"nav__items"}  ${
                   pathname?.includes("dashboard") ? "active" : ""

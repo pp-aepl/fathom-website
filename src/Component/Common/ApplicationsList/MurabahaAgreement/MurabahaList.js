@@ -227,7 +227,7 @@ function MurabahaList() {
                 <div className="">
                   <div className=" row my-5" id="table-contexual">
                     <div className="col-12">
-                      <table className="table muraba">
+                      <table className="table muraba" id="exportTable">
                         <thead className="thead-light">
                           <tr>
                             <th scope="col"> </th>

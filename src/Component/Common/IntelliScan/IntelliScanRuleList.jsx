@@ -55,16 +55,18 @@ function IntelliScanRuleList() {
           status: value,
         })
       );
-    } else if (value === "DOWNLOAD") {
-      dispatch(
-        SetpopupReducerData({
-          modalType: "DOWNLOAD",
-          showModal: true,
-          selectedApplication: selectedApplication,
-          status: value,
-        })
-      );
-    } else if (value === "PROCEED&EXCEPTION") {
+    } 
+    // else if (value === "DOWNLOAD") {
+    //   dispatch(
+    //     SetpopupReducerData({
+    //       modalType: "DOWNLOAD",
+    //       showModal: true,
+    //       selectedApplication: selectedApplication,
+    //       status: value,
+    //     })
+    //   );
+    // } 
+    else if (value === "PROCEED&EXCEPTION") {
       dispatch(
         SetpopupReducerData({
           modalType: "EXCEPTION",
@@ -187,7 +189,7 @@ function IntelliScanRuleList() {
                   <option value={"PROCEED&EXCEPTION"}>
                     Proceed with exception
                   </option>
-                  <option value={"DOWNLOAD"}>Download</option>
+                  {/* <option value={"DOWNLOAD"}>Download</option> */}
                 </select>
               </div>
             </div>
@@ -229,8 +231,8 @@ function IntelliScanRuleList() {
           <div className=" row my-5" id="table-contexual">
             <div className="col-12 ">
               <div className=" table_scroll">
-                <table class="table ">
-                  <thead class="thead-light">
+                <table className="table " id="exportTable">
+                  <thead className="thead-light" >
                     <tr>
                       <th scope="col" className="px-2 mx-4">
                         {" "}
@@ -258,7 +260,7 @@ function IntelliScanRuleList() {
                           {" "}
                           Rule {ruleIndex+1}
                           <i
-                            class="fas fa-info-circle pointer large-tooltip mx-2"
+                            className="fas fa-info-circle pointer large-tooltip mx-2"
                             data-toggle="tooltip"
                             data-placement="top"
                             title={`Rule${ruleIndex+1}:${item?.ruleId?.rule_name}`}
@@ -280,7 +282,7 @@ function IntelliScanRuleList() {
                       ? arrList?.map((ele, index) => (
                           <tr key={index}>
                             <td className="px-2 mx-4">
-                              <div class="form-check">
+                              <div className="form-check">
                                 <input
                                   className="form-check-input"
                                   type="checkbox"
