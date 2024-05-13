@@ -39,11 +39,12 @@ function IntelliScanRuleList() {
       pageNo: 1,
     });
   };
+
   const fetchModal = (e) => {
-    // if (selectedApplication?.length === 0) {
-    //   alert("Please select application to proceed.");
-    //   return;
-    // }
+    if (selectedApplication?.length === 0) {
+      alert("Please select application to proceed.");
+      return;
+    }
     let value = e.target.value;
     setAction(value);
     if (value === "PROCEED_ALL_CASE") {
@@ -55,7 +56,7 @@ function IntelliScanRuleList() {
           status: value,
         })
       );
-    } 
+    }
     // else if (value === "DOWNLOAD") {
     //   dispatch(
     //     SetpopupReducerData({
@@ -65,7 +66,7 @@ function IntelliScanRuleList() {
     //       status: value,
     //     })
     //   );
-    // } 
+    // }
     else if (value === "PROCEED&EXCEPTION") {
       dispatch(
         SetpopupReducerData({
@@ -98,14 +99,18 @@ function IntelliScanRuleList() {
 
         setArrList(data?.results);
         // to calculate the no of columns for rules ( maxlength)
-        const maxLength = Math.max(...data?.results.map(obj => obj.rules.length));
-        let maxRuleObj = data?.results.find((x)=>x.rules.length === maxLength)
-        let rulesColumnArr = [...maxRuleObj.rules]
-        console.log({rulesColumnArr})
+        const maxLength = Math.max(
+          ...data?.results.map((obj) => obj.rules.length)
+        );
+        let maxRuleObj = data?.results.find(
+          (x) => x.rules.length === maxLength
+        );
+        let rulesColumnArr = [...maxRuleObj.rules];
+        console.log({ rulesColumnArr });
 
         setRulesArr([...rulesColumnArr]);
 
-        console.log(data?.results, "data?.resultsdata?.results");  
+        console.log(data?.results, "data?.resultsdata?.results");
       } else {
         setArrList([]);
       }
@@ -132,8 +137,8 @@ function IntelliScanRuleList() {
         <div className="upload_new_application">
           <h3 className="ps-5">Personal Finance Murbaha Details </h3>
           <div className="top_list">
-          {showRules && <Rules />}
-          <div className="mini my-2 p-4 border-bottom">
+            {showRules && <Rules />}
+            <div className="mini my-2 p-4 border-bottom">
               {" "}
               <span className="cursar" onClick={() => setShowRules(!showRules)}>
                 {" "}
@@ -220,19 +225,12 @@ function IntelliScanRuleList() {
               }
             ></input>
           </div>
-          {/* <div className="">
-            <ListingWithRule
-              selectedApplication={selectedApplication}
-              listingData={arrList}
-              handleChangeCheckBox={handleChangeCheckBox}
-            />
-          </div> */}
 
           <div className=" row my-5" id="table-contexual">
             <div className="col-12 ">
               <div className=" table_scroll">
                 <table className="table " id="exportTable">
-                  <thead className="thead-light" >
+                  <thead className="thead-light">
                     <tr>
                       <th scope="col" className="px-2 mx-4">
                         {" "}
@@ -253,28 +251,26 @@ function IntelliScanRuleList() {
                         <span className="m-5">Status</span>
                       </th>
                       {rulesColumnArr?.length > 0
-                      ? rulesColumnArr?.map((item, ruleIndex) => (
-                        <>
-                          <th scope="col" className="px-2 mx-4">
-                        <span className="m-5">
-                          {" "}
-                          Rule {ruleIndex+1}
-                          <i
-                            className="fas fa-info-circle pointer large-tooltip mx-2"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title={`Rule${ruleIndex+1}:${item?.ruleId?.rule_name}`}
-                          ></i>
-                          {/* <CiCircleInfo title="Rule 1:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " /> */}
-                        </span>{" "}
-                      </th>
-                     
-                      
-                        </>
-                    
-                       ))
-                       : ""}
-                      
+                        ? rulesColumnArr?.map((item, ruleIndex) => (
+                            <>
+                              <th scope="col" className="px-2 mx-4">
+                                <span className="m-5">
+                                  {" "}
+                                  Rule {ruleIndex + 1}
+                                  <i
+                                    className="fas fa-info-circle pointer large-tooltip mx-2"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title={`Rule${ruleIndex + 1}:${
+                                      item?.ruleId?.rule_name
+                                    }`}
+                                  ></i>
+                                  {/* <CiCircleInfo title="Rule 1:In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate  " /> */}
+                                </span>{" "}
+                              </th>
+                            </>
+                          ))
+                        : ""}
                     </tr>
                   </thead>
                   <tbody>
@@ -288,8 +284,12 @@ function IntelliScanRuleList() {
                                   type="checkbox"
                                   value=""
                                   id={ele._id}
-                                  checked={selectedApplication?.includes(ele?._id)}
-                                  onChange={(e) => handleChangeCheckBox(e, ele._id)}
+                                  checked={selectedApplication?.includes(
+                                    ele?._id
+                                  )}
+                                  onChange={(e) =>
+                                    handleChangeCheckBox(e, ele._id)
+                                  }
                                 ></input>
                               </div>
                             </td>
@@ -297,10 +297,10 @@ function IntelliScanRuleList() {
                               <span className="m-5">{index + 1}</span>
                             </td>
                             <td className="px-2 mx-4">
-                        {moment(ele?.createdAt)
-                          .local()
-                          .format("DD/MM/YYYY")}
-                      </td>
+                              {moment(ele?.createdAt)
+                                .local()
+                                .format("DD/MM/YYYY hh:mm a")}
+                            </td>
                             <td className="px-2 mx-4">
                               <span className="m-5">{ele?.serial_number}</span>
                             </td>
@@ -325,34 +325,36 @@ function IntelliScanRuleList() {
                                 Fail
                               </span>
                             </td> */}
-                            
-                        <td className="mx-4 px-2"> 
-                          <span
-                            className={
-                              ele?.showStatus === "Done" ? "green" : "orange"
-                            }
-                          >
-                            {ele?.showStatus }
-                          </span>
-                        </td>
-                            <>
-                            {ele?.rules.length > 0 ? ele.rules.map((rule,index)=>(
-                              <td className="px-2 mx-4" key={`${index}-1`}>
-                              <span className="m-5">
-                                {rule.status ? 
-                                <img src="../../images/icon2.png" /> 
-                                :
-                                <img src="../../images/icon1.png" /> 
-}
+
+                            <td className="mx-4 px-2">
+                              <span
+                                className={
+                                  ele?.showStatus === "Done"
+                                    ? "green"
+                                    : "orange"
+                                }
+                              >
+                                {ele?.showStatus}
                               </span>
                             </td>
-                            )) : null}
+                            <>
+                              {ele?.rules.length > 0
+                                ? ele.rules.map((rule, index) => (
+                                    <td
+                                      className="px-2 mx-4"
+                                      key={`${index}-1`}
+                                    >
+                                      <span className="m-5">
+                                        {rule.status ? (
+                                          <img src="../../images/icon2.png" />
+                                        ) : (
+                                          <img src="../../images/icon1.png" />
+                                        )}
+                                      </span>
+                                    </td>
+                                  ))
+                                : null}
                             </>
-
-                           
-                            
-                            
-                           
                           </tr>
                         ))
                       : ""}
