@@ -18,6 +18,7 @@ const apiURl = {
   forgot: `/${config.version}/${config.common_microservice}/forgot`,
   reset: `/${config.version}/${config.common_microservice}/change-password`,
   applications: `/${config.version}/${config.common_microservice}/applications`,
+  thirdPartyImport: `/${config.version}/${config.common_microservice}/import`,
   forms: `/${config.version}/${config.common_microservice}/forms`,
   rules: `/${config.version}/${config.admin}/rules`,
   signDocument: `/${config.version}/${config.common_microservice}/signDocument`,
