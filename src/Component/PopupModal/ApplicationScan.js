@@ -16,14 +16,13 @@ function ApplicationScan() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { PopupReducer } = useSelector((state) => state);
-  const { showModal } = PopupReducer?.modal;
-
+  const { showModal,status } = PopupReducer?.modal;
+console.log(status,'ApplicationScan')
   const [statusType, setStatusType] = useState({
     success: "",
     failed: "",
     default: "DEFAULT",
   });
-
   const handleClosePopup = () => {
     dispatch(reSetPopupReducerData());
   };
@@ -80,7 +79,7 @@ function ApplicationScan() {
     setStatusType(data);
     console.log(statusType);
   };
-  const navigateToList = async (e, typeSubmit) => {
+  const navigateToList = async (e, typeSubmi) => {
     e.preventDefault();
     dispatch(
       SetpopupReducerData({
@@ -89,24 +88,28 @@ function ApplicationScan() {
         showModal: false,
       })
     );
-    // navigate("/admin/application/list");
-    setTimeout(() => {
-      APP_PLATFORM === "INTELLISCAN"
-        ? dispatch(
-            SetpopupReducerData({
-              ...PopupReducer?.modal,
-              modalType: "INTELLI_SCAN_FILES_CONFIRM",
-              showModal: true,
-            })
-          )
-        : dispatch(
-            SetpopupReducerData({
-              ...PopupReducer?.modal,
-              modalType: "FILESCONFIRM",
-              showConfirmModal: true,
-            })
-          );
-    }, 200);
+    if(typeSubmi === 'THIRDPARTY'){
+      navigate("/admin/application_status");
+    }else {
+      setTimeout(() => {
+        APP_PLATFORM === "INTELLISCAN"
+          ? dispatch(
+              SetpopupReducerData({
+                ...PopupReducer?.modal,
+                modalType: "INTELLI_SCAN_FILES_CONFIRM",
+                showModal: true,
+              })
+            )
+          : dispatch(
+              SetpopupReducerData({
+                ...PopupReducer?.modal,
+                modalType: "FILESCONFIRM",
+                showConfirmModal: true,
+              })
+            );
+      }, 200);
+    }
+  
   };
   useEffect(() => {
     setTimeout(() => {
@@ -160,7 +163,8 @@ function ApplicationScan() {
           </div>
           <div className="application_san">
             <h3 className="card-title text-center">
-              Application scanning{" "}
+              Application {status === 'THIRDPARTY'? 'import':'scanning'}
+              &nbsp;
               {statusType?.success === "SUCCESS" && "completed"}
             </h3>
 
@@ -175,7 +179,7 @@ function ApplicationScan() {
             <div className={`px-5 mt-4`}>
               <button
                 className="login100-form-btn"
-                onClick={(e) => navigateToList(e, "new")}
+                onClick={(e) => navigateToList(e,status)}
               >
                 Okay
               </button>

@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { API } from "../../../../apiwrapper";
 import { apiURl } from "../../../../store/actions";
-import { toast } from "react-toastify";
+
 
 function ProccedAllCasePopup() {
   const dispatch = useDispatch();
@@ -181,16 +181,16 @@ function ProccedAllCasePopup() {
       });
 
       if (data?.status || data?.status === true) {
-        // dispatch(
-        //   SetpopupReducerData({
-        //     ...PopupReducer?.modal,
-        //     modalType: "FILESCONFIRM",
-        //     showConfirmModal: true,
-        //   })
-        // );
-        toast.success(data?.message);
-        handleClosePopup();
-        navigate("/admin/application_status");
+        dispatch(
+          SetpopupReducerData({
+            ...PopupReducer?.modal,
+            modalType: "APP_SCAN",
+            showModal: true,
+            status:"THIRDPARTY"
+          })
+        );
+        // handleClosePopup();
+       
       } else {
       }
     } catch (error) {
