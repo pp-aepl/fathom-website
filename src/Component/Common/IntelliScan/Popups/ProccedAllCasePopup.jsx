@@ -12,7 +12,11 @@ import { apiURl } from "../../../../store/actions";
 function ProccedAllCasePopup() {
   const dispatch = useDispatch();
   const { PopupReducer, Loader } = useSelector((state) => state);
-  const { selectedApplication = [], showModal = false } = PopupReducer?.modal;
+  const {
+    selectedApplication = [],
+    showModal = false,
+    status,
+  } = PopupReducer?.modal;
   const [format, setFormate] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -80,14 +84,26 @@ function ProccedAllCasePopup() {
           </Modal.Header>
           <Modal.Body className="p-5">
             <div className="row mb-3">
-              <h3 className="card-title text-center pb-0">Proceed All Case </h3>
+              <h3 className="card-title text-center pb-0">
+                {status === "THIRDPARTY" ? "Import" : "Proceed All Case"}{" "}
+              </h3>
               <p className="card-text ">
-                {" "}
-                {sendSuccessfully ? "Welcome letters sent" : "Select below"}
+                {sendSuccessfully && <p>Welcome letters sent!</p>}
+                {!sendSuccessfully &&
+                  (status === "THIRDPARTY" ? (
+                    <p>
+                      This interface is used to integrate and import
+                      Applications from institutions such as Banks via APIs.
+                    </p>
+                  ) : (
+                    <p>Select below.</p>
+                  ))}{" "}
               </p>
               {!sendSuccessfully && (
                 <>
-                  <div className="col-4">
+                {status !== "THIRDPARTY" && 
+                <>
+                   <div className="col-4">
                     <p className="card-text1 mt-3">Send</p>
                   </div>
                   <div
@@ -99,6 +115,9 @@ function ProccedAllCasePopup() {
                       PDF and Excel format will be send to{" "}
                     </span>
                   </div>
+                </>
+                 }
+               
 
                   <div className="col-12 border p-2 m-2">
                     <div className="form-check form-check-inline ">
@@ -112,11 +131,12 @@ function ProccedAllCasePopup() {
                         onChange={(e) => setFormate(e.target.value)}
                       />
                       <label className="form-check-label" htmlFor="email">
-                        By Email
+                      {status === "THIRDPARTY" ? 'Fathom' : 'By Email'}  
                       </label>
                     </div>
                   </div>
-                  <div className="col-12 border p-2 m-2">
+                  {status !== "THIRDPARTY" && 
+                    <div className="col-12 border p-2 m-2">
                     <div className="form-check form-check-inline ">
                       <input
                         className="form-check-input"
@@ -132,6 +152,8 @@ function ProccedAllCasePopup() {
                       </label>
                     </div>
                   </div>
+                  }
+                
                   {error ? <span className="text-danger">{error}</span> : ""}
                 </>
               )}

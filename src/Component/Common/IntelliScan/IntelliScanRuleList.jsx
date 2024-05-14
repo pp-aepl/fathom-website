@@ -119,6 +119,10 @@ function IntelliScanRuleList() {
     }
   }, [filterKey]);
 
+  const handleView=(url)=>{
+    window.open(url, '_blank')
+  }
+
   useEffect(() => {
     fetchListingData();
   }, [fetchListingData]);
@@ -305,10 +309,10 @@ function IntelliScanRuleList() {
                               <span className="m-5">{ele?.serial_number}</span>
                             </td>
                             <td className="px-2 mx-4">
-                              <a href={"#"} target="_blank">
+                              <a>
                                 <button
                                   className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
-                                  // onClick={() => handleView(item?.murbaha_url)}
+                                  onClick={() => handleView(ele?.imported_url)}
                                 >
                                   View
                                 </button>

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SetpopupReducerData } from "../../../store/reducer";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -9,10 +9,12 @@ import "jspdf-autotable";
 import { handleExportPdf } from "../../../Config/CommonFunction";
 
 function CommonHeader() {
+  const { PopupReducer } = useSelector((state) => state);
   const dispatch = useDispatch();
   let location = useLocation();
   let path = location?.pathname?.split("/");
   let last_Path = path[path?.length - 1];
+  const {selectedApplication = []} = PopupReducer?.modal;
   const navigate = useNavigate();
   const handleUpload = async (e) => {
     e.preventDefault();
@@ -34,6 +36,16 @@ function CommonHeader() {
     );
     // handleExportPdf("exportTable", last_Path);
   };
+  const handleImport = ()=>{
+    dispatch(
+      SetpopupReducerData({
+        modalType: "PROCEED_ALL_CASE",
+        showModal: true,
+        selectedApplication: selectedApplication,
+        status: 'THIRDPARTY',
+      })
+    );
+  }
   useEffect(() => {
     console.log(last_Path, "last_Path");
   }, [last_Path]);
@@ -71,7 +83,8 @@ function CommonHeader() {
             <span className="d-inline-block">Export</span>
           </div>
         ) : (
-          <div
+          <>
+           <div
             className="upload d-inline-block border rounded-2 py-1 px-3 cursar-pointer"
             onClick={handleUpload}
           >
@@ -81,6 +94,19 @@ function CommonHeader() {
             ></img>
             <span className="d-inline-block">Upload</span>
           </div>
+          <div
+            className="upload d-inline-block border rounded-2 py-1 px-3 cursar-pointer"
+            onClick={handleImport}
+          >
+            <i class='fas fa-file-import pr4'></i> 
+            {/* <img
+              src="../../../images/upload_icon.svg"
+              className="d-inline-block me-2"
+            ></img> */}
+            <span className="d-inline-block">Import</span>
+          </div>
+          </>
+         
         )}
       </div>
     </div>

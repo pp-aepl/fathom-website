@@ -10,6 +10,7 @@ import { collection, onSnapshot } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { BASE_CONFIG } from "../../../../Config";
 
+
 function ApplicationStatus() {
   const firebase = firebaseData?.firebase;
   const firebaseDb = firebaseData?.firebaseDb;

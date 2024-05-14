@@ -72,6 +72,7 @@ function ProceedModal() {
   };
   // update create api
   const onSubmitProceed = async (e, typeSubmit) => {
+    console.log(typeSubmit,'typeSubmittypeSubmit')
     e.preventDefault();
     if (commodityType === "APP_PROCEED") {
       dispatch(
@@ -83,7 +84,15 @@ function ProceedModal() {
       );
     }
     if (typeSubmit === "create") {
-      setCommodityModal(true);
+      // setCommodityModal(true);
+      dispatch(
+        SetpopupReducerData({
+          modalType: "PROCEED_ALL_CASE",
+          showModal: true,
+          selectedApplication: selectedApplication,
+          // status: value,
+        })
+      );
     } else {
       setCommodityModal(false);
       dispatch(
