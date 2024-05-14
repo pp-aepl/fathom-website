@@ -146,6 +146,62 @@ function ApplicationStatus() {
       ),
       sortable: true,
     },
+    {
+      name: "Murabaha Agreement",
+      cell: (row, indx) => (
+        <>
+          <div>
+            {row?.murabaha_agreement ? (
+              <input
+                className="form-check-input"
+                type="checkbox"
+                value={row?.murabaha_agreement}
+                name="murabaha_agreement"
+                disabled
+                checked={row?.murabaha_agreement}
+                // onChange={(e) => handleChangeCheckbox(e, indx)}
+                id="flexCheckDefault"
+              />
+            ) : (
+              <img
+                src="../../images/close.png"
+                width={18}
+                className="   d-inline-block"
+              />
+            )}
+          </div>
+        </>
+      ),
+      sortable: true,
+    },
+    {
+      name: "Supporting Document",
+      cell: (row, indx) => (
+        <>
+          <div>
+            {row?.supporting_document ? (
+              <input
+                className="form-check-input"
+                type="checkbox"
+                value={row?.supporting_document}
+                name="supporting_document"
+                disabled
+                checked={row?.supporting_document}
+                // onChange={(e) => handleChangeCheckbox(e, indx)}
+                id="flexCheckDefault"
+              />
+            ) : (
+              <img
+                src="../../images/close.png"
+                width={18}
+                className="   d-inline-block"
+              />
+            )}
+          </div>
+        </>
+      ),
+      sortable: true,
+    },
   ];
   return (
     <>
