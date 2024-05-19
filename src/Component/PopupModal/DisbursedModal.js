@@ -7,6 +7,7 @@ import { Modal, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { API } from "../../apiwrapper";
 import { apiURl } from "../../store/actions";
+import { BASE_CONFIG } from "../../Config";
 
 function DisbursedModal() {
   const dispatch = useDispatch();
@@ -34,6 +35,8 @@ function DisbursedModal() {
         status: "WELCOME_LETTER_ISSUED",
         channel: channel,
         showStatus: "Completed",
+        portal_id: BASE_CONFIG?.APP_PORTAL_ID
+
       };
       dispatch(SetloaderData(true));
       const data = await API({

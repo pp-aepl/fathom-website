@@ -12,6 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import SuccessfullyModal from "./SuccessfullyModal";
 import { API } from "../../apiwrapper";
 import { apiURl } from "../../store/actions";
+import { BASE_CONFIG } from "../../Config";
 function ProceedModal() {
   const dispatch = useDispatch();
   const { PopupReducer, Loader } = useSelector((state) => state);
@@ -35,6 +36,8 @@ function ProceedModal() {
       let payload = {
         ids: selectedApplication,
         status: "PROCESSING_COMMODITY_PURCHASE",
+        portal_id: BASE_CONFIG?.APP_PORTAL_ID
+
       };
       dispatch(SetloaderData(true));
       const data = await API({

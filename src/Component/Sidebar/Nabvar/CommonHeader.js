@@ -14,7 +14,7 @@ function CommonHeader() {
   let location = useLocation();
   let path = location?.pathname?.split("/");
   let last_Path = path[path?.length - 1];
-  const {selectedApplication = []} = PopupReducer?.modal;
+  const { selectedApplication = [] } = PopupReducer?.modal;
   const navigate = useNavigate();
   const handleUpload = async (e) => {
     e.preventDefault();
@@ -36,16 +36,16 @@ function CommonHeader() {
     );
     // handleExportPdf("exportTable", last_Path);
   };
-  const handleImport = ()=>{
+  const handleImport = () => {
     dispatch(
       SetpopupReducerData({
         modalType: "PROCEED_ALL_CASE",
         showModal: true,
         selectedApplication: selectedApplication,
-        status: 'THIRDPARTY',
+        status: "THIRDPARTY",
       })
     );
-  }
+  };
   useEffect(() => {
     console.log(last_Path, "last_Path");
   }, [last_Path]);
@@ -71,7 +71,8 @@ function CommonHeader() {
         {last_Path === "disbursal" ||
         last_Path === "error" ||
         last_Path === "list" ||
-        last_Path === "intelliscan-personal-finance-murbaha-details" ? (
+        last_Path === "intelliscan-personal-finance-murbaha-details" ||
+        last_Path === "intelliscan" ? (
           <div
             className="upload d-inline-block border rounded-2 py-1 px-3 cursar-pointer"
             onClick={handleExportTable}
@@ -84,29 +85,28 @@ function CommonHeader() {
           </div>
         ) : (
           <>
-           <div
-            className="upload d-inline-block border rounded-2 py-1 px-3 cursar-pointer"
-            onClick={handleUpload}
-          >
-            <img
-              src="../../../images/upload_icon.svg"
-              className="d-inline-block me-2"
-            ></img>
-            <span className="d-inline-block">Upload</span>
-          </div>
-          <div
-            className="upload d-inline-block border rounded-2 py-1 px-3 cursar-pointer"
-            onClick={handleImport}
-          >
-            <i class='fas fa-file-import pr4'></i> 
-            {/* <img
+            <div
+              className="upload d-inline-block border rounded-2 py-1 px-3 cursar-pointer"
+              onClick={handleUpload}
+            >
+              <img
+                src="../../../images/upload_icon.svg"
+                className="d-inline-block me-2"
+              ></img>
+              <span className="d-inline-block">Upload</span>
+            </div>
+            <div
+              className="upload d-inline-block border rounded-2 py-1 px-3 cursar-pointer"
+              onClick={handleImport}
+            >
+              <i class="fas fa-file-import pr4"></i>
+              {/* <img
               src="../../../images/upload_icon.svg"
               className="d-inline-block me-2"
             ></img> */}
-            <span className="d-inline-block">Import</span>
-          </div>
+              <span className="d-inline-block">Import</span>
+            </div>
           </>
-         
         )}
       </div>
     </div>

@@ -37,6 +37,7 @@ function InprocessList() {
       let payload = {
         ids: selectedApplication,
         status: "PROCESSING_COMMODITY_PURCHASE",
+        portal_id: BASE_CONFIG?.APP_PORTAL_ID
       };
       dispatch(SetloaderData(true));
       const data = await API({

@@ -11,6 +11,7 @@ import moment from "moment";
 import DatePicker from "react-datepicker";
 import { API } from "../../../../apiwrapper";
 import { apiURl } from "../../../../store/actions";
+import { BASE_CONFIG } from "../../../../Config";
 
 function MurabahaList() {
   const dispatch = useDispatch();
@@ -28,6 +29,8 @@ function MurabahaList() {
       let payload = {
         ids: selectedApplication,
         status: "AWAITING_DIGITAL_SIGNATURE",
+        portal_id: BASE_CONFIG?.APP_PORTAL_ID
+
       };
       dispatch(SetloaderData(true));
       const data = await API({

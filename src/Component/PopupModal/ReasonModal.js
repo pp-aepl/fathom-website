@@ -30,6 +30,8 @@ function ReasonModal() {
         status: "REJECTED",
         showStatus: "Rejected",
         reject_reason: reason,
+        portal_id: BASE_CONFIG?.APP_PORTAL_ID
+
       };
       dispatch(SetloaderData(true));
       const data = await API({

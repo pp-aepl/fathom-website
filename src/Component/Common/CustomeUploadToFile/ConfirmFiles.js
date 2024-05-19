@@ -14,6 +14,7 @@ import DataTable from "react-data-table-component";
 import SuccessfullyModal from "../../PopupModal/SuccessfullyModal";
 import { API } from "../../../apiwrapper";
 import { apiURl } from "../../../store/actions";
+import { BASE_CONFIG } from "../../../Config";
 
 function ConfirmFiles() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function ConfirmFiles() {
         ids: documents?.map((ele) => ele?._id),
         status: "AWAITING_COMMODITY_PURCHASE",
         showStatus: "Pending",
+        portal_id: BASE_CONFIG?.APP_PORTAL_ID,
       };
       dispatch(SetloaderData(true));
       const data = await API({
@@ -57,7 +59,7 @@ function ConfirmFiles() {
   };
   // update create api
   const onSubmit = async (e) => {
-    e.preventDefault();   
+    e.preventDefault();
     const isInvalidDocument = documents?.some((doc) => {
       const isFalse =
         !doc.application ||
@@ -65,7 +67,7 @@ function ConfirmFiles() {
         !doc.promise_to_purchase;
       return isFalse;
     });
-   
+
     if (isInvalidDocument) {
       dispatch(
         SetpopupReducerData({
@@ -90,7 +92,7 @@ function ConfirmFiles() {
       })
     );
   };
- 
+
   const handleDelete = (idx) => {
     let arr = [...documents];
     arr.splice(idx, 1);

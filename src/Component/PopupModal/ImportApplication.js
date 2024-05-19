@@ -13,6 +13,7 @@ import ConfirmFiles from "../Common/CustomeUploadToFile/ConfirmFiles";
 import DuplicateModal from "./DuplicateModal";
 import { API, getAwsImageUrl } from "../../apiwrapper";
 import { apiURl } from "../../store/actions";
+import { BASE_CONFIG } from "../../Config";
 
 function ImportApplication() {
   const dispatch = useDispatch();
@@ -74,6 +75,8 @@ function ImportApplication() {
         showStatus: "Pending",
         awsUrls: documents,
         status: "IMPORTED",
+        portal_id: BASE_CONFIG?.APP_PORTAL_ID
+
       };
       dispatch(SetloaderData(true));
       const data = await API({

@@ -12,6 +12,7 @@ import SuccessfullyModal from "./SuccessfullyModal";
 import ConfirmFileList from "../Common/CustomeUploadToFile/ConfirmFileList";
 import { API, getAwsImageUrl } from "../../apiwrapper";
 import { apiURl } from "../../store/actions";
+import { BASE_CONFIG } from "../../Config";
 
 function ExceptionModal() {
   const dispatch = useDispatch();
@@ -106,6 +107,8 @@ function ExceptionModal() {
         showStatus: "Approved with exception",
         ids: selectedApplication,
         awsUrls: documents,
+        portal_id: BASE_CONFIG?.APP_PORTAL_ID
+
       };
 
       dispatch(SetloaderData(true));

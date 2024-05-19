@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { API } from "../../../../apiwrapper";
 import { apiURl } from "../../../../store/actions";
-
+import { BASE_CONFIG } from "../../../../Config";
 
 function ProccedAllCasePopup() {
   const dispatch = useDispatch();
@@ -42,6 +42,7 @@ function ProccedAllCasePopup() {
         status: "WELCOME_LETTER_ISSUED",
         channel: format,
         showStatus: "Completed",
+        portal_id: BASE_CONFIG?.APP_PORTAL_ID,
       };
       dispatch(SetloaderData(true));
       const data = await API({
@@ -186,11 +187,10 @@ function ProccedAllCasePopup() {
             ...PopupReducer?.modal,
             modalType: "APP_SCAN",
             showModal: true,
-            status:"THIRDPARTY"
+            status: "THIRDPARTY",
           })
         );
         // handleClosePopup();
-       
       } else {
       }
     } catch (error) {

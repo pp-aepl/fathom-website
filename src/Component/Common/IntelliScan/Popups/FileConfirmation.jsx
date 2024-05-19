@@ -13,6 +13,7 @@ import {
 } from "../../../../store/reducer";
 import { API } from "../../../../apiwrapper";
 import { apiURl } from "../../../../store/actions";
+import { BASE_CONFIG } from "../../../../Config";
 
 function FileConfirmation() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function FileConfirmation() {
         ids: documents?.map((ele) => ele?._id),
         status: "AWAITING_COMMODITY_PURCHASE",
         showStatus: "Pending",
+        portal_id: BASE_CONFIG?.APP_PORTAL_ID,
       };
       dispatch(SetloaderData(true));
       const data = await API({

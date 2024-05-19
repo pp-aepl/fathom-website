@@ -11,6 +11,7 @@ import {
 } from "../../../../store/reducer";
 import { API } from "../../../../apiwrapper";
 import { apiURl } from "../../../../store/actions";
+import { BASE_CONFIG } from "../../../../Config";
 
 function ProceedCommodityModal() {
   const dispatch = useDispatch();
@@ -26,6 +27,8 @@ function ProceedCommodityModal() {
       let payload = {
         ids: selectedApplication,
         status: "COMMODITY_PURCHASE_CONFIRMED",
+        portal_id: BASE_CONFIG?.APP_PORTAL_ID
+
       };
       dispatch(SetloaderData(true));
       const data = await API({

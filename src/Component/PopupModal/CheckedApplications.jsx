@@ -43,6 +43,8 @@ function CheckedApplications() {
         ids:documents?.map(ele=>ele?._id),
         status: "REJECTED",
         showStatus: "Pending",
+        portal_id: BASE_CONFIG?.APP_PORTAL_ID
+
       };
       dispatch(SetloaderData(true));
       const data = await API({

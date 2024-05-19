@@ -1,3 +1,4 @@
+import { BASE_CONFIG } from ".";
 import { API } from "../apiwrapper";
 import { apiURl } from "../store/actions";
 import { SetloaderData } from "../store/reducer";
@@ -31,7 +32,7 @@ export const fetchApplicationList =
       const data = await API({
         url: url,
         method: "POST",
-        body: { ...body },
+        body: { ...body, portal_id: BASE_CONFIG?.APP_PORTAL_ID },
       });
       console.log(data);
       return data;
@@ -55,7 +56,7 @@ export const fetchAllRulesList =
       const data = await API({
         url: url,
         method: "POST",
-        body: { ...body },
+        body: { ...body, portal_id: BASE_CONFIG?.APP_PORTAL_ID },
       });
       console.log(data);
       dispatch(SetRules(data?.results));
@@ -80,7 +81,7 @@ export const fetchAllCategories =
       const data = await API({
         url: url,
         method: "POST",
-        body: { ...body },
+        body: { ...body, portal_id: BASE_CONFIG?.APP_PORTAL_ID },
       });
       console.log(data);
       dispatch(SetCategories(data?.results));
@@ -105,7 +106,7 @@ export const getDashboardData =
       const data = await API({
         url: url,
         method: "POST",
-        body: { ...body },
+        body: { ...body, portal_id: BASE_CONFIG?.APP_PORTAL_ID },
       });
       console.log(data);
       dispatch(SetConfigData(data));
@@ -129,7 +130,7 @@ export const getDashboardGraphData =
       const data = await API({
         url: url,
         method: "POST",
-        body: { ...body },
+        body: { ...body , portal_id: BASE_CONFIG?.APP_PORTAL_ID},
       });
       console.log(data);
       let obj = data?.data;
@@ -144,7 +145,7 @@ export const getDashboardGraphData =
             : ele?.label === "REJECTED"
             ? "Rejected"
             : ele?.label;
-        return { ...ele, label: label, id: index+1 };
+        return { ...ele, label: label, id: index + 1 };
       });
       let updatedData = { ...obj, datasets: arr };
       dispatch(SetGraphData(updatedData));
@@ -156,7 +157,7 @@ export const getDashboardGraphData =
     }
   };
 
-  export const fetchAgentData =
+export const fetchAgentData =
   (body = {}, query = {}) =>
   async (dispatch) => {
     try {
@@ -169,7 +170,7 @@ export const getDashboardGraphData =
       const data = await API({
         url: url,
         method: "POST",
-        body: { ...body },
+        body: { ...body, portal_id: BASE_CONFIG?.APP_PORTAL_ID },
       });
       console.log(data);
       return data;
@@ -180,8 +181,7 @@ export const getDashboardGraphData =
     }
   };
 
-  
-  export const fetchUpdate =
+export const fetchUpdate =
   (body = {}, query = {}) =>
   async (dispatch) => {
     try {
@@ -194,7 +194,7 @@ export const getDashboardGraphData =
       const data = await API({
         url: url,
         method: "POST",
-        body: { ...body },
+        body: { ...body, portal_id: BASE_CONFIG?.APP_PORTAL_ID },
       });
       console.log(data);
       return data;

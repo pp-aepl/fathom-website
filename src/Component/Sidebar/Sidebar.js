@@ -136,7 +136,7 @@ function Sidebar({ showMenu, setShowMenu }) {
               </div>
               {APP_PLATFORM === "SO360" ? (
                 <>
-                  <div
+                  {/* <div
                     className={`${"nav__items"}  ${
                       pathname?.includes("upload") ? "active" : ""
                     } `}
@@ -158,7 +158,7 @@ function Sidebar({ showMenu, setShowMenu }) {
                       </div>
                       <span className={"nav__name"}> Ready to be import</span>
                     </Link>
-                  </div>
+                  </div> */}
 
                   <div className={"nav__items"}>
                     <div
@@ -317,7 +317,7 @@ function Sidebar({ showMenu, setShowMenu }) {
                     </div>
                   </div>
 
-                  <div
+                  {/* <div
                     className={`${"nav__items"}  ${
                       pathname?.includes("completed") ? "active" : ""
                     } `}
@@ -371,9 +371,9 @@ function Sidebar({ showMenu, setShowMenu }) {
                         <br /> Channel correction
                       </span>
                     </Link>
-                  </div>
+                  </div> */}
 
-                  <div className={"nav__items"}>
+                  {/* <div className={"nav__items"}>
                     <div
                       className={`${"nav__dropdown"} ${
                         openDropdown === 2 ? "open" : ""
@@ -448,6 +448,128 @@ function Sidebar({ showMenu, setShowMenu }) {
                               <span className={"nav__name"}>
                                 Pending / Error
                               </span>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> */}
+                  <div className={"nav__items"}>
+                    <div
+                      className={`${"nav__dropdown"} ${
+                        openDropdown === 2 ? "open" : ""
+                      }  `}
+                    >
+                      <a
+                        to="#"
+                        className={"nav__link"}
+                        onClick={() => toggleDropdown(2)}
+                      >
+                        <div
+                          className={` ${"icon_cmn"} ${"bx_home"} ${"nav__icon"}`}
+                        >
+                          <img
+                            src="../../../images/intelli-scan.png"
+                            width={25}
+                            alt=""
+                          />
+                        </div>
+                        <span className={"nav__name"}>Reports</span>
+                        <i
+                          className={` ${"ms_auto"} ${"bx_chevron_down"} ${"nav__icon"} ${
+                            openDropdown === 2 ? "open" : ""
+                          } `}
+                        >
+                          <FaAngleDown />
+                        </i>
+                      </a>
+                      <div
+                        className={`${"nav__dropdown_collapse"} ${
+                          openDropdown === 2 ? "open" : ""
+                        }`}
+                      >
+                        <div className={"nav__dropdown_content"}>
+                          <div
+                            className="ml-5  d-flex "
+                            style={{
+                              wordWrap: "break-word",
+                              overflowWrap: "break-word",
+                              marginLeft: "20px",
+                            }}
+                          >
+                            <div className={`mx-2`}>
+                              <img
+                                src="../../../images/doneCircle.png"
+                                width={20}
+                                alt=""
+                              />
+                            </div>
+
+                            <Link
+                              to="/admin/intelliscan?status=pass"
+                              className={`nav__link  ${
+                                pathname?.includes("list") ? "activeLink" : ""
+                              }`}
+                            >
+                              <span className={"nav__name"}>
+                                Finance Completion
+                              </span>
+                            </Link>
+                          </div>
+
+                          <div
+                            className="ml-5  d-flex "
+                            style={{
+                              wordWrap: "break-word",
+                              overflowWrap: "break-word",
+                              marginLeft: "20px",
+                            }}
+                          >
+                            <div className={`mx-2`}>
+                              <img
+                                src="../../../images/crossCircle.png"
+                                width={20}
+                                alt=""
+                              />
+                            </div>
+
+                            <Link
+                              to="/admin/intelliscan?status=fail"
+                              className={`nav__link ${
+                                pathname?.[pathname?.length - 1] === "sent"
+                                  ? "activeLink"
+                                  : ""
+                              }`}
+                            >
+                              <span className={"nav__name"}>Fail</span>
+                            </Link>
+                          </div>
+
+                          <div
+                            className="ml-5  d-flex "
+                            style={{
+                              wordWrap: "break-word",
+                              overflowWrap: "break-word",
+                              marginLeft: "20px",
+                            }}
+                          >
+                            <div className={`mx-2`}>
+                              <img
+                                src="../../../images/closeCircle.png"
+                                width={20}
+                                alt=""
+                              />
+                            </div>
+
+                            <Link
+                              to="/admin/intelliscan?status=pending"
+                              className={`nav__link  ${
+                                pathname?.includes("murabaha")
+                                  ? "activeLink"
+                                  : ""
+                              }`}
+                            >
+                              <span className={"nav__name"}>Pending</span>
                             </Link>
                           </div>
                         </div>

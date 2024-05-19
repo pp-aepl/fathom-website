@@ -13,6 +13,7 @@ import ProceedModal from "./ProceedModal";
 import { API } from "../../apiwrapper";
 import { apiURl } from "../../store/actions";
 import { fetchAgentData } from "../../Config/FetchListingData";
+import { BASE_CONFIG } from "../../Config";
 
 function AgentModal() {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ function AgentModal() {
         //   ? "AWAITING_AGENT_RESPONSE"
         //   : "AWAITING_WELCOME_LETTER",
         showStatus: "",
+        portal_id: BASE_CONFIG?.APP_PORTAL_ID,
       };
       dispatch(SetloaderData(true));
       const data = await API({

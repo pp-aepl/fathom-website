@@ -16,7 +16,7 @@ function ApplicationStatus() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const APP_PLATFORM = BASE_CONFIG.APP_PLATFORM;
- 
+  const portal_id = BASE_CONFIG?.APP_PORTAL_ID;
   const applicationsCollectionRef = collection(firebaseDb, "applications");
   const getApplications = () => {
     onSnapshot(applicationsCollectionRef, (querySnapshot) => {
@@ -24,7 +24,8 @@ function ApplicationStatus() {
       querySnapshot.forEach((doc) => {
         applications.push(doc.data());
       });
-      setData(applications);
+      const arr = applications?.filter((ele) => ele?.portal_id === portal_id);
+      setData(arr);
     });
   };
 
@@ -204,7 +205,6 @@ function ApplicationStatus() {
   ];
   return (
     <>
-
       <section className="mx-2">
         <div className="upload_new_application">
           <div className="row my-5" id="table-contexual">
