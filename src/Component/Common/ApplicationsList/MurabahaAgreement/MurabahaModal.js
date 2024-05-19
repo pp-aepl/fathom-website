@@ -52,7 +52,7 @@ function MurabahaModal() {
       handleClosePopup();
       setTimeout(() => {
         navigate("/admin/application/sent");
-      }, 200);
+      }, 500);
     } else {
       await handleProcess();
     }

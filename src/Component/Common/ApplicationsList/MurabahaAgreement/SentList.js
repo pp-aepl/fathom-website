@@ -248,6 +248,7 @@ function SentList() {
                 <span>Date from</span>
                 <div className=" text-right">
                   <DatePicker
+                    dateFormat="dd/MM/yyyy"
                     selected={filterKey.startDate}
                     onChange={(date) => {
                       setFilterKey({
@@ -258,6 +259,7 @@ function SentList() {
                     id="startDate"
                     className="form-control p-3"
                     isClearable={filterKey.startDate}
+                    maxDate={new Date()}
                     placeholderText="Select start date"
                   />
                 </div>
@@ -266,6 +268,7 @@ function SentList() {
                 <span>Date to</span>
                 <div className=" text-right">
                   <DatePicker
+                    dateFormat="dd/MM/yyyy"
                     minDate={filterKey.startDate}
                     maxDate={new Date()}
                     selected={filterKey.endDate}

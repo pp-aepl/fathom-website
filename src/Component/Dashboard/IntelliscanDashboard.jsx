@@ -89,6 +89,7 @@ function IntelliscanDashboard() {
                 <div className="col-3 ">
                   <label className="label">Date from</label>
                   <DatePicker
+                    dateFormat="dd/MM/yyyy"
                     selected={dateFrom}
                     onChange={(date) => {
                       let event = { name: "startDate", value: date };
@@ -96,6 +97,7 @@ function IntelliscanDashboard() {
                       setDateFrom(date);
                     }}
                     className="form-control p-3"
+                    maxDate={new Date()}
                     isClearable={dateFrom}
                     placeholderText="Select start date"
                   />
@@ -103,6 +105,7 @@ function IntelliscanDashboard() {
                 <div className="col-3 ">
                   <label className="label">Date to</label>
                   <DatePicker
+                    dateFormat="dd/MM/yyyy"
                     minDate={dateFrom}
                     maxDate={new Date()}
                     selected={dateTo}

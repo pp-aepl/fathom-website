@@ -22,7 +22,9 @@ function MurabahaSuccessfully() {
   const onSubmit = async (e) => {
     e.preventDefault();
     handleClosePopup();
-    navigate("/admin/application/sent");
+    setTimeout(() => {
+      navigate("/admin/application/sent");
+    }, 500);
   };
 
   return (

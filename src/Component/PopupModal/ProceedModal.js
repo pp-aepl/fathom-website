@@ -21,8 +21,9 @@ function ProceedModal() {
     successModal = false,
     selectedApplication = [],
   } = PopupReducer?.modal;
+  const APP_PLATFORM = BASE_CONFIG.APP_PLATFORM;
 
-  const [commodityModal, setCommodityModal] = useState(false);
+  const [showCommodityModal, setShowCommodityModal] = useState(false);
   const commodityType = PopupReducer?.modal?.type; // COMIDITYAGENT
   const navigate = useNavigate();
   const location = useLocation();
@@ -36,8 +37,7 @@ function ProceedModal() {
       let payload = {
         ids: selectedApplication,
         status: "PROCESSING_COMMODITY_PURCHASE",
-        portal_id: BASE_CONFIG?.APP_PORTAL_ID
-
+        portal_id: BASE_CONFIG?.APP_PORTAL_ID,
       };
       dispatch(SetloaderData(true));
       const data = await API({
@@ -74,8 +74,7 @@ function ProceedModal() {
     }
   };
   // update create api
-  const onSubmitProceed = async (e, typeSubmit) => {
-    console.log(typeSubmit,'typeSubmittypeSubmit')
+  const handleYesButton = async (e) => {
     e.preventDefault();
     if (commodityType === "APP_PROCEED") {
       dispatch(
@@ -86,8 +85,7 @@ function ProceedModal() {
         })
       );
     }
-    if (typeSubmit === "create") {
-      // setCommodityModal(true);
+    if (APP_PLATFORM === "INTELLISCAN") {
       dispatch(
         SetpopupReducerData({
           modalType: "PROCEED_ALL_CASE",
@@ -97,21 +95,21 @@ function ProceedModal() {
         })
       );
     } else {
-      setCommodityModal(false);
-      dispatch(
-        SetpopupReducerData({ modalType: "PROCEED", proceedModal: false })
-      );
+      setShowCommodityModal(true);
+      // dispatch(
+      //   SetpopupReducerData({ modalType: "PROCEED", proceedModal: false })
+      // );
     }
   };
   // const submit comidity
-  const onSubmitCommodity = async (e, typeSubmit) => {
+  const handleConfirmProceed = async (e, typeSubmit) => {
     e.preventDefault();
 
     if (typeSubmit === "COMIDITYAGENT") {
-      let path ="/admin/application/commodity"
-        // pathArr?.[pathArr?.length - 1] === "sent"
-        //   ? "/admin/application/sent/response"
-        //   : "/admin/application/commodity";
+      let path = "/admin/application/commodity";
+      // pathArr?.[pathArr?.length - 1] === "sent"
+      //   ? "/admin/application/sent/response"
+      //   : "/admin/application/commodity";
       navigate(path);
       dispatch(
         SetpopupReducerData({
@@ -158,7 +156,7 @@ function ProceedModal() {
                 style={{ height: "120px" }}
               />
             </div>
-            {commodityModal || commodityType === "APP_PROCEED" ? (
+            {showCommodityModal || commodityType === "APP_PROCEED" ? (
               <>
                 <h3 className="card-title">Proceed Commodity</h3>
                 <p className="card-text">
@@ -180,12 +178,12 @@ function ProceedModal() {
             <button className="w-50 me-4" onClick={handleClosePopup}>
               No
             </button>
-            {commodityModal ||
+            {showCommodityModal ||
             commodityType === "APP_PROCEED" ||
             commodityType === "COMIDITYAGENT" ? (
               <button
                 className="w-50 me-4"
-                onClick={(e) => onSubmitCommodity(e, commodityType)}
+                onClick={(e) => handleConfirmProceed(e, commodityType)}
                 disabled={Loader?.data || false}
               >
                 {Loader?.data ? <Spinner /> : "Confirm"}
@@ -193,7 +191,7 @@ function ProceedModal() {
             ) : (
               <button
                 className="w-50"
-                onClick={(e) => onSubmitProceed(e, "create")}
+                onClick={(e) => handleYesButton(e)}
                 disabled={Loader?.data || false}
               >
                 {Loader?.data ? <Spinner /> : "Yes"}

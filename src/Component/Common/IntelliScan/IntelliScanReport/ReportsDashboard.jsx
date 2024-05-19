@@ -11,15 +11,14 @@ function ReportsDashboard() {
   const [dateTo, setDateTo] = useState();
   const navigate = useNavigate();
   const { ConfigData } = useSelector((state) => state);
-const { data = {} } = ConfigData;
-const dispatch = useDispatch();
+  const { data = {} } = ConfigData;
+  const dispatch = useDispatch();
 
-
-const [filterKey, setFilterKey] = useState({
-  startDate: new Date().toISOString().split("T")[0] + "T00:00:00",
-  endDate: "",
-  period: "",
-});
+  const [filterKey, setFilterKey] = useState({
+    startDate: new Date().toISOString().split("T")[0] + "T00:00:00",
+    endDate: "",
+    period: "",
+  });
 
   const chartData1 = {
     options: {
@@ -160,56 +159,53 @@ const [filterKey, setFilterKey] = useState({
       },
     },
   };
-const handleChangeReport=()=>{
-    navigate("/admin/intelliscan-reports-details")
-}
+  const handleChangeReport = () => {
+    navigate("/admin/intelliscan-reports-details");
+  };
 
-const handleChangePeriod = (e) => {
-  const val = e.target.value;
-  let date = new Date();
-  let endDate = new Date();
-  endDate.setDate(endDate.getDate() - 1);
-  if (val === "day") {
-    date.setDate(date.getDate() - 1);
-  } else if (val === "week") {
-    date.setDate(date.getDate() - 7);
-  } else if (val === "month") {
-    date.setMonth(date.getMonth() - 1);
-    endDate = new Date();
-  } else if (val === "") {
-    date = "";
-    endDate = "";
-  }
+  const handleChangePeriod = (e) => {
+    const val = e.target.value;
+    let date = new Date();
+    let endDate = new Date();
+    endDate.setDate(endDate.getDate() - 1);
+    if (val === "day") {
+      date.setDate(date.getDate() - 1);
+    } else if (val === "week") {
+      date.setDate(date.getDate() - 7);
+    } else if (val === "month") {
+      date.setMonth(date.getMonth() - 1);
+      endDate = new Date();
+    } else if (val === "") {
+      date = "";
+      endDate = "";
+    }
 
-  // Reset time part to set it to 00:00:00
-  if (date) {
-    date = date?.toISOString().split("T")[0] + "T00:00:00";
-  }
-  if (endDate) {
-    endDate = endDate?.toISOString().split("T")[0] + "T23:59:59";
-  }
-  setFilterKey({ ...filterKey, startDate: date, endDate, period: val });
-  setDateFrom(date);
-  setDateTo(endDate);
-};
-const handleChangeDate = (e) => {
-  let { name, value } = e;
-  if (value) {
-    let date =
-      name === "startDate"
-        ? moment(value).startOf("day").valueOf()
-        : moment(value).endOf("day").valueOf();
-    date = new Date(date);
-    value = date;
-  }
-  setFilterKey({ ...filterKey, [name]: value, period: "" });
-};
-useEffect(() => {
-  dispatch(getDashboardData({ ...filterKey }));
-}, [filterKey]);
-
-
-
+    // Reset time part to set it to 00:00:00
+    if (date) {
+      date = date?.toISOString().split("T")[0] + "T00:00:00";
+    }
+    if (endDate) {
+      endDate = endDate?.toISOString().split("T")[0] + "T23:59:59";
+    }
+    setFilterKey({ ...filterKey, startDate: date, endDate, period: val });
+    setDateFrom(date);
+    setDateTo(endDate);
+  };
+  const handleChangeDate = (e) => {
+    let { name, value } = e;
+    if (value) {
+      let date =
+        name === "startDate"
+          ? moment(value).startOf("day").valueOf()
+          : moment(value).endOf("day").valueOf();
+      date = new Date(date);
+      value = date;
+    }
+    setFilterKey({ ...filterKey, [name]: value, period: "" });
+  };
+  useEffect(() => {
+    dispatch(getDashboardData({ ...filterKey }));
+  }, [filterKey]);
 
   return (
     <section className="">
@@ -221,32 +217,35 @@ useEffect(() => {
               <div className="col-md-3 ">
                 <label className="label">Date from</label>
                 <DatePicker
-                    selected={dateFrom}
-                    onChange={(date) => {
-                      let event = { name: "startDate", value: date };
-                      handleChangeDate(event);
-                      setDateFrom(date);
-                    }}
-                    className="form-control p-3"
-                    isClearable={dateFrom}
-                    placeholderText="Select start date"
-                  />
+                  dateFormat="dd/MM/yyyy"
+                  selected={dateFrom}
+                  onChange={(date) => {
+                    let event = { name: "startDate", value: date };
+                    handleChangeDate(event);
+                    setDateFrom(date);
+                  }}
+                  maxDate={new Date()}
+                  className="form-control p-3"
+                  isClearable={dateFrom}
+                  placeholderText="Select start date"
+                />
               </div>
               <div className="col-md-3 ">
                 <label className="label">Date to</label>
                 <DatePicker
-                    minDate={dateFrom}
-                    maxDate={new Date()}
-                    selected={dateTo}
-                    onChange={(date) => {
-                      let event = { name: "endDate", value: date };
-                      handleChangeDate(event);
-                      setDateTo(date);
-                    }}
-                    className="form-control p-3"
-                    isClearable={dateTo}
-                    placeholderText="Select end date"
-                  />
+                  dateFormat="dd/MM/yyyy"
+                  minDate={dateFrom}
+                  maxDate={new Date()}
+                  selected={dateTo}
+                  onChange={(date) => {
+                    let event = { name: "endDate", value: date };
+                    handleChangeDate(event);
+                    setDateTo(date);
+                  }}
+                  className="form-control p-3"
+                  isClearable={dateTo}
+                  placeholderText="Select end date"
+                />
               </div>
               <div className="col-md-3">&nbsp;</div>
               <div className="col-md-3 px-4">
@@ -304,7 +303,9 @@ useEffect(() => {
                         >
                           Total
                         </p>
-                        <h3 className="card-title">{data?.totalNewCases || 0}</h3>
+                        <h3 className="card-title">
+                          {data?.totalNewCases || 0}
+                        </h3>
                         <button
                           className="btn btn-light border p-2 "
                           style={{
@@ -345,7 +346,9 @@ useEffect(() => {
                         >
                           Total
                         </p>
-                        <h3 className="card-title">{data?.awaitingCommodityPurchase || 0}</h3>
+                        <h3 className="card-title">
+                          {data?.awaitingCommodityPurchase || 0}
+                        </h3>
                         <button
                           className="btn btn-light border p-2 "
                           style={{
@@ -386,7 +389,9 @@ useEffect(() => {
                         >
                           Total
                         </p>
-                        <h3 className="card-title">{data?.totalNewCases - data?.totalAwaitingDigitalSign}</h3>
+                        <h3 className="card-title">
+                          {data?.totalNewCases - data?.totalAwaitingDigitalSign}
+                        </h3>
                         <button
                           className="btn btn-light border p-2 "
                           style={{
@@ -427,7 +432,9 @@ useEffect(() => {
                         >
                           Total
                         </p>
-                        <h3 className="card-title">{data?.totalAwaitingDigitalSign || 0}</h3>
+                        <h3 className="card-title">
+                          {data?.totalAwaitingDigitalSign || 0}
+                        </h3>
                         <button
                           className="btn btn-light border p-2 "
                           style={{

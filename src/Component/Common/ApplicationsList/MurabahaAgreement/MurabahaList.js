@@ -29,8 +29,7 @@ function MurabahaList() {
       let payload = {
         ids: selectedApplication,
         status: "AWAITING_DIGITAL_SIGNATURE",
-        portal_id: BASE_CONFIG?.APP_PORTAL_ID
-
+        portal_id: BASE_CONFIG?.APP_PORTAL_ID,
       };
       dispatch(SetloaderData(true));
       const data = await API({
@@ -192,6 +191,7 @@ function MurabahaList() {
                       <label className="label">Date from</label>
                       <div className="  text-right">
                         <DatePicker
+                          dateFormat="dd/MM/yyyy"
                           selected={filterKey.startDate}
                           onChange={(date) => {
                             setFilterKey({
@@ -202,6 +202,7 @@ function MurabahaList() {
                           className="form-control p-3"
                           isClearable={filterKey.startDate}
                           placeholderText="Select start date"
+                          maxDate={new Date()}
                         />
                       </div>
                     </div>
@@ -209,6 +210,7 @@ function MurabahaList() {
                       <label className="label">Date to</label>
                       <div className=" text-right">
                         <DatePicker
+                          dateFormat="dd/MM/yyyy"
                           minDate={filterKey.startDate}
                           maxDate={new Date()}
                           selected={filterKey.endDate}

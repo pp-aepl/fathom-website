@@ -83,6 +83,7 @@ function Filter({ filterKey, setFilterKey, hideSearch = false }) {
       <div className={`${hideSearch ? "col-md-4" : "col-md-3"} px-4`}>
         <label className="label">Date from</label>
         <DatePicker
+          dateFormat="dd/MM/yyyy"
           selected={dateFrom}
           onChange={(date) => {
             let event = { name: "startDate", value: date };
@@ -92,11 +93,13 @@ function Filter({ filterKey, setFilterKey, hideSearch = false }) {
           className="form-control p-3"
           isClearable={dateFrom}
           placeholderText="Select start date"
+          maxDate={new Date()}
         />
       </div>
       <div className={`${hideSearch ? "col-md-4" : "col-md-3"} px-4`}>
         <label className="label">Date to</label>
         <DatePicker
+          dateFormat="dd/MM/yyyy"
           minDate={dateFrom}
           maxDate={new Date()}
           selected={dateTo}

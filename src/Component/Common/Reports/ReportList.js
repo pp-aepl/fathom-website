@@ -147,6 +147,7 @@ function ReportList() {
               <div className="col-3 ">
                 <span>Date from</span>
                 <DatePicker
+                  dateFormat="dd/MM/yyyy"
                   selected={filterKey.startDate}
                   onChange={(date) => {
                     setFilterKey({
@@ -155,6 +156,7 @@ function ReportList() {
                     });
                   }}
                   className="form-control p-3"
+                  maxDate={new Date()}
                   isClearable={filterKey.startDate}
                   placeholderText="Select start date"
                 />
@@ -162,6 +164,7 @@ function ReportList() {
               <div className="col-3 ">
                 <span>Date to</span>
                 <DatePicker
+                  dateFormat="dd/MM/yyyy"
                   minDate={filterKey.startDate}
                   maxDate={new Date()}
                   selected={filterKey.endDate}

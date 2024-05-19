@@ -68,10 +68,10 @@ function Dashboard() {
     <section className="">
       <div className="main_dashboar">
         <div className="voucherFormMain">
-        <h3 className=" card-title">
-          {" "}
-          Onboarding Performance – Murabaha Personal Finance
-        </h3>
+          <h3 className=" card-title">
+            {" "}
+            Onboarding Performance – Murabaha Personal Finance
+          </h3>
           <div className="">
             <div className=" row pt-4">
               <div className="col-md-3 px-4">
@@ -92,6 +92,7 @@ function Dashboard() {
               <div className="col-3 ">
                 <label className="label">Date from</label>
                 <DatePicker
+                  dateFormat="dd/MM/yyyy"
                   selected={dateFrom}
                   onChange={(date) => {
                     let event = { name: "startDate", value: date };
@@ -100,12 +101,14 @@ function Dashboard() {
                   }}
                   className="form-control p-3"
                   isClearable={dateFrom}
+                  maxDate={new Date()}
                   placeholderText="Select start date"
                 />
               </div>
               <div className="col-3 ">
                 <label className="label">Date to</label>
                 <DatePicker
+                  dateFormat="dd/MM/yyyy"
                   minDate={dateFrom}
                   maxDate={new Date()}
                   selected={dateTo}

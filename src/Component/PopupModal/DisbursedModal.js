@@ -35,8 +35,7 @@ function DisbursedModal() {
         status: "WELCOME_LETTER_ISSUED",
         channel: channel,
         showStatus: "Completed",
-        portal_id: BASE_CONFIG?.APP_PORTAL_ID
-
+        portal_id: BASE_CONFIG?.APP_PORTAL_ID,
       };
       dispatch(SetloaderData(true));
       const data = await API({
@@ -59,7 +58,8 @@ function DisbursedModal() {
     e.preventDefault();
     if (typeSubmit === "HOME") {
       handleClosePopup();
-      navigate("/admin/application/completed");
+      navigate("/admin/intelliscan?status=pass");
+      // navigate("/admin/application/completed");
     } else {
       handleProcess();
     }

@@ -17,10 +17,12 @@ function IntelliScanReportList() {
                 <div className="col-md-3 ">
                   <label className="label">Date from</label>
                   <DatePicker
+                    dateFormat="dd/MM/yyyy"
                     selected={dateFrom}
                     onChange={(date) => {
                       setDateFrom(date);
                     }}
+                    maxDate={new Date()}
                     className="form-control p-3"
                     isClearable={dateFrom}
                     placeholderText="Select start date"
@@ -29,6 +31,7 @@ function IntelliScanReportList() {
                 <div className="col-md-3 ">
                   <label className="label">Date to</label>
                   <DatePicker
+                    dateFormat="dd/MM/yyyy"
                     minDate={dateFrom}
                     maxDate={new Date()}
                     selected={dateTo}
