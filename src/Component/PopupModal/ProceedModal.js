@@ -36,7 +36,11 @@ function ProceedModal() {
     try {
       let payload = {
         ids: selectedApplication,
-        status: "PROCESSING_COMMODITY_PURCHASE",
+        showStatus: "Pending",
+        status:
+          commodityType === "COMIDITYAGENT"
+            ? "COMMODITY_SALE_CONFIRMED"
+            : "PROCESSING_COMMODITY_PURCHASE",
         portal_id: BASE_CONFIG?.APP_PORTAL_ID,
       };
       dispatch(SetloaderData(true));
@@ -57,14 +61,27 @@ function ProceedModal() {
         //     })
         //   );
         // }, 2000);
-        dispatch(
-          SetpopupReducerData({
-            ...PopupReducer?.modal,
-            modalType: "",
-            showModal: false,
-          })
-        );
-        navigate("/admin/application/inProcess");
+        if (commodityType === "COMIDITYAGENT") {
+          let path = "/admin/application/commodity";
+          navigate(path);
+          dispatch(
+            SetpopupReducerData({
+              modalType: "SUCCESSFULLY",
+              successModal: true,
+              type: "COMIDITYAGENT",
+            })
+          );
+        } else {
+          dispatch(
+            SetpopupReducerData({
+              ...PopupReducer?.modal,
+              modalType: "",
+              showModal: false,
+            })
+          );
+
+          navigate("/admin/application/inProcess");
+        }
       } else {
       }
     } catch (error) {
@@ -102,33 +119,10 @@ function ProceedModal() {
     }
   };
   // const submit comidity
-  const handleConfirmProceed = async (e, typeSubmit) => {
+  const handleConfirmProceed = async (e) => {
     e.preventDefault();
 
-    if (typeSubmit === "COMIDITYAGENT") {
-      let path = "/admin/application/commodity";
-      // pathArr?.[pathArr?.length - 1] === "sent"
-      //   ? "/admin/application/sent/response"
-      //   : "/admin/application/commodity";
-      navigate(path);
-      dispatch(
-        SetpopupReducerData({
-          modalType: "SUCCESSFULLY",
-          successModal: true,
-          type: "COMIDITYAGENT",
-        })
-      );
-    } else {
-      // navigate("/admin/application/inProcess");
-      // dispatch(
-      //   SetpopupReducerData({
-      //     ...PopupReducer?.modal,
-      //     modalType: "",
-      //     showModal: false,
-      //   })
-      // );
-      await handleProcess();
-    }
+    await handleProcess();
   };
 
   return (
@@ -183,7 +177,7 @@ function ProceedModal() {
             commodityType === "COMIDITYAGENT" ? (
               <button
                 className="w-50 me-4"
-                onClick={(e) => handleConfirmProceed(e, commodityType)}
+                onClick={(e) => handleConfirmProceed(e)}
                 disabled={Loader?.data || false}
               >
                 {Loader?.data ? <Spinner /> : "Confirm"}

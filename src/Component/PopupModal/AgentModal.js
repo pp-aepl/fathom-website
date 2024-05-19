@@ -36,7 +36,7 @@ function AgentModal() {
     try {
       let payload = {
         ids: selectedApplication,
-        status: "AWAITING_WELCOME_LETTER",
+        status: "PROCESSING_COMMODITY_SALE",
         // pathArr?.[pathArr?.length - 1] === "sent"
         //   ? "AWAITING_AGENT_RESPONSE"
         //   : "AWAITING_WELCOME_LETTER",

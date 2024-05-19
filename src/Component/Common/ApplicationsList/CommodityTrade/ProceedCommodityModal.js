@@ -27,7 +27,8 @@ function ProceedCommodityModal() {
       let payload = {
         ids: selectedApplication,
         status: "COMMODITY_PURCHASE_CONFIRMED",
-        portal_id: BASE_CONFIG?.APP_PORTAL_ID
+        portal_id: BASE_CONFIG?.APP_PORTAL_ID,
+        showStatus:"Pending",
 
       };
       dispatch(SetloaderData(true));

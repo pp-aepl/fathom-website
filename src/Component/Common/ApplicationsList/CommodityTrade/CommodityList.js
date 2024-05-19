@@ -204,7 +204,7 @@ function CommodityList() {
                           </div>
                         </td> */}
                         <td className="ps-4">{index + 1}</td>
-                        <td>{item?.name_as_per_passport}</td>
+                        <td>{item?.extracted_value?.application_name}</td>
                         <td>{item?.serial_number}</td>
 
                         <td>

@@ -17,6 +17,9 @@ function MurabahaSuccessfully() {
 
   const handleClosePopup = () => {
     dispatch(reSetPopupReducerData());
+    if (action === "UPDATE") {
+      callBackFunction();
+    }
   };
 
   const onSubmit = async (e) => {
@@ -24,7 +27,7 @@ function MurabahaSuccessfully() {
     handleClosePopup();
     setTimeout(() => {
       navigate("/admin/application/sent");
-    }, 500);
+    }, 1000);
   };
 
   return (
@@ -80,7 +83,6 @@ function MurabahaSuccessfully() {
                 style={{ minWidth: "-webkit-fill-available" }}
                 onClick={(e) => {
                   handleClosePopup(e);
-                  callBackFunction();
                 }}
               >
                 Great
