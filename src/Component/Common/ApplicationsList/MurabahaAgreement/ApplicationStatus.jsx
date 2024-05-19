@@ -146,7 +146,7 @@ function ApplicationStatus() {
       ),
       sortable: true,
     },
-    {
+    APP_PLATFORM !== "SO360" && {
       name: "Murabaha Agreement",
       cell: (row, indx) => (
         <>
@@ -174,7 +174,7 @@ function ApplicationStatus() {
       ),
       sortable: true,
     },
-    {
+    APP_PLATFORM !== "SO360" && {
       name: "Supporting Document",
       cell: (row, indx) => (
         <>
