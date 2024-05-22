@@ -9,6 +9,8 @@ import "firebase/firestore";
 import { collection, onSnapshot } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { BASE_CONFIG } from "../../../../Config";
+import { apiURl } from "../../../../store/actions";
+import { API } from "../../../../apiwrapper";
 
 function ApplicationStatus() {
   const firebase = firebaseData?.firebase;
@@ -32,7 +34,56 @@ function ApplicationStatus() {
   useEffect(() => {
     getApplications();
   }, []);
+  const handleUpdateStatus = async (arr = [], status = "AWAITING_COMMODITY_PURCHASE") => {
+    try {
+      let payload = {
+        ids: arr?.map(ele=>ele?._id),
+        status: status || "AWAITING_COMMODITY_PURCHASE",
+        showStatus: "Pending",
+        portal_id: BASE_CONFIG?.APP_PORTAL_ID,
+      };
 
+      const data = await API({
+        url: `${apiURl.applications}`,
+        method: "PUT",
+        body: payload,
+      });
+
+      if (data?.status || data?.status === "true") {
+        let nvUrl =
+          APP_PLATFORM === "INTELLISCAN"
+            ? "/admin/intelliscan-personal-finance-murbaha-details"
+            : "/admin/application/list";
+        navigate(nvUrl);
+      } else {
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+    }
+  };
+  const handleContinue = async() => {
+    const allTrue = data?.filter(
+      (doc) =>
+        doc.application === "YES" &&
+        doc.credit_limit_approval === "YES" &&
+        doc.promise_to_purchase === "YES" &&
+        doc.murabaha_agreement === "YES" &&
+        doc.supporting_document === "YES"
+    );
+    const allFalse = data?.filter(
+      (doc) =>
+        doc.application === "NO" &&
+        doc.credit_limit_approval === "NO" &&
+        doc.promise_to_purchase === "NO" &&
+        doc.murabaha_agreement === "NO" &&
+        doc.supporting_document === "NO"
+    );
+   if(allTrue?.length>0) await handleUpdateStatus(allTrue,"AWAITING_COMMODITY_PURCHASE")
+   if(allFalse?.length>0)  await handleUpdateStatus(allFalse,"REJECTED")
+
+    console.log(allTrue,"allFalse>>",allFalse);
+  };
   console.log(data, "data>>");
   const columns = [
     {
@@ -251,11 +302,7 @@ function ApplicationStatus() {
                 <button
                   className="login100-form-btn"
                   onClick={() => {
-                    let nvUrl =
-                      APP_PLATFORM === "INTELLISCAN"
-                        ? "/admin/intelliscan-personal-finance-murbaha-details"
-                        : "/admin/application/list";
-                    navigate(nvUrl);
+                    handleContinue();
                   }}
                 >
                   Continue
