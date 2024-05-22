@@ -34,10 +34,13 @@ function ApplicationStatus() {
   useEffect(() => {
     getApplications();
   }, []);
-  const handleUpdateStatus = async (arr = [], status = "AWAITING_COMMODITY_PURCHASE") => {
+  const handleUpdateStatus = async (
+    arr = [],
+    status = "AWAITING_COMMODITY_PURCHASE"
+  ) => {
     try {
       let payload = {
-        ids: arr?.map(ele=>ele?._id),
+        ids: arr?.map((ele) => ele?._id),
         status: status || "AWAITING_COMMODITY_PURCHASE",
         showStatus: "Pending",
         portal_id: BASE_CONFIG?.APP_PORTAL_ID,
@@ -62,7 +65,7 @@ function ApplicationStatus() {
     } finally {
     }
   };
-  const handleContinue = async() => {
+  const handleContinue = async () => {
     const allTrue = data?.filter(
       (doc) =>
         doc.application === "YES" &&
@@ -79,10 +82,11 @@ function ApplicationStatus() {
         doc.murabaha_agreement === "NO" &&
         doc.supporting_document === "NO"
     );
-   if(allTrue?.length>0) await handleUpdateStatus(allTrue,"AWAITING_COMMODITY_PURCHASE")
-   if(allFalse?.length>0)  await handleUpdateStatus(allFalse,"REJECTED")
+    if (allTrue?.length > 0)
+      await handleUpdateStatus(allTrue, "AWAITING_COMMODITY_PURCHASE");
+    if (allFalse?.length > 0) await handleUpdateStatus(allFalse, "REJECTED");
 
-    console.log(allTrue,"allFalse>>",allFalse);
+    console.log(allTrue, "allFalse>>", allFalse);
   };
   console.log(data, "data>>");
   const columns = [
@@ -129,11 +133,7 @@ function ApplicationStatus() {
                 id="flexCheckDefault"
               />
             ) : row?.application === "WAITING" ? (
-              <i
-                class="fas fa-info-circle pointer large-tooltip mx-2"
-                data-toggle="tooltip"
-                data-placement="top"
-              ></i>
+              <img src="../../images/closeCircle.png" width={18} alt="" />
             ) : (
               <img
                 src="../../images/close.png"
@@ -164,11 +164,7 @@ function ApplicationStatus() {
                 id="flexCheckDefault"
               />
             ) : row?.promise_to_purchase === "WAITING" ? (
-              <i
-                class="fas fa-info-circle pointer large-tooltip mx-2"
-                data-toggle="tooltip"
-                data-placement="top"
-              ></i>
+              <img src="../../images/closeCircle.png" width={18} alt="" />
             ) : (
               <img
                 src="../../images/close.png"
@@ -198,11 +194,7 @@ function ApplicationStatus() {
                 id="flexCheckDefault"
               />
             ) : row?.credit_limit_approval === "WAITING" ? (
-              <i
-                class="fas fa-info-circle pointer large-tooltip mx-2"
-                data-toggle="tooltip"
-                data-placement="top"
-              ></i>
+              <img src="../../images/closeCircle.png" width={18} alt="" />
             ) : (
               <img
                 src="../../images/close.png"
@@ -232,11 +224,7 @@ function ApplicationStatus() {
                 id="flexCheckDefault"
               />
             ) : row?.murabaha_agreement === "WAITING" ? (
-              <i
-                class="fas fa-info-circle pointer large-tooltip mx-2"
-                data-toggle="tooltip"
-                data-placement="top"
-              ></i>
+              <img src="../../images/closeCircle.png" width={18} alt="" />
             ) : (
               <img
                 src="../../images/close.png"
@@ -266,11 +254,7 @@ function ApplicationStatus() {
                 id="flexCheckDefault"
               />
             ) : row?.supporting_document === "WAITING" ? (
-              <i
-                class="fas fa-info-circle pointer large-tooltip mx-2"
-                data-toggle="tooltip"
-                data-placement="top"
-              ></i>
+              <img src="../../images/closeCircle.png" width={18} alt="" />
             ) : (
               <img
                 src="../../images/close.png"
