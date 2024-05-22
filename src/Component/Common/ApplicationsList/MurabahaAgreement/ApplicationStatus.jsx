@@ -66,22 +66,24 @@ function ApplicationStatus() {
     }
   };
   const handleContinue = async () => {
-    const allTrue = data?.filter(
-      (doc) =>
-        doc.application === "YES" &&
-        doc.credit_limit_approval === "YES" &&
-        doc.promise_to_purchase === "YES" &&
-        doc.murabaha_agreement === "YES" &&
-        doc.supporting_document === "YES"
-    );
-    const allFalse = data?.filter(
-      (doc) =>
-        doc.application === "NO" &&
-        doc.credit_limit_approval === "NO" &&
-        doc.promise_to_purchase === "NO" &&
-        doc.murabaha_agreement === "NO" &&
-        doc.supporting_document === "NO"
-    );
+    const isAllYes = (doc) =>
+      doc.application === "YES" &&
+      doc.credit_limit_approval === "YES" &&
+      doc.promise_to_purchase === "YES" &&
+      (APP_PLATFORM !== "SO360"
+        ? doc.murabaha_agreement === "YES" && doc.supporting_document === "YES"
+        : true);
+
+    const isAllNo = (doc) =>
+      doc.application === "NO" &&
+      doc.credit_limit_approval === "NO" &&
+      doc.promise_to_purchase === "NO" &&
+      (APP_PLATFORM !== "SO360"
+        ? doc.murabaha_agreement === "NO" && doc.supporting_document === "NO"
+        : true);
+
+    const allTrue = data?.filter(isAllYes);
+    const allFalse = data?.filter(isAllNo);
     if (allTrue?.length > 0)
       await handleUpdateStatus(allTrue, "AWAITING_COMMODITY_PURCHASE");
     if (allFalse?.length > 0) await handleUpdateStatus(allFalse, "REJECTED");
@@ -182,7 +184,7 @@ function ApplicationStatus() {
       cell: (row, indx) => (
         <>
           <div>
-            {row?.credit_limit_approval ? (
+            {row?.credit_limit_approval === "YES" ? (
               <input
                 className="form-check-input"
                 type="checkbox"
