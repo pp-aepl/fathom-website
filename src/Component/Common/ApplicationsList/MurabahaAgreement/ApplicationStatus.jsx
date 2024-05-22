@@ -66,7 +66,7 @@ function ApplicationStatus() {
       cell: (row, indx) => (
         <>
           <div>
-            {row?.application ? (
+            {row?.application === "YES" ? (
               <input
                 className="form-check-input"
                 type="checkbox"
@@ -77,6 +77,12 @@ function ApplicationStatus() {
                 // onChange={(e) => handleChangeCheckbox(e, indx)}
                 id="flexCheckDefault"
               />
+            ) : row?.application === "WAITING" ? (
+              <i
+                class="fas fa-info-circle pointer large-tooltip mx-2"
+                data-toggle="tooltip"
+                data-placement="top"
+              ></i>
             ) : (
               <img
                 src="../../images/close.png"
@@ -95,7 +101,7 @@ function ApplicationStatus() {
       cell: (row, indx) => (
         <>
           <div>
-            {row?.promise_to_purchase ? (
+            {row?.promise_to_purchase === "YES" ? (
               <input
                 className="form-check-input"
                 type="checkbox"
@@ -106,6 +112,12 @@ function ApplicationStatus() {
                 // onChange={(e) => handleChangeCheckbox(e, indx)}
                 id="flexCheckDefault"
               />
+            ) : row?.promise_to_purchase === "WAITING" ? (
+              <i
+                class="fas fa-info-circle pointer large-tooltip mx-2"
+                data-toggle="tooltip"
+                data-placement="top"
+              ></i>
             ) : (
               <img
                 src="../../images/close.png"
@@ -134,6 +146,12 @@ function ApplicationStatus() {
                 // onChange={(e) => handleChangeCheckbox(e, indx)}
                 id="flexCheckDefault"
               />
+            ) : row?.credit_limit_approval === "WAITING" ? (
+              <i
+                class="fas fa-info-circle pointer large-tooltip mx-2"
+                data-toggle="tooltip"
+                data-placement="top"
+              ></i>
             ) : (
               <img
                 src="../../images/close.png"
@@ -151,7 +169,7 @@ function ApplicationStatus() {
       cell: (row, indx) => (
         <>
           <div>
-            {row?.murabaha_agreement ? (
+            {row?.murabaha_agreement === "YES" ? (
               <input
                 className="form-check-input"
                 type="checkbox"
@@ -162,6 +180,12 @@ function ApplicationStatus() {
                 // onChange={(e) => handleChangeCheckbox(e, indx)}
                 id="flexCheckDefault"
               />
+            ) : row?.murabaha_agreement === "WAITING" ? (
+              <i
+                class="fas fa-info-circle pointer large-tooltip mx-2"
+                data-toggle="tooltip"
+                data-placement="top"
+              ></i>
             ) : (
               <img
                 src="../../images/close.png"
@@ -179,7 +203,7 @@ function ApplicationStatus() {
       cell: (row, indx) => (
         <>
           <div>
-            {row?.supporting_document ? (
+            {row?.supporting_document === "YES" ? (
               <input
                 className="form-check-input"
                 type="checkbox"
@@ -190,6 +214,12 @@ function ApplicationStatus() {
                 // onChange={(e) => handleChangeCheckbox(e, indx)}
                 id="flexCheckDefault"
               />
+            ) : row?.supporting_document === "WAITING" ? (
+              <i
+                class="fas fa-info-circle pointer large-tooltip mx-2"
+                data-toggle="tooltip"
+                data-placement="top"
+              ></i>
             ) : (
               <img
                 src="../../images/close.png"
