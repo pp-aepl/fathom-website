@@ -4,6 +4,7 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  SetloaderData,
   SetpopupReducerData,
   reSetPopupReducerData,
 } from "../../store/reducer";
@@ -11,13 +12,17 @@ import ProceedModal from "./ProceedModal";
 import DisbursedModal from "./DisbursedModal";
 import { useNavigate } from "react-router-dom";
 import { BASE_CONFIG } from "../../Config";
-function SuccessfullyModal() {
+import { apiURl } from "../../store/actions";
+import { API } from "../../apiwrapper";
+function SuccessfullyModal({isClosed}) {
   const APP_PLATFORM = BASE_CONFIG.APP_PLATFORM;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { PopupReducer } = useSelector((state) => state);
-  const { successModal = false } = PopupReducer?.modal;
+  const { successModal = false, selectedApplication = [], } = PopupReducer?.modal;
+  console.log(PopupReducer)
+
   const { scanModal = false } = PopupReducer?.modal;
   const { proceedModal = false } = PopupReducer?.modal;
   const { disbursedModal = false } = PopupReducer?.modal;
@@ -53,7 +58,63 @@ function SuccessfullyModal() {
         })
       );
     } else if (successType === "COMIDITYAGENT") {
-      handleClosePopup();
+      try {
+        let payload = {
+          ids: selectedApplication,
+          showStatus: "Pending",
+          status:"AWAITING_WELCOME_LETTER",
+          portal_id: BASE_CONFIG?.APP_PORTAL_ID,
+        };
+        dispatch(SetloaderData(true));
+        const data = await API({
+          url: `${apiURl.applications}`,
+          method: "PUT",
+          body: payload,
+        });
+  
+        if (data?.status || data?.status === "true") {
+          
+          handleClosePopup();
+          isClosed()
+          // setTimeout(() => {
+          //   navigate("/admin/application/list");
+          //   dispatch(
+          //     SetpopupReducerData({
+          //       ...PopupReducer?.modal,
+          //       modalType: "ProceedCommodity",
+          //       showModal: true,
+          //     })
+          //   );
+          // }, 2000);
+          // if (commodityType === "COMIDITYAGENT") {
+          //   let path = "/admin/application/commodity";
+          //   navigate(path);
+          //   dispatch(
+          //     SetpopupReducerData({
+          //       modalType: "SUCCESSFULLY",
+          //       successModal: true,
+          //       type: "COMIDITYAGENT",
+          //     })
+          //   );
+          // } else {
+          //   dispatch(
+          //     SetpopupReducerData({
+          //       ...PopupReducer?.modal,
+          //       modalType: "",
+          //       showModal: false,
+          //     })
+          //   );
+  
+          //   navigate("/admin/application/inProcess");
+          // }
+        } else {
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        dispatch(SetloaderData(false));
+      }
+     
       // dispatch(
       //   SetpopupReducerData({ modalType: "DISBURSED", disbursedModal: true })
       // );

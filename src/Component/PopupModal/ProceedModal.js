@@ -28,11 +28,12 @@ function ProceedModal() {
   const navigate = useNavigate();
   const location = useLocation();
   const pathArr = location.pathname.split("/");
-  console.log(commodityType, "");
+  console.log(commodityType, "COMIDITYAGENT");
   const handleClosePopup = () => {
     dispatch(reSetPopupReducerData());
   };
   const handleProcess = async () => {
+    //AWAITING_WELCOME_LETTER
     try {
       let payload = {
         ids: selectedApplication,
@@ -69,6 +70,7 @@ function ProceedModal() {
               modalType: "SUCCESSFULLY",
               successModal: true,
               type: "COMIDITYAGENT",
+              selectedApplication: selectedApplication,
             })
           );
         } else {

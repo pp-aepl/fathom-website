@@ -128,13 +128,19 @@ function CommodityList() {
   }, [filterKey]);
 
   useEffect(() => {
-    fetchListingData();
+    fetchListingData()
+    
   }, [fetchListingData]);
+
+
+  const onModalClose = ()=>{
+    fetchListingData()
+  }
 
   return (
     <>
       {proceedModal && <ProceedModal />}
-      {successModal && <SuccessfullyModal />}
+      {successModal && <SuccessfullyModal isClosed={onModalClose} />}
       {disbursedModal && <DisbursedModal />}
 
       <section className="">
