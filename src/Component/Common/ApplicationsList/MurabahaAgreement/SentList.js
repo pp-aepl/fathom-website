@@ -29,6 +29,7 @@ function SentList() {
   const [selectedApplication, setSelectedApplication] = useState([]);
   const [action, setAction] = useState("ALL");
   const [unSignedArr, setUnSignedArr] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [filterKey, setFilterKey] = useState({
     serial_number: "",
@@ -169,6 +170,7 @@ function SentList() {
             : "AWAITING_AGENT_RESPONSE",
         ...filterKey,
       };
+      setIsLoading(true);
 
       const data = await dispatch(fetchApplicationList(payload, filterKey));
       if (data?.status || data?.status === "true") {
@@ -178,11 +180,15 @@ function SentList() {
       }
     } catch (error) {
       console.log(error, "error");
+    } finally {
+      setIsLoading(false);
     }
   }, [filterKey, last_Path]);
 
   useEffect(() => {
-    fetchListingData();
+    setTimeout(() => {
+      fetchListingData();
+    }, 2000);
   }, [fetchListingData]);
   console.log(unSignedArr, "unsigned");
   return (
@@ -306,114 +312,122 @@ function SentList() {
 
           <div className=" row my-5" id="table-contexual">
             <div className="col-12">
-              <table className="table" id="exportTable">
-                <thead className="thead-light">
-                  <tr>
-                    <th scope="col"> </th>
-                    <th scope="col">S.No. </th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Application no.</th>
-                    <th scope="col">Channel</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {arrList?.map((item, index) => (
-                    <tr key={item._id}>
-                      <td>
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id={item._id}
-                            checked={selectedApplication?.includes(item?._id)}
-                            onChange={(e) => handleChangeCheckBox(e, item._id)}
-                          />
-                        </div>
-                      </td>
-                      <td>{index + 1}</td>
-                      <td>
-                        {" "}
-                        {moment(item?.createdAt)
-                          .local()
-                          .format("DD/MM/YYYY hh:mm a")}
-                      </td>
-                      <td>{item?.serial_number}</td>
-                      <td>
-                        {item?.channel && (
+              {isLoading ? (
+                <div className="text-center">
+                  <Spinner size="lg" />
+                </div>
+              ) : (
+                <table className="table" id="exportTable">
+                  <thead className="thead-light">
+                    <tr>
+                      <th scope="col"> </th>
+                      <th scope="col">S.No. </th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Application no.</th>
+                      <th scope="col">Channel</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {arrList?.map((item, index) => (
+                      <tr key={item._id}>
+                        <td>
+                          <div className="form-check">
+                            <input
+                              className="form-check-input"
+                              type="checkbox"
+                              value=""
+                              id={item._id}
+                              checked={selectedApplication?.includes(item?._id)}
+                              onChange={(e) =>
+                                handleChangeCheckBox(e, item._id)
+                              }
+                            />
+                          </div>
+                        </td>
+                        <td>{index + 1}</td>
+                        <td>
+                          {" "}
+                          {moment(item?.createdAt)
+                            .local()
+                            .format("DD/MM/YYYY hh:mm a")}
+                        </td>
+                        <td>{item?.serial_number}</td>
+                        <td>
+                          {item?.channel && (
+                            <span
+                              className="channel"
+                              style={{
+                                background:
+                                  item?.channel === "Digital Signature"
+                                    ? "#8282FF"
+                                    : "#0099FF33",
+                              }}
+                            >
+                              <img
+                                src={
+                                  item?.channel === "Digital Signature"
+                                    ? "../../../images/edit.png"
+                                    : "../../../images/application_icon.svg"
+                                }
+                                width={18}
+                                className=" me-2 notepad  d-inline-block"
+                              />
+                              {item?.channel}
+                            </span>
+                          )}
+                        </td>
+                        <td>
                           <span
-                            className="channel"
                             style={{
-                              background:
-                                item?.channel === "Digital Signature"
-                                  ? "#8282FF"
-                                  : "#0099FF33",
+                              color:
+                                last_Path === "sent"
+                                  ? item?.isAgreementSigned
+                                    ? "#8282FF"
+                                    : "#EAB308"
+                                  : item?.showStatus === "Pending"
+                                  ? "#EAB308"
+                                  : "#8282FF",
                             }}
                           >
-                            <img
-                              src={
-                                item?.channel === "Digital Signature"
-                                  ? "../../../images/edit.png"
-                                  : "../../../images/application_icon.svg"
-                              }
-                              width={18}
-                              className=" me-2 notepad  d-inline-block"
-                            />
-                            {item?.channel}
-                          </span>
-                        )}
-                      </td>
-                      <td>
-                        <span
-                          style={{
-                            color:
-                              last_Path === "sent"
-                                ? item?.isAgreementSigned
-                                  ? "#8282FF"
-                                  : "#EAB308"
-                                : item?.showStatus === "Pending"
-                                ? "#EAB308"
-                                : "#8282FF",
-                          }}
-                        >
-                          {last_Path === "sent" ? (
-                            item?.isAgreementSigned ? (
-                              "Signed"
-                            ) : unSignedArr?.find(
-                                (ele) => ele?._id === item?._id
-                              )?.isChecking ? (
-                              <>
-                                <Spinner color="red" /> Checking...
-                              </>
-                            ) : unSignedArr?.find(
-                                (ele) => ele?._id === item?._id
-                              )?.isCompleted ? (
-                              "Signed"
+                            {last_Path === "sent" ? (
+                              item?.isAgreementSigned ? (
+                                "Signed"
+                              ) : unSignedArr?.find(
+                                  (ele) => ele?._id === item?._id
+                                )?.isChecking ? (
+                                <>
+                                  <Spinner color="red" /> Checking...
+                                </>
+                              ) : unSignedArr?.find(
+                                  (ele) => ele?._id === item?._id
+                                )?.isCompleted ? (
+                                "Signed"
+                              ) : (
+                                "Pending"
+                              )
                             ) : (
-                              "Pending"
-                            )
-                          ) : (
-                            item?.showStatus
-                          )}
-                        </span>
-                      </td>
+                              item?.showStatus
+                            )}
+                          </span>
+                        </td>
 
-                      <td>
-                        <a href={item?.murbaha_url} target="_blank">
-                          <button
-                            className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
-                            // onClick={() => handleView(item?.murbaha_url)}
-                          >
-                            View
-                          </button>
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                        <td>
+                          <a href={item?.murbaha_url} target="_blank">
+                            <button
+                              className="view_btn btn btn-outline-secondary p-2 rounded-circle-pills"
+                              // onClick={() => handleView(item?.murbaha_url)}
+                            >
+                              View
+                            </button>
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
             </div>
           </div>
         </div>

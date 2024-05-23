@@ -10,6 +10,7 @@ import { isValid, validateEmail } from "../Common/Validation/Validation";
 import { SetloaderData, SetpopupReducerData } from "../../store/reducer";
 import { validationMessages } from "../../store/actions/api-url";
 import { SetAuthUserData } from "../../store/reducer/authUser";
+import { BASE_CONFIG } from "../../Config";
 
 function Login() {
   const [password, setPassword] = useState("");
@@ -18,6 +19,7 @@ function Login() {
   const [errors, setErrors] = useState({});
   const [showQRcode, setShowQRcode] = useState(false);
   const [qrData, setQRData] = useState({ secretKey: "", qrCodeDataURL: "" });
+  const APP_PLATFORM = BASE_CONFIG.APP_PLATFORM;
 
   const { PopupReducer } = useSelector((state) => state);
 
@@ -169,7 +171,7 @@ function Login() {
                       <h3>
                         {showQRcode
                           ? `Enable Two Factor Authentication`
-                          : "Welcome back."}
+                          : `Welcome back to ${APP_PLATFORM}`}
                       </h3>
                       {showQRcode ? (
                         <p className="auth-subtitle mb-5">
