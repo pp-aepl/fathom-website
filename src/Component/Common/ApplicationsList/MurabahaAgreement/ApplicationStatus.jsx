@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import firebaseData from "../../../../Config/Firebase";
 import "firebase/firestore";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { BASE_CONFIG } from "../../../../Config";
 import { apiURl } from "../../../../store/actions";
@@ -20,8 +20,8 @@ function ApplicationStatus() {
   const APP_PLATFORM = BASE_CONFIG.APP_PLATFORM;
   const portal_id = BASE_CONFIG?.APP_PORTAL_ID;
   const applicationsCollectionRef = collection(firebaseDb, "applications");
-  const getApplications = () => {
-    onSnapshot(applicationsCollectionRef, (querySnapshot) => {
+  const getApplications = (appQuery) => {
+    onSnapshot(appQuery, (querySnapshot) => {
       const applications = [];
       querySnapshot.forEach((doc) => {
         applications.push(doc.data());
@@ -32,7 +32,12 @@ function ApplicationStatus() {
   };
 
   useEffect(() => {
-    getApplications();
+    const applicationsQuery = query(
+      applicationsCollectionRef,
+      where("portal_id", "==", portal_id),
+      where("status", "==", "AWAITING_DOCUMENT_EXTRACTION")
+    );
+    getApplications(applicationsQuery);
   }, []);
   const handleUpdateStatus = async (
     arr = [],
@@ -91,6 +96,7 @@ function ApplicationStatus() {
     console.log(allTrue, "allFalse>>", allFalse);
   };
   console.log(data, "data>>");
+
   const columns = [
     {
       name: "Document Name",
