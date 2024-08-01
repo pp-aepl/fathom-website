@@ -49,7 +49,7 @@ const statuses = ["AWAITING_DOCUMENT_EXTRACTION", "DOCUMENT_EXTRACTION_COMPLETED
       let payload = {
         ids: arr?.map((ele) => ele?._id),
         status: status || "AWAITING_COMMODITY_PURCHASE",
-        showStatus: status === 'REJECTED'?  'REJECTED' : "Pending",
+        showStatus: "Pending",
         portal_id: BASE_CONFIG?.APP_PORTAL_ID,
       };
 
