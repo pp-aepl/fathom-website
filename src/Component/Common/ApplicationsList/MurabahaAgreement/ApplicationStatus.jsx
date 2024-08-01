@@ -73,25 +73,29 @@ const statuses = ["AWAITING_DOCUMENT_EXTRACTION", "DOCUMENT_EXTRACTION_COMPLETED
     }
   };
   const handleContinue = async () => {
-    const isAllYes = (doc) =>
+    const isAllYes = (doc) => 
       doc.application === "YES" &&
       doc.credit_limit_approval === "YES" &&
       doc.promise_to_purchase === "YES" &&
+      doc.status === "DOCUMENT_EXTRACTION_COMPLETED" &&
       (APP_PLATFORM !== "SO360"
         ? doc.murabaha_agreement === "YES" && doc.supporting_document === "YES"
         : true);
+    
+   
 
     const isAllNo = (doc) =>
       doc.application === "NO" &&
       doc.credit_limit_approval === "NO" &&
       doc.promise_to_purchase === "NO" &&
+      doc.status === "DOCUMENT_EXTRACTION_COMPLETED" &&
       (APP_PLATFORM !== "SO360"
         ? doc.murabaha_agreement === "NO" && doc.supporting_document === "NO"
         : true);
 
     const allTrue = data?.filter(isAllYes);
     const allFalse = data?.filter(isAllNo);
-    if (allTrue?.length > 0)
+    if (allTrue?.length > 0 )
       await handleUpdateStatus(allTrue, "AWAITING_COMMODITY_PURCHASE");
     if (allFalse?.length > 0) await handleUpdateStatus(allFalse, "REJECTED");
 
