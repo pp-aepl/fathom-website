@@ -49,7 +49,7 @@ const statuses = ["AWAITING_DOCUMENT_EXTRACTION", "DOCUMENT_EXTRACTION_COMPLETED
       let payload = {
         ids: arr?.map((ele) => ele?._id),
         status: status || "AWAITING_COMMODITY_PURCHASE",
-        showStatus: status === 'REJECTED'?  'REJECTED' : "Pending",
+        showStatus:  "Pending",
         portal_id: BASE_CONFIG?.APP_PORTAL_ID,
       };
 
@@ -90,10 +90,10 @@ const statuses = ["AWAITING_DOCUMENT_EXTRACTION", "DOCUMENT_EXTRACTION_COMPLETED
    
 
     const isAllNo = (doc) =>
-      doc.application === "NO" ||
-      doc.credit_limit_approval === "NO" ||
-      doc.promise_to_purchase === "NO" ||
-      doc.status === "DOCUMENT_EXTRACTION_COMPLETED" ||
+      doc.application === "NO" &&
+      doc.credit_limit_approval === "NO" &&
+      doc.promise_to_purchase === "NO" &&
+      doc.status === "DOCUMENT_EXTRACTION_COMPLETED" &&
       (APP_PLATFORM !== "SO360"
         ? doc.murabaha_agreement === "NO" && doc.supporting_document === "NO"
         : true);
