@@ -77,6 +77,7 @@ const statuses = ["AWAITING_DOCUMENT_EXTRACTION", "DOCUMENT_EXTRACTION_COMPLETED
       doc.application === "YES" &&
       doc.credit_limit_approval === "YES" &&
       doc.promise_to_purchase === "YES" &&
+      doc.status === "DOCUMENT_EXTRACTION_COMPLETED" &&
       (APP_PLATFORM !== "SO360"
         ? doc.murabaha_agreement === "YES" && doc.supporting_document === "YES"
         : true);
@@ -85,6 +86,7 @@ const statuses = ["AWAITING_DOCUMENT_EXTRACTION", "DOCUMENT_EXTRACTION_COMPLETED
       doc.application === "NO" &&
       doc.credit_limit_approval === "NO" &&
       doc.promise_to_purchase === "NO" &&
+      doc.status === "DOCUMENT_EXTRACTION_COMPLETED" &&
       (APP_PLATFORM !== "SO360"
         ? doc.murabaha_agreement === "NO" && doc.supporting_document === "NO"
         : true);
