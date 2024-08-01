@@ -30,12 +30,14 @@ function ApplicationStatus() {
       setData(arr);
     });
   };
+// Combine the status conditions into an array
+const statuses = ["AWAITING_DOCUMENT_EXTRACTION", "DOCUMENT_EXTRACTION_COMPLETED"];
 
   useEffect(() => {
     const applicationsQuery = query(
       applicationsCollectionRef,
       where("portal_id", "==", portal_id),
-      where("status", "==", "AWAITING_DOCUMENT_EXTRACTION")
+      where("status", "in", statuses)
     );
     getApplications(applicationsQuery);
   }, []);
