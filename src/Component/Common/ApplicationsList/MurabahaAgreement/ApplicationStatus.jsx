@@ -49,7 +49,7 @@ const statuses = ["AWAITING_DOCUMENT_EXTRACTION", "DOCUMENT_EXTRACTION_COMPLETED
       let payload = {
         ids: arr?.map((ele) => ele?._id),
         status: status || "AWAITING_COMMODITY_PURCHASE",
-        showStatus: "Pending",
+        showStatus: status === 'REJECTED'?  'REJECTED' : "Pending",
         portal_id: BASE_CONFIG?.APP_PORTAL_ID,
       };
 
@@ -64,7 +64,11 @@ const statuses = ["AWAITING_DOCUMENT_EXTRACTION", "DOCUMENT_EXTRACTION_COMPLETED
           APP_PLATFORM === "INTELLISCAN"
             ? "/admin/intelliscan-personal-finance-murbaha-details"
             : "/admin/application/list";
-        navigate(nvUrl);
+            if(status === 'REJECTED'){
+              navigate("/admin/intelliscan?status=fail");
+            }else {
+              navigate(nvUrl);
+            }
       } else {
       }
     } catch (error) {

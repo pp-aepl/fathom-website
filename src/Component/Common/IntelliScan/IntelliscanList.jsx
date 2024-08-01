@@ -115,7 +115,7 @@ function IntelliscanList() {
                                       className={
                                         item?.showStatus === "Completed"
                                           ? "green"
-                                          : item?.showStatus === "Rejected"
+                                          : (item?.showStatus === "Rejected" || item?.showStatus === 'REJECTED')
                                           ? "red"
                                           : "orange"
                                       }
