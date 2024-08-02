@@ -23,7 +23,7 @@ function ImportApplication() {
     showModal = false,
     documents = [],
     formId = "",
-    documentId=""
+    documentId="12345"
   } = PopupReducer?.modal;
   const [isUploaded, setIsUploaded] = useState(false);
 
