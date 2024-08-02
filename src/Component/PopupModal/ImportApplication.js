@@ -23,6 +23,7 @@ function ImportApplication() {
     showModal = false,
     documents = [],
     formId = "",
+    documentId=""
   } = PopupReducer?.modal;
   const [isUploaded, setIsUploaded] = useState(false);
 
@@ -51,7 +52,6 @@ function ImportApplication() {
       if (formId && documents?.length > 0) {
         dispatch(SetloaderData(true));
         let awsUrls = await getUrlsArray(documents);
-        console.log(awsUrls, "awsUrls");
         dispatch(
           SetpopupReducerData({
             ...PopupReducer?.modal,
@@ -75,7 +75,8 @@ function ImportApplication() {
         showStatus: "Pending",
         awsUrls: documents,
         status: "IMPORTED",
-        portal_id: BASE_CONFIG?.APP_PORTAL_ID
+        portal_id: BASE_CONFIG?.APP_PORTAL_ID,
+        documentId:documentId
 
       };
       dispatch(SetloaderData(true));
@@ -185,17 +186,27 @@ function ImportApplication() {
             <select
               className="form-select mt-3 p-3"
               aria-label="Default select example"
+              value={documentId}
+              name="documentId"
+              onChange={(e) =>
+                dispatch(
+                  SetpopupReducerData({
+                    ...PopupReducer?.modal,
+                    documentId: e.target.value,
+                  })
+                )
+              }
             >
-              <option selected>
+              <option selected value={"12345"}>
                 Import files from Branch server/folder location
               </option>
-              <option value="1">
+              <option value={"23456"}>
                 Import file from Direct Sales server/folder
               </option>
-              <option value="2">
+              <option value={"34567"}>
                 Import Files from Third Party server/folder
               </option>
-              <option value="2">
+              <option value={"45678"}>
                 Import files from all locations server/folder
               </option>
             </select>
